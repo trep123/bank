@@ -1,0 +1,702 @@
+{
+ "questions": [
+  {
+   "id": "2-131",
+   "type": "multiple",
+   "question": "如图组网，SWB和SWC启用STP, SWC为根，SWA没有启用STP初始时链路2没有连接，PCB可以将数据发到PCA,如果此时链路1故障，维护人员将链路2连接，则关于PCB到\nPCA数据传送业务的恢复过程说法正确的有______。（假设PCA不会主动发送数据）",
+   "options": [
+    "由于SWA没有启用STP,所以业务恢复需要等待SWC的MAC地址老化，默认需要300秒的时间",
+    "SWB的端口E0/1需要等待默认30秒进入转发状态，所以PCB到PCA的业务恢复总共需要默认30秒的时间",
+    "SWB的端口E0/1进入Forwarding状态引发拓扑改变过程，使得MAC地址老化时间缩短，所以PCB到PCA的业务恢复总共需要默认45秒的时间",
+    "SWA端口E0/1链路中断后不会向SWC发送TCN BPDU"
+   ],
+   "answer": "CD",
+   "analysis": "由于新加链路导致TCN，所以全网MAC缩减为15s，再加上stp的端口学习过程，共45s\nSWA没有开启STP，不存在MAX AGE的时间，所以转发时间是 2个forwarding delay + 收到swb收到tc时把mac表老化时间设置为15秒的老化",
+   "images": [
+    "p089_48.jpeg"
+   ]
+  },
+  {
+   "id": "2-132",
+   "type": "single",
+   "question": "如图组网，SWA和SWB启用STP, SWC没有启用STP初始时链路2没有连接，PCB可以将数据发到PCA,如果此时链路1故障，维护人员将链路2连接，则关于PCB到PCA数据传送业的恢复过程的说法正确的有______。（假设PCA不会主动发送数据)",
+   "options": [
+    "由于SWA链路中断会引发拓扑改变处理过程，使得SWA和SWB的MAC地址老化时间缩短，所以业务恢复默认需要15秒时间",
+    "由于SWB的端口E0/1默认需要30秒的时间进入转发状态，所以业务需要默认30秒的时间才能恢复",
+    "当SWB的端口E0/1进入Forwarding状态会引发拓扑改变处理过程，所以业务最终恢复需要默认30\n+15=45秒的时间",
+    "业务恢复需要等待SWC的MAC地址老化，所以需要默认300秒的时间"
+   ],
+   "answer": "D",
+   "analysis": "",
+   "images": [
+    "p090_49.jpeg"
+   ]
+  },
+  {
+   "id": "2-133",
+   "type": "single",
+   "question": "如题图，SWA、SWB、SWC和SWD启用了STP，SWA、SWB和SWC组成环路，拓扑稳定后，将SWD和SWB相连假设各链路开销相同，则关于STP的拓扑改变处理过程，以下说法正确的有______。",
+   "options": [
+    "SWD会从端口E0/1 发出TCN BPDU",
+    "SWB会从端口E0/2 发出TCN BPDU",
+    "如果SWC和SWA之间的链路中断，则SWC会从端口E0/3发出TCN BPDU",
+    "如果SWB和SWC之间的链路中断，则SWB和SWC均会从端口E0/2发出TCN BPDU"
+   ],
+   "answer": "B",
+   "analysis": "配置BPDU仅从指定端口发出，TCNBPDU仅从根端口发出\n配置BPDU通常仅由根桥周期性发出，TCNBPDU除跟桥外其他网桥都可以发出\n配置BPDU通常仅从根端口接收，TCNBPDU仅从指定端口接收\nAlternate端口即不会发送配置BPDU也不会发送TCNBPDU\nTCN BPDU产生条件：\n网桥上有端口转变为Forwarding装，该网桥至少包含一个指定端口。\n网桥上有端口从Forwarding状态或Learning状态转变为Blocking状态\nC是错的， 不会发送，SWA知道，TCNBPDU仅从根端口发出\nD是错的， 不会发送，因为SWC的E0/3为Block端口",
+   "images": [
+    "p091_50.jpeg"
+   ]
+  },
+  {
+   "id": "2-134",
+   "type": "multiple",
+   "question": "如题图组网，SWA、SWB和SWC启用STP,如果拓扑收敛后，将SWA的桥优先级设置为61440,则下列说法正确的有______。",
+   "options": [
+    "优先级调整后，开始SWA仍然会发送以自己为根的配置BPDU",
+    "SWC收到低优先级的配置BPDU后会立即回应以自身为根的配置BPDU",
+    "SWB在本地保存的配置BPDU老化后会向SWA发送以自身为根的配置BPDU",
+    "默认30秒后拓扑会重新实现收敛"
+   ],
+   "answer": "AC",
+   "analysis": "SWC收到SWB低优先级BPDU会发送以SWC为根BPDU",
+   "images": [
+    "p092_51.jpeg"
+   ]
+  },
+  {
+   "id": "2-135",
+   "type": "multiple",
+   "question": "如题图组网，SWA、SWB和SWC启用STP,且SWB的MAC地址小于SWA的MAC地址如果拓扑收敛, SWB的桥优先级设置为0,则下列说法正确的有______。",
+   "options": [
+    "优先级调整后，SWB会立即从端口E0/1和E0/2发送以自己为根的配置BPDU",
+    "SWC收到SWB发送的配置BPDU后，不会马上进行更新，而会等待本地保存的配置BPDU老化后再进行更新",
+    "SWA会立即确定端口E0/1为根端口",
+    "默认30秒后拓扑会重新实现收敛"
+   ],
+   "answer": "ACD",
+   "analysis": "",
+   "images": [
+    "p093_52.jpeg"
+   ]
+  },
+  {
+   "id": "2-136",
+   "type": "multiple",
+   "question": "下列关于STP协议的说法，正确的有______。",
+   "options": [
+    "STP中的端口从Blocking到Forwarding必须经过两个ForwardDelay的时长，此后才可以发送数据",
+    "当拓扑变化频繁时，会导致一些端口经常处于Blocking状态，可能会造成网络长期的中断",
+    "如果STP网络中存在大量的主机，则主机的频繁上下线会产生大量的TCN BPDU",
+    "STP网络中所有的VLAN共享一颗生成树，无法实现不同VLAN在Trunk链路上的负载分担"
+   ],
+   "answer": "ABCD",
+   "analysis": "缺省情况下一个端口从Blocking状态过渡到Forwarding状态至少需要30秒钟(两倍的Forward Delay)。对于一个不拓扑不稳定网络，会导致网络的长时间终端。\n对于拓扑不稳定的网络经常需要重新进行STP计算，某些端口可能会长期处于阻塞状态导致网络长时间的终端。\n当网络中有大量的用户主机时，由于主机位置不固定，可能会频繁上下线，这样使得交换机频繁发送TCN BPDU，导致网桥MAC地址老化时间长期保持为15秒。MAC地址频繁的刷新会导致网络充斥大量由未知单播造成的广播报文，严重影响网络中的应用"
+  },
+  {
+   "id": "2-137",
+   "type": "multiple",
+   "question": "关于STP根桥的说法正确的是______。",
+   "options": [
+    "根桥指在一个PhysicalSegment上优先级最高的网桥",
+    "根桥上的所有端口均为定端口",
+    "根桥上没有根端口",
+    "根桥上可能存在Alternate端口"
+   ],
+   "answer": "CD",
+   "analysis": "跟桥是整个生成树的根节点，由所有网桥中优先级最高的桥担任。\n根端口指网桥上距离跟桥最近的端口，根桥没有根端口，每一个非跟桥有且仅有一个根端口。\n从一个交换机的一个口连接到另一个口自环，会有一个口被阻塞成为备份端口。"
+  },
+  {
+   "id": "2-138",
+   "type": "single",
+   "question": "关于STP的桥ID,下列说法正确的是______。",
+   "options": [
+    "网络中具有最小桥ID的网桥，经过STP计算，最终将会成为根桥",
+    "桥ID由桥MAC地址和优先级字段组成，进行桥ID的比较时，先比较MAC地址，MAC地址值小者为优",
+    "SWA和SWB 的MAC 地址分别为00-E0-FC-00-00-11 和00-E0-FC-11-00-11,两者优先级分别为32768和4096,则当SWA和SWB进行环形组网并启用生成树协议后，SWA将成为根桥",
+    "桥优先级字段长度为2个字节，因此桥优先级的取值范围为0-65535"
+   ],
+   "answer": "A",
+   "analysis": "STP中每一个网桥都具有一个桥ID(Bridge ID)，用于在网络中唯一标识一个桥，根桥选择的依据就是桥ID,具有最小ID的网桥即为网络中的根桥。\n在进行桥ID的比较时，先比较桥优先级，优先级数值小者为优，在优先级相同的情况下，再比较MAC地\n址，MAC地址小者为优。\n桥优先级取值范围0-61440；"
+  },
+  {
+   "id": "2-139",
+   "type": "multiple",
+   "question": "拓扑如图，进行STP计算，正确的结果是______。",
+   "options": [
+    "SWA为网络中的根桥",
+    "SWB的端口E0/2为指定端口",
+    "SWD的端口E0/2为根端口",
+    "SWC会从E0/3端口向SWD转发配置BPDU"
+   ],
+   "answer": "ABD",
+   "analysis": "",
+   "images": [
+    "p095_53.jpeg"
+   ]
+  },
+  {
+   "id": "2-140",
+   "type": "multiple",
+   "question": "拓扑如图，进行STP计算，正确的结果是______。",
+   "options": [
+    "SWA的端口E0/1和E0/2均为指定端口",
+    "SWD的端口E0/1为根端口",
+    "SWA的端口E0/2 为Alternate 端口",
+    "SWD的端口E0/1和E0/2均会收到配置BPDU"
+   ],
+   "answer": "ABD",
+   "analysis": "",
+   "images": [
+    "p095_54.jpeg"
+   ]
+  },
+  {
+   "id": "2-141",
+   "type": "multiple",
+   "question": "拓扑如图，进行STP计算，正确的结果是______。",
+   "options": [
+    "由于根桥ID、根路径开销、指定桥ID、指定端口均相同，故无法确定SWD的根端口",
+    "SWD需要通过比较自身接收配置BPDU的端口的ID来确定根端口",
+    "如果将SWD的桥优先级设置为0,则SWD将成为根桥，且端口E0/1和E0/2均为指定端口",
+    "如果将SWD的桥优先级设置为0,则SWD的端口E0/2将只接收配置BPDU而不发送配置BPDU"
+   ],
+   "answer": "BD",
+   "analysis": "",
+   "images": [
+    "p096_55.jpeg"
+   ]
+  },
+  {
+   "id": "2-142",
+   "type": "single",
+   "question": "关于RSTP和STP的关系，说法正确的有______。",
+   "options": [
+    "RSTP在旧EE802.1 D标准中定义，其协议思想和STP相同，但在收敛时间上作了改进",
+    "运行RSTP的交换机可以和运行STP的交换机协同工作，并改善STP的收敛时间",
+    "RSTP可以在STP的基础之上实现不同VLAN的数据在Trunk链路上的负载分担",
+    "RSTP具备STP的所有功能，但其仅使用了一种类型的BPDU"
+   ],
+   "answer": "D",
+   "analysis": "RSTP(Rapid Spanning Tree Protocol,快速生成树协议)的IEEE标准为802.1W，其消除环路的基本思想和STP保持抑制，RSTP具备了STP的所有功能，支持RSTP的网桥可以和支持STP的网桥一同运行。\n和STP相比，RSTP的改进之处包括：\nRSTP减少了端口的状态；\nRSTP增加了端口的角色；\nRSTP配置BPDU的格式和发送方式有所改变；\n当网络拓扑发生变化时，RSTP处理方式不通，可以实现更为快速的收敛。"
+  },
+  {
+   "id": "2-143",
+   "type": "multiple",
+   "question": "关于RSTP中的端口状态和角色，说法正确的有______。",
+   "options": [
+    "RSTP中端口共有三种状态，其中端口进入Learning状态后开始收发BPDU，并确定端口角色",
+    "RSTP中的Discarding端口如同STP中的Blocking端口，端口在Discarding状态时不会发送BPDU,但会接受BPDU",
+    "RSTP中Alternate端口用于为根端口做备份，Backup端口用于为指定端口做备份",
+    "RSTP中的根端口和指定端口的定义和STP中相同"
+   ],
+   "answer": "CD",
+   "analysis": "RSTP将端口状态分为Discarding、Learning和Forwarding状态。STP中的Disabled、Blocking和Listening状态在RSTP中都对应为Discarding状态。\n进行RSTP计算时，端口会在Discarding状态完成角色的确定，当端口确定为根端口和指定端口后，经过Forward Delay端口会进入Learning状态；当端口确定为Alternate端口，端口会维持在Discarding状态。\n处于Learning状态的端口其处理方式和STP相同，开始学习MAC地址并在Forward Delay后进入Forwarding状态开始收发数据。"
+  },
+  {
+   "id": "2-144",
+   "type": "multiple",
+   "question": "如图，各交换机启用RSTP,假设各链路开销值相同，则下列说法正确的______。",
+   "options": [
+    "SWB的端口E0/1 为Alternate 端口",
+    "网络计算收敛不需要等待两倍的ForwardDelay时间",
+    "如果在SWB上取消RSTP,则SWC的端口E0/1将成为根端口",
+    "如果将SWB和SWC的RSTP均取消，则SWA的端口E0/2将会成为Backup端口"
+   ],
+   "answer": "ABCD",
+   "analysis": "",
+   "images": [
+    "p097_56.jpeg"
+   ]
+  },
+  {
+   "id": "2-145",
+   "type": "multiple",
+   "question": "关于生成树中桥优先级的配置，以下说法正确的有______。",
+   "options": [
+    "桥的优先级共16位，取值范围为0-65535",
+    "如果交换机没有配置桥的优先级，则默认取值为32768",
+    "桥优先级的取值步长为4096",
+    "优先级取值越小表明该桥的优先级越低"
+   ],
+   "answer": "BC",
+   "analysis": "交换机的桥ID由桥优先级以及MAC地址组成，优先级的大小决定了这台设备是否能够被选作生成树的根\n桥，数值越小标识优先级越高，通常配置娇小的优先级，可以达到指定某台设备称为生成树根桥的目的。桥f优先级字段共16位，包含优先级位和0比特两部分，其中优先级位位于优先级的高4位，桥优先级的低12位固定为0，在STP中没有使用，所以桥优先级的取值范围为0-61440，且步长为4096，如果交换机没有配置桥优先级，其默认优先级为32768"
+  },
+  {
+   "id": "2-146",
+   "type": "multiple",
+   "question": "关于H3C交换机的生成树端口开销配置，下列说法正确的有______。",
+   "options": [
+    "H3C交换机支持三种端口开销标准,分别为dot1d-1998、dot11和legacy,通过命令stp pathcost-standard可以切换遵循的端口开销标准",
+    "H3C交换机默认遵循的生成树端口开销标准为legacy",
+    "默认情况下，端口开销值越大，表明端口带宽越小",
+    "如果不同厂商的交换机互联，应当尽量配置各交换机遵循相同的端口开销标准，否则可能会导致生成树计算结果偏离网络设计初衷"
+   ],
+   "answer": "ABCD",
+   "analysis": "H3C支持三种端口开销标准，分别为dot1d-1998、dot1t、legacy，通过命令stp pathcost-standard可以更改遵循的端口开销标准，默认使用开销标准为legacy；\nIEEE 802.1D和802.1t定义了不同速率和工作模式下的以太网链路(端口)开销，H3C则根据实际的网络运行状况优化了开销的数值定义，指定了私有协议标准。\n端口开销和带宽成反比；"
+  },
+  {
+   "id": "2-147",
+   "type": "multiple",
+   "question": "关于生成树协议中定时器的配置，说法正确的有______。",
+   "options": [
+    "应该将HelloTime调为最大值，将Forward Delay调为最小值，这样可以减少网络中的Hello消息数量,并且端口可以尽快进入转发状态",
+    "应该将MaxAge调为最小值，这样可以缩短BPDU的老化时间，及时发现链路故障",
+    "适当的Helloinme值，可以满足降低生成树计算损耗的同时增强生成树的健壮性，取值过大或过小都会对生成树计算产生和网络的稳定产生影响",
+    "不建议手工配置Hello Forward Delay和Max Age,交换机会通过网络直径值自动为定时器设置较优的值"
+   ],
+   "answer": "CD",
+   "analysis": "Hello Time值在网桥上进行配置，其余网桥使用所设置的Hello Time值，在配置Hello Time时需要注意：\n配置较长的Hello Time可以降低生成树计算的消耗，但是过程的Hello Time会导致对链路故障反映迟缓。\n配置较短的Hello Time可以增强生成树的健壮性，但是过短的Hello Time会导致频繁发送配置消息，加重\nCPU的网络负担。通常建议使用默认值2秒\nSTP中配置BPDU的生成期为Max Age,配置Max Age时需要注意：\n配置过程的Max Age会导致链路故障不能被及时发现，\n配置过短的Max Age可能会在网络拥塞的时候使交换机误认为链路故障，造成频繁的生成重新计算。"
+  },
+  {
+   "id": "2-148",
+   "type": "single",
+   "question": "关于生成树配置中的stpmcheck命令，说法正确的有______。",
+   "options": [
+    "该命令用于RSTP交换机和MSTP交换机互连时使用",
+    "该命令在不同厂商的交换机互连，且运行MSTP时使用，用于检査摘要信息",
+    "该命令用于运行RSTP或MSTP的交换机端口连接STP设备时使用",
+    "通过在RSTP或MSTP交换机的端口上运行该命令，可以将端口的生成树模式切换到STP"
+   ],
+   "answer": "C",
+   "analysis": "假设在一个交换网络中，运行RSTP(或MSTP)的设备的端口连接着STP的设备，该端口会自动迁移到STP兼容模式下工作，但是此时如果运行STP协议的设备被拆离，该端口不能自动迁回到RSTP(或MSTP)模式下运行，仍然会工作在STP兼容模式下，此时可以通过执行mCheck操作迫使其迁移到RSTP(或MSTP）模式下运行。\nstp mcheck"
+  },
+  {
+   "id": "2-149",
+   "type": "multiple",
+   "question": "关于RSTP和STP的BPDU格式的对比，下列说法正确的有______。",
+   "options": [
+    "RSTP没有为拓扑改变过程单独定义BPDU类型",
+    "RST BPDU中，Flags字段的8位均有实际含义",
+    "在RSTP定义的拓扑改变处理过程中没有使用到TCA位",
+    "RST BPDU中，Flags字段中的P/A标志位用于根端口快速切换机制"
+   ],
+   "answer": "ABC",
+   "analysis": "RSTP使用了Flags字段全部8位；0：Topology Change，1：Proposal，2-3：00 Unknow 01 Alternative/\nBackup 02 Root 03 Designated 4：Learning 5：Forwarding 6: Agreement 7: Topology Change\nAcknowledgment\nRSTP定义了Proposal/Agreement机制(P/A机制)，指定端口可以通过与对端网桥进行一次握手，即可快速进入转发状态，期间不需要任何定时器。"
+  },
+  {
+   "id": "2-150",
+   "type": "multiple",
+   "question": "关于RSTP和STP的BPDU处理方式的对比，说法正确的有______。",
+   "options": [
+    "RSTP沿袭了STP中配置BPDU的发送方式，配置BPDU仅由根桥周期性发出",
+    "RSTBPDU的老化时间由Max age减少为3个连续的Hello Time时长",
+    "RSTP中，处于阻塞状态的端口在收到地优先的BPDU时，可以立即做出回应",
+    "RSTP交换机收到配置BPDU后，对优先级向量的计算、比较方法和STP相同"
+   ],
+   "answer": "BCD",
+   "analysis": "RSTP对BPDU的发送方式做了改进，RSTP中网桥可以自行从指定端口发送RST BPDU，不需要等待来自跟桥的RST BPDU，BPDU的发送周期为Hello Time。\nRST BPDU老化时间为3个连续的Hello Time时长；\n在RSTP中，如果阻塞状态的端口收到低优先级的RST BPDU，也可以立即做出回应。"
+  },
+  {
+   "id": "2-151",
+   "type": "multiple",
+   "question": "关于RSTP和STP的计算收敛的对比，说法正确的有______。",
+   "options": [
+    "如果STP想缩短收敛时间，只能配置较小的ForwardDelay时间，但是可能会影响到网络的稳定性",
+    "相对于STP,RSTP定义了边缘端口，这样可以使得连接主机的端口快速进入转发状态",
+    "相对于STP,RSTP定义了根端口快速切换机制，这样可以使得Alternate快速成为新的根端口",
+    "相对于STP,RSTP定义了指定端口快速切换机制，这样可以使得指定端口快速进入转发状态而不需要等待两倍的Forward Delay时间"
+   ],
+   "answer": "ABCD",
+   "analysis": "在STP中，为了避免临时环路，端口从使能到进入转发状态需要等待默认30秒的时间，如果向缩短这个时间，只能通过手工方式将Forward Delay设置为较小的值，但是Forward Delay是由Hello Time和网络直径共同决定的一个参数，如果将Forward Delay设置太小，可能会导致临时环路的产生，影响网络的稳定性。边缘端口连接的是终端，当网络拓扑变化时，边缘端口不会产生临时环路，所以边缘端口可以略过两个\nForward Delay的时间，直接进入Forwarding状态，无需任何延时。\nRSTP定义了Alternate端口，为根端口做备份，当旧的根端口进入阻塞状态，网络会选择优先级最高的\nAlternate端口作为新的根端口，如果当前新根端口连接的对端网桥的指定端口处于Forwarding状态，则新根端口可以直接进入转发状态。\nRSTP定义了Proposal/Agreement机制(P?A机制),指定端口可以通过与对端网桥进行一次握手，即可快速进入转发状态，期间不需要任何定时器，P/A机制的前提条件是：握手必须在点到点链路进行，有点到点链路作为前提，P/A机制可以实现网络拓扑逐链路收敛，而不必像STP，需要被动等待30秒时间以确保全网实现收敛。"
+  },
+  {
+   "id": "2-152",
+   "type": "multiple",
+   "question": "如图组网，交换机启用RSTP,关于其配置下列说法正确的有______。",
+   "options": [
+    "可以将SWB和SWC互连的端口配置为边缘端口，实现拓扑的快速收敛",
+    "可以将SWB和SWC的端口E0/3配置为边缘端口",
+    "配置为边缘端口的端口可以直接进入转发状态，不需要延时",
+    "如果边缘端口收到BPDU则会进入阻塞状态"
+   ],
+   "answer": "BC",
+   "analysis": "边缘端口指网桥上直接和终端相连的端口边f缘端口可以直接进入转发状态，需要延时，并且不会触发拓扑改变。边f缘端口收到BPDU，会转变为非边缘端口",
+   "images": [
+    "p101_57.jpeg"
+   ]
+  },
+  {
+   "id": "2-153",
+   "type": "multiple",
+   "question": "如图组网，交换机启用RSTP,假设各链路开销值均相同，则下列说法正确的有______。",
+   "options": [
+    "拓扑收敛后SWD将会有一个端口为Alternate端口",
+    "如果SWD的端口EO/1 DOWN掉，则SWD的端口E0/2会立即从Alternate端口转变为新的根端口",
+    "假设将SWB和SWC的生成树运行模式修改为STP,则SWD的Alternate端口变为新的根端口后仍然可以直接进入转发状态",
+    "如果SWD上有多个Alternate端口，则当根端口DOWN掉后，SWD会从这些Alternate端口中选择优先级最高的端口作为新的根端口"
+   ],
+   "answer": "AD",
+   "analysis": "",
+   "images": [
+    "p101_58.jpeg"
+   ]
+  },
+  {
+   "id": "2-154",
+   "type": "multiple",
+   "question": "如图组网，SWA和SWD启用RSTP,而SWB和SWC没有启用生成树协议，则下列说法正确的有______。",
+   "options": [
+    "SWD将会有一个端口的角色为Alternate",
+    "由于SWB和SWC没有启用生成树协议，所以当SWD的根端口DOWN掉后，Alternate端口不能马上成为新的根端口并进入转发状态",
+    "当SWB的端口E0/2 DOWN掉后，SWD的端口E0/2会成为新的根端口并立即进入转发状态",
+    "当SWB的端口E0/2 DOWN掉后，SWD的端口E0/2会等待3个Hello Time后才会成为新的根端口并进入转发状态"
+   ],
+   "answer": "AD",
+   "analysis": "",
+   "images": [
+    "p102_59.jpeg"
+   ]
+  },
+  {
+   "id": "2-155",
+   "type": "multiple",
+   "question": "关于RSTP中的指定端口快速切换机制，说法正确的有______。",
+   "options": [
+    "指定端口快速切换机制必须在点到点链路",
+    "同步过程的目的是在网桥本地消除环路产生的可能，同步过程中需要阻塞所有指定端口",
+    "当RSTP中的指定端口处于Discarding状态时会发送Proposal位置位的RSTBPDU",
+    "指定端口收到Proposal位置位的RST BPDU, 并缺点本端口为跟端口后,该端口将发送Agreement位置位的RSTBPDU"
+   ],
+   "answer": "ACD",
+   "analysis": "RSTP定义了Proposal/Agreement机制(P/A机制),指定端口可以通过与对端网桥进行一次握手，即可快速进入转发状态，期间不需要任何定时器。P/A机制的前提条件是：握手必须在点到点链路进行，有点到点链路作为前天，P/A机制可以实现网络拓扑逐链路收敛，而不必像STP，需要被动等待30秒的时间确保全网实现收敛。\n当新链路连接时，链路两段的端口初始都为指定端口并处于阻塞状态。当指定端口处于Discarding状态和Learning状态，其所发送的RST BPDU中Proposal位将被置位，端口角色位为11，表示端口为指定端口。收到Proposal置位的RST BPDU后，网桥会判断接收端口是否为根端口，如果是，网桥会同步过程。同步过程指网桥阻塞除边缘端口之外的所有端口，在本网桥层面消除环路产生的可能。"
+  },
+  {
+   "id": "2-156",
+   "type": "multiple",
+   "question": "如图组网，开始SWA和SWB之间没有连接，SWA和SWB启用RSTP,当拓扑稳定后，连接SWA和SWB的端口E1/0/1,假设SWA将成为新的根桥，则下列说法正确的有______。",
+   "options": [
+    "SWA和SWB的端口E1/0/1会发送Proposal消息，请求进入转发状态",
+    "SWB在收到SWA发送的Proposal消息，会立即回复Agreement消息",
+    "SWB在收到SWA发送的Proposal 消息, 会启用同步过程将旧的根端口、指定端口以及边缘端口阻塞",
+    "SWB不需要自行生成BPDU,其回应的Agreement消息内容拷贝自SWA发送的Proposal消息"
+   ],
+   "answer": "AD",
+   "analysis": "RSTP定义了Proposal/Agreement机制(P/A机制),指定端口可以通过与对端网桥进行一次握手，即可快速进入转发状态，期间不需要任何定时器。P/A机制的前提条件是：握手必须在点到点链路进行，有点到点链路作为前天，P/A机制可以实现网络拓扑逐链路收敛，而不必像STP，需要被动等待30秒的时间确保全网实现收敛。当f新链路连接时，链路两段的端口初始都为指定端口并处于阻塞状态。当指定端口处于Discarding状态和Learning状态，其所发送的RST BPDU中Proposal位将被置位，端口角色位为11，表示端口为指定端口。收到Proposal置位的RST BPDU后，网桥会判断接收端口是否为根端口，如果是，网桥会同步过程。同步过程指网桥阻塞除边缘端口之外的所有端口，在本网桥层面消除环路产生的可能。\nSWB要先同步，再回复消息。边缘端口不会阻塞。所以BC错误",
+   "images": [
+    "p103_60.jpeg"
+   ]
+  },
+  {
+   "id": "2-157",
+   "type": "multiple",
+   "question": "如图组网，开始SWA和SWB之间没有连接，SWA和SWB启用RSTP,当拓扑稳定后，连接SWA和SWB的端口假设SWA将成为新的根桥，则下列说法正确的有______。",
+   "options": [
+    "SWB在完成同步过程后，会向SWA回复Agreement消息，此时其端口E1/0/1会立即进入转发状态",
+    "SWA的端口E1/0/1在收到SWB发送的Agreement消息后，会立即进入转发状态",
+    "SWB的指定端口将会和下游交换机继续进P/A握手过程",
+    "在P/A过程中，不会使用任何的定时器，所以可以保证指定端口快速进入转发状态，从而实现网络的快速收敛"
+   ],
+   "answer": "ABCD",
+   "analysis": "",
+   "images": [
+    "p104_61.jpeg"
+   ]
+  },
+  {
+   "id": "2-158",
+   "type": "single",
+   "question": "如图组网，交换机均运行RSTP,初始时SWA、SWB和SWC通过链路1、2、3互连，则当网络连接发生下列变化时，说法正确的有______。",
+   "options": [
+    "当SWB和SWC之间的链路DOWN掉，则SWB和SWC均会发送TC置位的RST BPDU",
+    "如图当SWB和另一运行RSTP的交换机SWD相连后，SWB会发送TC置位的RSTBPDU",
+    "如图当SWB和另一运行RSTP的交换机SWD相连后，SWD会发送TC置位的RSTBPDU",
+    "当SWC的边缘端口E0/1连接一台PC机后，SWC会发送TC置位的RST BPDU"
+   ],
+   "answer": "B",
+   "analysis": "RSTP优化了拓扑改变触发条件，其拓扑改变触发条件只有一个：非边缘端口转变为Forwarding状态。在\nRSTP中，链路中断将不会直接触发拓扑改变处理过程。\n当网桥有非边缘端口转变为Forwarding状态时，网桥会在两倍的Hello Time时间内向根端口以及其他所有指定端口发送TC置位的RST BPDU，同时会清除这些端口学习到的MAC地址。\n当其他网桥收到TC置位的RST BODU后，会清除接收TC报文的端口以及边缘端口之外的其余端口的MAC地址，并在两倍的Hello Time时间内向指定端口和根端口发送TC置位的RST BPDU。",
+   "images": [
+    "p105_62.jpeg"
+   ]
+  },
+  {
+   "id": "2-159",
+   "type": "multiple",
+   "question": "如图组网，交换机均运行RSTP,初始时SWA、SWB和SWC互连，当拓扑稳定后连接SWB和SWD,则下列说法正确的有______。",
+   "options": [
+    "SWB会清除端口E0/1和E0/2学到的MAC地址并从这两个端口中发出TC置位的RST BPDU",
+    "SWA收到TC置位的BPDU后，会将MAC地址表全部清空，并从E0/2发送TC置位的RST BPDU",
+    "SWC收到TC置位的BPDU后，会将端口E0/1学到的MAC地址清空，并从该端口发送TC置位的RST\nBPDU",
+    "SWB会在两倍的HelloTime时间内发送TC置位的RST BPDU"
+   ],
+   "answer": "AD",
+   "analysis": "RSTP优化了拓扑改变触发条件，其拓扑改变触发条件只有一个：非边缘端口转变为Forwarding状态。在RSTP中，链路中断将不会直接触发拓扑改变处理过程。\n当网桥有非边缘端口转变为Forwarding状态时，网桥会在两倍的Hello Time时间内向根端口以及其他所有指定端口发送TC置位的RST BPDU，同时会清除这些端口学习到的MAC地址。\n当其他网桥收到TC置位的RST BODU后，会清除接收TC报文的端口以及边缘端口之外的其余端口的MAC地址，并在两倍的Hello Time时间内向指定端口和根端口发送TC置位的RST BPDU。",
+   "images": [
+    "p106_63.jpeg"
+   ]
+  },
+  {
+   "id": "2-160",
+   "type": "multiple",
+   "question": "关于RSTP和STP的兼容运行，下列说法正确的有______。",
+   "options": [
+    "当RSTP交换机和STP交换机一起工作时，需要通过命令stpmode stp将RSTP交换机的工作模式切换为STP",
+    "当RSTP交换机和STP交换机一同工作时，其连接STP交换机的端口将会切换到STP模式",
+    "当RSTP交换机上的某端口切换到STP模式后，该端口将不再具备RSTP的快速收敛特性",
+    "当RSTP交换机和STP交换机的连接断开后，之前连接STP交换机的端口将会自动切回到RSTP模式"
+   ],
+   "answer": "BC",
+   "analysis": "RSTP和STP的兼容运行：\nRSTP的端口连续三次接收到版本为STP的BPDU，则端口协议将切换到STP协议\n切换到STP协议的RSTP端口将丧失快速收敛特性。\n出现STP与RSTP混用的情况，建议将STP设备放到网络边缘。"
+  },
+  {
+   "id": "2-161",
+   "type": "multiple",
+   "question": "关于MSTP和RSTP的对比，说法正确的有______。",
+   "options": [
+    "MSTP继承了RSTP中的所有快速",
+    "MSTP可以实现VLAN间的负载分担",
+    "MSTP和RSTP的使用的BPDU格式相同",
+    "MSTP和RSTP中端口的状态和角色完全相同"
+   ],
+   "answer": "AB",
+   "analysis": "MSTP(Multiple Spanning Tree Protocol,多生成树协议)在IEEE的802.1s标准中定义，它即可以实现快速收敛，又可以弥补STP和RSTP的缺陷，MSTP能使不同VLAN的流量沿各自的路径转发，从而利用冗余链路提供了更好的负载分担机制。\nMSTP BPDU和RST BPDU的前36个字节的格式是相同的，其中BPDU协议版本号为0x03，表示为MSTP协议，BPDU类型变为0X02，标识为RST/MST BPDU\nRST BPDU中的Root ID字段在MSTP中表示CIST总根ID，RPC字段在MSTP中表示CIST外部路径开销，\nBridge ID字段在MSTP中表示CIST域根ID，Port ID字段在MSTP中表示CIST指定端口ID.\nCIST外部路径开销(EPC,External Path Cost)指发送此BPDU的网桥所属的域，距离总根所属的域的CST路径开销。\nMSTP中的端口角色：\nMaster端口\nIST根桥在CIST上的根端口\n其他端口角色的定义和RSTP相同"
+  },
+  {
+   "id": "2-162",
+   "type": "multiple",
+   "question": "关于MSTP根桥的指定，说法正确的有______。",
+   "options": [
+    "如果不经指定，默认情况下MST域中所有实例的根桥都为IST的根桥",
+    "通过rootprimary命令可以指定某实例中的首选 通过命令指定后，该根桥的优先级不能被修改",
+    "通过rootsecondary命令可以指定某实例中的备用根桥，当根桥出现故障或被关机时，备份根桥可以取代根桥成为指定生成树实例的根桥",
+    "如果设置了多个备份根桥，当根桥故障时，MAC地址最小的备份根桥将成为指定MST实例的根"
+   ],
+   "answer": "ABCD",
+   "analysis": "当需要将某网桥设定为某MST实例中的根桥时，可以通过修改网桥在该实例中的优先级实现，也可以通过命令直接将网桥设置为实例中的首选跟桥。stp install instance-id root primary\n如果配置时不输入instance instance-id参数，则所作的配置只在IST实例上有效，在一棵生成树实例中，生效的跟桥只有一个，两个或两个以上的网桥被指定为同一颗生成树实例的根桥时，MSTP将选择MAC地址最小的网桥作为根桥。设置网桥为根桥之后，用户不能再修改网桥的优先级。\n还可以通过命令stp root secondary来指定网桥作为MST实例的备份跟桥。\n用户可以在每个MST实例中指定一个到多个备份根桥，当根桥出现故障或被关机时，备份根桥可以取代根桥而成为指定MST实例的根，如果设置了多个备份根桥，则MAC地址最小的备份根桥将成为指定MST实例的根。"
+  },
+  {
+   "id": "2-163",
+   "type": "multiple",
+   "question": "关于MSTP的兼容性配置，说法正确的有______。",
+   "options": [
+    "通过命令stpcompliance可以配置端口的MSTP兼容工作方式,其中参数auto指端口只收发与非标准格式兼容的MSTP消息",
+    "H3C交换机的端口可以配置自动识别MSTP消息的格式并根据识别结果确定发送消息的格式",
+    "如果端口识别/发送MSTP消息的方式配置成了dotls,则端口只发送和接收标准格式的MSTP消息",
+    "如果端口接收到的MSTP报文格式与所配置的报文格式不一致，则端口将成为指定端口，端口状态保持在Discarding状态，以防止出现环路"
+   ],
+   "answer": "BC",
+   "analysis": "除了802.1s标准定义的MSTP BPDU格式外，各厂商可能会定义私有的MSTP BPDU格式，可以通过在端口下配置格式识别命令，使得设备识别MSTP BPDU报文的格式。\nH3C设备端口可以识别/发送的MSTP BPDU格式有两种：\n符合802.1s协议的标准格式；\n与非标准格式兼容的格式。\n端口默认配置为自动识别方式(auto)，既端口可以自动识别这两种格式的MSTP BPDU,并根据识别结果确定发送BPDU的格式，从而实现与对端设备的互通。\n用户也可以通过命令行配置端口所使用的MSTP BPDU格式，配置完成后，在MSTP工作模式下，端口只收发所配置格式的MSTP BPDU，实现与对端发送所配置格式报文的设备互通\nMSTP BPDU格式识别命令为：\n[H3C-Ethernet1/0/1] stp compliance { auto | dot1s | legacy }"
+  },
+  {
+   "id": "2-164",
+   "type": "multiple",
+   "question": "关于MSTP的兼容性配置，说法正确的有______。",
+   "options": [
+    "不同厂商交换机进行MSTP互通时，只要保证域名、修订级别、VLAN实例映射关系配置完全相同，就可以保证交换机属于同一个MST域",
+    "由于不同厂商密钥不同,即使VLAN实例映射关系相同，也可能得到不同的摘要结果",
+    "H3C交换机可以通过配置摘要侦听，实现和其他厂商交换机的MSTP互通",
+    "配置了摘要侦听时，H3C交换机在进行摘要计算时，会使用和对端厂商相同的哈希算法和密钥"
+   ],
+   "answer": "BC",
+   "analysis": "根据IEEE802.1S规定，只有在域配置(包括域名、修订级别、VLAN与实例映射关系)完全一致的情况下，相连的设备才被认为是同一个域内。\n在网络中，由于一些厂商的设备在对MSTP协议实现上存在差异，即用加密算法计算配置摘要时采用私有密钥，从而导致即使MST域配置相同，不同厂商的设备也不能实现在MSTP域内的互通。\n通过在设备上与对MSTP协议的实现存在私有性差异的厂商设备相连的端口开启摘要侦听特性，可以实现与厂商设备在MST域内的完全互通。\n当设备开启摘要侦听，收到对端设备发送MSTP BPDU后会拷贝其中的配置摘要，在其后发送的MSTP\nBDPU中使用对端设备的配置摘要信息替代自身的配置摘要信息，保证设备间配置摘要信息的相同，结合相同域名，相同修订级别可以保证设备在同一域中。\n由于开启摘要侦听后，设备不再比较配置摘要，即使VLAN映射关系不同，只要域名和修订级别相同，设备就可以处于同一个域中，所以建议不要在域边界端口开启摘要侦听，并且确保域内所有设备的VLAN和实例的映射关系一致。"
+  },
+  {
+   "id": "2-165",
+   "type": "multiple",
+   "question": "关于MSTP的P/A机制，说法正确的有______。",
+   "options": [
+    "RSTP和MSTP均要求上游设备的指定端口在接收到下游设备的Agreement报文后才能进行快速迁移",
+    "MSTP中，下游设备只有在收到上游设备发送的Proposal和Agreement均置位的BPDU,才会回应\nAgreement 置位的BPDU",
+    "图中，默认情况下SWA的端口E1/0/1需要等待两倍的Forward Delay时长才可以进入Forwarding状态",
+    "通过在端口配置stp no-agreement-check, MSTP交换机将不会检査上游发送的Proposal BPDU 中是否将Agreement位置位"
+   ],
+   "answer": "ABCD",
+   "analysis": "MSTP支持RSTP中所有快速收敛机制，其中MSTP的P/A机制和RSTP有所不同。\n在RSTP中，上游网桥指定端口发送Proposal置位的BPDU，下游网桥执行同步操作后回应Agreement置位的BPDU，上游网桥收到Agreement置位的BPDU后其指定端口可以立即进入转发状态。\n在MSTP中，上游网桥发送的Proposal BPDU中，Proposal位和Agreement位均置位，下游网桥收到\nProposal和Agreement均置位的BPDU后，执行同步操作然后回应Agreement置位的BPDU，使得上游指定端口快速进入转发状体。"
+  },
+  {
+   "id": "2-166",
+   "type": "multiple",
+   "question": "关于MSTP,说法正确的有______。",
+   "options": [
+    "MSTP在802.1s中定义其既可以满足快速收敛，又可以实现负载分担",
+    "MSTP的基本思想是为每一个VLAN计算一颗生成树，每一颗树对应一个生成树实例",
+    "MSTP中一个生成树实例可以包含多个VLAN",
+    "MSTP中一个VLAN可以根据需要映射到多个生成树实例"
+   ],
+   "answer": "AC",
+   "analysis": "MSTP的基本思想是基于实例(Instance)计算出来多棵生成树，每一个实例包含一个或多个VLAN，每一个VLAN只能映射到一个实例，网桥通过配置多个实例，可以实现不同VLAN组之间的负载分担。"
+  },
+  {
+   "id": "2-167",
+   "type": "multiple",
+   "question": "关于MST域，说法正确的有______。",
+   "options": [
+    "属于同一个MST域的交换机一定具有相同的VLAN和实例映射关系",
+    "如果两个交换机配置的MST域名不相同，则这两个交换机一定属于不同的MST域",
+    "运行MSTP的交换机之间需要交互完整的VLAN和实例的映射关系，如果映射关系不同则交换机不属于同一个MST域",
+    "MST域之间运行的是RSTP"
+   ],
+   "answer": "ABD",
+   "analysis": "多生成树计算的前提是将不同的VLAN映射到不同的实例中去，为了确保网桥之间多生成树协议计算正确，这些网桥的VLAN和实例映射关系必须完全相同。\n根据IEEE802.1规定，只有在域配置（包括域名、修订级别、VLAN与实例映射关系）完全一致的情况下，相连的设备才被认为是在同一个域内。\n可以将网络划分为多个域(MST域),将拥有相同VLAN映射关系以及其他属性的网桥放到一个域中，域之间运行标准的RSTP协议。"
+  },
+  {
+   "id": "2-168",
+   "type": "multiple",
+   "question": "关于MSTP的基本概念，说法正确的有______。",
+   "options": [
+    "CIST是网络中所有交换机计算生成的一棵树，其树根即为网络中的总根",
+    "CIST的总根是网络所有交换机中，桥ID最小的交换机",
+    "CIST的域根是指某一个域中，优先级最高的交换机",
+    "CIST的域根即为某一个域中IST的根桥"
+   ],
+   "answer": "ABD",
+   "analysis": "CIST(Common and internal Spanning Tree，公共内部生成树)是整个网络所有设备经过生成树计算得到的一棵树，总根是整个网络中优先级最高的桥，是CIST的根桥。\nIST的根桥即CIST的域根，是MST域内距离总根最近的桥，也称为Master桥，如果总根在该域中，则总根即为该域的域根。"
+  },
+  {
+   "id": "2-169",
+   "type": "multiple",
+   "question": "关于MSTP的基本概念，说法正确的有______.",
+   "options": [
+    "CST是指域之间的一棵生成树，它是MST域之间运行STP/RSTP得到的",
+    "CST运行时，将MST域视为逻辑上的一台交换机，CST的根桥为总根所属的域",
+    "IST是MST域内的一棵生成树，IST对应的实例号为0",
+    "默认情况MST域内的所有VLAN都映射到IST"
+   ],
+   "answer": "ABCD",
+   "analysis": "CST(Common Spanning Tree，公共生成树）是连接网络内所有MST域的单生成树。\nIST(Internal Spanning Tree，内部生成树)是MST域内的一颗生成树，是CIST在每个域的一个片段。\nMST域内每一棵生成树都对应一个实例号，IST的实例号为0，实例0无论有没有配置都是存在的，没有映射到其他实例的VLAN默认都会映射到实例0的IST上。\n缺省情况下，所有VLAN均对应到CIST(即实例0)上"
+  },
+  {
+   "id": "2-170",
+   "type": "multiple",
+   "question": "关于MSTP的基本概念，说法正确的有______。",
+   "options": [
+    "IST是CIST在MST域内的一个片断，IST的根为MST域内优先级最高的桥",
+    "IST的根为IST中距离总根最近的桥",
+    "一个MST域可以包含多个MSTI实例，不同的MST域可以包含不同的MSTI实例",
+    "—个MSTI实例可以映射多个VLAN,不同MST域中的VLAN映射关系可以不同"
+   ],
+   "answer": "ABCD",
+   "analysis": "IST是MST域内的一棵生成树，是CIST在每个域的一个片段。\nIST的根桥即CIST的域根，是MST域内距离总根最近的桥，也称为Master桥，如果总根在该域中，则总根即为该域的CIST域根。\n一个MST域内可以通过MSTP生成多课生成树，每棵生成树之间彼此独立，每棵生成树都称为一个MSTI(多生成树实例)\n每一个MSTI映射一个或多个VLAN，并计算出一个独立的生成树，其范围只限于域内。"
+  },
+  {
+   "id": "2-171",
+   "type": "multiple",
+   "question": "关于MSTP的基本概念，说法正确的有______。",
+   "options": [
+    "Master桥即为IST的域根",
+    "Master端口指MST域的域边界端口",
+    "Master端口在所有MSTI上的角色都相同",
+    "如果把MST域看作逻辑上的一个网桥，则Master端口即为该逻辑网桥的根端口"
+   ],
+   "answer": "ABD",
+   "analysis": "IST中距离总根最近的桥为Master桥，该为IST的根，Master桥指向总根的端口为Master端口。\nMST域内网桥和其他MST域或STP/RSTP网桥相连的端口称为域边界端口，Master端口也是域边界端口，其在各域边界端口中距离总根最近。\n如果把MST域看作逻辑上的一个网桥，域边界端口就称为“网桥”连接其他“网桥”的端口，其中Master端口就是该“网桥”的根端口"
+  },
+  {
+   "id": "2-172",
+   "type": "multiple",
+   "question": "关于MSTP的BPDU格式，说法正确的有______。",
+   "options": [
+    "MSTP的BPDU由RSTBPDU字段和MST专有字段组成",
+    "如果将MST域看作逻辑上运行RSTP的交换机，则CIST外部路径开销即相当于该RSTP交换机的根路径开销",
+    "如果将MST域看作逻辑上运行RSTP的交换机，则CIST域根ID即相当于该RSTP交换机的指定桥ID,通常该ID为MST域内值最小的桥ID",
+    "计算CST仅需要RSTBPDU字段的值即可"
+   ],
+   "answer": "ABD",
+   "analysis": "MST BPDU和RST BPDU的前36各字节格式是相同的，其中BPDU协议版本号为0X03，表示为MSTP协议，BPDU类型为0X02，表示为RST/MST BPDU。\nRST BPDU中的Root ID字段在MSTP中表示CIST总根ID，RPC字段在MSTP中表示CIST外部路径开销，\nBridge ID字段在MSTP中表示CIST域根ID，Port ID字段在MSTP中表示CIST指定端口ID。\nCIST外部路径开销(EPC，External Path Cost)指发送此BPDU的网桥所属的域，距离总根所属的域的CST路径开销"
+  },
+  {
+   "id": "2-173",
+   "type": "multiple",
+   "question": "关于MSTP的BPDU格式，说法正确的有______。",
+   "options": [
+    "IST的计算仅需要MST专有字段中的值即可",
+    "MST配置ID字段用于判断交换机是否属于同一个MST域",
+    "MSTI配置消息用于MSTI的生成树计算",
+    "MSTI配置消息的数量由VLAN数决定"
+   ],
+   "answer": "BC",
+   "analysis": "MST配置标识(Configuration ID)：长度为51各字节包含四个字段，其中格式选择字符固定0X00，其中三个字段用来判断网桥是否属于某MST域，包含前文介绍过的：Configuration Name、Revision Level和\nConfiguration Digest。\nMSTI Configuration Messages:包含0各或最多64各MSTI配置消息，MSTI配置消息信息数据由域内MST实例数决定，每一个MSTI配置信息长度为16字节。"
+  },
+  {
+   "id": "2-174",
+   "type": "multiple",
+   "question": "关于MSTP的BPDU格式，说法正确的有______。",
+   "options": [
+    "MSTI域根ID为MSTI中优先级最高的桥的ID",
+    "同一条链路在不同的MSTI中端口路径开销值可以不同",
+    "MSTI配置消息中的Flags字段的定义和RST BPDU中Flags字段的定义完全相同",
+    "MST域根ID字段长度4 8个字节，高位两个字节为桥优先级，取值范围为0-61440步长4096"
+   ],
+   "answer": "AB",
+   "analysis": "MSTI Flags：长度为1个字节，从低位开始第1位到第7位定义和RSTP相同，第8位为Master标志位表示网桥是否为Master桥，取代RSTP中的TCA标志位。\nMSTI Region Root ID：长度为8个字节，表示该MST实例的域根的ID，其中第1各字节的低4位和第2个字节的8位共12位表示该MST实例的ID。"
+  },
+  {
+   "id": "2-175",
+   "type": "multiple",
+   "question": "关于MSTP的BPDU格式，说法正确的有______。",
+   "options": [
+    "如果交换机没有配置VLAN到实例的映射，则MSTBPDU中将不会携带任何MSTI配置消息",
+    "MSTI计算过程中将使用RSTBPDU中的定时器值，而不会在每一个MSTI配置消息中携带定时器参数",
+    "MSTI指定桥优先级字段长度为8个字节，包含两个字节的桥优先级以及6个字节的桥MAC地址",
+    "MSTI指定端口优先级字段长度为2个字节，包含1个字节的端口优先级以及1个字节的端口号"
+   ],
+   "answer": "AB",
+   "analysis": "如果BPDU中不包含任何MST实例配置信息，表示该域所有VLAN都映射到IST。\nMSTI的计算不需要再单独发送BPDU，也不需要任何定时器参数，当网桥在域内进行IST计算的过程中，域内的每棵MSTI树也同时计算生成了。\nMSTI Bridge Priority：长度为1个字节，表示发送此BPDU的网桥即指定桥的优先级，其中高四位为优先级位，低四位固定为0.\nMSTI Port Priority：长度为1各字节，表示发送此BPDU的端口的优先级，其中高四位为优先级位，低四位固定为0."
+  },
+  {
+   "id": "2-176",
+   "type": "multiple",
+   "question": "关于MSTP的计算过程，说法正确的有______。",
+   "options": [
+    "MSTP的计算过程为,首先通过MSTBPDU进行CST和IST的计算,然后域内的交换机发送MSTI BPDU进行各实例生成树的计算",
+    "MSTP中由于链路两端的端口在不同的实例中可能均为指定端口，所以链路两端的端口可能同时既会接收也会发送MST BPDU",
+    "在进行CST计算时，会优先考虑外部路径开销，只有在外部路径开销相同时才会比较内部路径开销",
+    "CST上的Alternate端口和Backup端口一定是域边界端口，一定不会处于MST域内"
+   ],
+   "answer": "BD",
+   "analysis": "每个BPDU即包含CIST计算所需要的信息，也包含MSTI计算所需要的信息，MSTI的计算不需要再单独发送BPDU，也不需要任何定时器参数，当网桥在域内进行IST计算的过程中，域内的每棵MSTI树也同时计算生成了。\n由于网桥端口在不同的实例中可能具有不同的角色，所以可能会出现网桥端口即会接收BPDU也会发送\nBPDU，这是MSTP端口收发BPDU和RSTP端口收发BPDU的区别。\n如果CIST外部路径开销相同则比较CIST域根ID，域根ID小者为优；如果域根ID相同则比较CIST内部路径开销，开销小者为优。\n一个域可能有多个域边界端口，在确定Master端口后，通过比较BPDU优先级，可以确定域边界端口角色为指定端口、Alternate端口或是Backup端口。"
+  },
+  {
+   "id": "2-177",
+   "type": "multiple",
+   "question": "关于MSTP的计算过程说法正确的有______。",
+   "options": [
+    "MST域的Master端口一定位于IST的域根上",
+    "每一个MST域均会存在Master端口",
+    "实际计算过程中CST和IST的计算并没有先后次序，而是同步完成的",
+    "实际计算过程中，要先计算完成CIST,然后再进行MSTI的计算"
+   ],
+   "answer": "AC",
+   "analysis": "IST中距离总根最近的桥为Master桥，该桥为IST的根，Master桥指向总根的端口为Master端口。\nMSTP中的端口角色：\nMaster端口\nIST根桥在CIST上的根端口\n其他端口角色的定义和RSTP相同\nMSTP BPDU格式，每隔BPDU即包含CIST计算所需要的信息，也包含MSTI计算所需要的信息，MSTI的计算不需要再单独发送BPDU，也不需要任何定时器参数，当网桥在域内进行IST计算的过程中，域内的每棵MSTI树也同时计算生成了。"
+  },
+  {
+   "id": "2-178",
+   "type": "multiple",
+   "question": "关于MSTP的计算过程说法正确的有______。",
+   "options": [
+    "不同MST域中VLAN和实例的映射关系是独立的，可以不同也可以相同",
+    "在MSTI计算完成后，域和域之间的数据流一定会经过Master端口",
+    "在MSTI计算完成后，同一个物理端口在不同的实例可能具有不同的角色",
+    "MSTI的根桥IST的根桥可以是同一台交换机"
+   ],
+   "answer": "ACD",
+   "analysis": "CIST以及各域内的MSTI计算完毕，每个域内的VLAN映射关系是独立的。\n域间DP口和AP口之间有BPDU报文传递的，DP口把上游的BPDU报文在本机进行中继，再传递给另一个域的AP口，这也是域间数据流，就没经过master口。AP口虽然处于discarding状态，不能发送BPDU，但是可以接收BPDU的。\n由于网桥端口在不同的实例中具有不同的角色，所以可能会出现网桥即会接收BPDU也会发送BPDU。"
+  },
+  {
+   "id": "2-179",
+   "type": "multiple",
+   "question": "当运行MSTP的交换机和运行RSTP的交换机一起工作时，说法正确的有______。",
+   "options": [
+    "RSTP交换机会将MST域看作一台逻辑上的交换机，桥ID为MST域中和RSTP交换机直连的那台交换机的ID",
+    "MSTP交换机会将RSTP交换机看作由一台交换机单独构成的MSTP域",
+    "MSTP交换机和RSTP交换机可以属于同一个MST域",
+    "MSTP交换机会将RSTBPDU解析为MSTBPDU,其中IRPC为0"
+   ],
+   "answer": "BD",
+   "analysis": "当运行MSTP的网桥和运行RSTP/STP的网桥一起工作时，RSTP/STP网桥会将MSTP域看作一个桥ID为域根ID的RSTP桥。\n当RSTP/STP网桥收到MST BPDU后，会提取BPDU中{RootID.ERPC.RRootID:DesignatePortID}作为RSTP/STP计算所需的优先级向量{RootID:RPC:DesignateBridgeID:DesignatePortID}\n当MSTP网桥收到RSTP/STP BPDU后，会将BPDU中的信息\n{RootID.RPC:DesignateBridgeID.DesignatePortID}对应到MSTP计算所需的优先级向量中，其中Designate Bridge ID即作为MSTP优先级相连中的RRoot ID也作为Designate Bridge ID,IRPC设置为0。"
+  },
+  {
+   "id": "2-180",
+   "type": "multiple",
+   "question": "关于MSTP的快速收敛机制，说法正确的有______。",
+   "options": [
+    "MSTP支持RSTP的所有快速收敛机制",
+    "MSTP和RSTP的所有快速收敛机制都相同",
+    "MSTP中可以针对实例指定边缘端口，即端口可以在某些实例中为边缘端口，某些实例中为普通端口",
+    "MSTP可以和RSTP交换机协同工作，实现快速收敛"
+   ],
+   "answer": "AD",
+   "analysis": "MSTP支持RSTP中的所有快速收敛机制，其中MSTP的P/A机制和RSTP有所不同。\n在RSTP中，上游网桥指定端口发送Proposal置位的BPDU，下游网桥执行同步操作后回应Agreement置为的BPDU，上游网桥收到Agreement置位的BPDU后其指定端口可以立即进入转发状态。\n在MSTP中，上游网桥发送的Proposal BPDU中，Proposal位和Agreement位均置位，下游网桥收到\nProposal和Agreement均置位的BPDU后，执行同步操作然后回应Agreement置位的BPDU，使得上游指定端口快速进入转发状态。"
+  }
+ ]
+}
