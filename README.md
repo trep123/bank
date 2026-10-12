@@ -41,20 +41,15 @@ npx serve .
 
 仓库 **Settings → Pages → Build and deployment**，Source 选 `Deploy from a branch`，分支选 `main`、目录选 `/ (root)`，保存后访问 `https://<用户名>.github.io/bank/`。
 
-### 演示账号
+### 默认账号
 
-| 用户名 | 密码 |
-| --- | --- |
-| `admin` | `admin123` |
-| `demo` | `demo123` |
-
-> ⚠️ 正式使用前请删除或修改演示账号。
+管理员账号 `Admin`，密码请向管理员索取。可用下方脚本修改。
 
 ## 👤 用户管理
 
 ```bash
 node tools/adduser.js zhangsan MyPass123 "张三"   # 添加或修改密码
-node tools/adduser.js --remove demo               # 删除用户
+node tools/adduser.js --remove zhangsan           # 删除用户
 node tools/adduser.js --list                      # 查看用户
 ```
 
