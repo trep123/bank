@@ -20,6 +20,15 @@ export async function getBank(id) {
   const res = await fetch(`data/banks/${meta.file}`, { cache: 'no-cache' });
   if (!res.ok) throw new Error(`无法读取题库文件 ${meta.file}`);
   const raw = await res.json();
+  // 大题库可拆分为多个分卷文件：{ "parts": ["xxx/part1.json", ...] }，每个分卷含 questions 数组
+  if (Array.isArray(raw.parts) && raw.parts.length) {
+    const chunks = await Promise.all(raw.parts.map(async (p) => {
+      const r = await fetch(`data/banks/${p}`, { cache: 'no-cache' });
+      if (!r.ok) throw new Error(`无法读取题库分卷 ${p}`);
+      return (await r.json()).questions || [];
+    }));
+    raw.questions = [...(raw.questions || []), ...chunks.flat()];
+  }
   const bank = normalize({ ...meta, ...raw, id: meta.id });
   cache.set(id, bank);
   return bank;
