@@ -1,0 +1,694 @@
+{
+ "questions": [
+  {
+   "id": "2-31",
+   "type": "multiple",
+   "question": "关于优先级的映射和优先级的信任，说法正确的有______。",
+   "options": [
+    "报文进入交换机端口后，会默认根据802.1P的优先级进入队列",
+    "报文进入交换机端口后，会默认根据DSCP的优先级进入队列",
+    "报文进入交换机后，如果要根据802.1P或DSCP值入队列，则必须配置端口信任802.1P或DSCP",
+    "报文进入交换机端口后，默认会根据端口的优先级进入队列"
+   ],
+   "answer": "CD",
+   "analysis": ""
+  },
+  {
+   "id": "2-32",
+   "type": "multiple",
+   "question": "交换机的MAC地址表项可能包含下列哪些要素______。",
+   "options": [
+    "MAC地址",
+    "端口号",
+    "VLANID",
+    "老化时间",
+    "IP地址"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "2-33",
+   "type": "multiple",
+   "question": "交换机SWA,SWB和SWC连接形如：\nSWA——SWB——SWC\n三台交换机都正确配置了GVRP协议，以便互相通告VLAN信息如果在SWA上手工创建VLAN2,下列描述正确的是______。",
+   "options": [
+    "SWA马上向SWB发送第一个Join信息，再等待Jointimer时间发送第二个Join消息",
+    "SWA等待Holdtimer时间向SWB发送第一个Join消息，再等待Jointime时间发送第二个Join消息",
+    "SWB接收到第一个Join消息之后马向SWC发送第一个Join信息，再等待Jointime时间发送第二个Join消息",
+    "SWB接收到第一个Join消息之后等待Holdtimer时间向SWC发送第一个Join消息，再等待Jointimer时间发送第二个Join消息"
+   ],
+   "answer": "BD",
+   "analysis": "Hold定时器：当GARP应用实体接收到其他设备发送的注册信息时，不会立即将该注册信息作为一条Join消息对外发送，而是启动Hold定时器，当该定时器超时后，GARP应用实体将此时间内收到的所有注册信息放在同一个Join消息中向外发送从而节省带宽资源。\nJoin定时器：GARP应用实体可以通过将每个Join消息向外发送两次来保证消息的可靠传输，第一次发送的Join消息没有得到回复时候，GARP应用实体会第二次发送Join消息，两次Join消息发送之间的时间间隔用Join定时器来控制。"
+  },
+  {
+   "id": "2-34",
+   "type": "multiple",
+   "question": "要把交换机SWA的Ethernet1/0/1端口配置为Hybrid端口，其PVID为VLAN20,且在发送VLAN20的数据帧时不打标签，在发送VLAN 10的数据帧时打标签，则下面的配置过程正确的是______。",
+   "options": [
+    "[SWA]vlan10\n[SWA-vlan 10]quit\n[SWA]vlan 20\n[SWA-vlan20]port Ethernet 1/0/1\n[SWA-vlan20]quit\n[SWA]interface Ethernet 1/0/1\n[SWA-Ethernet1/0/1]port link-type hybrid\n[SWA-Ethernet1/0/1]port hybridvlan 10 tagged",
+    "[SWA]vlan10\n[SWA-vlan10]quit\n[SWA]vlan 20\n[SWA-vlan20]quit\n[SWA]interface Ethernet 1/0/1\n[SWA-Ethernet1/0/1]port link-type hybrid\n[SWA-Ethernet1/0/1]port hybrid pvid vlan 20\n[SWA-Ethernet1/0/1]port hybrid vlan 10 tagged",
+    "[SWA]vlan10\n[SWA-vlan10]quit\n[SWA]vlan 20\n[SWA-vlan20]quit\n[SWA]interface Ethernet 1/0/1\n[SWA-Ethernet1/0/1]port link-type hybrid\n[SWA-Ethernet1/0/1]port hybrid pvid vlan 20\n[SWA-Ethernet1/0/1]port hybrid vlan 10 tagged\n[SWA-Ethernet1/0/1]port hybrid vlan 20 untagged",
+    "[SWA]interfaceEthernet 1/0/1\n[SWA-Ethernet1/0/1]port link-type hybrid\n[SWA-Ethernet1/0/1]port hybrid pvid vlan 20\n[SWA-Ethernet1/0/1]port hybrid vlan 10 tagged\n[SWA-Ethernet1/0/1]port hybrid vlan 20 untagged\n[SWA-Ethernet1/0/1]quit\n[SWA]vlan 10\n[SWA-vlan10]quit\n[SWA]vlan 20",
+    "以上各项均不正确"
+   ],
+   "answer": "AC",
+   "analysis": ""
+  },
+  {
+   "id": "2-35",
+   "type": "multiple",
+   "question": "园区网的安全性应该考虑到如下哪些方面______。",
+   "options": [
+    "有效识别合法和非法用户",
+    "对网络设备、网络拓扑进行有效管理",
+    "有效的访问控制",
+    "对物理线路进行保护"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "2-36",
+   "type": "multiple",
+   "question": "交换机SWA的Ethemet1/0/1端口配置如下：\ninterface Ethernet 1/0/1\nport link-type trunk\nport trunk permit vlan 10\nport trunk pvid vlan 20\n现在要把交换机SWA的Ethernet 1/0/1端口修改为Hybrid端口，PVID为VLAN20,且在发送VLAN10的\n数据帧打标签,则下面的配置过程正确的是______。",
+   "options": [
+    "[SWA-Ethernet1/0/1]port link-type access\n[SWA-Ethernet1/0/1]port access vlan 20\n[SWA-Ethernet1/0/1]port link-type hybrid\n[SWA-Ethernet1/0/1]port hybrid vlan 10 tagged",
+    "[SWA-Ethernet1/0/1]port link-type access\n[SWA-Ethernet1/0/1]port link-type hybrid\n[SWA-Ethernet1/0/1]port hybrid pvid vlan 20\n[SWA-Ethernet1/0/1]port hybrid vlan 10 tagged",
+    "[SWA-Ethernet1/0/1]undo port link-type\n[SWA-Ethernet1/0/1]port link-type hybrid\n[SWA-Ethernet1/0/1]port hybrid pvid vlan 20\n[SWA-Ethernet1/0/1]port hybrid vlan 10 tagged",
+    "[SWA-Ethernet1/0/1]port link-type hybrid",
+    "以上各项均不正确"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "2-37",
+   "type": "single",
+   "question": "交换机SWA的Ethemet1/0/1端口配置如下：\ninterface Ethernet 1/0/1\nport link-type trunk\nport trunk permit vlan 10\nport trunk pvid vlan 20\n现在要把交换机SWA的Ethernet 1/0/1端口修改为Hybrid端口，PVID为VLAN20,且在发送VLAN20的数据帧时不打标签，在发送VLAN 10的数据帧打标签,则下面的配置过程正确的是______。",
+   "options": [
+    "[SWA-Ethernet1/0/1]port link-type access\n[SWA-Ethernet1/0/1]port access vlan 20\n[SWA-Ethernet1/0/1]port link-type hybrid\n[SWA-Ethernet1/0/1]port hybrid vlan 10 tagged",
+    "[SWA-Ethernet1/0/1]port link-type access\n[SWA-Ethernet1/0/1]port link-type hybrid\n[SWA-Ethernet1/0/1]port hybrid pvid vlan 20\n[SWA-Ethernet1/0/1]port hybrid vlan 10 tagged",
+    "[SWA-Ethernet1/0/1]undo port link-type\n[SWA-Ethernet1/0/1]port link-type hybrid\n[SWA-Ethernet1/0/1]port hybrid pvid vlan 20\n[SWA-Ethernet1/0/1]port hybrid vlan 10 tagged",
+    "[SWA-Ethernet1/0/1]port link-type hybrid",
+    "以上各项均不正确"
+   ],
+   "answer": "A",
+   "analysis": ""
+  },
+  {
+   "id": "2-38",
+   "type": "multiple",
+   "question": "交换机SWA使用出厂缺省配置现在要把交换机SWA的Ethernet 1/0/1端口配置为Trunk端口，PVID为VLAN20,且允许VLAN10 。下面的配置过程正确的是______。",
+   "options": [
+    "[SWA]vlan10\n[SWA-vlan10]quit\n[SWA]vlan 20\n[SWA-vlan20]port Ethernet 1/0/1\n[SWA-vlan20]quit\n[SWA]interface Ethernet 1/0/1\n[SWA-Ethernet1/0/1]port link-type trunk\n[SWA-Ethernet1/0/1]port trunk permit vlan 10",
+    "[SWA]vlan10\n[SWA-vlan10]quit\n[SWA]vlan 20\n[SWA-vlan20]quit\n[SWA]interface Ethernet 1/0/1\n[SWA-Ethernet1/0/1]port access vlan 20\n[SWA-Ethernet1/0/1]port link-type trunk\n[SWA-Ethernet1/0/1]port trunk permit vlan 10",
+    "[SWA]vlan10\n[SWA-vlan10]quit\n[SWA]vian 20\n[SWA-vlan20]quit\n[SWA]interface Ethernet 1/0/1\n[SWA-Ethernet1/0/1]port link-type trunk\n[SWA-Ethernet1/0/1]port trunk pvid vlan 20\n[SWA-Ethernet1/0/1]port trunk permit vlan 10",
+    "[SWA]interfaceEthernet 1/0/1\n[SWA-Ethernet1/0/1]port link-type trunk\n[SWA-Ethernet1/0/1]port trunk pvid vlan 20\n[SWA-Ethernet1/0/1]port trunk permit vlan 10\n[SWA-Ethernet1/0/1]quit\n[SWA]vlan 10\n[SWA-vlan10]quit\n[SWA]vlan 20"
+   ],
+   "answer": "CD",
+   "analysis": ""
+  },
+  {
+   "id": "2-39",
+   "type": "multiple",
+   "question": "园区网中实施网络安全管理措施时，如下哪些属于针对非法访问网络资源而部署的网络访问控制技术或措施______。",
+   "options": [
+    "添加防火墙",
+    "部署端点准入防御",
+    "Portal认证",
+    "添加IAS设备(IllegalAccess System,非法访问系统）"
+   ],
+   "answer": "ABC",
+   "analysis": "常用的安全防范措施包括端口接入控制、访问控制、安全连接等"
+  },
+  {
+   "id": "2-40",
+   "type": "multiple",
+   "question": "在如图所示的交换网络中，三台交换机都只有缺省VLAN1,三台交换机的互联端口都为Trunk,且允许所有VLAN通过，三台交换机都开启了全局和端口的GVRP功能在交换机SWA上创建了VLAN10,在交换机SWC上创建了VLAN20,在三台交换机上査看各Trunk端口状态信息，下面显示正确的是______。",
+   "options": [
+    "[SWA]display interface Ethernet 1/0/1\nEthernetl/0/1 current state: UP ......\nPVID: 1\nMdi type: auto\nLink delay is 0(sec)\nPort link-type: trunk\nVLAN passing: 1 (default vlan), 10,20\nVLAN permitted: 1 (default vlan), 2-4094\nTrunk port encapsulation: IEEE 802.1q",
+    "[SWB]display interface Ethernet 1/0/1\nEthernetl/0/1 current state: UP ......\nPVID: 1\nMdi type: auto\nLink delay is 0(sec)\nPort link-type: trunk\nVLAN passing: 1 (default vlan), 10,20\nVLAN permitted: 1 (default vlan), 2-4094\nTrunk port encapsulation: IEEE 802.1q",
+    "[SWB]display interface Ethernet 1/0/2\nEthernetl/0/2 current state: UP ......\nPVID: 1\nMdi type: auto\nLink delay is 0(sec)\nPort link-type: trunk\nVLAN passing: 1 (default vlan), 10,20\nVLAN permitted: 1 (default vlan), 2-4094\nTrunk port encapsulation: IEEE 802.1q",
+    "[SWC]display interface Ethernet 1/0/1\nEthernetl/0/1 current state: UP ......\nPVID: 1\nMdi type: auto\nLink delay is 0(sec)\nPort link-type: trunk\nVLAN passing: 1 (default vlan), 10,20\nVLAN permitted: 1 (default vlan), 2-4094\nTrunk port encapsulation: IEEE 802.1q"
+   ],
+   "answer": "AD",
+   "analysis": "B是错的，应该是VLAN passing: 1 (default vlan), 10\nC是错的，应该是VLAN passing: 1 (default vlan), 20\nGVRP注册消息是单向的，因此SWB的E1/0/1通过VLAN10，E1/0/2只通过VLAN20",
+   "images": [
+    "p028_5.jpeg"
+   ]
+  },
+  {
+   "id": "2-41",
+   "type": "single",
+   "question": "在如图所示的交换网络中，三台交换机都只有缺省VLAN 1,三台交换机的互联端口都为Trunk,且允许所有VLAN通过，三台交换机都开启了全局和端口的GVRP功能在交换机SWA上创建了VLAN10,在交换机SWC上创建了VLAN20,在三台交换机上査看各Trunk端口状态信息，下面显示正确的是______。",
+   "options": [
+    "[SWA]display interface Ethernet 1/0/1\nEthernetl/0/1 current state: UP ......\nPVID: 1\nMdi type: auto\nLink delay is 0(sec)\nPort link-type: trunk\nVLAN passing: 1 (default vlan), 10\nVLAN permitted: 1 (default vlan), 2-4094\nTrunk port encapsulation: IEEE 802.1q",
+    "[SWB]display interface Ethernet 1/0/1\nEthernet1/0/1 current state: UP ......\nPVID: 1\nMdi type: auto\nLink delay is 0(sec)\nPort link-type: trunk\nVLAN passing: 1 (default vlan), 10\nVLAN permitted: 1 (default vlan), 2-4094\nTrunk port encapsulation: IEEE 802.1q",
+    "[SWB]display interface Ethernet 1/0/2\nEthernet1/0/2 current state: UP ......\nPVID: 1\nMdi type: auto\nLink delay is 0(sec)\nPort link-type: trunk\nVLAN passing: 1 (default vlan), 10\nVLAN permitted: 1 (default vlan), 2-4094\nTrunk port encapsulation: IEEE 802.1q",
+    "[SWC]display interface Ethernet 1/0/1\nEthernet1/0/1 current state: UP ......\nPVID: 1\nMdi type: auto\nLink delay is 0(sec)\nPort link-type: trunk\nVLAN passing: 1 (default vlan), 10\nVLAN permitted: 1 (default vlan), 2-4094\nTrunk port encapsulation: IEEE 802.1q"
+   ],
+   "answer": "B",
+   "analysis": "A是错的，应该是VLAN passing: 1 (default vlan), 10,20\nC是错的，应该是VLAN passing: 1 (default vlan), 20\nD是错的，应该是VLAN passing: 1 (default vlan), 10,20\nGVRP注册消息是单向的，因此SWB的E1/0/1通过VLAN10，E1/0/2只通过VLAN20",
+   "images": [
+    "p030_6.jpeg"
+   ]
+  },
+  {
+   "id": "2-42",
+   "type": "multiple",
+   "question": "在图示的组网模型中，配置完成后，发现用户认证失败，那么该故障可能的原因是\n______。",
+   "options": [
+    "RADIUSServer上没有配置该用户名",
+    "RADIUSClient上没有指定缺省域",
+    "RADIUSServer与RADIUSClient之间的报文共享密钥不一致",
+    "RADIUSServer与RADIUSClient之间的网线没有连接"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "2-43",
+   "type": "multiple",
+   "question": "交换机SWA上启用了GVRP,设置了Hold定时器的值为100厘秒，现在要修改其他定时器的值，下列配置正确的是______。",
+   "options": [
+    "[SWA-Ethernet1/0/1]garp timer join 50",
+    "[SWA-Ethernet1/0/1]garp timer join 200",
+    "[SWA-Ethernet1/0/1]garp timer leave 400",
+    "[SWA]garp timer leaveall 415"
+   ],
+   "answer": "BC",
+   "analysis": "Hold：\n上限：小于等于1/2 Join定时器的值，下限：10厘秒，缺省值 10厘秒 推荐值100厘秒\nJoin：\n上限：小于1/2 Leave定时器的取值 下限：大于2倍Hold定时器的值，缺省值 20厘秒 推荐值 600厘秒\nLeave:\n上限：小于LeaveAll定时器的值，下限：大于2倍Join定时器的值，缺省值60厘秒，推荐值3000厘秒\nLeaveAll:\n上限：32765厘秒，下限大于Leave定时器的取值，缺省值 1000厘秒，推荐值1000厘秒"
+  },
+  {
+   "id": "2-44",
+   "type": "single",
+   "question": "如果交换机的某个端口下同时开启了基于端口的VLAN、基于MAC地址的VLAN、基于协议的VLAN和基于IP子网的VLAN,则缺省情况下，VLAN将按照顺序进行匹配______。",
+   "options": [
+    "端口VLAN MACVLAN 协议VLAN IP子网VLAN",
+    "端口VLAN IP子网VLAN 端口VLAN MACVLAN",
+    "MACVLAN 端口VLAN 协议VLAN IP子网VLAN",
+    "MACVLAN IP子网VLAN 协议VLAN 端口VLAN"
+   ],
+   "answer": "D",
+   "analysis": "如果交换机的某个端口下同时开启以上四种VLAN，则缺省情况下，VLAN将按照基于MAC地址的VLAN，基于IP子网的VLAN、基于协议的VLAN、基于端口的VLAN的先后顺序进行匹配，当交换机的以太网端口收到帧时，将采用以下方法处理：\n1）当收到的帧为Tagged帧时，如果端口允许携带该VLAN标记的的帧通过，则正常转发，如果不允许，则丢弃该帧。\n2）当收到帧为Untagged帧时，会以帧的源MAC地址为依据去匹配MAC VLAN表项，如果匹配成功，则按照匹配到的VLAN ID和优先级进行转发，如果匹配失败，则进行下一步处理。\n3）按IP子网VLAN匹配方式进行匹配，依据帧的源地址来确定帧所属的VLAN，如果匹配成功，将帧自动划分到指定VLAN中进行转发，如果匹配失败，则进行下一步处理。\n4）按协议VLAN匹配方式进行匹配，如果帧匹配协议模版，则给帧打上该协议模版定义的协议VLAN的\nVLAN ID进行转发；如果帧没有匹配协议模版，则给帧打上端口的缺省VLAN ID进行转发。"
+  },
+  {
+   "id": "2-45",
+   "type": "multiple",
+   "question": "如下哪些报文是TACACS+的认证报文______。",
+   "options": [
+    "start",
+    "Request",
+    "Rsponse",
+    "Continue"
+   ],
+   "answer": "AD",
+   "analysis": "TACACS+认证报文分为三种：Start、Continue、Reply。Start和Continue由NAS发送，Reply则由TACACS+服务器发送，授权过程通过授权请求报文和授权响应报文来完成；计费过程与授权过程类似，分为计费请求报文和计费响应报文"
+  },
+  {
+   "id": "2-46",
+   "type": "multiple",
+   "question": "下面哪种划分VLAN的方法具有当用户物理位置移动时，即从一个交换机换到其他的交换机时，VLAN不用重新配置的优点______。",
+   "options": [
+    "基于端口的VLAN",
+    "基于MAC地址的VLAN",
+    "基于协议的VLAN",
+    "基于IP子网的VLAN"
+   ],
+   "answer": "BCD",
+   "analysis": ""
+  },
+  {
+   "id": "2-47",
+   "type": "multiple",
+   "question": "关于根桥保护，以下说法正确的有______。",
+   "options": [
+    "没有配置根桥保护时，根桥收到优先级更高的BPDU会失去根桥的地位",
+    "配置根桥保护后，端口收到了优先级高的BPDU,这些端口的状态将被设置为Listening不再转发报文",
+    "端口会经历从Listening状态到Fonwarding状态的转变，在此期间如果端口没有收到更优的BPDU 时，端口会恢复原来的转发状态",
+    "根桥保护在端口视图配置"
+   ],
+   "answer": "ABCD",
+   "analysis": "由于维护人员的错误配置或网络中的恶意攻击，网络中的合法跟桥有可能会收到优先级更高的BPDU，这样当前跟桥会失去跟桥的地址，引起网络拓扑结构的变动。\n对于设置了ROOT保护功能的端口，端口角色只能保持为指定端口，一旦这种端口上受到了优先级高的\nBPDU，这些端口的状态将被设置为Listening状态，不会转发报文（相当于将此端口相连的链路端口).\n端口会经历从Listening状态到Forwarding状态的转变，在此期间如果端口没有收到更优的BPDU，端口会恢复原来的转发状体。\n根桥保护命令在端口视图配置"
+  },
+  {
+   "id": "2-48",
+   "type": "multiple",
+   "question": "在图示的组网模型中，如果RADIUS  Client上收到Accounting那么下列说法可能正确的是______。",
+   "options": [
+    "该报文是Host发出的",
+    "该报文是RADIUSServer发出的",
+    "该报文是停止计费响应报文",
+    "该报文是开始计费响应报文"
+   ],
+   "answer": "BC",
+   "analysis": "RADIUS消息交互流程如下：\n1）用户发起连接请求，输入用户名和密码\n2）RADIUS客户端根据获取的用户名和密码，向RAIUS服务器发送认证请求包(Access-Request)，密码在共享密钥的参与下进行加密处理；\n3）RADIUS服务器对用户名和密码进行认证，如果认证成功，RADIUS服务器向RADIUS客户端发送认证接受包(Access-Accept)，同时也包含用户的授权信息；如果认证失败，则返回认证拒绝包(Access-Reject)\n4）RADIUS客户端根据接收到的认证结果接入/拒绝用户。如果允许用户接入，则RADIUS客户端向服务器发送计费开始请求包(Accounting-Request);\n5)RADIUS服务器返回计费开始响应包(Accounting-Response),并开始计费；\n6)用户开始访问网络资源；\n7)用户请求断开连接，RADIUS客户端向RADIUS服务器发送计费停止请求包(Accounting-Request);\n8)RADIUS服务器返回计费结束响应包(Accounting-Response),并停止计费\n9)用户结束访问网络资源",
+   "images": [
+    "p033_7.jpeg"
+   ]
+  },
+  {
+   "id": "2-49",
+   "type": "multiple",
+   "question": "主机PCA、PCB 和PCC 分别连接在交换机SWA 的GigabitEthernet1/0/1\nGigabitEthernet1/0/2 和GigabitEthernet1/0/3端口分别属于VLAN2、VLAN3和VLAN10,并且主机ife址都处于同一网段要求PCA和PCB都能访问PCC,但PCA和PCB之间不能互\n访，则在SWA的配置过程中，应包括下列哪项配置______。",
+   "options": [
+    "[SWA]vlan2 [SWA-vlan2]port GigabitEthernet 1/0/1",
+    "[SWA]vlan3 [SWA-vlan3]port GigabitEthernet 1/0/2",
+    "[SWA]vlan10[SWA-vlan 10]isolate-user-vlan enable",
+    "[SWA]isolate-user-vlan 10 secondary 2 3\n[SWA]vian10 [SWA-vlan 10]port GigabitEthernet 1/0/3"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "2-50",
+   "type": "multiple",
+   "question": "交换机SWA 的端口Ethemet1/0/1、Ethernet1/0/2 和Ethernet1/0/3 分别为Access、\nTrunk和Hybrid 端口，PVID都为VLAN10在SWA上执行命令undo vlan10后，査看各端口配置可以看到下列哪项配置______。",
+   "options": [
+    "interfaceEthernet1/0/1",
+    "interfaceEthernet1/0/1 port access vlan 10",
+    "interfaceEthernet1/0/2 port link-type trunk port trunk permit vlan 1",
+    "interfaceEthernet1/0/2 port link-type trunk port trunk permit vlan 1 port trunk pvid vlan 10",
+    "interfaceEthernet1/0/3 port link-type hybrid port hybrid vlan 1 untagged",
+    "interfaceEthernet1/0/3 port link-type hybrid port hybrid vlan 1 untagged port hybrid pvid vlan 10",
+    "以上配置全部有误"
+   ],
+   "answer": "ADF",
+   "analysis": ""
+  },
+  {
+   "id": "2-51",
+   "type": "multiple",
+   "question": "在如图所示的交换网络中，交换机SWA上设置VLAN10为Isolate-user-vlan，VLAN2和VLAN3为VLAN 10的Secondary VLAN ；交换机SWB上创建VLAN4和VLAN20,并且设置VLAN20 为Isolate-user-vlan,VLAN4为VLAN20的Secondary VLAN 按照如图所示设置好各设备的IP地址后，可以判断______。",
+   "options": [
+    "PCA可以和PCB互通",
+    "PCA可以和PCC互通",
+    "PCA可以和SWA互通",
+    "PCA可以和SWB互通",
+    "SWA可以和SWB互通"
+   ],
+   "answer": "BDE",
+   "analysis": "PCA和SWA不能互通，因为交换机内部有VLAN标签。\n没有开本地代理，所以本地隔离;\nPCA不会访问SWA，因为它只是一个代理网关；\nPCA与PCB之间的互访，可以通过上层设备的SWB配置本地代理ARP互访，但是没有开启，所以无法互\n访；\nSWA与SWB之间可以互访，因为他们之间的链路出去的数据是不打tag的，而且也是包含三层接口的，所以可以三层互通",
+   "images": [
+    "p035_8.jpeg"
+   ]
+  },
+  {
+   "id": "2-52",
+   "type": "multiple",
+   "question": "对于SSH用户采用publickey认证方式时，在配置密钥方面的描述哪些是正确的______。",
+   "options": [
+    "需要在服务器端配置客户端的RSA主机私钥",
+    "需要客户端为该SSH用户指定与主机公钥对应的RSA私钥",
+    "可以采用拷贝粘贴的方式将客户端的主机公钥配置到服务器端",
+    "不能通过拷贝粘贴的方式将客户端的主机私钥配置到服务器端"
+   ],
+   "answer": "BC",
+   "analysis": "SSH用户采用publickey认证方式时，需要在服务器端配置客户端的DSA或RSA主机公钥，并在客户端为该SSH用户指定与主机公钥对应的DSA或RSA私钥，以便客户端登录服务器端时，对客户端进行验证。\n可以通过从公钥文件中导入和手工配置两种方式来在服务器端配置客户端的公钥。\n从公钥文件中导入客户端的publickey公钥时，系统会自动将客户端生成的公钥文件转换为PKCS(Public Key Cryptograptry Standards,公共密钥加密标准)编码形式，并实现客户端公钥的配置，这种方式需要客户端事先将publickey密钥的公钥文件通过FTP/TFTP以二进制(binary)方式上传到服务器端。\n手工配置客户端的publickey公钥，可以采用拷贝粘贴的方式将客户端的主机公钥配置到服务器端。这种方式要求拷贝粘贴的主机公钥必须是未经过转换的DER(Distrguished Encoding Rules,特异编码规则)公钥编码格式。"
+  },
+  {
+   "id": "2-53",
+   "type": "multiple",
+   "question": "在如图所示的交换网络中，交换机SWA上设置VLAN10为Isolate-user-vlan VLAN2和\nVLAN3为VLAN 10 的Secondary VLAN ；交换机SWB 上创建VLAN4和VLAN20,并且设置VLAN20 为Isolate-user-vlan,VLAN4为VLAN20 的Secondary VLAN设置好各设备的IP 地址后，在SWA 上査看MAC地址表，将显示PCB属于______。",
+   "options": [
+    "VLAN 1",
+    "VLAN 2",
+    "VLAN 3",
+    "VLAN 4",
+    "VLAN 10",
+    "VLAN 20"
+   ],
+   "answer": "CE",
+   "analysis": "Isolate-user-vlan的MAC地址同步机制为：\nSeconadry VLAN到Isolate-user-vlan的同步，即下行端口在Secondary VLAN内学习到的MAC地址都同步到Isolate-user-vlan内，而出端口则保持不便。\nIsolate-user-vlan到Secondary VLAN的同步，即上行端口在Isolate-user-vlan学习到的MAC地址同步到所有的Secondary VLAN内，而出端口则保持不变。",
+   "images": [
+    "p036_9.jpeg"
+   ]
+  },
+  {
+   "id": "2-54",
+   "type": "multiple",
+   "question": "如下信息是某H3C网络设备上的snmp相关配置：\nsnmp-agent\nsnmp-agent local-engineid 800007DB00E0FC79887C6877\nsnmp-agent community read public\nsnmp-agent community write private\nsnmp-agent sys-info version all\n对此设备进行snmp访问的结果描述正确的是______。",
+   "options": [
+    "可以成功通过snmpv1访问和设置此设备",
+    "可以成功通过snmpv2c访问和设置此设备",
+    "可以成功通过snmpV3访问和设置此设备",
+    "无论采用那个版本，都无法访问和设置此设备"
+   ],
+   "answer": "AB",
+   "analysis": "snmpV3需要配置认证方式，认证密码，加密算法，加密算法密码等；\nsnmpV3与snmpv1和snmpv2c区别最大是安全性和访问控制；"
+  },
+  {
+   "id": "2-55",
+   "type": "single",
+   "question": "在如图所示的交换网络中，交换机SWA上设置VLAN10为Isolate-user-vlan VLAN2和\nVLAN3为VLAN 10 的Secondary VLAN ；交换机SWB 上创建VLAN4和VLAN20,并且设置VLAN20 为Isolate-user-vlan, VLAN4为VLAN20的Secondary VLAN。 按照如图所示设置好各设备的IP地址后，在SWA和SWB上都开启了本地代理ARP功能。最初时，交换机和pc没有学习到各自对应的ARP表项在PCA ping PCB的过程中，PCA会发送ARP请求PCB收到ARP请求报文后发送的目的mac响应中，目的MAC地址为______。",
+   "options": [
+    "FFFF.FFFF.FFFF",
+    "0011.1111.1111",
+    "00E0.FC00.0010",
+    "00E0.FC00.0020"
+   ],
+   "answer": "D",
+   "analysis": "Secondary VLAN用于连接用户，Secondary VLAN之间二层帧互相隔离。如果希望实现同一Isolate User\nvlan下的Secondary VLAN用户之间互通，可以通过配置上行设备的本地代理ARP功能来实现二层报文的互通。",
+   "images": [
+    "p037_10.jpeg"
+   ]
+  },
+  {
+   "id": "2-56",
+   "type": "single",
+   "question": "在如图所示的交换网络中，交换机SWA上设置VLAN10为Isolate-user-vlan VLAN2和\nVLAN3为VLAN 10 的Secondary VLAN ；交换机SWB 上创建VLAN4和VLAN20,并且设置VLAN20 为Isolate-user-vlan, VLAN4为VLAN20的Secondary VLA 按照如图所示设置好各设备的IP地址后，在SWA和SWB上都开启了本地代理ARP功能最初时，交换机和pc没有学习到各自对应的ARP表项在PCA ping PCB的过程中，PCA会发送ARP请求，交换机向PCB转发的ARP请求报文的源MAC地址为______。",
+   "options": [
+    "0000.0000.0000",
+    "0011.1111.1111",
+    "00E0.FC00.0010",
+    "00E0.FC00.0020"
+   ],
+   "answer": "D",
+   "analysis": "",
+   "images": [
+    "p038_11.jpeg"
+   ]
+  },
+  {
+   "id": "2-57",
+   "type": "single",
+   "question": "在如图所示的交换网络中，交换机SWA上设置VLAN10为Isolate-user-vlan VLAN2和\nVLAN3为VLAN 10 的Secondary VLAN ；交换机SWB 上创建VLAN4和VLAN20,并且设置VLAN20 为Isolate-user-vlan,VLAN4为VLAN20的Secondary VLAN 按照如图所示设置好各设备的IP地址后，下面说法正确的为______。",
+   "options": [
+    "PCA的报文从SWA的GigabitEther1/0/1端口进入，从GigabitEther1/0/3 端口出来后不带VLAN Tag",
+    "PCA的报文从SWA的GigabitEthem1/0/3端口出来，进入SWB的GigabitEthe1/0/3端口后所带的VLANTag为VLAN2",
+    "SWB访问PCA 时，报文从SWB 的GigabitEthem1/0/4所带的VLAN Tag 为VLAN 1",
+    "SWB的报文从SWA的GigabitEthem1/0/3端口进入,从GigabitEthem1/0/1端口出来后所带的VLANTag 为VLAN2"
+   ],
+   "answer": "A",
+   "analysis": "",
+   "images": [
+    "p039_12.jpeg"
+   ]
+  },
+  {
+   "id": "2-58",
+   "type": "multiple",
+   "question": "在SNMPvl的消息中，由Agent发往NMS的消息有______。",
+   "options": [
+    "GetRequest",
+    "GetNextRequest",
+    "SetRequest",
+    "GetResponse",
+    "Trap"
+   ],
+   "answer": "DE",
+   "analysis": "NMPv1支持5种消息类型：GetRequest、GetNext-Request、SetRequest、Get-Response和Trap。NMS使用Get-Request和GetNext-Request从拥有SNMP Agent的网络设备中检索信息，SNMP Agent以Get-\nResponse消息响应Get-Request和GetNext-Request消息。NMS使用Set-Request实现设备中参数的远程配置，SNMP Agent将配置结果以Get-Response消息反馈给NMS。Trap是SNMP Agent发送给NMS的非请求消息，这些消息通知NMS被管理设备发生了一个特定的事件。"
+  },
+  {
+   "id": "2-59",
+   "type": "multiple",
+   "question": "在如图所示的交换网络中，交换机SWA上设置VLAN10为Isolate-user-vlan，VLAN2和VLAN3为VLAN10的Secondary VLAN在以下 交换机SWA上VLAN10虚接口链路层UP?______。",
+   "options": [
+    "GigabitEthernet1/0/1端口UP",
+    "GigabitEthernet1/0/2端口UP",
+    "GigabitEthernet1/0/3端口UP",
+    "GigabitEthernet1/0/1、GigabitEthernet1/0/2和GigabitEthem1/0/3三个端口都UP"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "2-60",
+   "type": "multiple",
+   "question": "主机PCA、PCB 和PCC 分别连接在交换机SWA 的GigabitEthernet1/0/1、Ethernet1/0/2和\nEthernet1/0/3 端口上，并且其地址处于同一网段，交换SWA上配置\n[SWA]vlan 10\n[SWA-vlan10]port ethernet 1/0/1\n[SWA-vlan10]quit\n[SWA]vlan 20\n[SWA-vlan20]port ethernet 1/0/2\n[SWA-vlan20]quit\n[SWA]vlan 30\n[SWA-vlan30]port ethernet 1/0/3\n[SWA-vlan30]quit\n[SWA]interface ethernet 1/0/1\n[SWA-Ethernet1/0/1]port link-type hybrid\n[SWA-Ethernet1/0/1]port hybrid vlan 10 30 untagged\n[SWA-Ethernet1/0/1]quit\n[SWA]interface ethernet 1/0/2\n[SWA-Ethernet1/0/2]port link-type hybrid\n[SWA-Ethernet1/0/2]port hybrid vlan 20 30 untagged\n[SWA-Ethernet1/0/2]quit\n[SWA]interface ethernet 1/0/3\n[SWA-Ethernet1/0/3]port link-type hybrid\n[SWA-Ethernet1/0/3]port hybrid vlan 10 20 30 untagged\n于上述信息可以判断______。",
+   "options": [
+    "PCA和PCB之间可以互通",
+    "PCA和PCC之间可以互通",
+    "PCB和PCC之间可以互通",
+    "三台PC之间两两不能互通",
+    "配置命令有误"
+   ],
+   "answer": "BC",
+   "analysis": "根据Hybrid接口的特性，PCA和PCB分别和PCC可以互通，PCA和PCB不能互通。"
+  },
+  {
+   "id": "2-61",
+   "type": "multiple",
+   "question": "要通过SNMP査询某设备的CPU利用率，在执行査询动作之前，网络管理应用程序应该掌握下面的哪些信息______。",
+   "options": [
+    "设备的SNMP团体属性",
+    "设备的管理IP地址",
+    "设备CPU利用率的OID",
+    "设备CPU利用率的实例ID"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "2-62",
+   "type": "multiple",
+   "question": "下列有关远程端口镜像描述正确的有______。",
+   "options": [
+    "远程端口镜像必须包含镜像源交换目的交换机",
+    "远程端口镜像的反射端口是必不可少的",
+    "远程端口镜像的ProbeVLAN应该禁止MAC地址学习"
+   ],
+   "answer": "AC",
+   "analysis": "远程端口镜像通过远程镜像组和远程目的镜像组互相配置的方式实现。\n在源设备上配置远程源镜像组\n源端口\n反射端口（有得设备不需要配置）\n远程镜像VLAN\n配置中间设备\n配置远程镜像VLAN\n配置TRUNK端口\n在目的设备上配置远程目的镜像组\n中间设备：\n在实现端口的双向镜像时需要保证中间设备可以进制该VLAN内MAC地址学习，从而可以正常的将镜像报文从一个端口转发到另一个端口。"
+  },
+  {
+   "id": "2-63",
+   "type": "multiple",
+   "question": "在NTP客户端和服务器模式中，下列哪种NTP验证组合可以成功同步?______。",
+   "options": [
+    "NTP客户端和服务器都使能验证",
+    "NTP客户端和服务器都未使能验证",
+    "NTP客户端使能验证，服务器端没有使能验证",
+    "NTP客户端未使能验证，服务器端使能验证"
+   ],
+   "answer": "ABD",
+   "analysis": "NTP验证功能可以分为客户端的NTP验证和服务器端的NTP验证两个部分。在应用NTP验证功能时，应注意以下原则：\n对于所有同步模式，如果使能了NTP验证功能，应同时配置验证密钥并将密钥设为可信密钥。否则，无法正常启用NTP验证功能。\n对于客户端/服务器模式和对等体模式，还应在客户端（对等提模式中的主动对等体）将指定密钥与对应的NTP服务器（对等体模式的被动对等体）关联；对于广播服务器模式和组播服务器模式，应在广播服务器或组播服务器上将指定密钥与对应的NTP服务器关联，否则，无法正常启用NTP验证功能。\n对于客户端/服务器同步模式，如果客户端没有成功启用NTP验证功能，不论服务器端是否能使NTP验证，客户端均可以与服务器端同步；如果客户端上成功启用了NTP验证功能，则客户端只会同步提供可信密钥的服务器，如果服务器提供的密钥不是可信的密钥，那么客户端不会与其同步。\n对于所有同步模式，服务器端的配置与客户端的配置应保持一致。"
+  },
+  {
+   "id": "2-64",
+   "type": "multiple",
+   "question": "在如图所示的交换网络中，交换机SWA上设置VLAN10为Super VLAN, VLAN2和VLAN3为VLAN10的SubVLAN,端口Ethernet1/0/3为Trunk端口，PVID 为VLAN1,允许所有\nVLAN 通过；交换机SWB上创建VLAN2和VLAN20,端口Ethernet1/0/4为Trunk端口，\nPVID 为VLAN1,允许所有VLAN 通过按照如图所示设置好各设备的IP地址后，可以判断______。",
+   "options": [
+    "PCA可以和PCB互通",
+    "PCA可以和PCC互通",
+    "PCA可以和SWA互通",
+    "PCA可以和SWB互通",
+    "以上答案都不对"
+   ],
+   "answer": "BC",
+   "analysis": "实验证明:\nPCA可以和PCC、SWA互通；不能和PCB、SWB互通；不能和PCB、SWB互通；\nPCB可以和SWA互通，不能和PCA、PCC、SWB互通\nPCC可以和PCA、SWA互通，不能和PCB、SWB互通\nSWA可以和PCA、PCB、PCC互通，不能和SWB互通\nSWB不能和任何互通\ninterface vlan 10没有开启local-proxy-arp enable，所以PCA和PCB不通\nSuper VLAN技术的实现\nSuper VLAN与Sub VLAN形成映射\n不同Sub VLAN主机在不同的广播域\n各Sub VLAN借用Super VLAN的VLAN接口进行三层通信\nSub VLAN间通信依靠Super VLAN接口的本地代理ARP完成。\n注意，SWA，SWB的VLAN接口是10，是supervlan，所以是不允许通过SWA的E1/0/3出去的，因为\nsupervlan不包含物理接口，所以丢弃。\n而PCA访问PCC是二层VLAN间的互访，可以互通",
+   "images": [
+    "p042_13.jpeg"
+   ]
+  },
+  {
+   "id": "2-65",
+   "type": "single",
+   "question": "在如图所示的交换网络中，交换机SWA上设置VLAN10为Super VLAN, VLAN2和VLAN3为VLAN10的SubVLAN,端口Ethernet1/0/3为Trunk端口，PVID 为VLAN1,允许所有\nVLAN 通过；交换机SWB上创建VLAN2和VLAN20,端口Ethernet1/0/4为Trunk端口，PVID 为VLAN1,允许所有VLAN 通过按照如图所示设置好各设备的IP地址后，可以判断______。",
+   "options": [
+    "SWB可以和PCA互通",
+    "SWB可以和PCB互通",
+    "SWB可以和PCC互通",
+    "SWB可以和SWA互通",
+    "以上答案都不对"
+   ],
+   "answer": "E",
+   "analysis": "实验证明:\nPCA可以和PCC、SWA互通；不能和PCB、SWB互通；不能和PCB、SWB互通；\nPCB可以和SWA互通，不能和PCA、PCC、SWB互通\nPCC可以和PCA、SWA互通，不能和PCB、SWB互通\nSWA可以和PCA、PCB、PCC互通，不能和SWB互通\nSWB不能和任何互通\ninterface vlan 10没有开启local-proxy-arp enable，所以PCA和PCB不通\nSuper VLAN技术的实现\nSuper VLAN与Sub VLAN形成映射\n不同Sub VLAN主机在不同的广播域\n各Sub VLAN借用Super VLAN的VLAN接口进行三层通信\nSub VLAN间通信依靠Super VLAN接口的本地代理ARP完成。\n进入SWB的数据打上的tag全部都是VLAN 10，而VLAN 10是没有物理接口的，所以全部丢弃。",
+   "images": [
+    "p043_14.jpeg"
+   ]
+  },
+  {
+   "id": "2-66",
+   "type": "single",
+   "question": "在如图所示的交换网络中，交换机SWA上设置VLAN10为Super VLAN, VLAN2和VLAN3为VLAN10的SubVLAN,端口Ethernet1/0/3为Trunk端口，PVID 为VLAN1,允许所有\nVLAN 通过；交换机SWB上创建VLAN2和VLAN20,端口Ethernet1/0/4为Trunk端口，\nPVID 为VLAN1,允许所有VLAN 通过按照如图所示设置好各设备的IP地址后，在SWA上査看MAC地址表，可以判断PCC属于______。",
+   "options": [
+    "VLAN 1",
+    "VLAN 2",
+    "VLAN 3",
+    "VLAN 10"
+   ],
+   "answer": "B",
+   "analysis": "",
+   "images": [
+    "p044_15.jpeg"
+   ]
+  },
+  {
+   "id": "2-67",
+   "type": "single",
+   "question": "在如图所示的交换网络中，交换机SWA上设置VLAN10为Super VLAN, VLAN2和VLAN3为VLAN10的SubVLAN,端口Ethernet1/0/3为Trunk端口，PVID 为VLAN1,允许所有\nVLAN 通过；交换机SWB上创建VLAN2和VLAN20,端口Ethernet1/0/4为Trunk端口，PVID 为VLAN1,允许所有VLAN 通过按照如图所示设置好各设备的IP地址后，可以判断_下面说法正确的为______。",
+   "options": [
+    "PCA的报文从SWA的Ethernet1/0/1端口进入，从Ethemet1/0/3端口出来不带tag",
+    "PCA的报文从SWA的Ethernet1/0/1端口进入，从Ethemet1/0/3端口出来所带VLAN Tag VLAN 1",
+    "PCA的报文从SWA的Ethernet1/0/1端口进入，从Ethernet1/0/3端口出来后所带的VLANTag为VLAN2",
+    "PCA的报文从SWA的Ethernet1/0/1端口进入，从Ethernet1/0/3端口出来后所带的VLANTag为VLAN 10"
+   ],
+   "answer": "C",
+   "analysis": "VLAN ID: 2\nVLAN type: Static\nIt is a sub-VLAN.\nRoute interface: Configured\nIPv4 address: 10.1.1.4\nIPv4 subnet mask: 255.0.0.0\nDescription: VLAN 0002\nName: VLAN 0002\nTagged ports:\nGigabitEthernet1/0/3\nUntagged ports:\nGigabitEthernet1/0/1\nVLAN ID: 3\nVLAN type: Static\nIt is a sub-VLAN.\nRoute interface: Configured\nIPv4 address: 10.1.1.4\nIPv4 subnet mask: 255.0.0.0\nDescription: VLAN 0003\nName: VLAN 0003\nTagged ports:\nGigabitEthernet1/0/3\nUntagged ports:\nGigabitEthernet1/0/2\nVLAN ID: 10\nVLAN type: Static\nIt is a super VLAN.\nRoute interface: Configured\nIPv4 address: 10.1.1.4\nIPv4 subnet mask: 255.0.0.0\nDescription: VLAN 0010\nName: VLAN 0010\nTagged ports:   None\nUntagged ports: None",
+   "images": [
+    "p045_16.jpeg"
+   ]
+  },
+  {
+   "id": "2-68",
+   "type": "multiple",
+   "question": "在如图所示的交换网络中，交换机SWA上设置VLAN10为SuperVLAN, VLAN2和VLAN3为VLAN10的Sub\nVLAN,要求PCA和PCB可以互访则交换机SWA上的配置应包括下列哪些项______。",
+   "options": [
+    "[SWA]vlan 2\n[SWA-vlan2]port GigabitEthernet 1/0/1",
+    "[SWA-vlan2]vlan 3\n[SWA-vlan3]port GigabitEthernet 1/0/2",
+    "[SWA]vlan10\n[SWA-vlan 10]super vlan",
+    "[SWA]vlan10\n[SWA-vlan 10]supervlan",
+    "[SWA]vlan10\n[SWA-vlan 10]subvlan 2 3",
+    "[SWA]supervlan10 subvlan 2 3",
+    "[SWA]vlan10\n[SWA-vlan10] local-proxy-arp enable\n[SWA] interface Vlan 10\n[SWA-Vlan-interface10]ip address 10.1.1.4 255.255.255.0",
+    "[SWA]interface Vlan 10\n[SWA-Vlan-interface10]ip address 10.1.1.4 255.255.255.0[SWA-Vlan-interface10]local-proxy-arp enable"
+   ],
+   "answer": "ABDEH",
+   "analysis": "[SWA]vlan 2\n[SWA-vlan2]port GigabitEthernet 1/0/1\n[SWA-vlan2]vlan 3\n[SWA-vlan3]port GigabitEthernet 1/0/2\n[SWA]vlan 10\n[SWA-vlan10]supervlan\n[SWA-vlan10]subvlan 2 3\n[SWA]interface Vlan 10\n[SWA-Vlan-interface10]ip address 10.1.1.4 255.255.255.0\n[SWA-Vlan-interface10]local-proxy-arp enable"
+  },
+  {
+   "id": "2-69",
+   "type": "multiple",
+   "question": "在如图所示的交换网络中，交换机SWA上设置VLAN10为SuperVLAN, VLAN2和VLAN3为VLAN10的SubVLAN,要求PCA和PCB可以互访在完成交换机SWA的配置后，在PCA可以ping通PCB之后，关于PCA、PCB和交换机SWA上的ARP表项，下面描述正确的为______。",
+   "options": [
+    "在PCA 上学习到的ARP 表项为：Internet AddressPhysical AddressType10.1.1.2 0022-2222-2222\ndynamic",
+    "在PCB 上学习到的ARP 表项为：Internet AddressPhysical AddressType10.1.1.1 00E0-FC0A-0010\ndynamic",
+    "在SWA上学习到的ARP 表项为：IP Address MAC Address VLAN IDInterfaceAging Type 10.1.1.1 0011-1111-11112Eth1/0/1 20D 10.1.1.2 0022-2222-22223Eth 1/0/2 20D",
+    "以上各项都不正确"
+   ],
+   "answer": "BC",
+   "analysis": "PCA和PCB要互通需要在VLAN 10接口开启代理ARP功能：local-proxy-arp enable\nSuper VLAN技术的实现\nSuper VLAN与Sub VLAN形成映射\n不同Sub VLAN主机在不同的广播域\n各Sub VLAN借用Super VLAN的VLAN接口进行三层通信\nSub VLAN间通信依靠Super VLAN接口的本地代理ARP完成。\nPCA MAC：4693-e4a4-0305 PCB MAC: 4694-06b2-0405 SWA MAC：4693-bf39-0102\n<PCA>dis arp\nType: S-Static   D-Dynamic   O-Openflow   R-Rule   M-Multiport  I-Invalid\nIP address      MAC address    VLAN     Interface                Aging Type\n10.1.1.2        4693-bf39-0102 N/A      GE0/0                    19    D\n<PCB>dis arp\nType: S-Static   D-Dynamic   O-Openflow   R-Rule   M-Multiport  I-Invalid\nIP address      MAC address    VLAN     Interface                Aging Type\n10.1.1.1        4693-bf39-0102 N/A      GE0/0                    19    D\n[SWA]dis arp\nType: S-Static   D-Dynamic   O-Openflow   R-Rule   M-Multiport  I-Invalid\nIP address      MAC address    VLAN     Interface                Aging Type\n10.1.1.2        4694-06b2-0405 3        GE1/0/2                  18    D\n10.1.1.1        4693-e4a4-0305 2        GE1/0/1                  18    D",
+   "images": [
+    "p047_17.jpeg"
+   ]
+  },
+  {
+   "id": "2-70",
+   "type": "single",
+   "question": "在如图所示的交换网络中，交换机SWA上设置VLAN10为Super VLAN, VLAN2和VLAN3为VLAN10的SubVLAN,端口Ethernet1/0/3为Trunk端口，PVID 为VLAN1,允许所有\nVLAN 通过；交换机SWB上创建VLAN2和VLAN20,端口Ethernet1/0/4为Trunk端口，\nPVID 为VLAN1,允许所有VLAN 通过SWA上査看Ethernet 1/0/3端口信息，下面显示正确的为______。",
+   "options": [
+    "[SWA]display interface Ethernet 1/0/3\nEthernet1/0/3 current state: UP ......\nPVID: 1\nMdi type: auto\nLink delay is 0(sec)\nPort link-type: trunk\nVLAN passing: 1 (default vlan), 2-3,10\nVLAN permitted: 1 (default vlan), 2-4094\nTrunk port encapsulation: IEEE 802.1q",
+    "[SWA]display interface Ethernet 1/0/3\nEthernet1/0/3 current state: UP ......\nPVID: 1\nMdi type: auto\nLink delay is 0(sec)\nPort link-type: trunk\nVLAN passing: 1 (default vlan), 2-3\nVLAN permitted: 1 (default vlan), 2-9, 11-4094\nTrunk port encapsulation: IEEE 802.1q",
+    "[SWA]display interface Ethernet 1/0/3\nEthernet1/0/3 current state: UP ......\nPVID: 1\nMdi type: auto\nLink delay is 0(sec)\nPort link-type: trunk\nVLAN passing: 1 (default vlan), 2\nVLAN permitted: 1 (default vlan), 2-9, 11-4094\nTrunk port encapsulation: IEEE 802.1q",
+    "[SWA]display interface Ethernet 1/0/3\nEthernet1/0/3 current state: UP ......\nPVID: 1\nMdi type: auto\nLink delay is 0(sec)\nPort link-type: trunk\nVLAN passing: 1 (default vlan), 2\nVLAN permitted: 1 (default vlan), 2-4094\nTrunk port encapsulation: IEEE 802.1q"
+   ],
+   "answer": "B",
+   "analysis": "Ethernet1/0/3为Trunk链路，默认VLAN为VLAN1，允许通过VLAN除过VLAN10(Trunk不允许SuperVlan通过)，因为SWA存在VLAN 1 2 3所以允许通过的VLAN为1 2 3；\nPort link-type: trunk\nVLAN Passing:   1(default vlan), 2-3\nVLAN permitted: 1(default vlan), 2-9, 11-4094\n没有VLAN 10，即使SWB发来VLAN 10的报文，都会丢弃，因为VLAN 10只是虚拟的接口，无物理接口，提供三层的，所以无法访问",
+   "images": [
+    "p048_18.jpeg"
+   ]
+  },
+  {
+   "id": "2-71",
+   "type": "multiple",
+   "question": "关于Isolate-user-vlan技术和Super VLAN技术的描述，下面正确的是______。",
+   "options": [
+    "Isolate-user-vlan是一个二层VLAN技术，所以支持isolate-user-vlan技术的交换机都是二层交换机",
+    "SuperVLAN技术也称为VLAN聚合:主要目的是为解决IP地址浪费或VLAN接口数量不够",
+    "SuperVLAN是一个三层VLAN技术，所以支持Super VLAN技术的交换机都是三层交换机"
+   ],
+   "answer": "BC",
+   "analysis": "Isolate-user-vlan成功地解决了降低VLAN数量的问题，同时在一定程度上也实现了二层网关的共享，但它也在MAC地址复制而消耗MAC地址表项的问题，并且该技术本身属于一个二层VLAN技术。\n但支持isolate-user-vlan技术的交换机不光是二层交换机支持，三层也支持。\n在某些大型局域网里，采用接入层和核心层二层结构的组网方式，所有的网关都设在核心层设备上，因为每隔VLAN都需要一个接口来实现路由的互通，而大部分交换机支持的VLAN数量远远多于VLAN接口数量，如果因为特殊的需要，网络里划分了成百上千个VLAN，此时核心层设备会出现VLAN接口数量不够的情况，SuperVLAN，可以对VLAN进行聚合，从而大幅缩减实际需要的VLAN接口数量，则交换机支持的VLAN接口少的问题迎任而解。\nSuperVLAN是三层VLAN技术，只有三层交换机才支持；"
+  },
+  {
+   "id": "2-72",
+   "type": "multiple",
+   "question": "在交换机SWA上执行display interface Ethernet 1/0/1命令后，输出信息如下：\n[SWA]display interface Ethernet 1/0/1\nEthernet1/0/1 current state: UP\nPVID: 10\nMdi type: auto\nLink delay is 0(sec)\nPort link-type: trunk\nVLAN passing: 1 (default vlan), 10\nVLAN permitted: 1 (default vlan), 2-4094\nTrunk port encapsulation: IEEE 802.1q\nPort priority: 0\n从以上输出可以判断______。",
+   "options": [
+    "端口Ethernet1/0/1是一个Trunk端口，只允许VLAN 1和VLAN 10的数据侦通过",
+    "不带VLAN标签的数据帧进入端口Ethernet1/0/1时会被打上VLAN1的标签",
+    "带有VLAN1标签的数据侦离开端口Ethemet1/0/1时不会被剥离标签",
+    "端口Ethemet1/0/1是一个Trunk端口，允许任意VLAN的数据帧通过"
+   ],
+   "answer": "CD",
+   "analysis": ""
+  },
+  {
+   "id": "2-73",
+   "type": "multiple",
+   "question": "关于Isolate-user-vlan 和Super VLAN的配置，下面描述正确的是______。",
+   "options": [
+    "Isolate-user-vlan接口上开启本地代理ARP功能后可以实现不同SecondaryVLAN内的主机互通",
+    "SuperVLAN接口开启本地代理ARP功能后可以实现不同SubVLAN内的主机互通",
+    "建立Isolate-user-vlan和Secondary VLAN映射关系后，系统将禁止向Secondary VLAN中添加/删除端口以及删除VLAN的操作",
+    "建立SuperVLAN和Sub VLAN映射关系后，系统将禁止向Sub VLAN中添加/删除端口以及刪除VLAN的操作"
+   ],
+   "answer": "BC",
+   "analysis": "Isolate-user-vlan建立映射关系后，系统将禁止向Isolate-user-vlan和Secondary VLAN中添加/删除端口以及删除VLAN的操作，只有在接触了映射关系后猜可以执行以上操作\nSuper VLAN技术实现：\nSuper VLAN与Sub VLAN形成映射\n不同Sub VLAN主机在不同的广播域\n各Sub VLAN借用Super VLAN的VLAN接口进行三层通信，\nSub VLAN间通信依靠Super VLAN接口的本地代理ARP完成"
+  },
+  {
+   "id": "2-74",
+   "type": "multiple",
+   "question": "关于SuperVLAN和Sub VLAN的关系，下面描述正确的是______。",
+   "options": [
+    "SuperVLAN相当于把Sub VLAN做了聚合，实现所有Sub VLAN共享同一个三层接口",
+    "SuperVLAN只建立三层接口，负责Sub VLAN的三层转发",
+    "Sub VLAN只包含物理端口，内部主机以Super VLAN接口地址作为网关",
+    "虽然SuperVLAN配置时不可以包含物理端口，但建立Super VLAN和SubVLAN间的映射关系后，\nSubVLAN包含的物理端口都属于Super VLAN"
+   ],
+   "answer": "ABC",
+   "analysis": "Super VLAN\n只建立三层接口而不包含物理接口\n若干Sub VLAN的集合，并为Sub VLAN提供三层转发服务\nSub VLAN\n只映射若干物理端口，负责保留各自独立的广播域\n不能建立三层VLAN接口\n与外部的三层交换是Super VLAN的三层接口来实现的。"
+  },
+  {
+   "id": "2-75",
+   "type": "single",
+   "question": "关于SuperVLAN技术中Sub VLAN间的互通说法正确的是______。",
+   "options": [
+    "不同SubVLAN内的主机IP地址都属于同一个网段，它们可以通过二层转发直接互通",
+    "不同SubVLAN内的主机IP地址都属于同一个网段，但由于Sub VLAN的隔离作用，Sub VLAN间是没法实现互通的",
+    "不同SubVLAN中的主机之间二层隔离，三层可以通过Super VLAN接口的普通代理ARP技术实现互通",
+    "不同SubVLAN中的主机之间二层隔离，三层可以通过Super VLAN接口的本地代理ARP技术实现互通"
+   ],
+   "answer": "D",
+   "analysis": "Super VLAN技术实现：\nSuper VLAN与Sub VLAN形成映射\n不同Sub VLAN主机在不同的广播域\n各Sub VLAN借用Super VLAN的VLAN接口进行三层通信，\nSub VLAN间通信依靠Super VLAN接口的本地代理ARP完成"
+  },
+  {
+   "id": "2-76",
+   "type": "multiple",
+   "question": "对下列关于配置命令：\n[H3C] ntp-service refclock-master 127.127.1.1 6的理解，哪些是正确的______。",
+   "options": [
+    "该命令可以在所有H3C ?系列交换机上配置成功",
+    "该命令是将本地时钟配置为系统的参考时钟",
+    "成功配置此命令的设备，其用层数表示的时钟精度为6",
+    "成功配置此命令的设备，可以作为时钟服务器对外提供时钟同步服务了"
+   ],
+   "answer": "BCD",
+   "analysis": "配置NTP服务器参考本地时钟：\nntp-service refclock-master 127.127.1.1 6\n当网络没有标准的时钟源作为NTP服务器时，可以选择具有本地实时时钟的网络设备作为时钟服务器或时钟源。在被选定的网络设备上配置本地时钟作为参考源后，即可作为NTP服务器为NTP客户端提供时钟同步。但在大型网络中须谨慎配置设备参考本地时钟，以免导致网络中设备的时钟错误。\n[sysname] ntp-service refclock-master [ip-address] [stratum]\n其中参数ip-address只能配置为127.127.1.u,u的取值范围为0-3，标识NTP的进程ID。参数stratum为本地时钟所处的层数，取值范围为1-15，缺省值为8"
+  },
+  {
+   "id": "2-77",
+   "type": "fill",
+   "question": "在H3C系列交换机上设置当前VLAN的类型为SuperVLAN的配置命令为______。",
+   "answer": "supervlan",
+   "analysis": ""
+  },
+  {
+   "id": "2-78",
+   "type": "multiple",
+   "question": "主机PCA、PCB 和PCC 分别与交换机SWA 的GigabitEthernet1/0/1\nGigabitEthernet1/0/2 和GigabitEthernet1/0/3端口相连，主机地址都处于同一网段，如果要实现PCA和PCB都能访问PCC,但PCA和PCB之间互相隔离，下面哪些技术或方法可以实现客户的需求______。",
+   "options": [
+    "端口隔离技术",
+    "利用端口Hybrid属性",
+    "Isolate-user-vlan 技术",
+    "SuperVLAN 技术"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "2-79",
+   "type": "fill",
+   "question": "在H3C系列交换机上开启全局GVRP功能的配置命令为______。",
+   "answer": "GVRP",
+   "analysis": ""
+  },
+  {
+   "id": "2-80",
+   "type": "fill",
+   "question": "在H3C系列交换机上开启以太网端口的QinQ功能的配置命令为______。",
+   "answer": "qinq enable",
+   "analysis": ""
+  }
+ ]
+}
