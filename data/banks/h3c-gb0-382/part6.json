@@ -1,0 +1,658 @@
+{
+ "questions": [
+  {
+   "id": "1-251",
+   "type": "multiple",
+   "question": "如图所示IS-IS网络中，RTB 配置了路由聚合。那么在RTC 的IS-IS路由表中包含如下哪几条路由？",
+   "options": [
+    "172.16.1.0/24",
+    "172.16.2.0/24",
+    "172.16.3.0/24",
+    "172.16.2.0/23"
+   ],
+   "answer": "AD",
+   "analysis": "无图无真相"
+  },
+  {
+   "id": "1-252",
+   "type": "multiple",
+   "question": "如图所示IS-IS网络中，RTB 配置了路由聚合。那么在RTC 的IS-IS路由表中包含如下哪几条路由？",
+   "options": [
+    "172.16.1.0/24",
+    "172.16.2.0/24",
+    "172.16.3.0/24",
+    "172.16.0.0/22"
+   ],
+   "answer": "D",
+   "analysis": "无图无真相"
+  },
+  {
+   "id": "1-253",
+   "type": "multiple",
+   "question": "如图所示IS-IS网络中，RTA 配置了路由聚合。那么在RTC 的IS-IS路由表中包含如下哪几条路由？",
+   "options": [
+    "172.16.1.0/24",
+    "172.16.2.0/24",
+    "172.16.3.0/24",
+    "172.16.0.0/22"
+   ],
+   "answer": "CD",
+   "analysis": "无图无真相"
+  },
+  {
+   "id": "1-254",
+   "type": "single",
+   "question": "如图所示IS-IS网络中，RTA 、RTC 、RTD 、RTE 互相建立Level-2邻接关系；RTB 、RTA、RTC建立Level-1邻接关系。各路由器理由稳定后，RTB 访问192.168.5.1时选择下一跳为______。\n如果此时RTA添加如下配置：\nRTA-isis-1]import-route isis level-2 into level-1\n那么RTB再访问192.168.5.1时选择下一跳为______。",
+   "options": [
+    "RTA；RTA",
+    "RTA；RTC",
+    "RTC；RTC",
+    "RTC；RTA"
+   ],
+   "answer": "D",
+   "analysis": ""
+  },
+  {
+   "id": "1-255",
+   "type": "single",
+   "question": "如图所示IS-IS网络中，RTA 、RTC 、RTD 、RTE 互相建立Level-2邻接关系；RTB 、RTA、RTC建立Level-1邻接关系。各路由器理由稳定后，RTB 访问192.168.14.1时选择下一跳为______。\n如果此时RTC添加如下配置：\nRTC-isis-1]import-route isis level-2 into level-1\n那么RTB再访问192.168.4.1时选择下一跳为______。",
+   "options": [
+    "RTA；RTA",
+    "RTA；RTC",
+    "RTC；RTC",
+    "RTC；RTA"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-256",
+   "type": "multiple",
+   "question": "在路由器上运行命令及其显示信息如下：\ndisplay isis brief\nISIS (1) Protocol Brief Information :\nnetwork-entity:\n01.1111.1111.1111.00\nis-level : level-1-2\ncost-ste:  narrow\npreference :  15\nLsp-length receive :  1497\nLsp-length originate：level-1 1476\nlevel-2 1476\nmaximum imported routes number : 10000\nTimers:\nlsp-max-age: 1200\nlsp-refresh: 900\nInterval between SPFs: 10\n从以上信息可以知道RTA______。",
+   "options": [
+    "是Level-1-2路由器",
+    "是Level-2路由器",
+    "所处区域号是01",
+    "所处区域号是01.1111"
+   ],
+   "answer": "AC",
+   "analysis": ""
+  },
+  {
+   "id": "1-257",
+   "type": "multiple",
+   "question": "在路由器上运行命令及其显示信息如下：\ndisplay isis brief\nISIS (1) Protocol Brief Information :network-entity:\n01.1111.1111.1111.00\nis-level : level-1-2\ncost-ste:  narrow\npreference :  15\nLsp-length receive :  1497\nLsp-length originate：level-1 1476\nlevel-2 1476\nmaximum imported routes number : 10000 Timers:\nlsp-max-age: 1200\nlsp-refresh: 900\nInterval between SPFs: 10\n从以上信息可以知道RTA______。",
+   "options": [
+    "是Level-1路由器",
+    "是Level-1-2路由器",
+    "其Stem-ID是1111.1111.1111.00",
+    "其Stem-ID是1111.1111.1111"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "1-258",
+   "type": "multiple",
+   "question": "在路由器上运行命令及其显示信息如下：\ndisplay isis peer\nPeer information for ISIS(1)\n----------------------------\nStem Id: 2222.2222.2222\nInterface: Tun2 Circuit Id:\nState: Up HoldTime: 27s type: L1 PRI: --Stem Id: 3333.3333.3333\nInterface: Tun3 Circuit Id:\nState: Up HoldTime: 25s type: L2 PRI: --从以上信息可以知道RTA______。",
+   "options": [
+    "是Level-1-2路由器",
+    "是Level-2路由器",
+    "和两个邻居所连接口都不是LAN类型",
+    "是两个邻居的DIS"
+   ],
+   "answer": "AC",
+   "analysis": ""
+  },
+  {
+   "id": "1-259",
+   "type": "multiple",
+   "question": "在路由器上运行命令及其显示信息如下：\ndisplay isis peer\nPeer information for ISIS(1)\n----------------------------\nStem Id: 2222.2222.2222\nInterface: Eth0/0 Circuit Id:\nState: Up HoldTime: 27s type: L1 PRI: 16\nStem Id: 3333.3333.3333\nInterface: Tun3 Circuit Id:\nState: Up HoldTime: 25s type: L2 PRI: --\n从以上信息可以知道RTA______。",
+   "options": [
+    "是Level-1-2路由器",
+    "是Level-2路由器",
+    "和两个邻居所连接口都不是LAN类型",
+    "和Stem-ID为2222.2222.2222的邻居所连接口类型为LAN"
+   ],
+   "answer": "AD",
+   "analysis": ""
+  },
+  {
+   "id": "1-260",
+   "type": "single",
+   "question": "在路由器上运行命令及其显示信息如下：\ndisplay isis route\nRoute information for ISIS(1)\n-----------------------------\nISIS(1) IPv4 Level-1 Forwarding Table\n-------------------------------------\nIPV4 Destination IntCost ExtCost ExitInterface NextHop Flags---------------------------------------------------------------------------------------------0.0.0.0/0                 10           NULL\n172.16.1.1/32        0             NULL      Loop1            Direct       D/L/-192.168.18.0/24   10           NULL      Vlan2              Direct       D/L/-172.16.2.1/32        0             NULL      Loop0            Direct       D/L/-172.16.3.1/32       10            NULL     Tun1               10.1.2.1    R/L/-\n10.1.2.0/30           10            NULL     Tun1                Direct       D/L/-\n10.1.3.0/30           20            NULL     Tun1               10.1.2.1     R/L/-\n10.2.4.0/30           10            NULL     Tun4                Direct       D/L/-\n从以上信息可以知道有______条IS-IS Level-1 路由添加进RTB路由表。",
+   "options": [
+    "8",
+    "7",
+    "5",
+    "4",
+    "2"
+   ],
+   "answer": "E",
+   "analysis": "flags标记为R/L/-的为level-1路由，标记为D/L/-的为直连路由。"
+  },
+  {
+   "id": "1-261",
+   "type": "single",
+   "question": "在路由器上运行命令及其显示信息如下：\ndisplay isis route\nISIS(1) IPv4 Level-2 Forwarding Table\n-------------------------------------\nIPV4 Destination IntCost ExtCost ExitInterface NextHop Flags\n---------------------------------------------------------------------------------------------10.3.4.0/30             20          NULL      Tun4              10.2.4.2    R/-/-\n172.16.1.1/32        0             NULL      Loop1            Direct      D/L/-\n192.168.18.0/24   10           NULL      Vlan2              Direct      D/L/-\n172.16.2.1/32        0             NULL      Loop0            Direct      D/L/-\n172.16.4.1/32       10            NULL      Tun4              10.2.4.2    R/-/-\n10.1.2.0/30            10           NULL      Tun1               Direct      D/L/-\n10.1.3.0/30            30           NULL\n10.2.4.0/30            10           NULL      Tun4               Direct      D/L/-\n从以上信息可以知道RTB有______条IS-IS Level-2路由通过LSP发送给邻居。",
+   "options": [
+    "8",
+    "7",
+    "5",
+    "4"
+   ],
+   "answer": "C",
+   "analysis": "flags标记为R/-/-的为level-2路由，标记为D/L/-的为直连路由。有5条直连路由，说明有5条IS-IS Level-2路由通过LSP发送给邻居。"
+  },
+  {
+   "id": "1-262",
+   "type": "multiple",
+   "question": "在路由器上运行命令及其显示信息如下：\ndisplay isis lsdb level-1 verbose\nDatabase information for ISIS(1)-----------------------------------------------\nLevel-1 Link State Database\nLSPID                               Se Num        Checksum Holdtime Length ATT/P/OL--------------------------------------------------------------------------------------------------------------3333.3333.3333.00-00* 0x0000007c 0x5fae         388            58          1/0/0\nSOURCE 3333.3333.3333.00\nNLPID IPV4\nAREA ADDR 02\nINTF ADDR 10.1.3.2\nINTF ADDR 10.3.4.1\nNBR ID 4444.4444.4444.00 COST: 10\n3333.3333.3333.00-01* 0x0000008f 0x55ae         388            113         0/0/0\nSOURCE 3333.3333.3333.00\nIP-Internal 10.1.3.0 255.255.255.252 COST: 10\nIP-Internal 10.3.4.0 255.255.255.252 COST: 10\nIP-Internal* 172.16.3.1 255.255.255.255 COST: 10\nIP-Internal* 10.1.2.0 255.255.255.252 COST: 20\nIP-Internal* 192.168.18.0 255.255.255.0 COST: 30\nIP-Internal* 172.16.2.1 255.255.255.255 COST: 20\nIP-Internal* 172.16.1.1 255.255.255.255 COST: 20\n4444.4444.4444.00-00 0x00000111 0x9817          1098           62           1/0/0\nSOURCE 4444.4444.4444.00\nNLPID IPV4\nAREA ADDR 02\nINTF ADDR 10.3.4.2\nINTF ADDR 10.2.4.2\nINTF ADDR 172.16.4.1\nNBR ID 3333.3333.3333.00 COST: 10\n4444.4444.4444.00-01 0x0000006f 0x8952            1098           65          0/0/0\nSOURCE 4444.4444.4444.00\nIP-Internal 10.3.4.0 255.255.255.252 COST: 10\nIP-Internal 10.2.4.0 255.255.255.252 COST: 10\nIP-Internal 172.16.4.1 255.255.255.255 COST: 0\n*-Self LSP, +-Self LSP(Extended), ATT-Attached, P-Partition, OL-Overload从以上信息可以知道_________。",
+   "options": [
+    "RTC的区域号是02",
+    "RTC的Stem-ID 是4444.4444.4444",
+    "地址10.3.4.2 属于Stem-ID为4444.4444.4444的路由器",
+    "Stem-ID 为3333.3333.3333的路由器携带的Level-1 IP 内部可达路由信息共有7条"
+   ],
+   "answer": "ACD",
+   "analysis": ""
+  },
+  {
+   "id": "1-263",
+   "type": "multiple",
+   "question": "在路由器上运行命令及其显示信息如下：\ndisplay isis lsdb level-2 verbose\nDatabase information for ISIS(1)\n----------------------------------------------\nLevel-2 Link State Database\nLSPID                             Se Num        Checksum Holdtime Length ATT/P/OL-------------------------------------------------------------------------------------------------------------1111.1111.1111.00-00 0x00000084 0xb5cc       511             62        0/0/0\nSOURCE 1111.1111.1111.00\nNLPID IPV4\nAREA ADDR 01\nINTF ADDR 10.1.2.1\nINTF ADDR 10.1.3.1\nINTF ADDR 172.16.3.1\nNBR ID 3333.3333.3333.00 COST: 10\n1111.1111.1111.00-01 0x0000009f 0xd4f3         1195           101      0/0/0\nSOURCE 1111.1111.1111.00\nIP-Internal 10.2.4.0 255.255.255.252 COST: 20\nIP-Internal 192.168.18.0 255.255.255.0 COST: 20\nIP-Internal 10.1.2.0 255.255.255.252 COST: 10\nIP-Internal 10.1.3.0 255.255.255.252 COST: 10\nIP-Internal 172.16.3.1 255.255.255.255 COST: 0\nIP-Internal 172.16.0.0 255.255.252.0 COST: 10\n3333.3333.3333.00-00* 0x0000007c 0x2425       640             58       0/0/0\nSOURCE 3333.3333.3333.00\nNLPID IPV4\nAREA ADDR 02\nINTF ADDR 10.1.3.2\nINTF ADDR 10.3.4.1\nNBR ID 1111.1111.1111.00 COST: 10\n3333.3333.3333.00-01* 0x00000099 0x342d       640            77       0/0/0\nSOURCE 3333.3333.3333.00\nIP-Internal 10.1.3.0 255.255.255.252 COST: 10\nIP-Internal 10.3.4.0 255.255.255.252 COST: 10\nIP-Internal 10.2.4.0 255.255.255.252 COST: 20\nIP-Internal 172.16.4.1 255.255.255.255 COST: 10\n*-Self LSP, +-Self LSP(Extended), ATT-Attached, P-Partition, OL-Overload从以上信息可以知道_________。",
+   "options": [
+    "Stem-ID 为1111.1111.1111的路由器区域号是02",
+    "RTC 为Stem-ID是3333.3333.3333",
+    "Stem-ID 为1111.1111.1111的路由器携带的IP 内部可达路由信息包括172.16.0.0/22",
+    "3333.3333.3333和1111.1111.1111共同携带的IP 内部路由信息只有1条"
+   ],
+   "answer": "BC",
+   "analysis": ""
+  },
+  {
+   "id": "1-264",
+   "type": "multiple",
+   "question": "下面关于路由过滤的描述，哪些是正确的？",
+   "options": [
+    "路由过滤的目的是为了控制路由的传播",
+    "路由过滤的目的是为了控制路由的生成",
+    "路由过滤可以起到保护网络安全的作用",
+    "路由过滤可以起到节省链路开销的作用"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-265",
+   "type": "multiple",
+   "question": "下面关于路由过滤的方法，哪些是可行的？",
+   "options": [
+    "通过过滤路由协议报文",
+    "通过过滤路由协议报文中携带的路由信息",
+    "对于OSPF，通过过滤LSDB计算出的路由信息",
+    "对于OSPF ，通过3类LSA"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-266",
+   "type": "multiple",
+   "question": "下面关于路由过滤的方法，哪些是可行的？",
+   "options": [
+    "通过过滤路由协议报文",
+    "通过过滤路由协议报文中携带的路由信息",
+    "对于OSPF ，可以再ABR上过滤5类LSA",
+    "对于OSPF，可以过滤LSDB计算出的路由信息"
+   ],
+   "answer": "ABD",
+   "analysis": ""
+  },
+  {
+   "id": "1-267",
+   "type": "multiple",
+   "question": "下列哪些工具属于路由过滤器？",
+   "options": [
+    "ACL",
+    "filter-policy",
+    "route-policy",
+    "地址前缀列表"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-268",
+   "type": "multiple",
+   "question": "下列哪些工具属于路由过滤器？",
+   "options": [
+    "ACL",
+    "filter-policy",
+    "route-policy",
+    "地址掩码"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "1-269",
+   "type": "single",
+   "question": "在路由器上配置静默接口来是路由器不发送OSPF协议报文的命令是_______。",
+   "options": [
+    "[RTA]silent-interface serial2/0",
+    "[RTA-ospf-1]silent-interface serial2/0",
+    "[RTA-ospf-1-area-0.0.0.1]silent-interface serial2/0",
+    "[RTA-Serial2/0]silent-interface"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-270",
+   "type": "single",
+   "question": "在路由器上配置静默接口来是路由器不发送OSPF协议报文的命令是_______。",
+   "options": [
+    "[RTA-ospf-1]silent-interface serial2/0",
+    "[RTA-ospf-1-area-0.0.0.1]silent-interface serial2/0",
+    "[RTA-Serial2/0]silent-interface",
+    "[RTA-ospf]silent-interface serial2/0"
+   ],
+   "answer": "A",
+   "analysis": ""
+  },
+  {
+   "id": "1-271",
+   "type": "multiple",
+   "question": "下列关于地址前缀列表描述正确的是_______。",
+   "options": [
+    "permit 10.0.0.0 24 表明仅匹配10.0.0.0/24网段",
+    "permit 10.0.0.0 24 表明匹配10.0.0.0/24 区间内的掩码大于等于24位的网络",
+    "permit 0.0.0.0 0 表明匹配所有路由",
+    "permit 0.0.0.0 0 less-eual 32 表明匹配所有路由"
+   ],
+   "answer": "AD",
+   "analysis": ""
+  },
+  {
+   "id": "1-272",
+   "type": "multiple",
+   "question": "下列关于地址前缀列表描述不正确的是_______。",
+   "options": [
+    "permit 10.0.0.0 24 表明仅匹配10.0.0.0/24网段",
+    "permit 10.0.0.0 24 表明匹配10.0.0.0/24 区间内的掩码大于等于24位的网络",
+    "permit 0.0.0.0 0 表明匹配所有路由",
+    "permit 0.0.0.0 0 less-eual 32 表明匹配所有路由"
+   ],
+   "answer": "BC",
+   "analysis": ""
+  },
+  {
+   "id": "1-273",
+   "type": "multiple",
+   "question": "关于filter-policy 过滤器，以下哪些说法正确的？",
+   "options": [
+    "可以在RIP中使用filter-policy对从邻居接受的RIP路由信息进行过滤",
+    "可以在RIP中使用filter-policy对发送给邻居的整个IP路由表进行过滤",
+    "可以在IS-IS中使用filter- policy对从邻居接收的IS-IS路由信息进行过滤",
+    "可以在OSPF中使用filter- policy对LSA计算出来的OSPF路由信息进行过滤"
+   ],
+   "answer": "ABD",
+   "analysis": ""
+  },
+  {
+   "id": "1-274",
+   "type": "multiple",
+   "question": "关于filter-policy 过滤器，以下哪些说法不正确？",
+   "options": [
+    "可以在RIP中使用filter-policy对从邻居接受的RIP路由信息进行过滤",
+    "可以在RIP中使用filter-policy对发送给邻居的整个IP路由表进行过滤",
+    "可以在IS-IS中使用filter- policy对从邻居接收的IS-IS路由信息进行过滤",
+    "可以在OSPF中使用filter- policy对区域间的路由信息进行过滤"
+   ],
+   "answer": "CD",
+   "analysis": ""
+  },
+  {
+   "id": "1-275",
+   "type": "multiple",
+   "question": "关于filter-policy 过滤RIP路由，以下哪些说法是正确的？",
+   "options": [
+    "可以通过配置ACL对RIP路由进行过滤",
+    "可以通过IP 地址前缀列表对RIP路由进行过滤",
+    "可以通过发布网关对路由信息进行过滤",
+    "可以通过接口对路由信息进行过滤"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-276",
+   "type": "multiple",
+   "question": "关于filter-policy 过滤OSPF路由，以下哪些说法是正确的？",
+   "options": [
+    "可以通过配置ACL对OSPF路由进行过滤",
+    "可以通过IP 地址前缀列表对OSPF路由进行过滤",
+    "可以通过基于要加入到路由表的路由信息的下一跳对OSPF路由信息进行过滤",
+    "可以通过接口对路由信息进行过滤"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "1-277",
+   "type": "multiple",
+   "question": "关于filter-policy 过滤OSPF路由，以下哪些说法是正确的？",
+   "options": [
+    "可以通过配置ACL对OSPF路由进行过滤",
+    "不可以通过IP 地址前缀列表对OSPF路由进行过滤",
+    "可以通过基于要加入到路由表的路由信息的下一跳对OSPF路由信息进行过滤",
+    "不可以通过接口对路由信息进行过滤"
+   ],
+   "answer": "ACD",
+   "analysis": ""
+  },
+  {
+   "id": "1-278",
+   "type": "multiple",
+   "question": "关于地址前缀列表匹配流程，以下哪些说法是正确的？",
+   "options": [
+    "匹配的过程中，路由器按升序依次检查索引号标识的各个表项，只要某一表项满足条件，就意味着通过该地址前缀列表的过滤",
+    "匹配的过程中，路由器按升序依次检查索引号标识的各个表项，只有所有表项满足条件，才意味着通过该地址前缀列表的过滤",
+    "在前缀列表中，每一个表项都指定了相对应的匹配模式，包括允许和拒绝两种模式",
+    "在前缀列表中，如果所有表项都是拒绝模式，则任何路由都不能通过该过滤列表"
+   ],
+   "answer": "ACD",
+   "analysis": ""
+  },
+  {
+   "id": "1-279",
+   "type": "multiple",
+   "question": "RTA与RTB 运行OSPF路由协议，且都属于骨干区域。采用如下哪些方法能够将RTA的直连路由192.168.1.0/24发布到OSPF路由域中？",
+   "options": [
+    "[RTA-ospf-1]import-route static",
+    "[RTA-ospf-1]import-route direct",
+    "[RTA-ospf-1-area-0.0.0.0]network 192.168.1.0 0.0.0.255",
+    "[RTA]ip route-static 192.168.1.0 24 null0\n[RTA-ospf-1]import-route static"
+   ],
+   "answer": "BC",
+   "analysis": ""
+  },
+  {
+   "id": "1-280",
+   "type": "multiple",
+   "question": "RTA与RTB 运行OSPF路由协议，且都属于骨干区域。采用如下哪些方法无法将RTA的直连路由192.168.1.0/24发布到OSPF路由域中？",
+   "options": [
+    "[RTA-ospf-1]import-route static",
+    "[RTA-ospf-1]import-route direct",
+    "[RTA-ospf-1-area-0.0.0.0]network 192.168.1.0 0.0.0.255",
+    "[RTA]ip route-static 192.168.1.0 24 null0\n[RTA-ospf-1]import-route static"
+   ],
+   "answer": "AD",
+   "analysis": ""
+  },
+  {
+   "id": "1-281",
+   "type": "single",
+   "question": "如图，RTA 、RTB、RTC运行OSPF，进程号为100；RTA 、RTB、RTD间运行OSPF 进程200。所有互联链路的cost都设置为10。在RTA和RTB上设置OSPF 100 的外部路由优先级为190，在RTC上将一条外部路由172.16.1.0/24 引入OSPF100。RTA和RTB均设置将OSPF100的路由引入到OSPF200。根据以上场景分析，下面关于RTD学习外部路由172.16.1.0/24描述正确的是______。",
+   "options": [
+    "RTD上存在两条到172.16.10.0/24 的等价路由，下一跳分别指向RTA 和RTB",
+    "RTD上存在一条到172.16.10.0/24 的路由，下一跳肯定指向RTA",
+    "RTD上无法学习到172.16.10.0/24的路由",
+    "RTD上存在一条到172.16.10.0/24的路由，下一跳可能指向RTA 也可能指向RTB"
+   ],
+   "answer": "D",
+   "analysis": "无图无真相，死记硬背。"
+  },
+  {
+   "id": "1-282",
+   "type": "multiple",
+   "question": "如图，RTA 、RTB、RTC运行OSPF，进程号为100；RTA 、RTB、RTD间运行OSPF 进程200。所有互联链路的cost都设置为10。在RTA和RTB上设置OSPF 100 的外部路由优先级为190，在RTC上将一条外部路由172.16.1.0/24 引入OSPF100。RTA和RTB均设置将OSPF100的路由引入到OSPF200。根据以上场景分析，下面关于RTD学习外部路由172.16.1.0/24描述不正确的是______。",
+   "options": [
+    "RTD上存在两条到172.16.10.0/24 的等价路由，下一跳分别指向RTA 和RTB",
+    "RTD上存在一条到172.16.10.0/24 的路由，下一跳肯定指向RTA",
+    "RTD上无法学习到172.16.10.0/24的路由",
+    "RTD上存在一条到172.16.10.0/24的路由，下一跳可能指向RTA 也可能指向RTB"
+   ],
+   "answer": "ABC",
+   "analysis": "无图无真相，死记硬背。"
+  },
+  {
+   "id": "1-283",
+   "type": "multiple",
+   "question": "如图，RTA 、RTB、RTC运行OSPF，进程号为100；RTA 、RTB、RTD间运行OSPF 进程200。所有互联链路的cost都设置为10。在RTA和RTB上设置OSPF 100 的外部路由优先级为190，在RTC上将一条外部路由172.16.1.0/24 引入OSPF100。RTA设置将\nOSPF100的路由引入到OSPF200，RTB上设置将OSPF200的路由重新引入到\nOSPF100。运行稳定后假设RTC上引入外部路由172.16.1.0/24突然消失。根据以上场景分析，下面描述正确的是______。",
+   "options": [
+    "RTC上172.16.1.0/24的路由消失",
+    "RTC上172.16.1.0/24 的路由仍旧存在，下一跳指向RTB",
+    "RTD上172.16.1.0/24的路由消失",
+    "RTD上172.16.1.0/24的路由仍旧存在，下一跳指向RTA"
+   ],
+   "answer": "BD",
+   "analysis": "无图无真相，死记硬背。"
+  },
+  {
+   "id": "1-284",
+   "type": "multiple",
+   "question": "如图，RTA 、RTB、RTC运行OSPF，进程号为100；RTA 、RTB、RTD间运行OSPF 进程200。所有互联链路的cost都设置为10。在RTA和RTB上设置OSPF 100 的外部路由优先级为190，在RTC上将一条外部路由172.16.1.0/24 引入OSPF100。RTA设置将\nOSPF100的路由引入到OSPF200，RTB上设置将OSPF200的路由重新引入到\nOSPF100。运行稳定后假设RTC上引入外部路由172.16.1.0/24突然消失。根据以上场景分析，下面描述不正确的是______。",
+   "options": [
+    "RTC上172.16.1.0/24的路由消失",
+    "RTC上172.16.1.0/24 的路由仍旧存在，下一跳指向RTB",
+    "RTD上172.16.1.0/24的路由消失",
+    "RTD上172.16.1.0/24的路由仍旧存在，下一跳指向RTA"
+   ],
+   "answer": "AC",
+   "analysis": "无图无真相，死记硬背。"
+  },
+  {
+   "id": "1-285",
+   "type": "multiple",
+   "question": "如图，RTA 、RTB、RTC运行OSPF路由协议，各链路开销值如图所示。RTA 、RTB与RTC间运行OSPF协议，并成功建立邻居。RTA与RTB间运行BGP并成功建立IBGP邻\n居；同时，RTA、RTB与RTD建立EBGP邻居。RTC将外部路由172.16.1.0/24引入\nOSPF，引入类型为type1 ，cost为200。在RTA和RTB上配置OSPF路由引入BGP，且未设置任何路由策略。根据以上场景分析，下面描述正确的是______。",
+   "options": [
+    "RTD 上学习到两条172.16.1.0/24的BGP路由，优选MED为200的路由",
+    "RTD 上学习到两条172.16.1.0/24 的BGP路由，MED值为210 和200",
+    "RTD 上学习到两条172.16.1.0/24的BGP路由，MED值分别为210和220",
+    "RTD 上学习到两条172.16.1.0/24的BGP路由， 优选MED为210的路由",
+    "RTD 上学习到两条172.16.1.0/24 的BGP路由，MED 值均为200",
+    "RTD 上学习到两条172.16.1.0/24 的BGP 路由，优选router-id小的那条路由"
+   ],
+   "answer": "CD",
+   "analysis": "无图无真相，死记硬背。"
+  },
+  {
+   "id": "1-286",
+   "type": "multiple",
+   "question": "关于命令import-route，以下哪些说法是正确的？",
+   "options": [
+    "使用命令import-route bgp ，能够将EBGP和IBGP路由都引入到IGP路由域内",
+    "使用命令import-route ，仅能将EBGP 路由引入IGP路由域内",
+    "使用命令import-route allow ibgp，仅能将ibgp 路由引入到IGP路由域内",
+    "使用命令import-route allow ibgp ，能将EBGP 路由和IBGP路由引入到IGP路由域内"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "1-287",
+   "type": "multiple",
+   "question": "如图所示，RTA和RTB作为BGP路由域和OSPF路由域的边界路由器。为了实现BGP路由域和OSPF路由域的路由互通，则下述的路由发布策略中不可行的是_______。",
+   "options": [
+    "在RTA和RTB上分别做OSPF和BGP的双向引入，无需考虑环路和次优路径问题。",
+    "在RTA和RTB上分别做OSPF和BGP的双向引入，同时需要采用适当的路由过滤策略，避免路由环路和次优路径问题。",
+    "在RTA和RTB上调整OSPF的外部路由优先级，使其大于BGP的路由优先级；在RTA和RTB上将BGP的路由引入到OSPF，同时通过network命令将OSPF域内的路由发布到BGP",
+    "在RTA和RTB上调整OSPF的外部路由优先级，使其小于BGP的路由优先级；在RTA和RTB上将BGP的路由引入到OSPF，同时通过network命令将OSPF域内的路由发布到BGP"
+   ],
+   "answer": "AD",
+   "analysis": ""
+  },
+  {
+   "id": "1-288",
+   "type": "multiple",
+   "question": "RTA与RTB运行BGP路由协议，RTA上同时有一条静态默认路由。将RTA中的默认路由引入到BGP中的正确方法是______。",
+   "options": [
+    "在RTA的BGP试图下配置import-route static",
+    "在RTA的BGP试图下配置default-route imported",
+    "在RTA的BGP试图下配置import-route static和default-route imported",
+    "在RTA的BGP试图下配置network 0.0.0.0 0.0.0.0"
+   ],
+   "answer": "CD",
+   "analysis": ""
+  },
+  {
+   "id": "1-289",
+   "type": "single",
+   "question": "RTA 上有大量tag 为100和200 的静态路由。RTA 与RTB 运行OSPF 路由协议，且RTB需要学习RTA上的全部静态路由。同时，要求在RTB上，tag为200的路由的优先级别为\n200。要求实现上述要求，则下列哪些配置是正确的？",
+   "options": [
+    "RTA的配置：\nospf\nimport-route static\nRTB的配置：\nroute-policy 2 permit node 10\nif-match tag 200\nospf\npreference ase route-policy 2 200",
+    "RTA的配置：\nroute-policy 1 permit node 10\nif-match tag 100\napply tag 100\nroute-policy 1 permit node 20\nif-match tag 200\napply tag 200\nospf\nimport-route static route-policy 1 RTB的配置：\nroute-polic2 permit node 10\nif-match tag 200\nospf\npreference ase route-policy 2 200",
+    "RTA的配置：\nroute-policy 1 permit node 10\nif-match tag 100\napply tag 100\nroute-policy 1 permit node 20\nif-match tag 200\napply tag 200\nospf\nimport-route static route-policy 1 RTB的配置：\nroute-policy 2 permit node 10\nif-match tag 200\napply preference 200\nospf\npreference ase route-policy 2 150",
+    "RTA的配置：\nroute-policy 1 permit node 10\nif-match tag 100\nroute-policy 1 permit node 20\nif-match tag 200\nospf\nimport-route static route-policy 1 RTB的配置：\nroute-policy 2 permit node 10\nif-match tag 200\napply preference 200\nospf\npreference ase route-policy 2 150"
+   ],
+   "answer": "C",
+   "analysis": "RTB上的配置先将匹配tag200的路由优先级修改为200，再将全局的路由优先级改为150."
+  },
+  {
+   "id": "1-290",
+   "type": "multiple",
+   "question": "RTA 上有大量tag 为100和200 的静态路由。RTA 与RTB 运行OSPF 路由协议，且RTB需要学习RTA上的全部静态路由。同时，要求在RTB上，tag为200的路由的优先级别为200。要求实现上述要求，则下列哪些配置是不正确的？",
+   "options": [
+    "RTA的配置：\nospf\nimport-route static\nRTB的配置：\nroute-policy 2 permit node 10\nif-match tag 200\nospf\npreference ase route-policy 2 200",
+    "RTA的配置：\nroute-policy 1 permit node 10\nif-match tag 100\napply tag 100\nroute-policy 1 permit node 20\nif-match tag 200\napply tag 200\nospf\nimport-route static route-policy 1\nRTB的配置：\nroute-policy 2 permit node 10\nif-match tag 200\nospf\npreference ase route-policy 2 200",
+    "RTA的配置：\nroute-policy 1 permit node 10\nif-match tag 100\napply tag 100\nroute-policy 1 permit node 20\nif-match tag 200\napply tag 200\nospf\nimport-route static route-policy 1\nRTB的配置：\nroute-policy 2 permit node 10\nif-match tag 200\napply preference 200\nospf\npreference ase route-policy 2 150",
+    "RTA的配置：\nroute-policy 1 permit node 10\nif-match tag 100\nroute-policy 1 permit node 20\nif-match tag 200\nospf\nimport-route static route-policy 1\nRTB的配置：\nroute-policy 2 permit node 10\nif-match tag 200\napply preference 200\nospf\npreference ase route-policy 2 150"
+   ],
+   "answer": "ABD",
+   "analysis": "RTB上的配置先将匹配tag200的路由优先级修改为200，再将全局的路由优先级改为150."
+  },
+  {
+   "id": "1-291",
+   "type": "multiple",
+   "question": "关于不同路由协议进行路由引入时缺省度量值，下列描述正确的是______。",
+   "options": [
+    "OSPF 路由协议在引入路由时，被引入路由的缺省cost为0",
+    "OSPF 路由协议在引入路由时，被引入路由的缺省cost为1",
+    "BGP 使用被引入路由的cost值作为引入BGP域之后的MED值",
+    "BGP 使用被引入路由的cost值加1作为引入BGP域之后的MED值"
+   ],
+   "answer": "BC",
+   "analysis": ""
+  },
+  {
+   "id": "1-292",
+   "type": "single",
+   "question": "通过以下哪一条命令可以查看所有已配置并使能的PBR信息？",
+   "options": [
+    "display policy-based-route",
+    "display ip policy-based-route",
+    "display ip policy-based-route statistics",
+    "display ip routing-table"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-293",
+   "type": "single",
+   "question": "以下哪一条命令用于重置PBR的统计信息？",
+   "options": [
+    "display policy-based-route",
+    "display ip policy-based-route",
+    "reset policy-based-route statistics",
+    "display ip routing-table"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-294",
+   "type": "single",
+   "question": "某路由器上PBR配置如下。\npolicy-based-route pbr_a permit node 10\nif-match acl 3000\napply output-interface serial 2/0\npolicy-based-route pbr_a deny node 20\nif-match acl 3000\n假设该策略已成功应用，该路由器上的配置Acl3000的数据流将如何转发？",
+   "options": [
+    "匹配Acl 3000的数据流将按照策略路由转发",
+    "匹配Acl 3000的数据流将按照普通路由转发",
+    "匹配Acl 3000的数据流将按照默认路由转发",
+    "匹配Acl 3000的数据流将被丢弃"
+   ],
+   "answer": "A",
+   "analysis": ""
+  },
+  {
+   "id": "1-295",
+   "type": "single",
+   "question": "某路由器上PBR配置如下。\npolicy-based-route pbr_a permit node 10\nif-match acl 3000\napply output-interface serial 2/0\npolicy-based-route pbr_a deny node 20\nif-match acl 3000\n假设该策略已成功应用，该路由器上的配置Acl3000的数据流将如何转发？",
+   "options": [
+    "匹配Acl 3000的数据流将不按照策略路由转发",
+    "匹配Acl 3000的数据流将不按照普通路由转发",
+    "匹配Acl 3000的数据流将按照默认路由转发",
+    "匹配Acl 3000的数据流将被丢弃"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-296",
+   "type": "single",
+   "question": "在PBR配置中，下列哪些动作不可以由apply子句执行？",
+   "options": [
+    "设定报文优先级",
+    "设定出接口",
+    "设定报文长度",
+    "设定报文下一跳",
+    "设定缺省下一跳"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-297",
+   "type": "multiple",
+   "question": "以下关于PBR说法中，正确的是_____。",
+   "options": [
+    "PBR是一种依据用户制定的策略进行路由选择的机制",
+    "通过PBR，可以设置路由协议引入的路由属性",
+    "PBR可基于到达报文的源地址进行路由选择",
+    "PBR可基于到达报文的长度进行路由选择"
+   ],
+   "answer": "ACD",
+   "analysis": ""
+  },
+  {
+   "id": "1-298",
+   "type": "multiple",
+   "question": "以下关于PBR说法中，正确的是_____。",
+   "options": [
+    "PBR是一种依据用户制定的策略进行路由选择的机制",
+    "通过PBR，可以设置路由协议引入的路由属性",
+    "PBR可基于到达报文的源地址进行路由选择",
+    "PBR不可基于到达报文的长度进行路由选择"
+   ],
+   "answer": "AC",
+   "analysis": ""
+  },
+  {
+   "id": "1-299",
+   "type": "multiple",
+   "question": "关于系统策略路由与接口策略路由的区别。说法正确的是_____。",
+   "options": [
+    "系统策略路由只对本地产生报文作用，对转发的报文不起作用",
+    "系统策略路由对本地产生报文和转发的报文都起作用",
+    "接口策略路由只对转发的报文作用，对本地产生的报文不起作用",
+    "接口策略路由对本地产生报文和转发的报文都起作用"
+   ],
+   "answer": "AC",
+   "analysis": ""
+  },
+  {
+   "id": "1-300",
+   "type": "single",
+   "question": "已知某路由器PBR的配置如下：\npolicy-based-route pbr_a permit node 10\nif-match acl 3000\nif-match packet-length 101 1000\napply output-interface serial 2/0\n假设该策略已成功应用，该路由器上的相关数据流将如何转发？",
+   "options": [
+    "匹配Alc3000的数据流将按照策略路由转发",
+    "报文长度为101~1000字节的报文将按照策略路由转发",
+    "匹配Alc3000的数据流中，报文长度为101~1000字节的报文将按照策略路由转发",
+    "匹配Alc3000的数据流以及报文长度为101~1000字节的报文将按照策略路由转发"
+   ],
+   "answer": "C",
+   "analysis": ""
+  }
+ ]
+}
