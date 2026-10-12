@@ -1,0 +1,741 @@
+{
+ "questions": [
+  {
+   "id": "1-151",
+   "type": "multiple",
+   "question": "在如图所示的拓扑中，RTA、RTB、RTC和RTD上分别执行如下配置：[RTA-LoopBack0] ip address 1.1.1.1 255.255.255.255\n[RTA]ospf 1\n[RTA-ospf-1]area 1\n[RTA-ospf-1-area-0.0.0.1]network 10.0.0.0 0.0.0.255\n[RTA-ospf-1]import-route direct\n[RTA-ospf-1]default-route-advertise always\n[RTB-LoopBack0] ip address 2.2.2.2 255.255.255.255\n[RTB]ospf 1RTB-ospf-1]area 1\n[RTB-ospf-1-area-0.0.0.1]network 10.0.0.0 0.0.0.255\n[RTB-ospf-1-area-0.0.0.1]area 0\n[RTB-ospf-1-area-0.0.0.0]network 2.2.2.2 0.0.0.0\n[RTB-ospf-1-area-0.0.0.0]network 20.0.0.0 0.0.0.255\n[RTC-LoopBack0] ip address 3.3.3.3 255.255.255.255\n[RTC]ospf 1\n[RTC-ospf-1]area 0\n[RTC-ospf-1-area-0.0.0.0]network 20.0.0.0 0.0.0.255\n[RTC-ospf-1-area-0.0.0.2]network 3.3.3.3 0.0.0.0\n[RTC-ospf-1-area-0.0.0.0]area 2\n[RTC-ospf-1-area-0.0.0.2]nssa no-summary\n[RTC-ospf-1-area-0.0.0.2]network 30.0.0.0 0.0.0.255\n[RTD-LoopBack0] ip address 4.4.4.4 255.255.255.255\n[RTD]ospf 1\n[RTD-ospf-1]area 2\n[RTD-ospf-1-area-0.0.0.2]network 30.0.0.0 0.0.0.255\n[RTD-ospf-1-area-0.0.0.2]nssa\n[RTD-ospf-1]import-route direct\nRTD的路由表中不可能存在以下哪些路由_______。",
+   "options": [
+    "1.1.1.1/32",
+    "2.2.2.2/32",
+    "3.3.3.3/32",
+    "0.0.0.0/0"
+   ],
+   "answer": "ABC",
+   "analysis": "NSSA区域过滤4、5类路由，手动下放7类路由default-route-advertise。",
+   "images": [
+    "p084_49.jpeg"
+   ]
+  },
+  {
+   "id": "1-152",
+   "type": "multiple",
+   "question": "在如图所示的拓扑中，RTA、RTB、RTC和RTD上分别执行如下配置：[RTA-LoopBack0] ip address 1.1.1.1 255.255.255.255\n[RTA]ospf 1\n[RTA-ospf-1]area 1\n[RTA-ospf-1-area-0.0.0.1]network 10.0.0.0 0.0.0.255\n[RTA-ospf-1]import-route direct\n[RTB-LoopBack0] ip address 2.2.2.2 255.255.255.255\n[RTB]ospf 1\n[RTB-ospf-1]area 1\n[RTB-ospf-1-area-0.0.0.1]network 10.0.0.0 0.0.0.255\n[RTB-ospf-1-area-0.0.0.1]area 0\n[RTB-ospf-1-area-0.0.0.0]network 2.2.2.2 0.0.0.0\n[RTB-ospf-1-area-0.0.0.0]network 20.0.0.0 0.0.0.255\n[RTC-LoopBack0] ip address 3.3.3.3 255.255.255.255\n[RTC]ospf 1\n[RTC-ospf-1]area 0\n[RTC-ospf-1-area-0.0.0.0]network 20.0.0.0 0.0.0.255\n[RTC-ospf-1-area-0.0.0.0]area 2\n[RTC-ospf-1-area-0.0.0.2]nssa default-route-advertise\n[RTC-ospf-1-area-0.0.0.2]network 30.0.0.0 0.0.0.255\n[RTC-ospf-1]import-route direct\n[RTD-LoopBack0] ip address 4.4.4.4 255.255.255.255\n[RTD]ospf 1\n[RTD-ospf-1]area 2\n[RTD-ospf-1-area-0.0.0.2]network 30.0.0.0 0.0.0.255\n[RTD-ospf-1-area-0.0.0.2]network 4.4.4.4 0.0.0.0\n[RTD-ospf-1-area-0.0.0.2]nssa\n则区域2中可能不会注入_____。",
+   "options": [
+    "type3 LSA",
+    "type4 LSA",
+    "type5 LSA",
+    "type7 LSA"
+   ],
+   "answer": "BC",
+   "analysis": "",
+   "images": [
+    "p085_50.jpeg"
+   ]
+  },
+  {
+   "id": "1-153",
+   "type": "multiple",
+   "question": "在如图所示的拓扑中，RTA、RTB、RTC和RTD上分别执行如下配置：[RTA-LoopBack0] ip address 1.1.1.1 255.255.255.255\n[RTA]ospf 1\n[RTA-ospf-1]area 1\n[RTA-ospf-1-area-0.0.0.1]network 10.0.0.0 0.0.0.255\n[RTA-ospf-1]import-route direct\n[RTB-LoopBack0] ip address 2.2.2.2 255.255.255.255\n[RTB]ospf 1\n[RTB-ospf-1]area 1\n[RTB-ospf-1-area-0.0.0.1]network 10.0.0.0 0.0.0.255\n[RTB-ospf-1-area-0.0.0.1]area 0\n[RTB-ospf-1-area-0.0.0.0]network 2.2.2.2 0.0.0.0\n[RTB-ospf-1-area-0.0.0.0]network 20.0.0.0 0.0.0.255\n[RTC-LoopBack0] ip address 3.3.3.3 255.255.255.255\n[RTC]ospf 1\n[RTC-ospf-1]area 0\n[RTC-ospf-1-area-0.0.0.0]network 20.0.0.0 0.0.0.255\n[RTC-ospf-1-area-0.0.0.0]area 2\n[RTC-ospf-1-area-0.0.0.2]nssa default-route-advertise no-summary[RTC-ospf-1-area-0.0.0.2]network30.0.0.0 0.0.0.255\n[RTC-ospf-1]import-route direct\n[RTD-LoopBack0] ip address 4.4.4.4 255.255.255.255\n[RTD]ospf 1\n[RTD-ospf-1]area 2\n[RTD-ospf-1-area-0.0.0.2]network 30.0.0.0 0.0.0.255\n[RTD-ospf-1-area-0.0.0.2]network 4.4.4.4 0.0.0.0\n[RTD-ospf-1-area-0.0.0.2]nssa\n则区域2中可能不会注入_____。",
+   "options": [
+    "type3 LSA",
+    "type4 LSA",
+    "type5 LSA",
+    "type7 LSA"
+   ],
+   "answer": "ABC",
+   "analysis": "nssa命令的三个参数含义：default-route-advertise配置后，对于ABR不论本地是否存在缺省路由，都将生成一条type7 LSA向区域内发布缺省路由；对于ASBR，只有当本地存在缺省路由时，才产生type7 LSA向区域内发布缺省路由。no-import-route：禁止将AS外部路由已type7 LSA的形式引入到nssa区域中。no-summary：只用于nssa区域的ABR，配置后，nssa ABR只通过type3 的summary-LSA向区域内发布一条缺省路由。所以本题中还是可能会注入type7 LSA的。",
+   "images": [
+    "p086_51.jpeg"
+   ]
+  },
+  {
+   "id": "1-154",
+   "type": "multiple",
+   "question": "在如图所示的拓扑中，RTA、RTB上分别执行如下配置：\n[RTA]ospf 1\n[RTA-ospf-1]area 1\n[RTA-ospf-1-area-0.0.0.1]network 1.1.1.1 0.0.0.0\n[RTA-ospf-1-area-0.0.0.1]network 10.0.0.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.1.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.4.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.7.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.8.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.15.0 0.0.0.255\n[RTB]ospf 1\n[RTB-ospf-1]area 1\n[RTB-ospf-1-area-0.0.0.1]network 10.0.0.0 0.0.0.255\n[RTB-ospf-1-area-0.0.0.1]area 0\n[RTB-ospf-1-area-0.0.0.1]abr-summary 192.168.0.0 255.255.248.0则RTC的路由表中可能存在以下哪些路由_____。",
+   "options": [
+    "192.168.8.0/24",
+    "192.168.15.0/24",
+    "192.168.7.0/24",
+    "192.168.0.0/20"
+   ],
+   "answer": "AB",
+   "analysis": "因为RTB配置了聚合路由，应该是192.168.0.0/21，所以C、D错",
+   "images": [
+    "p087_52.jpeg"
+   ]
+  },
+  {
+   "id": "1-155",
+   "type": "multiple",
+   "question": "在如图所示的拓扑中，RTA、RTB上分别执行如下配置：\n[RTA]ospf 1\n[RTA-ospf-1]area 1\n[RTA-ospf-1-area-0.0.0.1]network 1.1.1.1 0.0.0.0\n[RTA-ospf-1-area-0.0.0.1]network 10.0.0.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.1.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.4.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.7.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.8.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.15.0 0.0.0.255\n[RTB]ospf 1\n[RTB-ospf-1]area 1\n[RTB-ospf-1-area-0.0.0.1]network 10.0.0.0 0.0.0.255\n[RTB-ospf-1-area-0.0.0.1]area 0\n[RTB-ospf-1-area-0.0.0.1]abr-summary 192.168.0.0 255.255.252.0则RTC的路由表中可能存在以下哪些路由_____。",
+   "options": [
+    "192.168.1.0/24",
+    "192.168.7.0/24",
+    "192.168.4.0/24",
+    "192.168.0.0/23"
+   ],
+   "answer": "BC",
+   "analysis": "因为RTB配置了聚合路由，应该是192.168.0.0/22，所以A、D错",
+   "images": [
+    "p088_53.jpeg"
+   ]
+  },
+  {
+   "id": "1-156",
+   "type": "multiple",
+   "question": "在如图所示的拓扑中，RTA、RTB上分别执行如下配置：\n[RTA]ospf 1\n[RTA-ospf-1]area 1\n[RTA-ospf-1-area-0.0.0.1]network 1.1.1.1 0.0.0.0\n[RTA-ospf-1-area-0.0.0.1]network 10.0.0.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.1.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.4.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.7.0 0.0.0.127\n[RTA-ospf-1-area-0.0.0.1]network 192.168.8.0 0.0.0.127\n[RTA-ospf-1-area-0.0.0.1]network 192.168.15.0 0.0.0.255\n[RTB]ospf 1\n[RTB-ospf-1]area 1\n[RTB-ospf-1-area-0.0.0.1]network 10.0.0.0 0.0.0.255\n[RTB-ospf-1-area-0.0.0.1]area 0\n[RTB-ospf-1-area-0.0.0.1]abr-summary 192.168.0.0 255.255.252.0 not-advertise则RTC的路由表中可能存在以下哪些路由_____。",
+   "options": [
+    "192.168.8.0/25",
+    "192.168.15.0/24",
+    "192.168.7.0/25",
+    "192.168.0.0/22"
+   ],
+   "answer": "ABC",
+   "analysis": "RTB有条命令abr-summary 192.168.0.0 255.255.252.0 not-advertise。故192.168.0.0/22不会通告出去。",
+   "images": [
+    "p089_54.jpeg"
+   ]
+  },
+  {
+   "id": "1-157",
+   "type": "multiple",
+   "question": "在如图所示的拓扑中，RTA、RTB上分别执行如下配置：\n[RTA]ospf 1\n[RTA-ospf-1]area 1\n[RTA-ospf-1-area-0.0.0.1]network 1.1.1.1 0.0.0.0\n[RTA-ospf-1-area-0.0.0.1]network 10.0.0.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.1.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.4.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.7.0 0.0.0.127\n[RTA-ospf-1-area-0.0.0.1]network 192.168.8.0 0.0.0.127\n[RTA-ospf-1-area-0.0.0.1]network 192.168.15.0 0.0.0.255\n[RTB]ospf 1\n[RTB-ospf-1]area 1\n[RTB-ospf-1-area-0.0.0.1]network 10.0.0.0 0.0.0.255\n[RTB-ospf-1-area-0.0.0.1]area 0\n[RTB-ospf-1-area-0.0.0.1]abr-summary 192.168.0.0 255.255.248.0 not-advertise\n则RTC的路由表中不可能存在以下哪些路由_____。",
+   "options": [
+    "192.168.1.0/24",
+    "192.168.8.0/24",
+    "192.168.7.0/25",
+    "192.168.0.0/22"
+   ],
+   "answer": "ACD",
+   "analysis": "RTB有条命令abr-summary 192.168.0.0 255.255.252.0 not-advertise。故192.168.0.0/21不会通告出去。",
+   "images": [
+    "p090_55.jpeg"
+   ]
+  },
+  {
+   "id": "1-158",
+   "type": "multiple",
+   "question": "在如图所示的拓扑中，RTA和RTB上分别执行如下配置：\n[RTA-ospf-1-area-0.0.0.1]network 192.168.0.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.1.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.2.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.3.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.4.0 0.0.0.255\n现要求RTC上不得学习上述RTA中配置的路由，则可以在路由器上执行哪些配置？",
+   "options": [
+    "[RTB-ospf-1-area-0.0.0.1]abr-summary 192.168.0.0 255.255.252.0 not-advertise",
+    "[RTB-ospf-1-area-0.0.0.1]abr-summary 192.168.0.0 255.255.248.0 not-advertise",
+    "[RTB-ospf-1-area-0.0.0.1]abr-summary 192.168.0.0 255.255.0.0 not-advertise",
+    "[RTC-ospf-1-area-0.0.0.1]abr-summary 192.168.0.0 255.255.224.0 not-advertise"
+   ],
+   "answer": "BC",
+   "analysis": "一共有5条路由，最小取值（2的3次方=8），得出256-8=248，只要第3位比248小的，并且是偶数，都可以，需要在RTB上配置，所以A,D错,BC正确。",
+   "images": [
+    "p091_56.jpeg"
+   ]
+  },
+  {
+   "id": "1-159",
+   "type": "single",
+   "question": "在如图所示的拓扑中，RTA和RTB上分别执行如下配置：\n[RTA-ospf-1-area-0.0.0.1]network 192.168.0.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.1.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.2.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.3.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.4.0 0.0.0.255\n现要求RTC上不得学习上述RTA中配置路由，则可以在路由器上执行哪些配置？",
+   "options": [
+    "[RTB-ospf-1-area-0.0.0.1]abr-summary 192.168.0.0 255.255.252.0 not-advertise",
+    "[RTB-ospf-1-area-0.0.0.1]abr-summary 192.168.0.0 255.255.248.0 not-advertise",
+    "[RTB-ospf-1-area-0.0.0.0]abr-summary 192.168.0.0 255.255.0.0 not-advertise",
+    "[RTC-ospf-1-area-0.0.0.1]abr-summary 192.168.0.0 255.255.224.0 not-advertise"
+   ],
+   "answer": "B",
+   "analysis": "",
+   "images": [
+    "p092_57.jpeg"
+   ]
+  },
+  {
+   "id": "1-160",
+   "type": "single",
+   "question": "在如图所示的拓扑中，在RTA执行如下配置：\n[RTA-ospf-1-area-0.0.0.1]network 192.168.0.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.1.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.2.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.3.0 0.0.0.255\n现要求RTC上不得学习到上述RTA中配置的路由，则可以在路由器上执行哪些配置？",
+   "options": [
+    "[RTB] acl number 2000\n[RTB-acl-basic-2000] rule 0 permit source 192.168.0.0 0.0.255.255\n[RTB-ospf-1-area-0.0.0.1] filter 2000 export",
+    "[RTB-ospf-1-area-0.0.0.1]abr-summary 192.168.0.0 255.255.252.0 not-advertise",
+    "[RTB] acl number 2000\n[RTB-acl-basic-2000] rule 0 permit source 192.168.0.0 0.0.255.255\n[RTB-ospf-1] filter-polic2000 import",
+    "[RTC] acl number 2000\n[RTC-acl-basic-2000] rule 0 permit source 192.168.0.0 0.0.255.255\n[RTC-ospf-1] filter-polic2000 import"
+   ],
+   "answer": "B",
+   "analysis": "import是对进入路由过滤、export对发出路由过滤，OSPF中不过滤lsa,只过滤计算后的路由，所以RTC上只有import，而RTB,export和import都可以。本题是要RTC上不得学习RTA中配置的路由，而ACD都是允许通过的ACL，所以答案只有B是正确的。",
+   "images": [
+    "p092_58.jpeg"
+   ]
+  },
+  {
+   "id": "1-161",
+   "type": "multiple",
+   "question": "在如图所示的拓扑中，RTA上通过执行import-route direct 命令，注入\n192.168.0.0/24,192.168.1.0/24、192.168.2.0/24、192.168.3.0/24 和192.168.4.0/24 这五条路由，现要求RTB上不得学习上述路由，则可以在RTA上执行哪些配置？",
+   "options": [
+    "[RTA-ospf-1-area-0.0.0.1]asbr-summary 192.168.0.0 255.255.240.0 not-advertise",
+    "[RTA-ospf-1-area-0.0.0.1]asbr-summary 192.168.0.0 255.255.248.0 not-advertise",
+    "[RTA-ospf-1]asbr-summary 192.168.0.0 255.255.0.0 not-advertise",
+    "[RTA-ospf-1]asbr-summary 192.168.0.0 255.255.224.0 not-advertise"
+   ],
+   "answer": "CD",
+   "analysis": "abr聚合在区域模式下，asbr聚合是在路由进程模式下。",
+   "images": [
+    "p093_59.jpeg"
+   ]
+  },
+  {
+   "id": "1-162",
+   "type": "multiple",
+   "question": "在如图所示的拓扑中，RTA 上通过执行import-route direct 命令，注入192.168.0.0/24、192.168.1.0/24、192.168.2.0/24 、192.168.3.0/24 和192.168.4.0/24这五条路由，现要求RTB不得学习上述路由，则可以在RTA上执行哪些配置？",
+   "options": [
+    "[RTB-ospf-1]asbr-summary 192.168.0.0 255.255.248.0 not-advertise",
+    "[RTA-ospf-1]asbr-summary 192.168.0.0 255.255.240.0 not-advertise",
+    "[RTB-ospf-1]asbr-summary 192.168.0.0 255.255.0.0 not-advertise",
+    "[RTA-ospf-1]asbr-summary 192.168.0.0 255.255.224.0 not-advertise"
+   ],
+   "answer": "BD",
+   "analysis": "abr聚合在区域模式下，asbr聚合是在路由进程模式下；仔细审题，问题是在RTA上执行哪些配置。",
+   "images": [
+    "p093_60.jpeg"
+   ]
+  },
+  {
+   "id": "1-163",
+   "type": "multiple",
+   "question": "在如图所示的拓扑中，在RTA和RTB分别执行如下配置：\n[RTA-ospf-1-area-0.0.0.1]network 192.168.0.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.1.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.2.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.3.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.4.0 0.0.0.255\n[RTB] acl number 2000\n[RTB-acl-basic-2000] rule 0 permit source 192.168.1.0 0.0.0.255\n[RTB-ospf-1-area-0.0.0.1] filter 2000 export\n则RTC 的路由表中不可能存在的路由有_____。",
+   "options": [
+    "192.168.0.0/24",
+    "192.168.1.0/24",
+    "192.168.2.0/24",
+    "192.168.4.0/24"
+   ],
+   "answer": "ACD",
+   "analysis": "RTB的出接口应用了ACL 2000,只允许192.168.1.0/24通过。",
+   "images": [
+    "p094_61.jpeg"
+   ]
+  },
+  {
+   "id": "1-164",
+   "type": "multiple",
+   "question": "在如图所示的拓扑中，在RTA、RTB分别执行如下配置：\n[RTA-ospf-1-area-0.0.0.1]network 192.168.0.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.1.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.2.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.3.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.4.0 0.0.0.255\n[RTB] acl number 2000\n[RTB-acl-basic-2000] rule 0 permit source 192.168.0.0 0.0.0.255[RTB-acl-basic-2000] rule 5 permit source 192.168.1.0 0.0.0.255[RTB-ospf-1-area-0.0.0.1] filter 2000 export\n则RTC 的路由表中不可能存在的路由有_____。",
+   "options": [
+    "192.168.0.0/24",
+    "192.168.1.0/24",
+    "192.168.2.0/24",
+    "192.168.4.0/24"
+   ],
+   "answer": "CD",
+   "analysis": "RTB的出接口应用了ACL 2000,只允许192.168.0.0/24和192.168.1.0/24通过。",
+   "images": [
+    "p095_62.jpeg"
+   ]
+  },
+  {
+   "id": "1-165",
+   "type": "single",
+   "question": "在如图所示的拓扑中，在RTA、RTB分别执行如下配置：\n[RTA-ospf-1-area-0.0.0.1]network 192.168.0.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.1.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.2.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.3.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.4.0 0.0.0.255\n[RTB] acl number 2000\n[RTB-acl-basic-2000] rule 0 permit source 192.168.1.0 0.0.0.255[RTB-ospf-1] filter-policy 2000 import\n则RTC 的路由表中可能存在的路由有_____。",
+   "options": [
+    "192.168.0.0/24",
+    "192.168.1.0/24",
+    "192.168.2.0/24",
+    "192.168.4.0/24"
+   ],
+   "answer": "B",
+   "analysis": "RTB的出接口应用了ACL 2000,只允许192.168.1.0/24通过。",
+   "images": [
+    "p095_63.jpeg"
+   ]
+  },
+  {
+   "id": "1-166",
+   "type": "multiple",
+   "question": "在如图所示的拓扑中，在RTA、RTB分别执行如下配置：\n[RTA-ospf-1-area-0.0.0.1]network 192.168.0.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.1.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.2.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.3.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.4.0 0.0.0.255\n[RTB] acl number 2000\n[RTB-acl-basic-2000] rule 0 permit source 192.168.0.0 0.0.0.255[RTB-acl-basic-2000] rule 5 permit source 192.168.1.0 0.0.0.255[RTB-ospf-1] filter-policy 2000 import\n则RTB 的路由表中可能存在的路由有_____。",
+   "options": [
+    "192.168.0.0/24",
+    "192.168.1.0/24",
+    "192.168.2.0/24",
+    "192.168.4.0/24"
+   ],
+   "answer": "AB",
+   "analysis": "RTB的出接口应用了ACL 2000,只允许192.168.0.0/24和192.168.1.0/24通过。",
+   "images": [
+    "p096_64.jpeg"
+   ]
+  },
+  {
+   "id": "1-167",
+   "type": "multiple",
+   "question": "在如图所示的拓扑中，在RTA执行如下配置：\n[RTA-ospf-1-area-0.0.0.1]network 192.168.0.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.1.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.2.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 192.168.3.0 0.0.0.255\n现要求RTC上不得学习到上述RTA 中配置的路由192.168.2.0/24，则可以在路由器上执行哪些配置？",
+   "options": [
+    "[RTB] acl number 2000\n[RTB-acl-basic-2000] rule 0 permit source 192.168.0.0 0.0.255.255\n[RTB-acl-basic-2000] rule 5 permit source 192.168.1.0 0.0.255.255\n[RTB-acl-basic-2000] rule 10 permit source 192.168.3.0 0.0.255.255\n[RTB-ospf-1-area-0.0.0.1] filter 2000 export",
+    "[RTB-ospf-1-area-0.0.0.1]abr-summary 192.168.2.0 255.255.255.0 not-advertise",
+    "[RTB] acl number 2000\n[RTB-acl-basic-2000] rule 0 permit source 192.168.0.0 0.0.255.255\n[RTB-acl-basic-2000] rule 5 permit source 192.168.1.0 0.0.255.255\n[RTB-acl-basic-2000] rule 10 permit source 192.168.3.0 0.0.255.255\n[RTB-ospf-1] filter-polic2000 import",
+    "[RTC] acl number 2000\n[RTC-acl-basic-2000] rule 0 permit source 192.168.0.0 0.0.255.255\n[RTC-acl-basic-2000] rule 5 permit source 192.168.1.0 0.0.255.255\n[RTC-acl-basic-2000] rule 10 permit source 192.168.3.0 0.0.255.255\n[RTC-ospf-1] filter-polic2000 import"
+   ],
+   "answer": "ABD",
+   "analysis": "在RTB上应用ACL2000到import，不会影响RTC学习到192.168.2.0/24，,但是export可以",
+   "images": [
+    "p097_65.jpeg"
+   ]
+  },
+  {
+   "id": "1-168",
+   "type": "multiple",
+   "question": "在如图所示的拓扑中，RTA 上通过执行import-route direct 命令，注入192.168.0.0/24、192.168.1.0/24、192.168.2.0/24 、192.168.3.0/24 和192.168.4.0/24这五条路由，并且在RTA、RTB和RTC上分别执行如下配置：\n[RTA]ospf 1\n[RTA-ospf-1]area 1\n[RTA-ospf-1-area-0.0.0.1]network 10.0.0.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 1.1.1.1 0.0.0.0\n[RTA-ospf-1]asbr-summary 192.168.0.0 255.255.252.0\n[RTB]ospf 1\n[RTB-ospf-1]area 1\n[RTB-ospf-1-area-0.0.0.1]network 10.0.0.0 0.0.0.255\n[RTB-ospf-1-area-0.0.0.1]area 0\n[RTB-ospf-1-area-0.0.0.0]network 2.2.2.2 0.0.0.0\n[RTB-ospf-1-area-0.0.0.0]network 20.0.0.0 0.0.0.255\n[RTC]ospf 1\n[RTC-ospf-1]area 0\n[RTC-ospf-1-area-0.0.0.0]network 3.3.3.3 0.0.0.0\n[RTC-ospf-1-area-0.0.0.0]network 20.0.0.0 0.0.0.255\n则RTB的路由表中可能存在的路由有_____。",
+   "options": [
+    "192.168.4.0/24",
+    "192.168.0.0/22",
+    "1.1.1.1/32",
+    "192.168.0.0/24"
+   ],
+   "answer": "ABC",
+   "analysis": "因为RTA配置了聚合路由，应该是192.168.0.0/22，所以D错。",
+   "images": [
+    "p098_66.jpeg"
+   ]
+  },
+  {
+   "id": "1-169",
+   "type": "single",
+   "question": "在如图所示的拓扑中，在RTA和RTC上分别执行如下配置：\n[RTA-ospf-1] area 1\n[RTA-ospf-1-area-0.0.0.1] authentication-mode simple\n[RTA] interface GigabitEthernet0/0\n[RTA-GigabitEthernet0/0] ospf authentication-mode simple plain 12345\n[RTC-ospf-1] area 0\n[RTC-ospf-1-area-0.0.0.0] authentication-mode simple\n[RTC] interface GigabitEthernet0/0\n[RTC-GigabitEthernet0/0] ospf authentication-mode simple plain 54321\n如果需要RTB 分别与RTA 、RTC 建立邻居关系，则需要在RTB上执行以下哪项配置？",
+   "options": [
+    "[RTB-ospf-1-area-0.0.0.0] authentication-mode simple\n[RTB] interface GigabitEthernet0/0\n[RTB-GigabitEthernet0/0] ospf authentication-mode simple plain 12345\n[RTB] interface GigabitEthernet0/1\n[RTB-GigabitEthernet0/1] ospf authentication-mode simple plain 54321",
+    "[RTB-ospf-1-area-0.0.0.0] authentication-mode simple\n[RTB-ospf-1-area-0.0.0.1] authentication-mode md5\n[RTB] interface GigabitEthernet0/0\n[RTB-GigabitEthernet0/0] ospf authentication-mode simple plain 12345\n[RTB] interface GigabitEthernet0/1\n[RTB-GigabitEthernet0/1] ospf authentication-mode simple plain 54321",
+    "[RTB-ospf-1-area-0.0.0.0] authentication-mode simple\n[RTB-ospf-1-area-0.0.0.1] authentication-mode simple\n[RTB] interface GigabitEthernet0/0\n[RTB-GigabitEthernet0/0] ospf authentication-mode simple plain 12345\n[RTB] interface GigabitEthernet0/1\n[RTB-GigabitEthernet0/1] ospf authentication-mode simple plain 12345",
+    "[RTB-ospf-1-area-0.0.0.0] authentication-mode simple\n[RTB-ospf-1-area-0.0.0.1] authentication-mode simple\n[RTB] interface GigabitEthernet0/0\n[RTB-GigabitEthernet0/0] ospf authentication-mode simple plain 12345\n[RTB] interface GigabitEthernet0/1\n[RTB-GigabitEthernet0/1] ospf authentication-mode simple plain 54321"
+   ],
+   "answer": "D",
+   "analysis": "",
+   "images": [
+    "p098_67.jpeg"
+   ]
+  },
+  {
+   "id": "1-170",
+   "type": "multiple",
+   "question": "在如图所示的拓扑中，RTA 上通过执行import-route direct 命令，注入192.168.0.0/24、192.168.1.0/24、192.168.2.0/24 、192.168.3.0/24 和192.168.4.0/24这五条路由，并且在RTA、RTB和RTC上分别执行如下配置：\n[RTA]ospf 1\n[RTA-ospf-1]area 1\n[RTA-ospf-1-area-0.0.0.1]network 10.0.0.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 1.1.1.1 0.0.0.0\n[RTA-ospf-1-area-0.0.0.1]nssa\n[RTA-ospf-1]asbr-summary 192.168.0.0 255.255.224.0 not -advertise\n[RTB]ospf 1\n[RTB-ospf-1]area 1\n[RTB-ospf-1-area-0.0.0.1]network 10.0.0.0 0.0.0.255\n[RTB-ospf-1-area-0.0.0.1]nssa default-route-advertise\n[RTB-ospf-1-area-0.0.0.1]area 0\n[RTB-ospf-1-area-0.0.0.0]network 2.2.2.2 0.0.0.0\n[RTB-ospf-1-area-0.0.0.0]network 20.0.0.0 0.0.0.255\n[RTC]ospf 1\n[RTC-ospf-1]area 0\n[RTC-ospf-1-area-0.0.0.0]network 3.3.3.3 0.0.0.0\n[RTC-ospf-1-area-0.0.0.0]network 20.0.0.0 0.0.0.255\n则RTC的路由表中不可能存在的路由有_____。",
+   "options": [
+    "192.168.3.0/24",
+    "192.168.0.0/20",
+    "1.1.1.1/32",
+    "2.2.2.2/32"
+   ],
+   "answer": "AB",
+   "analysis": "",
+   "images": [
+    "p099_68.jpeg"
+   ]
+  },
+  {
+   "id": "1-171",
+   "type": "multiple",
+   "question": "在如图所示的拓扑中，RTA 上通过执行import-route direct 命令，注入192.168.0.0/24、192.168.1.0/24、192.168.2.0/24 、192.168.3.0/24 和192.168.4.0/24这五条路由，并且在RTA、RTB和RTC上分别执行如下配置：\n[RTA]ospf 1\n[RTA-ospf-1]area 1\n[RTA-ospf-1-area-0.0.0.1]network 10.0.0.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]nssa\n[RTA-ospf-1]asbr-summary 192.168.0.0 255.255.192.0 not-advertise[RTA-ospf-1]import direct\n[RTB]ospf 1\n[RTB-ospf-1]area 1\n[RTB-ospf-1-area-0.0.0.1]network 10.0.0.0 0.0.0.255\n[RTB-ospf-1-area-0.0.0.1]nssa default-route-advertise\n[RTB-ospf-1-area-0.0.0.1]area 0\n[RTB-ospf-1-area-0.0.0.0]network 20.0.0.0 0.0.0.255\n[RTB-ospf-1]import direct\n[RTC]ospf 1\n[RTC-ospf-1]area 0\n[RTC-ospf-1-area-0.0.0.0]network 3.3.3.3 0.0.0.0\n[RTC-ospf-1-area-0.0.0.0]network 20.0.0.0 0.0.0.255\n则RTC的路由表中不可能存在的路由有_____。",
+   "options": [
+    "1.1.1.1/32",
+    "2.2.2.2/32",
+    "192.168.0.0/18",
+    "192.168.1.0/24"
+   ],
+   "answer": "CD",
+   "analysis": "这不是正确的图，RTA、RTB应该有loopback地址1.1.1.1/32、2.2.2.2/32",
+   "images": [
+    "p100_69.jpeg"
+   ]
+  },
+  {
+   "id": "1-172",
+   "type": "multiple",
+   "question": "下列特性中可以增强OSPF安全性的有_______。",
+   "options": [
+    "验证",
+    "虚连接",
+    "禁止端口发送OSPF报文",
+    "过滤type3 LSA"
+   ],
+   "answer": "ACD",
+   "analysis": ""
+  },
+  {
+   "id": "1-173",
+   "type": "multiple",
+   "question": "在如图所示的拓扑中，RTA 和RTB、RTB 和RTC 之间已经网络层可达。RTA 、RTB和RTC上分别执行如下配置：\n[RTA]ospf 1\n[RTA-ospf-1]area 1\n[RTA-ospf-1-area-0.0.0.1]network 192.168.1.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 1.1.1.1 0.0.0.0\n[RTB]ospf 1\n[RTB-ospf-1]area 1\n[RTB-ospf-1-area-0.0.0.1]network 192.168.1.0 0.0.0.255\n[RTB-ospf-1-area-0.0.0.1]area 0\n[RTB-ospf-1-area-0.0.0.0]network 2.2.2.2 0.0.0.0\n[RTB-ospf-1-area-0.0.0.0]network 192.168.2.0 0.0.0.255\n[RTC]ospf 1\n[RTC-ospf-1]area 0\n[RTC-ospf-1-area-0.0.0.0]network 3.3.3.3 0.0.0.0\n[RTC-ospf-1-area-0.0.0.0]network 192.168.2.0 0.0.0.255\n[RTC-ospf-1]silent-interface all\n以下说法正确的是________。",
+   "options": [
+    "RTA和RTB之间可以正常建立邻居",
+    "RTB和RTC之间无法建立邻居",
+    "RTC不向RTB发送Hello报文",
+    "RTC可以接受RTB发送的Hello报文"
+   ],
+   "answer": "ABCD",
+   "analysis": "在OSPF协议中使用了该命令后，OSPF协议的更新就不会被silent接口发送出去。\n但是被silent的接口依然可以接受其他设备发来的更新。只是将网段宣告，该端口只接受hello报文，不发送hello报文，不建立邻居关系。从而节省设备的性能。",
+   "images": [
+    "p102_70.jpeg"
+   ]
+  },
+  {
+   "id": "1-174",
+   "type": "multiple",
+   "question": "在如图所示的拓扑中，RTA 和RTB、RTB 和RTC 之间已经网络层可达。RTA 、RTB和RTC上分别执行如下配置：\n[RTA]ospf 1\n[RTA-ospf-1]area 1\n[RTA-ospf-1-area-0.0.0.1]network 192.168.1.0 0.0.0.255\n[RTA-ospf-1-area-0.0.0.1]network 1.1.1.1 0.0.0.0\n[RTB]ospf 1\n[RTB-ospf-1]area 1\n[RTB-ospf-1-area-0.0.0.1]network 192.168.1.0 0.0.0.255\n[RTB-ospf-1-area-0.0.0.1]area 0\n[RTB-ospf-1-area-0.0.0.0]network 2.2.2.2 0.0.0.0\n[RTB-ospf-1-area-0.0.0.0]network 192.168.2.0 0.0.0.255\n[RTB-ospf-1]silent-interface all\n[RTC]ospf 1\n[RTC-ospf-1]area 0\n[RTC-ospf-1-area-0.0.0.0]network 3.3.3.3 0.0.0.0\n[RTC-ospf-1-area-0.0.0.0]network 192.168.2.0 0.0.0.255\n以下说法正确的是________。",
+   "options": [
+    "RTA和RTB之间可以正常建立邻居",
+    "RTB和RTC之间无法建立邻居",
+    "RTB不向RTA发送Hello报文",
+    "RTB可以接受RTC发送的Hello报文"
+   ],
+   "answer": "BCD",
+   "analysis": "在OSPF协议中使用了该命令后，OSPF协议的更新就不会被silent接口发送出去。\n但是被silent的接口依然可以接受其他设备发来的更新。只是将网段宣告，该端口只接受hello报文，不发送hello报文，不建立邻居关系。从而节省设备的性能。",
+   "images": [
+    "p103_71.jpeg"
+   ]
+  },
+  {
+   "id": "1-175",
+   "type": "single",
+   "question": "在如图所示的拓扑中，在RTA和RTC上分别执行如下配置：\n[RTA-ospf-1] area 1\n[RTA-ospf-1-area-0.0.0.1] authentication-mode simple\n[RTA] interface GigabitEthernet0/0\n[RTA-GigabitEthernet0/0] ospf authentication-mode simple plain 12345[RTC-ospf-1] area 0\n[RTC-ospf-1-area-0.0.0.0] authentication-mode simple\n[RTC] interface GigabitEthernet0/0\n[RTC-GigabitEthernet0/0] ospf authentication-mode simple plain 54321如果需要RTB 分别与RTA 、RTC 建立邻居关系，则需要在RTB上执行以下哪项配置？",
+   "options": [
+    "[RTB-ospf-1-area-0.0.0.0] authentication-mode simple\n[RTB] interface GigabitEthernet0/0\n[RTB-GigabitEthernet0/0] ospf authentication-mode simple plain 12345[RTB] interface GigabitEthernet0/1\n[RTB-GigabitEthernet0/1] ospf authentication-mode simple plain 54321",
+    "[RTB-ospf-1-area-0.0.0.0] authentication-mode simple\n[RTB-ospf-1-area-0.0.0.1] authentication-mode simple\n[RTB] interface GigabitEthernet0/0\n[RTB-GigabitEthernet0/0] ospf authentication-mode simple plain 12345[RTB] interface GigabitEthernet0/1\n[RTB-GigabitEthernet0/1] ospf authentication-mode simple plain 54321",
+    "[RTB-ospf-1-area-0.0.0.0] authentication-mode simple\n[RTB-ospf-1-area-0.0.0.1] authentication-mode simple\n[RTB] interface GigabitEthernet0/0\n[RTB-GigabitEthernet0/0] ospf authentication-mode simple plain 54321[RTB] interface GigabitEthernet0/1\n[RTB-GigabitEthernet0/1] ospf authentication-mode simple plain 12345",
+    "[RTB-ospf-1-area-0.0.0.0] authentication-mode md5\n[RTB-ospf-1-area-0.0.0.1] authentication-mode md5\n[RTB] interface GigabitEthernet0/0\n[RTB-GigabitEthernet0/0] ospf authentication-mode simple plain 12345[RTB] interface GigabitEthernet0/1\n[RTB-GigabitEthernet0/1] ospf authentication-mode simple plain 54321"
+   ],
+   "answer": "B",
+   "analysis": "RTA的G0/0与RTB的G0/0相连，RTB的G0/1与RTC的G0/0相连。",
+   "images": [
+    "p103_72.jpeg"
+   ]
+  },
+  {
+   "id": "1-176",
+   "type": "single",
+   "question": "集成化IS-IS支持________协议。",
+   "options": [
+    "OSI",
+    "IP",
+    "OSI和IP",
+    "ISO"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-177",
+   "type": "single",
+   "question": "IS-IS属于________路由协议，采用________算法。",
+   "options": [
+    "IGP，距离矢量（D-V）",
+    "EGP，距离矢量（D-V）",
+    "IGP，最短路径优先（SPF）",
+    "EGP，最短路径优先（SPF）"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-178",
+   "type": "multiple",
+   "question": "______采用最短路径优先（SPF）算法。",
+   "options": [
+    "RIP",
+    "OSPF",
+    "IS-IS",
+    "BGP"
+   ],
+   "answer": "BC",
+   "analysis": ""
+  },
+  {
+   "id": "1-179",
+   "type": "single",
+   "question": "在OSI 网络体系中，具有与TCP/IP中IP协议的相似功能的是_________。",
+   "options": [
+    "无连接网络协议（CLNP）",
+    "无连接网络服务（CLNS）",
+    "网络协议数据单元（NPDU）",
+    "网络服务接入点（NSAP）"
+   ],
+   "answer": "A",
+   "analysis": ""
+  },
+  {
+   "id": "1-180",
+   "type": "single",
+   "question": "如图所示。图中是一个OSI路由网络，则图中RTC和RTE之间的路由应该是_______路由。",
+   "options": [
+    "Level-0",
+    "Level-1",
+    "Level-2",
+    "Level-3"
+   ],
+   "answer": "D",
+   "analysis": "不同自治系统路由器之间的路由为Level-3",
+   "images": [
+    "p106_73.jpeg"
+   ]
+  },
+  {
+   "id": "1-181",
+   "type": "single",
+   "question": "如图所示为一个OSI路由网络，图中RTB和RTE之间的路由应该是_______路由。",
+   "options": [
+    "Level-0",
+    "Level-1",
+    "Level-2",
+    "Level-3"
+   ],
+   "answer": "C",
+   "analysis": "同一自治系统，不同区域间的路由器之间的路由为Level-2",
+   "images": [
+    "p107_74.jpeg"
+   ]
+  },
+  {
+   "id": "1-182",
+   "type": "single",
+   "question": "Level-1路由存在于________。",
+   "options": [
+    "ES和IS间",
+    "同一Area 内IS间",
+    "不同Area之间",
+    "不同Domain间"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-183",
+   "type": "single",
+   "question": "Level-2路由存在于________。",
+   "options": [
+    "ES和IS间",
+    "同一Area 内IS间",
+    "不同Area之间",
+    "不同Domain间"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-184",
+   "type": "multiple",
+   "question": "如图所示的IS-IS网络中，路由器间邻接关系建立正常，彼此间能够学习到路由。图中哪些路由器一定是Level-1-2路由器？",
+   "options": [
+    "RTA",
+    "RTB",
+    "RTC",
+    "RTD",
+    "RTE"
+   ],
+   "answer": "AB",
+   "analysis": "同一自治系统，不同区域间IS为Level-2；同一Area 内IS间为Level-1。Level-1-2路由器，必定是不同区域间，且同一区域内有其他IS于其物理连接。\n本题的答案存疑，因为根据图中所示，RTD也是Level-1-2路由器。但是题库答案是AB，如果选了RTD，就和题库中另一题目重复了，可能本题的图片不对。实际碰到类似题目需认真查看图片吧。",
+   "images": [
+    "p108_75.jpeg"
+   ]
+  },
+  {
+   "id": "1-185",
+   "type": "multiple",
+   "question": "如图所示的IS-IS网络中，路由器间邻接关系建立正常，彼此间能够学习到路由。图中哪些路由器必然是IS-IS Level-1-2路由器？",
+   "options": [
+    "RTA",
+    "RTB",
+    "RTC",
+    "RTD",
+    "RTE"
+   ],
+   "answer": "ABD",
+   "analysis": "同一自治系统，不同区域间IS为Level-2；同一Area 内IS间为Level-1。Level-1-2路由器，必定是不同区域间，且同一区域内有其他IS与其物理连接。本题中RTD连接了自治系统外的终端，是一台Level-2路由器，并且同一区域内有RTB与其物理连接，满足Level-1-2。",
+   "images": [
+    "p109_76.jpeg"
+   ]
+  },
+  {
+   "id": "1-186",
+   "type": "multiple",
+   "question": "IS-IS可以支持_______等网络层协议。",
+   "options": [
+    "Ethernet",
+    "IPv4",
+    "TCP",
+    "CLNP",
+    "IPv6"
+   ],
+   "answer": "BDE",
+   "analysis": ""
+  },
+  {
+   "id": "1-187",
+   "type": "multiple",
+   "question": "图示中，_______是正确的IS-IS区域划分方式。",
+   "options": [
+    "A",
+    "B",
+    "C",
+    "D"
+   ],
+   "answer": "BC",
+   "analysis": "无图无真相，死记硬背，也要靠老天保佑题目的图片位置不变才行。"
+  },
+  {
+   "id": "1-188",
+   "type": "single",
+   "question": "在图示组网中，路由器间邻接关系建立正常，且没有配置路由泄露。则RTA会将目的是16.224.3.1的IP报文转发给________。",
+   "options": [
+    "RTB",
+    "RTC",
+    "RTD",
+    "RTE"
+   ],
+   "answer": "A",
+   "analysis": "无图无真相，死记硬背。"
+  },
+  {
+   "id": "1-189",
+   "type": "single",
+   "question": "在图示组网中，路由器间邻接关系建立正常，且没有配置路由泄露。则RTA会将目的是16.224.3.20的IP报文转发给________。",
+   "options": [
+    "RTB",
+    "RTC",
+    "RTD",
+    "RTE"
+   ],
+   "answer": "D",
+   "analysis": "无图无真相，死记硬背。"
+  },
+  {
+   "id": "1-190",
+   "type": "single",
+   "question": "OSI网络中，Level-0路由存在于_______。",
+   "options": [
+    "ES和IS之间",
+    "同区域内IS和IS之间",
+    "不同区域间IS和IS之间",
+    "不同路由域间IS和IS之间"
+   ],
+   "answer": "A",
+   "analysis": ""
+  },
+  {
+   "id": "1-191",
+   "type": "single",
+   "question": "IS-IS 中，同时拥有Level-1和Level-2链路状态信息的是_______。",
+   "options": [
+    "ES",
+    "Level-1 IS",
+    "Level-2 IS",
+    "Level-1-2 IS"
+   ],
+   "answer": "D",
+   "analysis": ""
+  },
+  {
+   "id": "1-192",
+   "type": "multiple",
+   "question": "IS-IS中的骨干网络路由器包括_________。",
+   "options": [
+    "ES",
+    "Level-1 IS",
+    "Level-2 IS",
+    "Level-1-2 IS"
+   ],
+   "answer": "CD",
+   "analysis": ""
+  },
+  {
+   "id": "1-193",
+   "type": "multiple",
+   "question": "下列关于IS-IS和OSPF的说法正确的是_______。",
+   "options": [
+    "IS-IS运行在传输层，OSPF运行在网络层，二者都使用SPF算法",
+    "一台IS-IS路由器只能属于一个区域，而一台OSPF路由器的不同接口可以属于多个区域",
+    "IS-IS 在扩展性上比OSPF好，但OSPF应用更广泛",
+    "IS-IS的骨干区域必须是Area0，而且必须是连续的"
+   ],
+   "answer": "BC",
+   "analysis": ""
+  },
+  {
+   "id": "1-194",
+   "type": "multiple",
+   "question": "对于IS-IS中域（Domain）和区域（Area）的关系描述正确的是______。",
+   "options": [
+    "Domain包含Area",
+    "Area 包含Domain",
+    "一个Domain 内可以有多个Area",
+    "一个Area 内只能有一个Domain"
+   ],
+   "answer": "AC",
+   "analysis": ""
+  },
+  {
+   "id": "1-195",
+   "type": "multiple",
+   "question": "使用IS-IS时，对于某一个Area内的IS而言，下列哪些说法正确？",
+   "options": [
+    "IS之间只能传递Level-1路由",
+    "IS 之间可以同时传递Level-1和Level-2路由",
+    "同时能传递Level-1和Level-2路由的IS称为Level-1-2 IS，由它负责的不同区域间通信",
+    "为了节约系统资源，Level-1-2 IS只维护Level-2的LSDB"
+   ],
+   "answer": "BC",
+   "analysis": ""
+  },
+  {
+   "id": "1-196",
+   "type": "multiple",
+   "question": "关于在IP网络上运行集成IS-IS ，下列说法正确的是______。",
+   "options": [
+    "在IP网络中，IS就是常说的路由器",
+    "IS-IS 在IP 网络中运行，依然使用CLNP 提供的CLNS 服务，与IP协议处于相同的网路层次",
+    "因为使用了CLNS的原因，IS-IS依然需要ES-IS协议，才能转发主机数据",
+    "IS-IS在IP网络中只收集链路状态并计算路由，而不需要ES-IS ，路由器与主机通信依然依靠ARP、ICMP、DHCP等协议"
+   ],
+   "answer": "ABD",
+   "analysis": ""
+  },
+  {
+   "id": "1-197",
+   "type": "multiple",
+   "question": "对于IS-IS 和OSPF的组网和适用场景，下列描述正确的是______。",
+   "options": [
+    "OSPF的骨干区域编号必须是0，而且是连续的，可以通过虚连接保证其连续性",
+    "IS-IS的骨干区域所有Level-2和Level-1-2系统组成，因为没有虚连接，所以要求物理上必须是连续的",
+    "IS-IS的协议报文是TLV格式，很容易扩展而支持各种网络协议，如IPv6 ；而OSPFv2的协议报文是基于IP的，并与IPv4 结合过于紧张，因而难以扩展支持IPv6",
+    "虽然两者都支持大规模分层网络，但OSPF在企业级网络应用更为广泛"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-198",
+   "type": "multiple",
+   "question": "对于IS-IS协议报文交互过程，下列描述正确的是________。",
+   "options": [
+    "在IP网络中，IS-IS承载在IP报文中进行交互",
+    "IS-IS 协议报文使用CLNP中的NSAP地址",
+    "NSAP地址为IDP和DSP两部分组成，共定长160位",
+    "NSAP 是变长地址，最长160位，最短64位"
+   ],
+   "answer": "BC",
+   "analysis": ""
+  },
+  {
+   "id": "1-199",
+   "type": "multiple",
+   "question": "关于NSAP地址，下列哪些描述是正确的？",
+   "options": [
+    "NSAP相当于IP网络中的IP 地址和协议号。两个系统的NSAP相同会引起通信异常",
+    "NSAP地址包括区域地址、System ID和NSEL三部分",
+    "区域地址和Stem ID定长，NSEL是变长的",
+    "Stem ID用于标识区域内的IS。在集成IS-IS中，建议由系统的Router ID 或接口MAC地址转换而来"
+   ],
+   "answer": "ABD",
+   "analysis": ""
+  },
+  {
+   "id": "1-200",
+   "type": "multiple",
+   "question": "对于NSAP 地址中的NSEL字段，下列描述正确的是________。",
+   "options": [
+    "NSEL用于表示上层协议类型，类似于IP协议中的Protocol字段",
+    "NSEL用于表示链路层协议类型",
+    "在IP路由环境中，NSEL的值通常为FF",
+    "NET可以看做是NSEL为0的NSAP地址"
+   ],
+   "answer": "AD",
+   "analysis": "C选项在IP路由环境中，NSEL的值通常为FF，这句话错误，应该为00。"
+  }
+ ]
+}
