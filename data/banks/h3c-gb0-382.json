@@ -1,0 +1,28 @@
+{
+  "title": "H3CSE-RS GB0-382 高级路由交换技术2",
+  "description": "共 487 题：单选 229 · 多选 258，含拓扑配图",
+  "imageBase": "h3c-gb0-382/img/",
+  "exam": {
+    "count": 60,
+    "duration": 120,
+    "passScore": 80
+  },
+  "scores": {
+    "single": 1,
+    "multiple": 2,
+    "judge": 1,
+    "fill": 1
+  },
+  "parts": [
+    "h3c-gb0-382/part1.json",
+    "h3c-gb0-382/part2.json",
+    "h3c-gb0-382/part3.json",
+    "h3c-gb0-382/part4.json",
+    "h3c-gb0-382/part5.json",
+    "h3c-gb0-382/part6.json",
+    "h3c-gb0-382/part7.json",
+    "h3c-gb0-382/part8.json",
+    "h3c-gb0-382/part9.json",
+    "h3c-gb0-382/part10.json"
+  ]
+}
