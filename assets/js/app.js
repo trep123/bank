@@ -1,9 +1,9 @@
-import * as auth from './auth.js?v=20261013b';
-import * as store from './store.js?v=20261013b';
-import { listBanks, getBank, isCorrect, typeCount, letter } from './bank.js?v=20261013b';
+import * as auth from './auth.js?v=20261013c';
+import * as store from './store.js?v=20261013c';
+import { listBanks, getBank, isCorrect, typeCount, letter } from './bank.js?v=20261013c';
 import {
   $, $$, esc, rich, shuffle, fmtTime, fmtDuration, fmtDate, uid, toast, confirmDialog, icon, TYPE_LABEL,
-} from './utils.js?v=20261013b';
+} from './utils.js?v=20261013c';
 
 const app = $('#app');
 let cleanup = null; // 当前视图的清理函数（计时器、键盘监听等）
@@ -253,6 +253,7 @@ async function viewHome() {
       <div class="bank-links">
         <a href="#/practice/${esc(b.id)}/wrong" class="${wrong ? '' : 'disabled'}">${icon('target')} 错题本 <b>${wrong}</b></a>
         <a href="#/practice/${esc(b.id)}/fav" class="${fav ? '' : 'disabled'}">${icon('star')} 收藏 <b>${fav}</b></a>
+        ${b.exports ? `<a href="javascript:;" data-export="${esc(b.id)}">${icon('download')} 导出</a>` : ''}
       </div>
     </article>`;
   }).join('');
@@ -273,6 +274,11 @@ async function viewHome() {
     <div class="section-head"><h2>我的题库</h2><span class="muted">${banks.filter(Boolean).length} 个题库</span></div>
     <section class="bank-grid">${cards || '<p class="muted">暂无题库，请在 data/banks/index.json 中添加。</p>'}</section>`;
 
+  $$('[data-export]').forEach((el) => el.addEventListener('click', (e) => {
+    e.preventDefault();
+    const b = banks.find((x) => x && x.id === el.dataset.export);
+    if (b) exportDialog(b);
+  }));
   $$('.bank-links a.disabled').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); toast('这里还是空的', 'info'); }));
   $$('[data-reset]').forEach((btn) => btn.addEventListener('click', async () => {
     const ok = await confirmDialog({
@@ -384,6 +390,46 @@ function keyToOption(e, q) {
   }
   return null;
 }
+
+/* 导出题库（docx / pdf，含答案与解析） */
+function exportDialog(b) {
+  const ex = b.exports;
+  const size = (n) => (n > 1048576 ? `${(n / 1048576).toFixed(1)} MB` : `${Math.max(1, Math.round(n / 1024))} KB`);
+  const file = (ext) => `${b.title.replace(/[\\/:*?"<>|\s]+/g, '_')}.${ext}`;
+  const wrap = document.createElement('div');
+  wrap.className = 'modal-mask';
+  wrap.innerHTML = `
+    <div class="modal export-modal" role="dialog" aria-modal="true">
+      <h3 class="modal-title">导出题库</h3>
+      <p class="muted export-sub">${esc(b.title)} · ${b.questions.length} 题，含答案与解析${b.questions.some((q) => q.images.length) ? '及配图' : ''}</p>
+      <div class="export-opts">
+        <a class="export-opt" href="${esc(ex.docx)}" download="${esc(file('docx'))}">
+          <span class="export-ico doc">W</span>
+          <span><b>Word 文档</b><small>.docx · ${size(ex.docxSize || 0)} · 可编辑</small></span>
+          ${icon('download')}
+        </a>
+        <a class="export-opt" href="${esc(ex.pdf)}" download="${esc(file('pdf'))}">
+          <span class="export-ico pdf">PDF</span>
+          <span><b>PDF 文档</b><small>.pdf · ${size(ex.pdfSize || 0)} · 适合打印</small></span>
+          ${icon('download')}
+        </a>
+      </div>
+      <div class="modal-actions"><button class="btn btn-ghost" data-act="close">关闭</button></div>
+    </div>`;
+  document.body.appendChild(wrap);
+  requestAnimationFrame(() => wrap.classList.add('show'));
+  const close = () => { wrap.classList.remove('show'); document.removeEventListener('keydown', onKey, true); setTimeout(() => wrap.remove(), 200); };
+  const onKey = (e) => { if (e.key === 'Escape') { e.stopPropagation(); close(); } };
+  document.addEventListener('keydown', onKey, true);
+  wrap.addEventListener('click', (e) => {
+    if (e.target === wrap || e.target.closest('[data-act="close"]')) close();
+    else if (e.target.closest('.export-opt')) { toast('开始下载…', 'success'); setTimeout(close, 300); }
+  });
+}
+
+/* 禁止双指缩放 / 双击缩放（iOS Safari 会忽略 user-scalable=no） */
+['gesturestart', 'gesturechange', 'gestureend'].forEach((t) => document.addEventListener(t, (e) => e.preventDefault(), { passive: false }));
+document.addEventListener('touchmove', (e) => { if (e.touches.length > 1) e.preventDefault(); }, { passive: false });
 
 /* 图片放大查看 */
 function openLightbox(src) {
