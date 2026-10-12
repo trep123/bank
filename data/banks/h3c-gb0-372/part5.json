@@ -1,0 +1,673 @@
+{
+ "questions": [
+  {
+   "id": "2-181",
+   "type": "multiple",
+   "question": "在进行MSTP的配置时，区域视图的配置步骤包含______。",
+   "options": [
+    "使用region-name命令配置域名",
+    "使用revsion命令配置修订级别",
+    "配置VLAN和实例的映射关系",
+    "配置实例的首选根桥和备用根桥"
+   ],
+   "answer": "ABC",
+   "analysis": "用户通过stp region-configuration进入MST域视图后，可以对域的相关参数（域名、VLAN映射表以及修订级别）进行配置。"
+  },
+  {
+   "id": "2-182",
+   "type": "multiple",
+   "question": "关于BPDU保护，以下说法正确的有______。",
+   "options": [
+    "没有配置BPDU保护的边缘端口收到BPDU会转变为非边缘端口",
+    "BPDU保护在被保护的端口视图配置",
+    "BPDU保护在系统视图配置",
+    "配置BPDU保护后，边缘端口收到BPDU会被关闭"
+   ],
+   "answer": "ACD",
+   "analysis": "交换机上启动了BPDU保护功能后，如果边缘端口受到了BPDU，系统就将这些端口关闭，被关闭端口只能由网络管理人员恢复。\nBPDU保护功能在全局视图配置：\n[SWA]stp bpdu-protection\n{SWA-Ethernet1/0/1]stp edged-port enable"
+  },
+  {
+   "id": "2-183",
+   "type": "multiple",
+   "question": "关于环路保护，以下说法正确的有______。",
+   "options": [
+    "链路阻塞或链路单通可能会导致环路产生",
+    "在启动了环路保护功能后，当端口保存的BPDU老化时，环路保护生效",
+    "根端口的角色如果发生变化就会变为Discarding状态，不转发报文，从而不会在网络中形成环路\nDiscarding状态会一直维持，直到端口再次收到BPDU,重新成为根端口",
+    "在MSTP中，此功能对根端口、Alternate端口和Backup端口有效"
+   ],
+   "answer": "ABCD",
+   "analysis": "交换机各端口的STP状态依靠不断接收上游交换机发送的BPDU来维持。但是由于链路拥塞或者单向链路故障，根端口会收不到上游交换机的BPDU。此时下游交换机会重新选择根端口，原来的根端口经过计算后会变为指定端口，而原来的阻塞端口重新计算后会变为根端口且迁移到转发状态，从而交换机网络中会产生环路。\n配置了环路保护的端口，当接收不到上游设备发送的BPDU报文时，环路保护生效。\n如果该端口参与了STP计算，则不论其角色如何，该端口在所有实例都将处于Discarding状态。\n在启动了环路保护功能后，当端口保存的BPDU老化时，环路保护生效。\n根端口的角色如果变化为Discarding状态，不转发报文，从而不会在网络中形成环路。Discarding状态会一直维持，直到端口再次收到BPDU，重新成为根端口。\n在MSTP中，此功能对根端口、Alternate端口和Bcakp端口有效。"
+  },
+  {
+   "id": "2-184",
+   "type": "multiple",
+   "question": "关于TC保护，以下说法正确的有______。",
+   "options": [
+    "交换机在接收到TC-BPDU报文后，会执行MAC地址表项的删除操作",
+    "TC保护功能使能后，设备在收到TC-BPDU报文后的10秒内，允许收到TC-BPDU报文后立即进行地址表项删除操作的次数可以由用户控制",
+    "系统会监控在该时间段内收到的TC-BPDU报文数是否大于阈值，如果大于阈值，则设备在该时间超时后再进行一次地址表项刪除操作这样就可以避免频繁地删除转发地址表项",
+    "TC保护在系统视图配置"
+   ],
+   "answer": "ABCD",
+   "analysis": "交换机在接收到TC-BPDU报文后，会指定MAC地址表项和ARP表项的删除操作(ARP表项是通过MAC表项的删除而更新的，不是直接删除的).在有人伪造TC-BPDU报文恶意攻击交换机时，囧啊回家短时间内会收到很多的TC-BPDU报文，频繁的删除操作给交换机带来很大负担，给网络的稳定带来很大隐患。\nTC保护功能使能后，设备在收到TC-BPDU报文后的10秒内，允许收到TC-BPDU报文后立即进行地址表项删除操作的次数可以由用户控制（假设次数限制为X)\n同时系统会监控在该时间段内收到的TC-BPDU报文数是否大于X，如果大于X，则设备在该时间超时后再进行一次地址表删除操作。这样就可以避免频繁地删除转发地址表项。\n配置TC保护，包括全局使能TC保护功能以及配置门限值。\nTC保护配置命令如下：\n[H3C]stp tc-protection enable\n[H3C]stp tc-protection threshold 15\n缺省情况下，设备在收到TC BPDU报文后的一定时间内，允许收到TC-BPDU报文后立即删除转发地址表项的最高次数为6."
+  },
+  {
+   "id": "2-185",
+   "type": "single",
+   "question": "关于生成树保护机制的配置，下列说法正确的有______。",
+   "options": [
+    "BPDU保护需要在指定为边缘端口的端口视图下配置",
+    "根桥保护命令在网络中的根桥上配置才会起到保护作用",
+    "环路保护命令需要在物理环路上的每一个端口上配置",
+    "配置了TC保护门限值后，如果设备在默认10秒内收到的TC报文数超过该门限值，则设备在这10秒内将不再进行删除地址表项的操作"
+   ],
+   "answer": "D",
+   "analysis": "BPDU保护功能在全局视图配置，配置命令如下：\n[SWA]stp bpdu-protection\n[SWA-Ethernet1/0/1]stp edged-port enable\n对设置了Root保护功能的端口，端口角色只能保持为指定端口。\n环路保护命令对根端口、Alternate端口和Backup端口有效。\nTC保护功能使能后，设备在收到TC BPDU报文的10秒内，允许收到TC BPDU报文后立即进行地址表项删除操作的次数可以由用户控制"
+  },
+  {
+   "id": "2-186",
+   "type": "single",
+   "question": "客户采购了一台路由器，如果此路由器性能指标为平均无故障工作时间MTBF>Y148年，平均维修时间MTTR<u1则此路由器可靠性为______。",
+   "options": [
+    "99.9%",
+    "99.99%",
+    "99.999%",
+    "99.9999%"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "2-187",
+   "type": "single",
+   "question": "客户采购了一台路由器设备，如果此路由器性能指标为平均无故障工作时间\nMTBFW5000,平均维修时间MTTRSOQ 5则此路由器可靠性为______。",
+   "options": [
+    "99.9%",
+    "99.99%",
+    "99.999%",
+    "99.9999%"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "2-188",
+   "type": "single",
+   "question": "二台路由器通过局域网连接在一起，组成VRRP备份组，各接口上配置如下：\n[RTA-GigabitEthernet1/0]display this\nip address 192.168.0.252 255.255.255.0\nvrrp vrid 1 virtual-ip 192.168.0.254\nvrrp vrid 1 priority 120\nshutdown\n[RTB-GigabitEthernet1/0]display this\nip address 192.168.0.253 255.255.255.0\nvrrp vrid 1 virtual-ip 192.168.0.254\n从上述信息可以得知______。",
+   "options": [
+    "路由器RTA处于VRRP Master状态，路由器RTB处于VRRP Backup状态",
+    "路由器RTA处于VRRP Backup状态，路由器RTB处于VRRP Master状态",
+    "路由器RTA处于VRRP Initialize状态，路由器RTB处于VRRP Master状态",
+    "路由器RTA处于VRRP Master状态，路由器RTB处于VRRP Master状态"
+   ],
+   "answer": "C",
+   "analysis": "VRRP协议有三种状态机，分别是Initialize、Master和Backup。\n路由器启动后进入Initlalize状态。当收到接口Startup的消息，将转入Backup或Master状态(优先级255时)。当路由器处于Initialize状态，不会对VRRP广播报文。响应对虚拟IP地址的ARP请求，并且响应的是虚拟\nMAC地址，而不是接口的真实MAC地址。转发目的MAC地址为虚拟MAC地址的IP报文。如果它是这个虚拟IP地址的拥有者，则接收目的IP地址为这个虚拟IP地址的IP报文，否则，丢弃这个IP报文。在Master状态中，路由器只有接收到比自己的优先级大的VRRP报文时，才会转为Backup。当路由接收到接口的\nShutdown事件，转为Initialize状态。\n当路由器处于Backup状态时，将接收Master发送的VRRP广播报文。对虚拟IP地址的ARP请求，不做响应。丢弃目的MAC地址为虚拟MAC地址的IP报文。丢弃目的IP地址为虚拟IP地址的IP报文。只有当Backup接收到Master_Down这个定时器到时的事件时，才会转为Master。当路由器接收到比自己的优先级小的VRRP报文时，丢弃这个报文，不对定时器做重置处理，在若干这样的处理之后，MasterDown这个定时器到时，路由器转为Master状态。当路由器接收到接口的Shutdown事件，转为Initialize状态。"
+  },
+  {
+   "id": "2-189",
+   "type": "single",
+   "question": "在PIM-DM组网中，关于路由器发送Prune（剪枝）消息，描述正确的有______。",
+   "options": [
+    "路由器无本地直连组播接收者时，会向所有PIM邻居发送Prune",
+    "路由器(S,G)表项中出接口列表为空时,会向所有PIM邻居发送Prune消息",
+    "Assert（断言）失败的一方会向获胜一方发送Prune消息",
+    "路由器接口收到Prune消息后，从此将不在此接口发送相应组播组的报文"
+   ],
+   "answer": "C",
+   "analysis": "如果路由器不需要PIM邻居发送组播报文给自己，则发送Prune消息给PIM邻居，PIM邻居收到Prune（剪枝）消息后将不再转发该组播组的报文到本路由器\n路由器有两种情况需要发送Prune消息：\n如果路由器维护的(S,G)表项中出接口列表为空，表示路由器下游没有组播接收者，则路由器会向上游RPF邻居发送Prune消息。\n如果路由器从非RPF接口收到组播报文，则会触发Assert(断言)过程，Assert失败的一方也会向获胜的一方发送Prune消息。"
+  },
+  {
+   "id": "2-190",
+   "type": "multiple",
+   "question": "如图所示PIM-DM组网中，路由器RT1、RT2的部分单播路由表如下\n<RT1>display ip routing-table\nRouting Tables: Public\nDestination/Mask  Proto   Pre  Cost  NextHop   Interface\n10.1.1.0/30               Direct   0       0        10.1.1.2      Port1\n10.1.1.1/32               Direct   0       0        10.1.1.1      Port1\n10.1.1.2/32               Direct   0       0        127.0.0.1    InLoop0\n11.1.1.0/30               Direct   0       0        11.1.1.1      Port2\n11.1.1.1/32               Direct   0       0        127.0.0.1    InLoop0\n12.1.1.0/30               Direct   0       0        12.1.1.1      Port3\n12.1.1.1/32               Direct   0       0        127.0.0.1    InLoop0\n100.1.1.0/24             OSPF   10    1563  10.1.1.1      Port1\n127.0.0.0/8               Direct   0       0        127.0.0.1    InLoop0\n127.0.0.1/32             Direct   0       0        127.0.0.1    InLoop0\n100.1.0.0/16             OSPF   10     3        11.1.1.2      Port2\n<RT2>display ip routing-table\nRouting Tables: Public\nDestination/Mask  Proto   Pre  Cost   NextHop   Interface\n20.1.1.0/30               Direct   0       0        20.1.1.2      Port1\n20.1.1.1/32               Direct   0       0        20.1.1.1      Port1\n20.1.1.2/32               Direct   0       0        127.0.0.1    InLoop0\n11.1.1.0/30               Direct   0       0        11.1.1.2      Port2\n11.1.1.2/32               Direct   0       0        127.0.0.1    InLoop0\n22.1.1.0/30               Direct   0       0        22.1.1.1      Port3\n22.1.1.1/32               Direct   0       0        127.0.0.1    InLoop0\n100.1.1.0/24             OSPF   10    1564  11.1.1.1      Port2\n127.0.0.0/8               Direct   0       0        127.0.0.1    InLoop0\n127.0.0.1/32             Direct   0       0        127.0.0.1    InLoop0\n100.1.0.0/16             OSPF   10     2         20.1.1.1     Port1\n那么，路由器RT1、RT2的(S,G)表项的出、入接口列表分别为______。",
+   "options": [
+    "RT1出接口列表：Port2、Port3",
+    "RT2出接口列表：Port2、Port3",
+    "RT1入接口列表：Port1",
+    "RT2入接口列表：Port1",
+    "接收者可能会收到两份相同的组播数据"
+   ],
+   "answer": "AC",
+   "analysis": "RT1:  PORT1入，port2/port3出；RT2:PORT2入，port3出",
+   "images": [
+    "p118_64.jpeg"
+   ]
+  },
+  {
+   "id": "2-191",
+   "type": "multiple",
+   "question": "客户要求核心交换机采用以太网链路聚合技术，则______。",
+   "options": [
+    "聚合端口是物理端口，需要采购以太网链路聚合板卡",
+    "聚合端口是多个逻辑端口组成的逻辑端口，不需要采购以太网链路聚合板卡",
+    "聚合端口是多个物理端口组成的逻辑不需要采购以太网链路聚合板卡",
+    "聚合端口支持二层聚合端口和三层聚合端口"
+   ],
+   "answer": "CD",
+   "analysis": "链路聚合是将多个物理以太网端口聚合在一起形成一个逻辑上的聚合组，使用链路聚合服务的上层实体把同一聚合组内的多条物理链路视为一条逻辑链路。\n聚合接口是一种逻辑接口，它可以分为二层聚合端口和三层聚合接口。"
+  },
+  {
+   "id": "2-192",
+   "type": "single",
+   "question": "交换机SWA、SWB通过二根光纤千兆以太网链路连接在一起，其中交换机SWA上有如下接口配置:\n[SWA]interface GigabitEthernet 1/0/1\n[SWA-GigabitEthernet1/0/1]gvrp\n[SWA-GigabitEthernet1/0/1]port link-type trunk\n[SWA-GigabitEthernet1/0/1]port trunk permit vlan 1 10\n[SWA]interface GigabitEthernet 1/0/2\n[SWA-GigabitEthernet1/0/2]port link-type trunk\n[SWA-GigabitEthernet1/0/2]port trunk permit vlan 1 10\n如要配置链路聚合将这两条链路聚合在一起，如果SWB上配置是正确的，从上述信息可以得知______。",
+   "options": [
+    "只有在GigabitEthernet1/0/2和Gigabit1/0/1上允许所有VLAN通过，二者才可以加入同一个聚合组",
+    "只有将GigabitEtherent1/0/2的配置改为与GigabitEtherent1/0/1 一致，二者才可以加入同一个聚合组",
+    "在SWASWB上都配置了链路聚合后，若SWA和SWB都在聚合端口上开启MSTP,则GigabitEtherent1/0/1和GigabitEtherent1/0/2之中有一个会被阻塞",
+    "在SWA和SWB上都配置了链路聚合后，若SWA和SWB都在聚合端口上开启MSTP，则\nGigabitEthernet1/0/1 和GigabitEtherent1/0/2 可以参加转发"
+   ],
+   "answer": "D",
+   "analysis": "操作Key:操作Key是在链路聚合时，聚合控制根据成员端口的某些配置自动生成的一个配置组合，包括端口速率、双工模式和链路状态的配置。在聚合组中，处于Selected状态的成员端口具有相同的操作Key。\n第一类配置：此类配置可以在聚合端口和成员端口上配置，但是不会参与操作Key计算，比如GVRP、\nMSTP等。\n第二类配置：第二类配置所含内容如下表所示。同一聚合组中，如果成员端口与聚合端口的第二类配置不同，那么该成员端口将不能成为Selected端口。"
+  },
+  {
+   "id": "2-193",
+   "type": "multiple",
+   "question": "交换机SWA、SWB通过二根光纤千兆以太网链路连接在一起，其中交换机SWA上有如下接口配置：\n[SWA]interface GigabitEthernet 1/0/1\n[SWA-GigabitEthernet1/0/1]port link-type trunk\n[SWA-GigabitEthernet1/0/1]port trunk permit vlan 1 10 100\n[SWA]interface GigabitEthernet 1/0/2\n[SWA-GigabitEthernet1/0/2]port link-type trunk\n[SWA-GigabitEthernet1/0/2]port trunk permit vlan 1 10\n若要配置链路聚合将这两条链路聚合在一起。如果SWB上配置是正确的，从上述信息可以得知______。",
+   "options": [
+    "因为允许通过的VLAN不同，GigabitEthernet1/0/1和GigabitEthernet1/0/2无法加入同一个聚合组",
+    "只有将GigabitEthertnet1/0/2的配置改为与GigabitEthernet1/0/1 一致，二者才可以加入同一个聚合组",
+    "不需要更改允许通过的VLAN配置，GigabitEthernet1/0/1和GigabitEthernet 1/0/2就可以加入同一个聚合组",
+    "在SWA和SWB上都配置了链路聚合后，若交换机SWA和SWB开启MSTP,则GigabitEthernet1/0/1和\nGigabitEthernet 1/0/2 的MSTP 端口状态一致"
+   ],
+   "answer": "AB",
+   "analysis": "操作Key:操作Key是在链路聚合时，聚合控制根据成员端口的某些配置自动生成的一个配置组合，包括端口速率、双工模式和链路状态的配置。在聚合组中，处于Selected状态的成员端口具有相同的操作Key。\n第一类配置：此类配置可以在聚合端口和成员端口上配置，但是不会参与操作Key计算，比如GVRP、\nMSTP等。\n第二类配置：第二类配置所含内容如下表所示。同一聚合组中，如果成员端口与聚合端口的第二类配置不同，那么该成员端口将不能成为Selected端口。"
+  },
+  {
+   "id": "2-194",
+   "type": "single",
+   "question": "二台交换机SWA.SWB通过四根以太网线连接在一起,其中交换机SWA上对应端口为\nEthernet1/0/1、Ethernet 1/0/2, Ethernet 1/0/3、Ethernet 1/0/4在SWA上对此4个端口配置了静态链路聚合从上述信息可以得知______。",
+   "options": [
+    "在各端口配置一致的情况下，Ethernet1/0/1端口为聚合组参考端口",
+    "在各端口配置一致的情况下，Ethernet1/0/2端口为聚合组参考端口",
+    "在各端口配置一致的情况下，Ethernet1/0/3端口为聚合组参考端口",
+    "在各端口配置一致的情况下，Ethernet1/0/4端口为聚合组参考端口"
+   ],
+   "answer": "A",
+   "analysis": "当聚合组内有处于UP状态的端口时，系统按照端口全双工?高速率、全双工/低速率、半双工/高速率、半双工/低速率的优先次序，选择优先次序最高且处于UP状态的、端口的第二类配置和对应聚合端口的第二类配置相同的端口作为该端口的参考端口（优先次序相同情况下，端口号最小的端口为参考端口）。"
+  },
+  {
+   "id": "2-195",
+   "type": "multiple",
+   "question": "客户要求在网络设计时，关键部位必须有高可靠性设备，且可靠性要达到99.999%则设备的运行情况应满足______。",
+   "options": [
+    "每年故障时间不超过1分钟",
+    "每年故障时间不超过3分钟",
+    "每年故障时间不超过6分钟",
+    "每年故障时间不超过9分钟"
+   ],
+   "answer": "AB",
+   "analysis": "可靠性达到5个9以上\n可靠性99.999%意味着每年故障时间不超过5分钟\n可靠性99.9999%意味着每年故障时间不超过30秒"
+  },
+  {
+   "id": "2-196",
+   "type": "multiple",
+   "question": "客户要求在网络设计时，关键部位必须有高可靠性设备，且可靠性要达到99.999%则设备的运行情况应满足______。",
+   "options": [
+    "MTBF>Y699^；MTTR<u1",
+    "MTBF>Y343^；MTTR<u1",
+    "MTBF>Y28年；MTTR<u1",
+    "MTBF>Y9年；MTTR<u1"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "2-197",
+   "type": "single",
+   "question": "二台交换机SWA、SWB通过四根以太网线连接在一起，其中交换机SWA上对应接口有如下配置：\n[SWA-Ethernet1/0/1]display this\nduplex full\nspeed 10\n[SWA-Ethernet1/0/2]display this\nduplex full\nspeed 10\n[SWA-Ethernet1/0/3]display this\nduplex half\nspeed 100\n[SWA-Ethernet1/0/4]display this\nduplex half\nspeed 100\n从上述信息可以得知______。",
+   "options": [
+    "四个以太网口通过静态聚合加入同一个聚合组，Selected端口为Ethernet1/0/1和Ethernet1/0/2",
+    "四个以太网口通过静态聚合加入同一个聚合组，Selected端口为Ethernet1/0/1和Ethernet1/0/3",
+    "四个以太网口通过静态聚合加入同一个聚合组，Selected端口为全部四个端口",
+    "四个以太网口通过静态聚合加入同一个聚合组，Selected端口为Ethernet1/0/3和Ethernet1/0/4"
+   ],
+   "answer": "A",
+   "analysis": "当聚合组内有处于UP状态的端口时，系统按照端口全双工?高速率、全双工/低速率、半双工/高速率、半双工/低速率的优先次序，选择优先次序最高且处于UP状态的、端口的第二类配置和对应聚合端口的第二类配置相同的端口作为该端口的参考端口（优先次序相同情况下，端口号最小的端口为参考端口）。"
+  },
+  {
+   "id": "2-198",
+   "type": "single",
+   "question": "客户的二台交换机SWA、SWB通过七根以太网线连接在一起，并配置了静态链路聚合，交换机SWA上对应端口为Ethernet 1/0 Ethernet 1/0/2、Ethernet 1/0/3、Ethernet\n1/0/4、Ethernet 1/0/5、Ethernet1/0/6、Ethernet 1/0/7,配置方式为按照端口顺序依次配置如果交换机SWA、SWB每个聚合组只支持6个端口，则______。",
+   "options": [
+    "在各端口配置一致的情况下，Ethernet1/0/1端口为聚合组Unselected端口",
+    "在各端口配置一致的情况下，SWA在7个端口中随机选择一个端口为聚合组Unselected端口",
+    "在各端口配置一致的情况下，Ethernet1/0/6端口为聚合组Unselected端口",
+    "在各端口配置一致的情况下，Ethernet1/0/7端口为聚合组Unselected端口"
+   ],
+   "answer": "D",
+   "analysis": "当聚合组内有处于UP状态的端口时，系统按照端口全双工?高速率、全双工/低速率、半双工/高速率、半双工/低速率的优先次序，选择优先次序最高且处于UP状态的、端口的第二类配置和对应聚合端口的第二类配置相同的端口作为该端口的参考端口（优先次序相同情况下，端口号最小的端口为参考端口）。"
+  },
+  {
+   "id": "2-199",
+   "type": "single",
+   "question": "客户的二台交换机SWA、SWB通过七根以太网线连接在一起，并配置了动态链路聚合，交换机SWA上对应端口为Ethernet 1/0 Ethernet 1/0/2、Ethernet 1/0/3、Ethernet\n1/0/4、Ethernet 1/0/5、Ethernet1/0/6、Ethernet1/0/7如果交换机SWA、SWB每个聚合组只支持6个端口，且SWA交换机有如下配置：\n[SWA]interface Ethernet 1/0/7\n[SWA-Ethernet1/0/7]lacp port-priority 4096\ni设备上査看LACP状态输出如下：\n[SWA]display lacp system-id\nActor System ID: 0x8000, 00e1-fc00-5000\n[SWB]display lacp system-id\nActor System ID: 0x8000, 00e0-fc43-7384\n从上述信息可以得知______。",
+   "options": [
+    "在各端口配置一致的情况下，Ethernet1/0/1端口为聚合组Unselected端口",
+    "在各端口配置一致的情况下，Ethernet1/0/2端口为聚合组Unselected端口",
+    "在各端口配置一致的情况下，Ethernet1/0/6端口为聚合组Unselected端口",
+    "在各端口配置一致的情况下，Ethernet1/0/7端口为聚合组Unselected端口"
+   ],
+   "answer": "C",
+   "analysis": "在动态聚合模式中，本端系统和对端系统会进行协商，根据两端系统中设备ID较优的一端的端口ID的想打，来决定端口的状态。\n比较两个系统的设备ID(设备ID=系统的LACP协议优先级+系统MAC地址）。先比较系统的LACP协议优先级，如果相同比较系统MAC地址。设备ID小的一端被认为较优（系统的LACP协议优先级和MAC地址越小，设备ID越小）。\n比较设备ID较优的一端的端口ID（端口ID=端口的LACP协议优先级+端口号）。对于设备ID较优的一端的各个端口，首先比较端口的LACP协议优先级，如果优先级相同比较端口号。端口ID小的端口作为参考端口（端口的LACP协议优先级和端口号越小，端口ID越小）。\n系统的LACP协议优先级和端口的LACP协议优先级均为32768，改变系统的LACP协议优先级将会影响到动态聚合组成员的Selected和Unselected状态。"
+  },
+  {
+   "id": "2-200",
+   "type": "single",
+   "question": "客户的二台交换机SWA、SWB通过七根以太网线连接在一起，并配置了动态链路聚合，交换机SWA上对应端口Ethernet 1/0/1, Ethernet 1/0/2、Ethernet 1/0/3、Ethernet\n1/0/4、Ethernet 1/0/5、Ethernet 1/0/6、Ethernet 1/0/7。如果交换机SWA、SWB每个聚合组只支持6个端口，且SWA交换机有如下配置：\n[SWA]interface Ethernet 1/0/7\n[SWA-Ethernet1/0/7]lacp port-priority 4096\ni设备上査看LACP状态:输出信肩:如下：\n[SWA]display lacp system-id\nActor System ID: 0x8000, 00e1-fc00-5000\n[SWB]display lacp system-id\nActor System ID: 0x8000, 00e0-fc43-7384\n如果更改SWA的LACP系统优先级为4096,从上述信息可以得知______。",
+   "options": [
+    "在各端口配置一致的情况下，Ethernet1/0/1端口为聚合组Unselected",
+    "在各端口配置一致的情况下，SWA在端口Ethernet1/0/1至Ethernet 1/0/6这六个端口中随机选择一个端口为聚合组UnselectM",
+    "在各端口配置一致的情况下，Ethernet1/0/6端口为聚合组Unselected端口",
+    "在各端口配置一致的情况下，Ethernet1/0/7端口为聚合组Unselected端口"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "2-201",
+   "type": "single",
+   "question": "客户的局域网交换机SWA双上行连接交换机SWB和交换机SWC,通过SmartLink保证链路可靠性，如果交换机SWA设备MAC地址为000f-e269-42d1， 交换机SWB设备MAC地址为000f-e269-42d2，交换机SWC设备MAC地址为000f-e269-42d3从上述信息可以得知\n______。",
+   "options": [
+    "当交换机SWA连接交换机SWB线路故障,交换机SWA发送Flush报文的目的mac是000f-e269-42d1",
+    "当交换机SWA连接交换机SWB线路故障,交换机SWA发送Flush报文的目的mac是000f-e269-42d2",
+    "当交换机SWA连接交换机SWB线路故障,交换机SWA发送Flush报文的目的mac是000f-e269-42d3",
+    "以上答案都不正确"
+   ],
+   "answer": "D",
+   "analysis": "可以通过判断该地址是否为0x010F-E200-0004来区分该报文是否为Flush报文。"
+  },
+  {
+   "id": "2-202",
+   "type": "multiple",
+   "question": "客户的局域网交换机SWA双上行连接交换机SWB和交换机SWC,通过SmartLink保证链路可靠性\nSWA交换机有如下配置：\n[SWA-smlk-group1]smart-link flush enable control-vlan 10\nSWB交换机有如下配置：\n[SWB-GigabitEthernet1/0/1]smart-link flush enable control-vlan 100\nSWC交i机有如下配置：\n[SWC-GigabitEthernet1/0/1]smart-link flush enable control-vlan 100\n如果交换机SWA交换机SWB交换机SWC互连接口允许所有VLAN通过,从上述信息可以得知______。",
+   "options": [
+    "不更改配置，则SWA交换机SmartLink备份功能无法实现",
+    "更改SWB交换机、SWC交换机接收控制VLAN为10,则SWA交换机SmartLink备份功能可正常实现",
+    "更改SWB交换机、SWC交换机接收控制vlan为10，SWB交换机、SWC交换机通过流量刷新MAC和ARP",
+    "不需要修改任何配置，SWA交换机SmartLink备份功能可实现"
+   ],
+   "answer": "BD",
+   "analysis": "当设备收到Flush报文时，判断该Flush报文的Control VLAN ID和接收Flush报文的端口下配置的接收控制VLAN ID是否相同。如果两Control VLAN ID不同，设备对该Flush报文不做处理，直接转发。如果两个\nControl VLAN ID相同，设备将提取Flush报文中的VLAN Bitmap数据，将设备在这些VLAN内学习到的MAC地址转发表项和ARP表项删除。"
+  },
+  {
+   "id": "2-203",
+   "type": "single",
+   "question": "客户的局域网交换机SWA通过GigabitEthernet2/0/1连接SWB,通过GigabitEthernet\n2/0/2连接SWC且SWA交换机有如下配置：\n[SWA]smart-link group 1\n[SWA-smlk-group1]protected-vlan reference-instance 0 to 32\n[SWA-smlk-group1]port gigabitethernet 2/0/1 slave\n[SWA-smlk-group1]port gigabitethernet 2/0/2 master\n[SWA-smlk-group1]flush enable control-vlan 10\n如果交换机SWA、交换机SWB、交换机SWC互连接口允许所有VLAN通过,从上述信息可以得知______。",
+   "options": [
+    "正常情况下，SWA交换机流量将通过Gigabitethernet 2/0/1上行",
+    "正常情况下，SWA交换机流量将通过Gigabitethernet 2/0/2上行",
+    "如果Gigabitethernet 2/0/1端口故障，则SWA交换机将在所有VLAN内广播flush报文",
+    "如果Gigabitethernet 2/0/2端口故障，则SWA交换机将在所有VLAN内广播flush报文"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "2-204",
+   "type": "multiple",
+   "question": "客户的局域网交换机SWA通过GigabitEthenet 2/0/1连接SWB、通过GigabitEthernet 2/0/2连接SWC且SWA交换机有如下配置：\n[SWA]stp region-configuration\n[SWA-mst-region]instance 0 vlan 1 to 100\n[SWA-mst-region]instance 2 vlan 101 to 200\n[SWA]smart-link group 1\n[SWA-smlk-group1 ]protected-vlan reference-instance 0\n[SWA-smlk-group1]port gigabitethernet 2/0/1 master\n[SWA-smlk-group1 ]port gigabitethernet 2/0/2 slave\n[SWA] smart-link group 2\n[SWA-smlk-group2]protected-vlan reference-instance 2\n[SWA-smlk-group2]port gigabitethernet 2/0/2 master\n[SWA-smlk-group2]port gigabitethernet 2/0/1 slave\ni口果SWA、SWB、SWC连接口允许所有VLAN通过，从上述信息可以得知______。",
+   "options": [
+    "SWA交换机VLAN2流量将通过GigabitEthernet 2/0/1上行",
+    "SWA交换机VLAN2流量将通过Gigabitethernet 2/0/2上行",
+    "SWA交换机VLAN102流量将通过Gigabitethernet 2/0/1上行",
+    "SWA交换机VLAN102流量将通过Gigabitethernet 2/0/2上行"
+   ],
+   "answer": "AD",
+   "analysis": ""
+  },
+  {
+   "id": "2-205",
+   "type": "single",
+   "question": "以下关于SmartLink & Monitor Link原理说法正确的是______。",
+   "options": [
+    "SmartLink是一种端口联动方案，监控设备上行链路。跟据上行链路的Up/Down状态变化来触发下行链路的Up/Down变化",
+    "MonitorLink实现了主备链路的冗余备份，并在主用链路发生故障后使流量能够迅速切换到备用链路上",
+    "MonitorLink通过发送Flush报文来通知其他设备进行MAC地址转发表项和ARP表项的刷新操作",
+    "SmartLink通过发送Flush报文来通知其他设备进行MAC地址转发表项和ARP表项的刷新操作"
+   ],
+   "answer": "D",
+   "analysis": "当Smart Link组发生链路切换时，通过发送Flush报文进行MAC地址转发表项和ARP/ND表项的刷新操作。"
+  },
+  {
+   "id": "2-206",
+   "type": "single",
+   "question": "客户局域网交换机SWA和多台交换机相连如果已知SWA上配置了Monitor Link 组,交换机SWA上有如下配置信息：\n[SWA]monitor-link group 1\n[SWA-mtlk-group1] port gigabitethernet 1/0/1 uplink\n[SWA-mtlk-group1] port gigabitethernet 1/0/2 uplink\n[SWA-mtlk-group1] port gigabitethernet 1/0/3 uplink\n[SWA-mtlk-group1] port gigabitethernet 2/0/1 downlink\n从上述信息可以得知______。",
+   "options": [
+    "GigabitEthernet1/0/1 端口为Down 状态，则Gigabitethernet 2/0/1 端口也会为Down 状态",
+    "GigabitEthernet1/0/2 端口为Down 状态，则Gigabitethernet 2/0/1 端口也会为Down 状态",
+    "GigabitEthernet1/0/2 端口为Down 状态，则GigabitEthernet 2/0/1 端口也会为Down 状态",
+    "GigabitEthernet1/0/1 端口为Up 状态， 则GigabitEthernet 2/0/1端口也会为Up 状态"
+   ],
+   "answer": "D",
+   "analysis": "上行链路：上行链路（Uplink）是Monitor Link组中被监控的链路。当Monitor Link组没有上行链路成员或所有上行链路成员端口都为Down时，Monitor Link组就处于Down状态。而当Monitor Link组中只要有一个上行链路成员为Up时，Monitor Link组就处于Up状态。"
+  },
+  {
+   "id": "2-207",
+   "type": "multiple",
+   "question": "中高端交换机设备自身具备冗余性如果客户网络中某台核心交换机的双主控板主备冗余热备份，交流电源2+1冗余热备份,而风扇系统1:1热备份，则下列操作中,可能对客户网络产生重大影响的是______。",
+   "options": [
+    "拔出备用主控板",
+    "拔出业务板",
+    "拔出2个电源",
+    "拔出1个风扇"
+   ],
+   "answer": "BC",
+   "analysis": ""
+  },
+  {
+   "id": "2-208",
+   "type": "multiple",
+   "question": "图示为SmartLink与Monitor Link的组网应用交换机SWD上配置Smart Link组，交换机SWB和交换机SWC上配置了Monitor Link组交换机SWB连接交换机SWA端口为Monitor Link上行端口 ，交换机SWB连接交换机SWD端口为Monitor Link下行端口:下行端口的对端端口为交换机SWD Smart Link组端口，从上述信息可以得知 ______。",
+   "options": [
+    "交换机SWB上行交换机SWA的链路为Down状态，交换机SWD对应端口Smart Link组状态一定发生变化",
+    "交换机SWB上行交换机SWA的链路为Down状态，交换机SWD对应端口Smart Link组状态不一定发生变化",
+    "交换机SWD上行交换机SWB的链路为Down状态，交换机SWB Monitor Link组上行端口状态一定发生变化",
+    "交换机SWD上行交换机SWB的链路为Down状态，交换机SWB Monitor Link组上行端口状态不一定发生变化"
+   ],
+   "answer": "BD",
+   "analysis": "无法得知SWD的两个接口那个为active接口和backup端口，所以不能确定",
+   "images": [
+    "p126_65.jpeg"
+   ]
+  },
+  {
+   "id": "2-209",
+   "type": "single",
+   "question": "图示为SmartLink与Monitor Link级联的组网应用交换机SWH上的Smart Link组作为交换机SWH上MonitorLink组的上行端口，而该Monitor Link组下行端口的对端端口为交换机SWJ Smart Link组的主端口交换机SWH上行SWD、SWE端口为Smart Link组端口从上述信息可以得知______。",
+   "options": [
+    "交换机SWH上行交换机SWD的链路为Down状态，则交换机SWJ Smart Link组主端口会切换为副端口",
+    "交换机SWH上行交换机SWE的链路为Down状态，则交换机SWJ Smart Link组主端口会切换为副端口",
+    "交换机SWH上行交换机SWD和SWE的链路都为Down状态，则交换机SWJ Smart Link组主端口会切换为副端口",
+    "交换机SWJ Smart Link组状态与交换机SWH无关"
+   ],
+   "answer": "C",
+   "analysis": "",
+   "images": [
+    "p127_66.jpeg"
+   ]
+  },
+  {
+   "id": "2-210",
+   "type": "multiple",
+   "question": "图示为SmartLink与RRPP混合组网应用在该组网环境中，交换机SWA、交换机SWB、交换机SWC和交换机SWD上开启了RRPP协议提供链路冗余备份从上述信息可以得知\n______。",
+   "options": [
+    "交换机SWC、交换机SWD、交换机SWE可以使用MSTP技术避免环路",
+    "交换机SWC、交换机SWD,交换机SWE可以使用SmartLink技术避免环路",
+    "交换机SWC、交换机SWD、交换机SWE使用MSTP技术，交换机SWE上行交换机SWC、交换机SWD的链路会阻断一条",
+    "交换机SWC、交换机SWD、交换机SWE使用SmartLink技术，交换机SWE上行交换机SWC、交换机SWD的链路会阻断一条"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "2-211",
+   "type": "single",
+   "question": "以下关于环网技术说法正确的是______。",
+   "options": [
+    "以太网环技术日趋成熟且成本低廉，解决二层网络环路问题的技术有RPR和RRPP",
+    "RRPP(Rapid RingProtection Protocol,快速环网保护协议）是一个专门应用于以太网环的网络层协议",
+    "RRPR需要专用硬i件，因此成本较高",
+    "RRPP的收敛时间与环网上节点数无关，可应用于网络直径较大的网络"
+   ],
+   "answer": "D",
+   "analysis": "解决二层网络环路问题的技术有STP(Spanning Tree Protocol，生成树协议)和RRPP(Rapid Ring Protection Protocol，快速环路保护协议)。STP比较成熟，但其收敛时间在秒级。\nRRPP是一个专门应用于以太网环的链路层协议。\nRRPP的收敛时间与环网上节点数无关，可应用于网络直径较大的网络。"
+  },
+  {
+   "id": "2-212",
+   "type": "single",
+   "question": "客户局域网交换机SWA、SWB、SWC上构成RRPP环主环1,交换机SWA上有如下配置信息：\n[SWA] rrpp domain 1\n[SWA-rrpp-domain1] control-vlan 4092\nk上述信息可以得知______。",
+   "options": [
+    "交换机SWB,SWC上的主环控制VLAN可以与SWA不一致",
+    "交换机SWA、SWB、SWC上所有端口都需要加入VLAN4092",
+    "交换机SWA、SWB、SWC RRPP环上接入RRPP环的端口都需要加入VLAN 4092",
+    "为了便于网络管理，可以在VLAN4092上配置IP管理地址"
+   ],
+   "answer": "C",
+   "analysis": "控制VLAN：控制VLAN用于传递RRPP协议报文，设备上接入RRPP的端口都属于控制VLAN，且只有接入RRPP环的端口可加入此VLAN。每个RRPP域都有两个控制VLAN，主控制VLAN和子控制VLAN。主环的控制VLAN称为主控制VLAN，子环的控制VLAN称为子控制VLAN。配置时只需要指定主控制VLAN，系统会自动把比主控制VLAN的VLAN ID值大1的VLAN作为子控制VLAN。同一个RRPP域中所有子环的控制VLAN都相同，且主控制VLAN和子控制VLAN的接口上都不允许配置IP地址。"
+  },
+  {
+   "id": "2-213",
+   "type": "single",
+   "question": "客户局域网交换机SWA、SWB、SWC上构成RRPP环主环1,交换机SWA上有如下配置信息：\n[SWA] rrpp domain 1\n[SWA-rrpp-domain1] control-vlan 4092\n如果交换机SWB、SWC和SWD构成子环2,交换机SWB、SWC和SWE构成子环3从上述信息可以得知______。",
+   "options": [
+    "交换机SWB、SWC和SWD可以使用VLAN4092作为子环2控制VLAN",
+    "交换机SWB、SWC和SWE不可以使用VLAN4092作为子环3控制VLAN",
+    "子环2控制VLAN必须与子环3控制VLAN不一致",
+    "为了便于主环管理，可以在子环3控制VLAN上配置IP管理地址"
+   ],
+   "answer": "B",
+   "analysis": "控制VLAN：控制VLAN用于传递RRPP协议报文，设备上接入RRPP的端口都属于控制VLAN，且只有接入RRPP环的端口可加入此VLAN。每个RRPP域都有两个控制VLAN，主控制VLAN和子控制VLAN。主环的控制VLAN称为主控制VLAN，子环的控制VLAN称为子控制VLAN。配置时只需要指定主控制VLAN，系统会自动把比主控制VLAN的VLAN ID值大1的VLAN作为子控制VLAN。同一个RRPP域中所有子环的控制VLAN都相同，且主控制VLAN和子控制VLAN的接口上都不允许配置IP地址。"
+  },
+  {
+   "id": "2-214",
+   "type": "multiple",
+   "question": "客户局域网交换机SWA、SWB、SWC上构成RRPP环主环1,交换机SWA上有如下配置信息：\n[SWA] rrpp domain 1\n[SWA-rrpp-domain1] control-vlan 4092\n如果交换机SWA端口Gigabitethernet1/0/1和Gigabitethernet 1/0/2接入RRPP环从上述信息可以得知______。",
+   "options": [
+    "如果SWA 为主节点，GigabitEthernet1/0/1和GigabitEthem1/0/2功能是一致的",
+    "如果SWA为传输节点，Gigabitethernet1/0/1和Gigabitethernet1/0/2功能是一致的",
+    "如果SWA为主节点，当RRPP环处于健康状态时，SWA副端口只容许VLAN4092通过",
+    "如果SWA为传输节点，当RRPP环处于健康状态时，SWA主端口只容许VLAN4092通过"
+   ],
+   "answer": "BC",
+   "analysis": "主节点和创数节点各自有两个端口接入RRPP环，其中一个为主端口，另一个为副端口。端口的角色由用户的配置来决定，主节点的主端口和副端口在功能上有所区别：主节点的主端口用来发送探测环路的报文，副端口用来接收该报文。当RRPP环处于健康状态时，主节点的副端口在逻辑上阻塞数据VLAN，只允许控制VLAN的报文通过，当RRPP环处于断裂状态时，主节点的副端口将解除数据VLAN的阻塞状态，转发数据VLAN的报文。传输节点的主端口和副端口在功能上没有区别都用于RRPP环上协议报文和数据报文的传\n输。"
+  },
+  {
+   "id": "2-215",
+   "type": "multiple",
+   "question": "客户局域网交换机SWA、SWB、SWC上构成RRPP环主环1,交换机SWB上有如下配置信息：\n[SWB]rrpp domain 1\n[SWB-rrpp-domain1]ring 1 node-mode transit primary-port gigabitethernet 2/0/1\nsecondary-port gigabitethernet 2/0/2 level 0\n如果交换机SWA为主环1主节点，如果交换机SWB端口GigabitEtherent2/0/1故障，从上述信息可以得知______。",
+   "options": [
+    "SWA将发送Link-Down报文通知所有节点",
+    "交换机SWA立即将状态切换到Failed状态，放开副端口",
+    "交换机SWA将发送Common-Flush报文通知所有传输节点",
+    "如果交换机SWB发现端口GigabitEthernet 2/0/1口重新Up后，立即解除该端口的阻塞状态"
+   ],
+   "answer": "BC",
+   "analysis": "当传输节点交换机上的RRPP端口发生链路Down时，该节点将从与故障端口配对的状态为Up的RRPP端口发送Link-Down报文通知主节点。主节点收到Link-Down报文后，立即将状态切换到Failed状态，放开副端口。由于网络拓扑发生改变，以免报文定向错误，主节点还需要刷新FDB表，并从主端口发送Common-Flush-FDB报文通知所有传输节点刷新FDB。\n故障报告是由传输节点发起的，如果Link-Down报文在传输过程中不幸丢失，主节点的环网状态检测机制就派上了用场，如果主节点的副端口在规定时间内仍没有收到主节点发出的Hello报文，也认为环网发生故\n障，对故障的处理过程与传输节点主动上报作相同处理。当传输节点交换机上的RRPP端口发送恢复时，传输节点迁移到Preforwarding状态，并阻塞刚刚恢复的端口。"
+  },
+  {
+   "id": "2-216",
+   "type": "single",
+   "question": "客户局域网交换机SWA、SWB、SWC、SWD上构成RRPP环主环1交换机SWD与交换机SWB、SWC相连，与交换机SWA不相连。交换机SWD上有如下配置信息：\n[SWD]rrpp domain 1\n[SWD-rrpp-domain 1 ]ring 1 node-mode transit primary-port gigabitethernet 2/0/1 secondary-port gigabitethernet 2/0/2 level 0\n如果交换机SWA为主环1主节点，如果交换机SWD端口GigabitEtherent2/0/1故障，从上述信息可以得知______。",
+   "options": [
+    "SWA将发送Link-Down报文通知所有节点",
+    "交换机SWA立即将状态切换到Failed状态，放开副端口",
+    "交换机SWC立即将状态切换到Failed状态，放开副端口",
+    "如果交换机SWD发现端口GigabitEthernet2/0/1口重新Up后，立即解除该端口的阻塞状态"
+   ],
+   "answer": "B",
+   "analysis": "当传输节点交换机上的RRPP端口发生链路Down时，该节点将从与故障端口配对的状态为Up的RRPP端口发送Link-Down报文通知主节点。主节点收到Link-Down报文后，立即将状态切换到Failed状态，放开副端口。由于网络拓扑发生改变，以免报文定向错误，主节点还需要刷新FDB表，并从主端口发送Common-Flush-FDB报文通知所有传输节点刷新FDB。\n故障报告是由传输节点发起的，如果Link-Down报文在传输过程中不幸丢失，主节点的环网状态检测机制就派上了用场，如果主节点的副端口在规定时间内仍没有收到主节点发出的Hello报文，也认为环网发生故\n障，对故障的处理过程与传输节点主动上报作相同处理。当传输节点交换机上的RRPP端口发送恢复时，传输节点迁移到Preforwarding状态，并阻塞刚刚恢复的端口。"
+  },
+  {
+   "id": "2-217",
+   "type": "multiple",
+   "question": "客户局域网交换机SWA、SWB、SWC上构成RRPP环主环1,如果交换机SWB、SWC和SWD构成子环2,从上述信息可以得出______。",
+   "options": [
+    "如果交换机SWA为主环主节点，则能发起Health报文",
+    "如果交换机SWA为主环主节点，则能发起Link-Down报文",
+    "如果交换机SWB为子环边缘节点，则能发起Edge-Hello报文",
+    "如果交换机SWB为子环边缘节点，则能发起Maior-Fault报文"
+   ],
+   "answer": "AC",
+   "analysis": "Health(Hello)：监控检测报文，由主节点发起，对网络进行环路完整性检测。\nLink-Down：链路Down报文，由发生直连链路状态Down的传输节点、边缘节点或者辅助边缘节点发起，通知主节点环路上有链路Down，物理环路消失。\nCommon-Flush-Fdb：刷新Fdb报文，由主节点发起，通过传输节点，边缘节点或者辅助边缘节点更新各自Mac地址转发表。\nComplete-Flush-Fdb：环网恢复刷新Fdb报文，由主节点发起，通知传输节点、边缘传输节点或者辅助边缘节点更新各自Mac地址转发表，同时通知传输节点放开临时阻塞端口。\nEdge-Hello：主环完整性检查报文，由子环的边缘节点发起，同子环的辅助边缘节点接收，\nMajor-Fault：主环故障通知报文，当子环的辅助边缘节点在规定时间内收不到边缘点击发送的Edge-Hello报文时起，向边缘节点报告其所在域主环发生故障。"
+  },
+  {
+   "id": "2-218",
+   "type": "multiple",
+   "question": "客户局域网交换机SWA、SWB、SWC上构成RRPP环主环1,从上述信息可以得知\n______。",
+   "options": [
+    "如果交换机SWA为主节点，Failed状态下发送Common-Flush-FDB报文通知所有传输节点刷新FDB",
+    "如果交换机SWA为主节点，Failed状态下发送Complete-Flush-FDB报文通知所有传输节点刷新FDB",
+    "如果交换机SWB为传输节点，处于Preforwarding状态时，在规定时间内收不到主节点发来的Common-Flush-FDB报文，自行放开临时阻塞端口",
+    "如果交换机SWB为传输节点，处于Preforwarding状态时，在规定时间内收不到主节点发来的Complete-Flush-FDB报文，自行放开临时阻塞端口"
+   ],
+   "answer": "AD",
+   "analysis": "当传输节点交换机上的RRPP端口发生链路Down时，该节点将从与故障端口配对的状态为Up的RRPP端口发送Link-Down报文通知主节点。主节点收到Link-Down报文后，立即将状态切换到Fialed状态，放开副端口。由于网络拓扑发生改变，以免报文定向错误，主节点还需要刷新FDB表，并从主端口发送Common-Flush-FDB报文通知所有传输节点刷新FDB。\n当传输节点交换机上的RRPP端口发生恢复时，传输节点迁移到Preforwarding状态，并阻塞刚刚恢复的端口。环网恢复的过程是由主节点主动发起的，主节点周期性的从主端口发送Hello报文，环网上的故障链路全部恢复后，主节点将从副端口收到自己发出的检测报文。\n主节点收到自己发出的Hello报文后，首先将状态迁移回Complete状态，阻塞副端口，然后从主端口发送Complete-Flush-FDB报文，传输节点收到Complete-Flush-FDB报文后，迁移回Link-UP状态，放开临时阻塞端口，并刷新FDB表。"
+  },
+  {
+   "id": "2-219",
+   "type": "single",
+   "question": "三台路由器RTA、RTB、RTC通过局域网连接在一起，组成VRRP备份组，各路由器接口配置如下：\nRTA 的GigabitEthernet\nip address 192.168.0.252 255.255.255.0\nvrrp vrid 1 virtual-ip 192.168.0.254\nvrrp vrid 1 priority 120\nRTB 的GigabitEthernet\nip address 192.168.0.253 255.255.255.0\nvrrp vrid 1 virtual-ip 192.168.0.254\nvrrp vrid 1 priority 90\nRTC 的GigabitEthernet\nip address 192.168.0.254 255.255.255.0\nvrrp vrid 1 virtual-ip 192.168.0.254\n从上述信息可以得知______。",
+   "options": [
+    "RTA为备份组Master路由器",
+    "RTB为备份组Master路由器",
+    "RTC为备份组Master路由器",
+    "RTA发生故障后,RTB成为备份组Master路由器"
+   ],
+   "answer": "A",
+   "analysis": "RTC是个IP地址拥有者，优先级为255，所以C为主路由器，RTA和RTB是备份组，RTA优先级高于RTB，所以RTA为备份组Master路由器"
+  },
+  {
+   "id": "2-220",
+   "type": "single",
+   "question": "图示是RRPP的组网应用客户局域网交换机SWA、SWB、SWC、SWD上构成RRPP环主环1,交换机SWB、SWC和SWE构成子环2。如果交换SWE为子环2的主节点从上述信息可以得知______。",
+   "options": [
+    "如果交换机SWA连接交换机SWB的链路为Down状态，交换机SWE将放开副端口",
+    "如果交换机SWB连接交换机SWC的链路为Down状态，交换机SWE将放开副端口",
+    "如果交换机SWA连接交换机SWB的链路为Down状态，交换机SWB连接交换机SWC的链路为Down状态，交换机SWE将放开副端口",
+    "如果交换机SWA连接交换机SWB的链路为Down状态，交换机SWA连接交换机SWD的链路为Down状态，交换机SWE将放开副端口"
+   ],
+   "answer": "C",
+   "analysis": "",
+   "images": [
+    "p132_67.jpeg"
+   ]
+  },
+  {
+   "id": "2-221",
+   "type": "single",
+   "question": "图示是RRPP的组网应用客户局域网交换机SWA、SWB、SWC、SWD上构成RRPP环主环1,交换机SWB、SWC和SWE构成子环2，交换机SWB、SWC和SWF构成子环3如果交换机SWE为子环2的主节点，SWF为子环3的主节点，交换机SWB为子环2和子环3的边缘节点为了消除RRPP双归属组网特定条件下产生广播风暴的缺陷，从上述信息可以得知\n______。",
+   "options": [
+    "如果交换机SWA连接交换机SWD的链路为Down状态，交换机SWB上的边缘端口将被阻塞",
+    "如果交换机SWB连接交换机SWC的链路为Down状态，交换机SWB上的边缘端口将被阻塞",
+    "如果交换机SWA连接交换机SWB的链路为Down状态，交换机SWB连接交换机SWC的链路为Down状态，交换机SWB上的边缘端口将被阻塞",
+    "如果交换机SWA连接交换机SWB的链路为Down状态，交换机SWA连接交换机SWD的链路为Down状态，交换机SWB上的边缘端口将被阻塞"
+   ],
+   "answer": "C",
+   "analysis": "",
+   "images": [
+    "p133_68.jpeg"
+   ]
+  },
+  {
+   "id": "2-222",
+   "type": "single",
+   "question": "图示是RRPP的组网应用客户局域网交换机SWA、SWB、SWC、SWD上构成RRPP环主环1,交换机SWB、SWC和SWE构成子环2，交换机SWB、sWC和sWF构成子环3如果交换机SWE为子环2的主节点，SWF为子环3的主节点从上述信息可以得知______。",
+   "options": [
+    "无法把子环2和子环3加入同一个环组中",
+    "如果把子环2和子环3加入同一个环组，环组中的子环2和子环3,其边缘节点和辅助边缘节点可以不同",
+    "如果把子环2和子环3加入同一个环组，环组应分别配置在交换机上SWB、SWC、SWE、SWF,并且配置应该一致",
+    "如果把子环2和子环3加入同一个环组，环组中的子环2和子环3,其边缘节点和辅助边缘节点所对应的主环链路应该一致"
+   ],
+   "answer": "D",
+   "analysis": "",
+   "images": [
+    "p134_69.jpeg"
+   ]
+  },
+  {
+   "id": "2-223",
+   "type": "multiple",
+   "question": "客户二台路由器通过局域网连接在一起，二台路由器组成VRRP备份组相关配置如下：\n[RTA-GigabitEthernet1 /0]display this\nip address 192.168.0.252 255.255.255.0\nvrrp vrid 1 virtual-ip 192.168.0.254\nvrrp vrid 1 priority 120\n[RTB-GigabitEthernet1/0]display this\nip address 192.168.0.253 255.255.255.0\nvrrp vrid 1 virtual-ip 192.168.0.254\nRTA 路由器GigabitEthernet1/0 接口MAC 为000f-4300-0001, RTB 路由器\nGigabitEthernet1/0 接口MAC为000f-4300-0002 如果RTA采用聚合组Real-mac模式，RTB采用聚合组virtual-mac模式，从上述信息可以得知______。",
+   "options": [
+    "RTA和RTB无法建立VRRP组",
+    "局域网PC接收到的网关MAC为0000-5e00-0101",
+    "局域网PC接收到的网关MAC为000f-4300-0001",
+    "如果局域网PC接收到的网关MAC为0000-5e00-0101，则路由器RTB处于VRRP Master状态"
+   ],
+   "answer": "CD",
+   "analysis": "虚拟路由器由LAN上唯一的Virtual Router ID标识。并具有虚拟MAC地址：00-00-5E-00-01-{vrid}。\n虚拟IP地址和MAC地址的对应关系有两种：\n虚拟IP地址和虚拟MAC地址对应。缺省情况下，创建备份组后，会自动生成与之对应的虚拟MAC地址，虚拟IP地址与此虚拟MAC地址对应。如果采用这种对应关系，Master路由器改变时，内部网络的主机不需要更新IP地址与MAC地址的绑定\n虚拟IP地址和接口实际MAC地址相对应。当备份组中在IP地址拥有者时，如果配置虚拟IP地址和虚拟MAC对应，会造成一个IP地址对应两个MAC地址因此用户可以配置备份组虚拟IP地址和实际MAC地址对应，主机发生的报文将按照实际MAC地址转发给IP地址拥有者。"
+  },
+  {
+   "id": "2-224",
+   "type": "single",
+   "question": "客户二台交换机SWA, SWB通过局域网连接在一起，二台交换机SWA、SWB组成链路聚合组在SWA上査看聚合组状态如下：\n[SWA]display link-aggregation verbose\nLoadsharing Type: Shar -- Loadsharing, NonS -- Non-Loadsharing\nPort Status: S -- Selected, U -- Unselected\nFlags:A -- LACP_Activity, B -- LACP_Timeout, C -- Aggregation,\nD -- Synchronization, E -- Collecting, F -- Distributing,\nG -- Defaulted, H -- Expired\nSystem ID: 0x8000, 000f-e245-6bc0\nLocal:\nPort        Status  Priority   Oper-Key   Flag\nGE1/0/1  S           32768      2                  {ACDEF}KOKOMADE\nGE1/0/2  S           32768      2                  {ACDEF}KOKOMADE\nGE1/0/3  S           32768      2                  {ACDEF}KOKOMADE\nRemote:\nActor       Partner   Priority   Oper-Key   SystemID                            Flag\nGE1/0/1   25            32768      2                   0x8000,000f-e23d-59f0    {ACDEF}\nKOKOMADE\nGE1/0/2   26            32768      2                   0x8000,000f-e23d-59f0    {ACDEF}\nKOKOMADE\nGE1/0/3   27            32768      2                   0x8000,000f-e23d-59f0    {ACDEF}\nKOKOMADE\n从上述信息可以得知______。",
+   "options": [
+    "交换机SWA和交换机SWB之间建立的是静态聚合组",
+    "交换机SWA和交换机SWB之间建立的是动态聚合组",
+    "LACP优先级为0x8001",
+    "链路聚合端口带宽大小2G"
+   ],
+   "answer": "B",
+   "analysis": "LACP优先级为32768\n动态链路聚合：通过LACP协议实现，能够根据对端和本端的信息调整端口的选中/非选中状态，比较灵活。本题可以看到对端详细信息，说明是动态链路聚合。\n有3个千兆端口被选中，链路聚合端口带宽大小应该是3G"
+  },
+  {
+   "id": "2-225",
+   "type": "multiple",
+   "question": "两台路由器RTA和RTB通过局域网连接在一起，组成VRRP备份组，各路由器接口配置如下:\nRTA 的GigabitEthernet1/0\nip address 192.168.0.252 255.255.255.0\nip address 192.168.1.252 255.255.255.0 sub\nvrrp vrid 1 virtual-ip 192.168.0.254\nvrrp vrid 1 priority 120\nvrrp vrid 2 virtual-ip 192.168.1.254\nRTB 的GigabitEthernet1/0\nip address 192.168.0.253 255.255.255.0\nip address 192.168.1.253 255.255.255.0 sub\nvrrp vrid 1 virtual-ip 192.168.0.254\nvrrp vrid 2 virtual-ip 192.168.1.254\nvrrp vrid 2 priority 120\n从上述信息可以-得知______。",
+   "options": [
+    "备份组1可以成功建立，备份组2无法成功建立",
+    "备份组1可以成功建立，备份组2可以成功建立",
+    "路由器A为备份组1的Master路由器，备份组2无Master路由器",
+    "路由器A为备份组1的Master路由器，路由器B为备份组2的Master路由器"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "2-226",
+   "type": "single",
+   "question": "客户六台交换机SWA、SWB、swc、SWD、SWE、SWF通过局域网连接在一起，组成RRPP环在SWB上査看RRPP状态如下：\ndis rrpp verbose domain 1\nDomain ID ：1\nRing ID ：1\nRing Level: 0\nNode Mode ：Transit\nRing state:-Enable Status ：YesActive Status: Yes\nPrimary port: GigabitEthernet2/0/1 Port status: UP\nSecondary port: GigabitEthernet2/0/2 Port status: UP\nRing ID ：2\nRing Level: 1\nNode Mode ：Edge\nRing state:-Enable Status ：YesActive Status: Yes\nCommon port ：GigabitEthernet2/0/1 Port status: UP\nGigabitEthernet2/0/2 Port status: UP\nEdge port ：GigabitEthernet2/0/3 Port status: UP\nRing ID ：3\nRing Level: 1\nNode Mode ：Edge\nRing state:-Enable Status ：YesActive Status: Yes\nCommon port ：GigabitEthernet2/0/1 Port status: UP\nGigabitEthernet2/0/2 Port status: UP\nEdge port ：GigabitEthernet2/0/4 Port status: UP\n从上述信息可以得知______。",
+   "options": [
+    "SWB是RRPP子环2的传输节点",
+    "SWB共接入了3个子环",
+    "GigabitEthernet2/0/1为RRPP 子环2 的边缘端口",
+    "GigabitEthernet2/0/4为RRPP 子环3 的边缘端口"
+   ],
+   "answer": "D",
+   "analysis": ""
+  },
+  {
+   "id": "2-227",
+   "type": "single",
+   "question": "客户的局域网交换机SWA双上行连接交换机SWB和交换机SWC,通过SmartLink保证链路可靠性从上述信息可以得知______。",
+   "options": [
+    "在各端口配置一致的情况下，可以选取SWA聚合成员端口作为SmartLink端口",
+    "在各端口配置一致的情况下，可以选取SWA RRPP成员端口作为Smart Link端口",
+    "在各端口配置一致的情况下，可以选取SWA STP成员端口作为Smart Link端口",
+    "以上答案都不正确"
+   ],
+   "answer": "D",
+   "analysis": "如果要配置端口为Smart Link组的成员端口（主端口和副端口），需要先手工关闭该端口，待Smart Link组配置完成后再开启该端口，以避免形成环路，导致广播风波。需要光比该端口的STP和RRPP功能，并确保该端口不是聚合成员端口或业务环回组成员端口。"
+  },
+  {
+   "id": "2-228",
+   "type": "multiple",
+   "question": "两台路由器RTA和RTB通过局域网连接在一起，组成VRRP备份组，各接口配置如下：RTA 的GigabitEthernet1/0.1\nvlan-type dot1 q vid 2\nip address 192.168.0.252 255.255.255.0\nvrrp vrid 1 virtual-ip 192.168.0.254\nvrrp vrid 1 priority 120\nRTA 的GigabitEthernet1/0.2\nvlan-type dot1 q vid 3\nip address 192.168.1.252 255.255.255.0\nvrrp vrid 2 virtual-ip 192.168.1.254\nvrrp vrid 2 priority 120\nRTB 的GigabitEthernet1/0.1 ：\nvlan-type dot1 q vid 2\nip address 192.168.0.253 255.255.255.0\nvrrp vrid 1 virtual-ip 192.168.0.254\nRTB 的GigabitEthernet1/0.2：\nvlan-type dot1 q vid 3\nip address 192.168.1.253 255.255.255.0\nvrrp vrid 2 virtual-ip 192.168.1.254\n局域网内主机HostA、HostB的IP地址分别为192.168.0.1 、192.168.1.1从上述信息可以得知______。",
+   "options": [
+    "备份组使用实MAC方式，则HostA、HostB学到的网关MAC地址一致",
+    "备份组使用实MAC方式，则HostA、HostB学到的网关MAC地址不一致",
+    "备份组使用虚MAC方式，则HostA、HostB学到的网关MAC地址一致",
+    "备份组使用虚MAC方式，则HostA、HostB学到的网关MAC地址不一致"
+   ],
+   "answer": "AD",
+   "analysis": ""
+  },
+  {
+   "id": "2-229",
+   "type": "multiple",
+   "question": "两台路由器RTA和RTB通过局域网连接在一起，组成VRRP备份组，局域网内主机HostA的IP地址为192.168.0.1, HostA学到的网关MAC地址为0000-5e00-0105 从上述信息可以得知______。",
+   "options": [
+    "备份组使用实MAC方式",
+    "备份组使用虚MAC方式",
+    "备份组vrid为4",
+    "备份组vrid为5"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "2-230",
+   "type": "single",
+   "question": "二台路由器通过局域网连接在一起，组成VRRP备份组，各接口上配置如下：\n[RTA-GigabitEthernet1/0]display this\nip address 192.168.0.252 255.255.255.0\nvrrp vrid 1 virtual-ip 192.168.0.254\nvrrp vrid 1 priority 120\nvrrp vrid 1 preempt-mode\nvrrp vrid 1 track interface serial0/1 reduced 30\n[RTB-GigabitEthernet1/0]display this\nip address 192.168.0.253 255.255.255.0\nvrrp vrid 1 virtual-ip 192.168.0.254\nvrrp vrid 1 preempt-mode\n若网络运行中，RTA串口Serial0/1发生了一次DOWN/UP事件，则可以得知______。",
+   "options": [
+    "在RTA串口Serial0/1 DOWN/UP时间段内，响应局域网PC ARP请求的路由器不会改变",
+    "在RTA串口Serial0/1 DOWN/UP时间段内，响应局域网PC ARP请求的路由器改变1次",
+    "在RTA串口Serial0/1 DOWN/UP时间段内，响应局域网PC ARP请求的路由器改变2次",
+    "在RTA串口Serial0/1 DOWN/UP时间段内，响应局域网PC ARP请求的路由器改变3次"
+   ],
+   "answer": "C",
+   "analysis": ""
+  }
+ ]
+}
