@@ -1,0 +1,661 @@
+{
+ "questions": [
+  {
+   "id": "1-151",
+   "type": "multiple",
+   "question": "下列关于SSL VPN部署方式说法正确的是______。",
+   "options": [
+    "若内网需要被完全保护，则需要采用单臂部署方式",
+    "若内网中只有部分网络流量需要被保护，则需采用双臂部署方式",
+    "为避免SSL VPN的单点故障影响网络连通性，需要采用单臂部署方式",
+    "双臂部署方式多用在SSL VPN网关与防火墙集成的组网中"
+   ],
+   "answer": "CD",
+   "analysis": "采用双臂模式，SSL VPN网关接在内网和外网之间，外网对内网的所有流量都经过网关，网关对这些流量全面控制。缺点：一旦网关出现\n故障，将导致内外网通信中断，网关性能影响转发速度。\n单臂模式，网关不再内外网之间，设备故障不会导致网络中断。缺点：不能完全保护内部网络。"
+  },
+  {
+   "id": "1-152",
+   "type": "multiple",
+   "question": "下列关于SSL VPN部署方式说法正确的是______。",
+   "options": [
+    "若内网需要被完全保护，则需要采用双臂部署方式",
+    "若内网中只有部分网络流量需要被保护，则需采用双臂部署方式",
+    "为避免SSL VPN的单点故障影响网络连通性，需采用双臂部署方式",
+    "双臂部署方式多用在SSL VPN网关与防火墙集成的组网中"
+   ],
+   "answer": "AD",
+   "analysis": "采用双臂模式，SSL VPN网关接在内网和外网之间，外网对内网的所有流量都经过网关，网关对这些流量全面控制。缺点：一旦网关出现\n故障，将导致内外网通信中断，网关性能影响转发速度。\n单臂模式，网关不再内外网之间，设备故障不会导致网络中断。缺点：不能完全保护内部网络。"
+  },
+  {
+   "id": "1-153",
+   "type": "multiple",
+   "question": "下列属于LDP协议的是_______。",
+   "options": [
+    "发现消息(Discover messages)",
+    "保持消息(Keeplive messages)",
+    "通告消息(Advertisement messages)",
+    "通知消息(Notification messages)"
+   ],
+   "answer": "ACD",
+   "analysis": "LDP协议定义4类消息\n发现消息、会话消息、通告消息、通知消息"
+  },
+  {
+   "id": "1-154",
+   "type": "single",
+   "question": "LDP会话建立的过程是______。",
+   "options": [
+    "邻居发现->建立会话->建立TCP连接->会话维护",
+    "邻居发现->建立TCP连接->建立会话->会话维护",
+    "建立会话->邻居发现->建立TCP连接->会话维护",
+    "建立TCP连接->邻居发现->建立会话->会话维护"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-155",
+   "type": "single",
+   "question": "下游LSR设备通过Label mapping消息将其为FEC分配的______发布给上游LSR。",
+   "options": [
+    "入标签(IN Label)信息",
+    "出标签(OUT Label)信息",
+    "出接口信息",
+    "以上所有信息"
+   ],
+   "answer": "A",
+   "analysis": ""
+  },
+  {
+   "id": "1-156",
+   "type": "single",
+   "question": "对于一台LSR的标签转发表，描述正确的是_______。",
+   "options": [
+    "可能存在入标签值相同的两个标签转发表项",
+    "可能存在出标签值相同的两个标签转发表项",
+    "同一标签转发表项的入标签值和出标签值总是相同",
+    "同一标签转发表项的入标签值和出标签值不可能相同"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-157",
+   "type": "single",
+   "question": "对于上下游的两台LSR来讲，针对同一转发等价类的标签转发表，描述正确的是_______。",
+   "options": [
+    "上游LSR的出标签值与下游设备的入标签值相同",
+    "上游LSR的入标签值与下游设备的出标签值相同",
+    "上游LSR的出标签值与下游设备的出标签值相同",
+    "上游LSR的入标签值与下游设备的入标签值相同"
+   ],
+   "answer": "A",
+   "analysis": ""
+  },
+  {
+   "id": "1-158",
+   "type": "multiple",
+   "question": "某LSR运行在DU的标签分配模式、有序的标签控制模式下，下列说法正确的是\n_______。",
+   "options": [
+    "该LSR收到了上游LSR针对某FEC的标签分配请求，且该LSR是该FEC的最下游设备时才可以为该 FEC分配标签",
+    "该LSR收到了下游设备针对某FEC的label mapping 消息时就可以为该FEC分配标签，无需等待上游的标签分配请求",
+    "该LSR是某FEC 的最下游设备就可以为该FEC分配标签，无需等待上游的标签分配请求",
+    "该LSR只要收到上游设备针对某FEC的标签分配请求就可以为该FEC分配标签"
+   ],
+   "answer": "BC",
+   "analysis": "DU   下游自主\nDOD下游按需"
+  },
+  {
+   "id": "1-159",
+   "type": "single",
+   "question": "在保守的标签保留方式下，按图示的组网，LSR2可以保留哪一台LSR 针对20.0.0.1/24这条路由的标签信息？",
+   "options": [
+    "LSR1",
+    "LSR3",
+    "LSR4",
+    "LSR5"
+   ],
+   "answer": "B",
+   "analysis": "",
+   "images": [
+    "p063_2.jpeg"
+   ]
+  },
+  {
+   "id": "1-160",
+   "type": "multiple",
+   "question": "下列关于在LSR设备上进行的标签交换(SWAP)操作的说法正确的是_______。",
+   "options": [
+    "报文抵达LSR时，将报文携带的MPLS标签值与标签转发表的入标签项进行对比",
+    "报文抵达LSR时，将报文携带的MPLS标签值与标签转发表的出标签项进行对比",
+    "报文抵达LSR时，将报文携带的MPLS标签值更改成对应标签转发表项的入标签",
+    "报文抵达LSR时，将报文携带的MPLS标签值更改成对应标签转发表项的出标签"
+   ],
+   "answer": "AD",
+   "analysis": ""
+  },
+  {
+   "id": "1-161",
+   "type": "single",
+   "question": "MPLS网络的边缘设备被称为_______。",
+   "options": [
+    "LSR",
+    "LER",
+    "LSP",
+    "LRR"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-162",
+   "type": "single",
+   "question": "当标签分发方式为______时，下游设备需要等到上游设备的标签分配申请才可以分配标签。",
+   "options": [
+    "有序方式(Odered)",
+    "独立方式(Independent)",
+    "自由方式(Liberal retention mode)",
+    "DU(DOWNstream Unsolicited)下游自主",
+    "DOD(DOWNstream On Demand)下游按需"
+   ],
+   "answer": "E",
+   "analysis": ""
+  },
+  {
+   "id": "1-163",
+   "type": "single",
+   "question": "MPLS网络的基本组成单位是____。",
+   "options": [
+    "LSR",
+    "LER",
+    "LSP",
+    "LRR"
+   ],
+   "answer": "A",
+   "analysis": ""
+  },
+  {
+   "id": "1-164",
+   "type": "multiple",
+   "question": "属于同一FEC的报文在MPLS网络中将被如何处理？",
+   "options": [
+    "在进入MPLS网络的LER上将被映射相同的MPLS标签",
+    "在整个MPLS网络中将按照同样的LSP进行转发",
+    "在LSR上将按照相同的标签转发表项进行转发",
+    "由报文经过的LSR设备独立进行处理，报文的目的IP地址不同，转发路径有可能不同"
+   ],
+   "answer": "ABC",
+   "analysis": "属于同一类型，处理方式相同。"
+  },
+  {
+   "id": "1-165",
+   "type": "multiple",
+   "question": "MPLS的标签有哪些字段？",
+   "options": [
+    "Label",
+    "TTL",
+    "S",
+    "EXP"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-166",
+   "type": "single",
+   "question": "MPLS的标签一共有______bit,其中Label标签值部分占_______bit。",
+   "options": [
+    "48 24",
+    "32 20",
+    "48 20",
+    "32 24"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-167",
+   "type": "multiple",
+   "question": "关于MPLS标签中S字段的描述正确的是_______。",
+   "options": [
+    "S用来标识是否存在MPLS标签的嵌套，一个报文可以拥有多个MPLS标签",
+    "S为0表示该MPLS标签一是最后一个MPLS标签，其后是MPLS报文的载荷",
+    "S为1表示该MPLS标签一是最后一个MPLS标签，其后是MPLS报文的载荷",
+    "S字段只有1个bit"
+   ],
+   "answer": "ACD",
+   "analysis": ""
+  },
+  {
+   "id": "1-168",
+   "type": "single",
+   "question": "关于MPLS标签的S字段的值为0表示________。",
+   "options": [
+    "表示该MPLS标签的QoS优先级为0",
+    "表示该MPLS标签已经是最后一个MPLS标签，紧接其后的是MPLS载荷报文",
+    "表示该MPLS标签后面还有下一层MPLS标签",
+    "表示该MPLS网络存在环路，该报文将被丢弃"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-169",
+   "type": "single",
+   "question": "PPP协议如何标识其承载的上层报文为MPLS报文？",
+   "options": [
+    "在PPP协议LCP协商阶段对端设备完成协商",
+    "在PPP协议NCP协商阶段对端设备完成协商",
+    "在PPP头的PPP Protocol field 字段填写0281",
+    "在PPP头的PPP Protocol field 字段填写8847"
+   ],
+   "answer": "C",
+   "analysis": "PPP标识mpls 字段填写0281\n以太网标识mpls 字段填写8847"
+  },
+  {
+   "id": "1-170",
+   "type": "single",
+   "question": "MPLS LDP协议Session建立成功后，其状态维持在______状态。",
+   "options": [
+    "Full",
+    "Establish",
+    "Operational",
+    "Opensent"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-171",
+   "type": "single",
+   "question": "如图所示，HostA 访问HostB时，哪一台设备是最下游设备？",
+   "options": [
+    "LSR1",
+    "LSR2",
+    "LSR3",
+    "不确定"
+   ],
+   "answer": "C",
+   "analysis": "",
+   "images": [
+    "p067_3.jpeg"
+   ]
+  },
+  {
+   "id": "1-172",
+   "type": "multiple",
+   "question": "下列关于GRE和BGP MPLS VPN的说法正确的有_______。",
+   "options": [
+    "它们都是VPN技术",
+    "它们都可采用隧道技术实现VPN",
+    "GRE隧道需要静态配置建立，BGP MPLS VPN的MPLS隧道动态建立",
+    "GRE的私网用户之间只能运行静态路由协议，BGP MPLS VPN的私网用户之间运行BGP动态路由协议"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "1-173",
+   "type": "multiple",
+   "question": "下列关于VPNv4地址的说法正确的是_______。",
+   "options": [
+    "VPNv4地址与IPv4地址相比多了RD前缀",
+    "VPNv4地址长度为96bit",
+    "在BGP MPLS VPN组网中，公网上转发的报文目的地址是VPNv4地址",
+    "VPNv4地址不会在用户数据报文中出现"
+   ],
+   "answer": "AD",
+   "analysis": "B：32位IP地址+16位自治号=48位\nC：私网上转发"
+  },
+  {
+   "id": "1-174",
+   "type": "multiple",
+   "question": "在一个BGP MPLS VPN组网中，各个PE设备下联 用户VPN的RT如图所示配置，此时关于各VPN用户互访关系说法正确的是________。",
+   "options": [
+    "用户1可以与用户2、用户3、用户4互访",
+    "用户1只能访问用户2、用户3、用户4中的一个",
+    "用户2、用户3、用户4之间不能互相访问",
+    "用户2、用户3、用户4可以通过PE1进行互访"
+   ],
+   "answer": "AC",
+   "analysis": "无图无真相，死记硬背。"
+  },
+  {
+   "id": "1-175",
+   "type": "multiple",
+   "question": "下列关于RT的Export Target属性和Import Target属性的描述正确的是______。",
+   "options": [
+    "PE接受到MP-BGP路由时，将路由协议中所携带的RT属性与本地VPN的Import Target属性比较，存在交集的才能被接收到该VPN",
+    "PE接受到MP-BGP路由时，将路由协议中所携带的RT属性与本地VPN的Export Target属性比较，存在交集的才能被接收到该VPN",
+    "本地VPN的私网路由通过MP-BGP路由协议发布给对端PE时，在BGP路由中需要携带该VPN的Export Target属性",
+    "本地VPN的私网路由通过MP-BGP路由协议发布给对端PE时，在BGP路由中需要携带该VPN的Importt Target属性"
+   ],
+   "answer": "AC",
+   "analysis": "发送者携带EX，与本地的IM比较"
+  },
+  {
+   "id": "1-176",
+   "type": "single",
+   "question": "VPN是，下面哪种RT的配置方法是错误的？",
+   "options": [
+    "需要互访的两个私网用户所属的VPN的RT属性，其Import Target属性和Export Target属性之间存在交集",
+    "需要隔离的两个私网用户所属的VPN的RT属性，其Import Target属性和Export Target属性之间存在交集",
+    "需要互访的两个私网用户所属的VPN的RT属性，其Import Target属性和Import Target属性之间存在交集",
+    "需要隔离的两个私网用户所属的VPN的RT属性，其Export Target属性和Export Target属性之间存在交集"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-177",
+   "type": "multiple",
+   "question": "RD即Route Distinguisher，关于它的描述正确的是______。",
+   "options": [
+    "同一台PE上不同的VPN的RD不能配置相同",
+    "不同PE设备上相同的VPN的RD必须配置相同，否则它们将无法互通",
+    "不同PE设备上不同的VPN的RD可以配置相同，原理上不存在冲突"
+   ],
+   "answer": "A",
+   "analysis": "B：VPN通信选路取决于RT，跟RD无关。\nC：同一个VPN的不同站点可以配置相同的RD，不同VPN的RD必须唯一。"
+  },
+  {
+   "id": "1-178",
+   "type": "multiple",
+   "question": "BGP MPLS VPN组网中，私网标签将存在于下列哪些位置？",
+   "options": [
+    "PE转发给P设备的私网报文中",
+    "PE之间交互的私网路由中",
+    "PE与CE之间交互的私网路由中",
+    "PE转发给CE的私网报文中"
+   ],
+   "answer": "AB",
+   "analysis": "类似hybird端口属性，离开私网要打上私网标签，进入私网剥离私网标签。"
+  },
+  {
+   "id": "1-179",
+   "type": "multiple",
+   "question": "BGP MPLS VPN组网中，公网标签不会存在于下列哪些位置_______。",
+   "options": [
+    "PE转发给P设备的私网报文中",
+    "PE之间交互的私网路由中",
+    "PE与CE之间交互的私网路由中",
+    "PE转发给CE的私网报文中"
+   ],
+   "answer": "BCD",
+   "analysis": "B：私网标签\nC、D：无标签"
+  },
+  {
+   "id": "1-180",
+   "type": "single",
+   "question": "BGP MPLS VPN组网中，RT值存在于下列哪个位置______。",
+   "options": [
+    "PE转发给P设备的私网报文中",
+    "PE之间交互的路由更新消息中",
+    "PE之间交互的路由撤销消息中",
+    "PE转发给CE的私网报文中"
+   ],
+   "answer": "B",
+   "analysis": "RT存在于更新消息中。"
+  },
+  {
+   "id": "1-181",
+   "type": "multiple",
+   "question": "BGP MPLS VPN组网中，RD前缀将存在于下列哪个位置______。",
+   "options": [
+    "PE转发给P设备的私网报文中",
+    "PE之间交互的路由更新消息中",
+    "PE之间交互的路由撤销消息中",
+    "PE转发给CE的私网报文中"
+   ],
+   "answer": "BC",
+   "analysis": "RD存在于更新消息、撤销消息中。"
+  },
+  {
+   "id": "1-182",
+   "type": "single",
+   "question": "在BGP MPLS VPN的组网中，下列关于私网标签和公网标签的描述正确的是_______。",
+   "options": [
+    "公网标签与私网标签的标签分配协议不同，公网标签通常由LDP协议分配，而私网标签由MP-BGP协议分配",
+    "公网标签与私网标签的格式不同",
+    "公网标签是动态分配的，而私网标签是静态分配的",
+    "报文所携带的公网标签和私网标签值一定不相同"
+   ],
+   "answer": "A",
+   "analysis": ""
+  },
+  {
+   "id": "1-183",
+   "type": "multiple",
+   "question": "下列关于RT、RD和私网标签的说法正确的是_______。",
+   "options": [
+    "RT为每个VPN实例表达自己的路由取舍及喜好",
+    "RD标识该路由信息所属的VPN，主要在撤销路由的时候发挥作用",
+    "私网标签用于标识私网报文所属的VPN",
+    "RT、RD和私网标签在BGP MPLS VPN中作用各不相同，互相不可替代"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-184",
+   "type": "single",
+   "question": "在BGP MPLS VPN组网中，用户的私网报文只携带了一层MPLS标签，该私网报文可能存在于下面哪个报文转发阶段？",
+   "options": [
+    "报文由源用户侧CE发往公网入口PE设备的时候",
+    "报文由公网入口PE发给P设备的时候",
+    "报文由公网倒数第二跳P设备发给公网最后一跳PE设备的时候",
+    "报文由公网出口PE 发给目的用户侧CE设备的时候"
+   ],
+   "answer": "C",
+   "analysis": "在最后一跳，最外层的标签已经没有意义，因此可以在倒数第二跳将标签弹出，减少最后一跳的负担。如果只有一层标签，则最后一跳直接进行IP转发；否则，对内层标签做标签转发。"
+  },
+  {
+   "id": "1-185",
+   "type": "single",
+   "question": "VPN组网中，用户的私网报文携带了两层MPLS标签，该私网报文可能在下面哪个报文转发阶段_____。",
+   "options": [
+    "报文由源用户侧CE发往公网Ingress PE设备的时候",
+    "报文由公网Ingress PE发给P设备的时候",
+    "报文由公网倒数第二跳P设备发给公网最后一跳PE设备的时候",
+    "报文由公网出口PE发给目的用户侧CE设备的时候"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-186",
+   "type": "single",
+   "question": "在BGP MPLS VPN网络的公网P设备上，报文根据_____转发报文。",
+   "options": [
+    "外层MPLS标签",
+    "内层MPLS标签",
+    "外层目的IP地址",
+    "内层目的IP地址"
+   ],
+   "answer": "A",
+   "analysis": ""
+  },
+  {
+   "id": "1-187",
+   "type": "multiple",
+   "question": "在建立BGP MPLS VPN网络时，下列哪些参数是需要用户规划，并在设备上进行配置的？",
+   "options": [
+    "RT属性",
+    "RD值",
+    "VPN名称",
+    "VPN私网标签值"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "1-188",
+   "type": "multiple",
+   "question": "在建立BGP MPLS VPN网络时，下列哪些参数是不需要用户规划配置，由设备自动生成的______。",
+   "options": [
+    "RT属性",
+    "RD",
+    "公网标签",
+    "VPN私网标签"
+   ],
+   "answer": "CD",
+   "analysis": "标签随机分配。"
+  },
+  {
+   "id": "1-189",
+   "type": "multiple",
+   "question": "在BGP MPLS VPN网络中，P设备需要支持下列哪些功能？",
+   "options": [
+    "MPLS",
+    "MPLS LDP",
+    "MP-BGP",
+    "路由协议多实例"
+   ],
+   "answer": "AB",
+   "analysis": "LDP标签分发协议，自动分发公网标签"
+  },
+  {
+   "id": "1-190",
+   "type": "multiple",
+   "question": "在BGP MPLS VPN网络中，PE设备需要支持下列哪些功能？",
+   "options": [
+    "MPLS",
+    "MPLS LDP",
+    "MP-BGP",
+    "路由协议多实例"
+   ],
+   "answer": "ABCD",
+   "analysis": "LDP标签分发协议，自动分发公网标签"
+  },
+  {
+   "id": "1-191",
+   "type": "single",
+   "question": "在BGP MPLS VPN网络中，普通CE设备必须支持下列哪些功能？",
+   "options": [
+    "MPLS",
+    "MPLS LDP",
+    "MP-BGP",
+    "路由协议多实例",
+    "以上全错"
+   ],
+   "answer": "E",
+   "analysis": "LDP标签分发协议，自动分发公网标签"
+  },
+  {
+   "id": "1-192",
+   "type": "multiple",
+   "question": "BGP MPLS VPN网络中，P设备上存在下列哪些表项______。",
+   "options": [
+    "私网路由表",
+    "公网路由表",
+    "公网标签转发表",
+    "私网标签转发表"
+   ],
+   "answer": "BC",
+   "analysis": ""
+  },
+  {
+   "id": "1-193",
+   "type": "multiple",
+   "question": "一条MP-BGP路由撤销消息里面将不包括下列哪些参数？",
+   "options": [
+    "RT的Import Target属性",
+    "RT的Export Target属性",
+    "私网标签",
+    "RD前缀"
+   ],
+   "answer": "ABC",
+   "analysis": "撤销消息里只包含RD前缀"
+  },
+  {
+   "id": "1-194",
+   "type": "multiple",
+   "question": "在一个没哟使能MPLS倒数第二跳技术的BGP MPLS VPN组网中，私网报文抵达最后一跳PE时，下列说法正确的是____。",
+   "options": [
+    "报文只有一层MPLS标签头",
+    "报文有两层MPLS标签头",
+    "报文的两层MPLS标签值绝对不相同",
+    "报文的两层MPLS标签值可能相同"
+   ],
+   "answer": "BC",
+   "analysis": ""
+  },
+  {
+   "id": "1-195",
+   "type": "multiple",
+   "question": "用户的私网报文在BGP MPLS VPN网络中转发时，下列哪些参数将可能出现在用户的私网报文中？",
+   "options": [
+    "RT",
+    "RD",
+    "私网标签",
+    "公网标签"
+   ],
+   "answer": "CD",
+   "analysis": ""
+  },
+  {
+   "id": "1-196",
+   "type": "single",
+   "question": "在PE设备的私网路由表中，远端用户的私网路由的下一跳是____。",
+   "options": [
+    "远端CE的loopback接口地址",
+    "远端PE与CE相连的接口地址",
+    "远端PE的loopback接口地址",
+    "本PE的loopbac接口地址"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-197",
+   "type": "single",
+   "question": "PE设备学习到的远端用户的私网路由对应的私网标签，是由下列哪台设备分配的____。",
+   "options": [
+    "上游的P设备",
+    "本端PE 设备",
+    "对端PE设备",
+    "对端CE设备"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-198",
+   "type": "single",
+   "question": "在BGP MPLS VPN 的组网中，两台PE分别接入了同一私网用户的两个分部，而两分部之间需要互访，且在该BGP MPLS VPN组网中未部署BGP反射器，那么这两台PE设备之间将一定需要建立下列哪些邻居关系？",
+   "options": [
+    "OSPF邻居",
+    "OSPF多实例邻居",
+    "MP-BGP邻居",
+    "MPLS LDP邻居"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-199",
+   "type": "multiple",
+   "question": "在BGP MPLS VPN 的组网中，P设备需要支持下列哪些功能？",
+   "options": [
+    "RT",
+    "RD",
+    "公网MPLS标签",
+    "私网MPLS标签"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-200",
+   "type": "single",
+   "question": "在BGP MPLS VPN的组网中，PE设备发给对端PE设备的私网路由将不会携带下列哪个内容____。",
+   "options": [
+    "RT",
+    "RD",
+    "公网MPLS标签",
+    "私网MPLS标签"
+   ],
+   "answer": "C",
+   "analysis": ""
+  }
+ ]
+}
