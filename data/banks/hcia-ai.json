@@ -1,162 +1,23 @@
 {
-  "title": "HCIA-AI 认证练习",
-  "exam": { "count": 20, "duration": 30, "passScore": 60 },
-  "scores": { "single": 1, "multiple": 2, "judge": 1 },
-  "questions": [
-    {
-      "id": 1, "type": "single", "chapter": "机器学习概览",
-      "question": "以下哪一项不属于机器学习的主要类型？",
-      "options": ["监督学习", "无监督学习", "强化学习", "编译学习"],
-      "answer": "D",
-      "analysis": "机器学习通常分为监督学习、无监督学习、半监督学习和强化学习。“编译学习”不是机器学习的类型。"
-    },
-    {
-      "id": 2, "type": "single", "chapter": "机器学习概览",
-      "question": "K-Means 算法属于哪一类任务？",
-      "options": ["分类", "回归", "聚类", "降维"],
-      "answer": "C",
-      "analysis": "K-Means 是典型的无监督聚类算法，通过迭代把样本划分到 K 个簇中。"
-    },
-    {
-      "id": 3, "type": "single", "chapter": "机器学习概览",
-      "question": "在二分类问题中，精确率（Precision）的计算公式是？",
-      "options": ["TP / (TP + FP)", "TP / (TP + FN)", "(TP + TN) / 总样本数", "FP / (FP + TN)"],
-      "answer": "A",
-      "analysis": "精确率 = 预测为正的样本中真正为正的比例 = TP / (TP + FP)；TP / (TP + FN) 是召回率（Recall）。"
-    },
-    {
-      "id": 4, "type": "single", "chapter": "机器学习概览",
-      "question": "以下哪种做法通常可以缓解模型过拟合？",
-      "options": ["增加模型参数量", "使用 Dropout", "减少训练数据", "延长训练轮数"],
-      "answer": "B",
-      "analysis": "Dropout 在训练时随机丢弃部分神经元，降低神经元之间的共适应，是常用的防过拟合手段。增加参数、减少数据、过度训练反而容易加重过拟合。"
-    },
-    {
-      "id": 5, "type": "single", "chapter": "机器学习概览",
-      "question": "交叉熵损失函数最常用于哪类任务？",
-      "options": ["分类任务", "回归任务", "聚类任务", "数据清洗"],
-      "answer": "A",
-      "analysis": "交叉熵衡量预测概率分布与真实分布的差异，常与 Softmax/Sigmoid 搭配用于分类；回归任务通常使用均方误差（MSE）。"
-    },
-    {
-      "id": 6, "type": "single", "chapter": "深度学习",
-      "question": "在深度神经网络的隐藏层中，最常用于缓解梯度消失问题的激活函数是？",
-      "options": ["Sigmoid", "ReLU", "阶跃函数", "线性函数"],
-      "answer": "B",
-      "analysis": "ReLU 在正区间梯度恒为 1，不会像 Sigmoid 那样在饱和区梯度趋近于 0，因此能有效缓解梯度消失。"
-    },
-    {
-      "id": 7, "type": "single", "chapter": "深度学习",
-      "question": "卷积神经网络中，池化层的主要作用是？",
-      "options": ["增加模型参数", "降低特征图尺寸、减少计算量", "引入非线性", "对数据做归一化"],
-      "answer": "B",
-      "analysis": "池化（如最大池化、平均池化）对特征图下采样，降低空间尺寸和计算量，并带来一定的平移不变性。"
-    },
-    {
-      "id": 8, "type": "single", "chapter": "深度学习",
-      "question": "哪种网络结构通过门控机制缓解了 RNN 的长期依赖问题？",
-      "options": ["CNN", "LSTM", "感知机", "自编码器"],
-      "answer": "B",
-      "analysis": "LSTM 通过输入门、遗忘门和输出门控制信息流动，能够较好地捕捉长距离依赖。"
-    },
-    {
-      "id": 9, "type": "single", "chapter": "华为 AI 生态",
-      "question": "华为开源的全场景 AI 计算框架是？",
-      "options": ["TensorFlow", "PyTorch", "MindSpore", "PaddlePaddle"],
-      "answer": "C",
-      "analysis": "MindSpore（昇思）是华为开源的全场景 AI 计算框架，支持端、边、云协同。"
-    },
-    {
-      "id": 10, "type": "single", "chapter": "华为 AI 生态",
-      "question": "华为昇腾 AI 处理器的 AI Core 采用的是哪种架构？",
-      "options": ["达芬奇架构", "Volta 架构", "ARM Cortex 架构", "x86 架构"],
-      "answer": "A",
-      "analysis": "昇腾 AI 处理器的计算核心 AI Core 基于华为自研的达芬奇（Da Vinci）架构。"
-    },
-    {
-      "id": 11, "type": "single", "chapter": "华为 AI 生态",
-      "question": "华为云上面向开发者的一站式 AI 开发平台是？",
-      "options": ["ModelArts", "CANN", "HiLens", "Atlas"],
-      "answer": "A",
-      "analysis": "ModelArts 提供数据处理、模型训练、管理与部署的一站式 AI 开发能力。"
-    },
-    {
-      "id": 12, "type": "single", "chapter": "华为 AI 生态",
-      "question": "针对昇腾 AI 处理器推出的异构计算架构是？",
-      "options": ["CUDA", "CANN", "OpenCL", "ROCm"],
-      "answer": "B",
-      "analysis": "CANN（Compute Architecture for Neural Networks）是华为面向昇腾 AI 场景的异构计算架构，向上支持多种 AI 框架。"
-    },
-    {
-      "id": 13, "type": "multiple", "chapter": "深度学习",
-      "question": "以下属于深度学习常用优化器的有？",
-      "options": ["SGD", "Adam", "RMSProp", "ReLU"],
-      "answer": "ABC",
-      "analysis": "SGD、Adam、RMSProp 都是参数优化算法；ReLU 是激活函数，不是优化器。"
-    },
-    {
-      "id": 14, "type": "multiple", "chapter": "机器学习概览",
-      "question": "以下属于常用正则化方法的有？",
-      "options": ["L1 正则化", "L2 正则化", "Dropout", "增加网络层数"],
-      "answer": "ABC",
-      "analysis": "L1、L2 正则化和 Dropout 都用来约束模型复杂度、防止过拟合；增加层数会提升模型复杂度。"
-    },
-    {
-      "id": 15, "type": "multiple", "chapter": "机器学习概览",
-      "question": "以下属于无监督学习算法的有？",
-      "options": ["K-Means", "PCA 主成分分析", "逻辑回归", "DBSCAN"],
-      "answer": "ABD",
-      "analysis": "K-Means、DBSCAN 是聚类算法，PCA 是降维算法，均不需要标签；逻辑回归是监督学习的分类算法。"
-    },
-    {
-      "id": 16, "type": "multiple", "chapter": "AI 应用",
-      "question": "以下属于自然语言处理（NLP）任务的有？",
-      "options": ["机器翻译", "情感分析", "目标检测", "文本分类"],
-      "answer": "ABD",
-      "analysis": "机器翻译、情感分析和文本分类都是 NLP 任务；目标检测属于计算机视觉任务。"
-    },
-    {
-      "id": 17, "type": "multiple", "chapter": "机器学习概览",
-      "question": "训练模型时，数据集通常会划分为哪几部分？",
-      "options": ["训练集", "验证集", "测试集", "标签集"],
-      "answer": "ABC",
-      "analysis": "训练集用于拟合参数，验证集用于调参和模型选择，测试集用于评估最终泛化能力。"
-    },
-    {
-      "id": 18, "type": "judge", "chapter": "机器学习概览",
-      "question": "逻辑回归虽然名字里有“回归”，但它主要用于解决分类问题。",
-      "answer": true,
-      "analysis": "逻辑回归通过 Sigmoid 函数输出概率，主要用于二分类问题。"
-    },
-    {
-      "id": 19, "type": "judge", "chapter": "深度学习",
-      "question": "学习率设置得过大，可能导致模型无法收敛。",
-      "answer": true,
-      "analysis": "学习率过大会使参数更新步长过大，在最优点附近震荡甚至发散。"
-    },
-    {
-      "id": 20, "type": "judge", "chapter": "深度学习",
-      "question": "Softmax 函数常用于多分类任务的输出层。",
-      "answer": true,
-      "analysis": "Softmax 把输出转换为和为 1 的概率分布，常用于多分类输出层。"
-    },
-    {
-      "id": 21, "type": "judge", "chapter": "深度学习",
-      "question": "批量归一化（Batch Normalization）只能用于卷积神经网络。",
-      "answer": false,
-      "analysis": "BN 可用于全连接网络、卷积网络等多种结构，并不局限于 CNN。"
-    },
-    {
-      "id": 22, "type": "judge", "chapter": "华为 AI 生态",
-      "question": "MindSpore 支持端、边、云全场景部署。",
-      "answer": true,
-      "analysis": "全场景（端、边、云）协同是 MindSpore 的核心设计目标之一。"
-    },
-    {
-      "id": 23, "type": "judge", "chapter": "机器学习概览",
-      "question": "模型在训练集上准确率越高，说明它在新数据上的表现一定越好。",
-      "answer": false,
-      "analysis": "训练集准确率高也可能是过拟合，泛化能力需要用验证集或测试集来评估。"
-    }
+  "title": "HCIA-AI 认证题库",
+  "description": "共 333 题：单选 133 · 多选 110 · 判断 90，均含解析",
+  "exam": {
+    "count": 60,
+    "duration": 90,
+    "passScore": 60
+  },
+  "scores": {
+    "single": 1,
+    "multiple": 2,
+    "judge": 1
+  },
+  "parts": [
+    "hcia-ai/part1.json",
+    "hcia-ai/part2.json",
+    "hcia-ai/part3.json",
+    "hcia-ai/part4.json",
+    "hcia-ai/part5.json",
+    "hcia-ai/part6.json",
+    "hcia-ai/part7.json"
   ]
 }
