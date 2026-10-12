@@ -1,0 +1,766 @@
+{
+ "questions": [
+  {
+   "id": "182",
+   "question": "SDN 的网络体系架构主要分为：",
+   "options": [
+    "协同应用层。",
+    "控制层。",
+    "逻辑层。",
+    "转发层。"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ABD"
+  },
+  {
+   "id": "183",
+   "question": "对于该配置说法正确的是：",
+   "options": [
+    "该段命令是用来配置启用DHCP 服务器的。",
+    "该命令是配置VLANIF 10 接口下的客户端都从全局地址池中获取IP 地址。",
+    "接口地址池优先于全局地址池分配地址，即接口上存在接口地址池，即使全局地址池已存在，客户端也会优先从接口地址池中获取地址。",
+    "DHCP 服务器发送 Ping 报文的最大数目为10。",
+    "DHCP 服务器接收ping 报文的最大数目为10。"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ABCD"
+  },
+  {
+   "id": "184",
+   "question": "某公司由一个总公司和两个分公司组成，并使用MPLS 技术传递私网路由，在Hub&Spoke 的组网模式中，分公司只能和总公司通信，分公司之间不能互相通信，为了实现上述要求，RT 的设置可以是一下哪种方案",
+   "options": [
+    "总公司 Import Target:1:1,2:2 ,Export Target:3:3。分公司1:Import Target:3:3 Export Target:1:1。分公司2:Import Target:3:3 Export Target:2:2",
+    "总公司Import Target:12:3 Export Target:3:12。分公司1:Import Target:3:12 Export Target:12:3。分公司2:Import Target:3:12 Export Target:12:3",
+    "总公司 Import Target:1:1 Export Target:3:3。分公司1:Import Target:3:3 Export Target:1:1。分公司2:Import Target:3:3 Export Target:2:2",
+    "总公司 Import Target:2:2 Export Target:3:3。分公司1:Import Target :3:3 Export Target:1:1。分公司2:Import Target :3:3 Export Target:2:2"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "AB"
+  },
+  {
+   "id": "185",
+   "question": "MPLS 封装有不同的方式，下列选项中关于封装方式的说法，正确的是：",
+   "options": [
+    "MPLS 封装在有帧模式和信元模式。",
+    "Ethernet 和PPP 使用帧模式封装。",
+    "ATM 使用信元模式封装。",
+    "信元模式封装时，如果报文中携带了MPLS Header，第一个信元会保留该MPLS Header 用于转发。"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ABC"
+  },
+  {
+   "id": "186",
+   "question": "为了防御一些网络攻击，可以再交换机上开启DHCP Snooping 功能，并设置信任/非信任端口。请问如下组图中，S9300 的哪个端口应该应该被设置为信任端口？",
+   "options": [
+    "与Network A 相连的端口",
+    "与Network B 相连的端口",
+    "与Network C 相连的端口",
+    "与Network D 相连的端口"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "D",
+   "images": [
+    "p037_6.jpeg"
+   ]
+  },
+  {
+   "id": "187",
+   "question": "在NFV 架构中，具体的底层物流设备主要包括哪些？",
+   "options": [
+    "存储设备",
+    "网络设备",
+    "服务器",
+    "空调系统"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ABC"
+  },
+  {
+   "id": "188",
+   "question": "攻击者通过发送ICMP 应答请求，并将请求包的目的地址设为受害网络的广播地址，以实现攻击目的。那么这种行为属于哪一种攻击？",
+   "options": [
+    "IP 欺骗攻击",
+    "Smurf 攻击",
+    "ICMP 重定向攻击",
+    "SYN flood 攻击"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "B"
+  },
+  {
+   "id": "189",
+   "question": "一个套接字是由五元组组成的，那么以下哪个选项不属于五元组范围？",
+   "options": [
+    "源IP",
+    "源MAC",
+    "目的IP",
+    "目的端口"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "B"
+  },
+  {
+   "id": "190",
+   "question": "关于802.1X 和RADIUS 两种技术的关系，下列选项描述正确的是：",
+   "options": [
+    "802.1X 和RADIUS 是同一种技术的不同名称。",
+    "802.1X 是一个技术体系，它包含了RADIUS 的技术。",
+    "RADIUS 是一个技术体系，它包含了802.1X 的技术。",
+    "802.1X 和RADIUS 是不同的技术，但经常配合在一起使用，共同完成对终端用户的准入控制。"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "D"
+  },
+  {
+   "id": "191",
+   "question": "DHCP Relay 又称为DHCP 中继，如果需要配置DHCP Relay，那么需要包括以下哪些步骤？",
+   "options": [
+    "配置DHCP 服务器组的组名。",
+    "配置DHCP 服务器组中的DHCP 服务器的IF 地址。",
+    "配置启动DHCP Relay 功能的接口编号及接口的IP 地址。",
+    "配置option82 插入功能。"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ABC"
+  },
+  {
+   "id": "192",
+   "question": "下列选项中，哪些是Agile Controller 的功能组件？",
+   "options": [
+    "业务随行",
+    "业务编排",
+    "接入控制",
+    "安全协防",
+    "资源流动"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ABCD"
+  },
+  {
+   "id": "193",
+   "question": "MPLS 支持多层标签并转发平面面向连接的特性，在很多方面得到广泛的应用，那么部署MPLS 的原因不包括：",
+   "options": [
+    "各广商标准普遍认可。",
+    "流量工程能力。",
+    "在基于软件的路由器上简化路由查找。",
+    "有能力使用VPN 服务。"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "A"
+  },
+  {
+   "id": "194",
+   "question": "在VRRP 中，当设备状态变为Master 后，会立刻发送免费ARP 来刷新下游设备的Mac 表项，从而把用户的流量引到此台设备上来。",
+   "options": [
+    "正确",
+    "错误"
+   ],
+   "analysis": "",
+   "type": "judge",
+   "answer": true
+  },
+  {
+   "id": "195",
+   "question": "在Diff-Serv 网络中，定义EF 类的业务类型的主要目的是：",
+   "options": [
+    "为要求低时延，低丢失，低抖动和确保带宽的业务优先提供业务保证。",
+    "为报文转发提供通道。",
+    "为特定流量确定带宽。",
+    "保证报文转发时尽可能低的时延。"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "A"
+  },
+  {
+   "id": "196",
+   "question": "在Agile Controller 的无线接入控制场景中，推荐使用下列哪种方式来控制企业内部员工和访客接入网络？",
+   "options": [
+    "根据不同的用户名控制接入。",
+    "根据无线终端MAC 地址是否注册控制接入。",
+    "为内部员工和访客设置不同的SSID 控制接入。",
+    "根据无线终端的类型控制接入。"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "C"
+  },
+  {
+   "id": "197",
+   "question": "按照分类规划参考信息的不同，流量分类可以分为：",
+   "options": [
+    "简单流分类",
+    "复杂流分类",
+    "按需流分类",
+    "业务流分类"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "AB"
+  },
+  {
+   "id": "198",
+   "question": "假设对标记为AF21 的报文，设置的WRED 丢弃策略为:下限设为35，上限设为40,\n丢弃概率是50%。那么当AF21 的报文到达时，关于WRED 对该报文的处理结果的描述，错误的是：",
+   "options": [
+    "如果当前队列的平均长度小于35，报文开始丢弃。",
+    "如果当前对列的平均长度大于下限35，小于上限40，则该报文被丢弃的概率为50%。",
+    "如果当前队列的平均长度大于上限40，则该报文开始进入队列。",
+    "如果当前队列的平均长度大于上限40，则该报文将会被丢弃。"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "AC"
+  },
+  {
+   "id": "199",
+   "question": "在端口队列调度中，哪种队列没有公平性，且不同的流之间不能相互隔离？",
+   "options": [
+    "CQ+WFQ",
+    "PQ+WFQ",
+    "FIFO",
+    "WRR"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "C"
+  },
+  {
+   "id": "200",
+   "question": "DDOS 攻击是指攻击者通过控制大量的僵尸主机，向目标网络发送大量精心构造的攻击报文，从而使被攻击者产生拒绝向正常用户的请求提供服务的效果。",
+   "options": [
+    "正确",
+    "错误"
+   ],
+   "analysis": "",
+   "type": "judge",
+   "answer": true
+  },
+  {
+   "id": "201",
+   "question": "使用NAT 技术，只能以对数据报文中的网络层信息（IP 地址）进行转换。",
+   "options": [
+    "正确",
+    "错误"
+   ],
+   "analysis": "",
+   "type": "judge",
+   "answer": false
+  },
+  {
+   "id": "202",
+   "question": "DHCP 绑定表可以包含以下哪些信息？",
+   "options": [
+    "MAC 地址",
+    "IP 地址",
+    "租约时间",
+    "端口和UDP 端口"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ABC"
+  },
+  {
+   "id": "203",
+   "question": "VPN 实例也称为VPN 路由转发表（即VRF），那么下列选项中描述错误的是：",
+   "options": [
+    "PE 上的各VPN 实例之间是相互独立的。",
+    "可以将每个VPN 实例看作一台虚拟的设备，维护独立的地址空间并有连接到私网的接口。",
+    "PE 上存在多个路由转发表，其中包括一个公网路由转发表，以及一个或多个VPN 路由转发表。",
+    "一个VPN 实例可以对应多个站点，多个站点也可以对应一个VPN实例。"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "D"
+  },
+  {
+   "id": "204",
+   "question": "LSR 对收到的标签进行保留，且保留方式有多种，那么以下关于LDP 标签保留一自由方式的说法正确的是：",
+   "options": [
+    "保留邻居发送来的所有标签。",
+    "需要更多的内存和标签空间。",
+    "只保留来自来一跳邻居的标签，丢弃所有非下一跳邻居发来的标签。",
+    "节省内存和标签空间。",
+    "当IP 路由收敛，下一跳改变时减少了LSP 收敛时间。"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ABE"
+  },
+  {
+   "id": "205",
+   "question": "BFD（双向转发检测）技术属于快速检测技术，但它较为复杂，需要特殊厂商设备支持。",
+   "options": [
+    "正确",
+    "错误"
+   ],
+   "analysis": "",
+   "type": "judge",
+   "answer": false
+  },
+  {
+   "id": "206",
+   "question": "端口镜像可以对哪些流量进行镜像？",
+   "options": [
+    "端口接收的报文",
+    "端口发送的报文",
+    "端口发送和接收的报文",
+    "端口丢弃的报文"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ABC"
+  },
+  {
+   "id": "207",
+   "question": "下列关于不同类型的防火墙的说法，错误的是：",
+   "options": [
+    "包过滤防火墙对于通过防火墙的每个数据包，都要进行ACL 匹配检查。",
+    "状态检测防火墙只对没有命中会话的首包进行安全策略检查。",
+    "状态检测防火墙需要配置报文的“去”\n“回”两个方向的安全策略。",
+    "代理防火墙代理内部网络和外部网络用户之间的业务。"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "C"
+  },
+  {
+   "id": "208",
+   "question": "运行MPLS 设备的标签转发表中，对于相同的路由（下一跳也相同），出标签：",
+   "options": [
+    "一定不同",
+    "一定相同",
+    "可能相同"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "B"
+  },
+  {
+   "id": "209",
+   "question": "地址转换技术的优点不包括：",
+   "options": [
+    "地址转换可以使内部网络用户（私有IP 地址）方便地访问Internet。",
+    "地址转换可以使内部局域网的许多主机共享一个IP 地址上网。",
+    "地址转换能够处理IP 报头加密的情况。",
+    "地址转换可以屏蔽内部网络的用户，提高内部网络的安全性。"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "C"
+  },
+  {
+   "id": "210",
+   "question": "Round Robin 调度方式是按每个队列定义的字节数轮询发送的，而且每个队列占用的带宽比率等于本队列定义的字节数与所有队列字节数之和的比值。",
+   "options": [
+    "正确",
+    "错误"
+   ],
+   "analysis": "",
+   "type": "judge",
+   "answer": true
+  },
+  {
+   "id": "211",
+   "question": "再进行源NAT 配置，并有no-pat 配置参数时，以下哪个说法是正确的？",
+   "options": [
+    "只进行源IP 地址转换。",
+    "只进行目的IP 地址转换。",
+    "同时进行源IP 地址和源端口转换。",
+    "进行目的IP 地址和目的端口转换。"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "A"
+  },
+  {
+   "id": "212",
+   "question": "在USG 系列防火墙的Trust 区域视图下，配置add interface GigabitEthernet0/0/1 后，则GigabitEthernet0/0/1 不在属于Local区域。",
+   "options": [
+    "正确",
+    "错误"
+   ],
+   "analysis": "",
+   "type": "judge",
+   "answer": false
+  },
+  {
+   "id": "213",
+   "question": "在AR 路由器接口上应用流策略的命令是：",
+   "options": [
+    "traffic-policy p1 inbound",
+    "traffic classifier p1 inbound",
+    "traffic behavior p1 inbound",
+    "services-policy p1 inbound"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "A"
+  },
+  {
+   "id": "214",
+   "question": "丢包仅发生在报文的发送端。",
+   "options": [
+    "正确",
+    "错误"
+   ],
+   "analysis": "",
+   "type": "judge",
+   "answer": false
+  },
+  {
+   "id": "215",
+   "question": "关于MPLS 转发流程中，Ingress 节点转发的描述正确的是：",
+   "options": [
+    "Ingress 节点收到数据包之后会首选查看ILM 表，查找Tunnel ID",
+    "根据ILM 表的Tunnel ID 找到对应的NHLFE 表项，讲LFIB 表项和NHLFE 表项关联起来。",
+    "查看NHLF 表项，可以得到出接口、下一跳、出标签和标签操作类型，标签操作类型为Push.",
+    "在IP 分组报文中亚茹获得的标签，并根据QOS 策略处理EXP，同时处TTL，然后将封装好的MPLS 分组报文发送给下一跳。"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "CD"
+  },
+  {
+   "id": "216",
+   "question": "以下是关于esight 物理拓扑监控的功能描述，其中正确的选项有：",
+   "options": [
+    "图形化的展示网元、子网、链路的布局以及状态",
+    "精确可视化的监控全网网络运行状态",
+    "系统的展现全网网络结构及网络实体在业务上的关系",
+    "整个网络监控的入口，微客户实现高效运维"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ABCD"
+  },
+  {
+   "id": "217",
+   "question": "Best-Effort Service 模型是通过什么队列技术来实现的？",
+   "options": [
+    "FIFO",
+    "WFQ",
+    "PQ",
+    "LQ"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "A"
+  },
+  {
+   "id": "218",
+   "question": "假设有四条流量a,b,c,d 分别为50M，端口总带宽为100M，发生了流量拥塞，并对其进行拥塞管理，其中，流量a 属于PQ 队列调度，流量b,c,d 属于WFQ 队列调度，权重比为1:2:2，则关于对四条流量的调度结果的描述，错误的是",
+   "options": [
+    "流量a 通过100M",
+    "流量a 通过50M",
+    "流量b 通过10M，流量c,d 分别通过20M",
+    "流量b 通过25M，流量c,d 分别通过12.5"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "AD"
+  },
+  {
+   "id": "219",
+   "question": "BFD 检测可以同哪些协议模块进行联动",
+   "options": [
+    "VRRP",
+    "OSPF",
+    "BGP",
+    "静态路由"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ABCD"
+  },
+  {
+   "id": "220",
+   "question": "对于此台交换机的配置描述正确的是",
+   "options": [
+    "默认情况下配置DHCP 服务器和DHCP delay 都必须开启DHCP 服务",
+    "VLAN100 接口将会接受到DHCP 报文，通过中继发送到外部DHCP Server",
+    "为VLANIF100 接口指定DHCP 服务器组为dhcpgroup1",
+    "首先需要创建DHCP 服务器组并向服务器组添加DHCP 服务器",
+    "默认情况下，dhcpgroup1 会自动添加网络中的DHCP 服务器"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ABCD"
+  },
+  {
+   "id": "221",
+   "question": "MPLS 技术以标签交换代替IP 转发，当MPAS 运行在以太网中时，它使用那种封装模式？",
+   "options": [
+    "包模式",
+    "帧模式",
+    "传输模式",
+    "信道模式",
+    "通道模式"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "AB"
+  },
+  {
+   "id": "222",
+   "question": "SDN 和NFV 本质上是一个概念，都是关于网络功能虚拟化的描述。",
+   "options": [
+    "正确",
+    "错误"
+   ],
+   "analysis": "",
+   "type": "judge",
+   "answer": false
+  },
+  {
+   "id": "223",
+   "question": "假设出端口流量发生拥塞，报文A 与报文B 被缓存在各自的队列中，报文B 属于PQ 队列，报文A 属于WFQ 队列，那么哪种报文会优先被调度出去？",
+   "options": [
+    "报文A 优先",
+    "报文B 优先",
+    "同时出去",
+    "都被丢弃"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "B"
+  },
+  {
+   "id": "224",
+   "question": "下面是关于MPLS 的转发过程的描述，错误的是：",
+   "options": [
+    "在MPLS 中，如果LSP 转发数据失败，负责建立LSP 的MPLS 控制平面能够检测到这种错误，",
+    "MPLS 的转发平面的主要功能是对IP 包进行标签的添加和删除，同时依据标签转发表，对收到的分组进行转发，是面向连接的。",
+    "IP 包进入MPLS 网络时，MPLS 入口的LER 会分析IP 包的内容并为这些IP 包添加合适的标签。",
+    "MPLS 依然可以使用Ping 或者Traceroute 来发现LSP 错误，并及时定位失效节点。"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "A"
+  },
+  {
+   "id": "225",
+   "question": "在状态检测防火墙中，开启状态检测机制时，三次握手的第二个报文(SYN+ACK)到达防火墙的时候，如果防火墙上还没有对应的会话表，则下面说法正确的是：",
+   "options": [
+    "如果防火墙安全策略允许报文通过，则报文可以通过防火墙。",
+    "如果防火墙安全策略允许报文通过，则创建会话表。",
+    "缺省状态下，关闭状态功能后，并配置了允许策略即可通过。",
+    "报文一定通过防火墙，并建立会话表。"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "C"
+  },
+  {
+   "id": "226",
+   "question": "下列选项中，关于Agile Controller 的终端安全管理特点的描述，正确的是：",
+   "options": [
+    "一键修复，既降低终端管理维护成本。",
+    "只允许安装标准软件，实现桌面办公标准化",
+    "控制终端外泄途径，通过准入控制确保入网终端强制安装客户端并且符合安全要求",
+    "禁止非法软件的安装，降低病毒感染风险。"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ABCD"
+  },
+  {
+   "id": "227",
+   "question": "一台VRRP 虚拟路由器只能拥有虚拟IP 地址。",
+   "options": [
+    "正确",
+    "错误"
+   ],
+   "analysis": "",
+   "type": "judge",
+   "answer": false
+  },
+  {
+   "id": "228",
+   "question": "在ldp session建立过程中，主动方首先会发送Initialization信息进行参数的协商，如果被动方不接受协商参数，将发送：",
+   "options": [
+    "Error Notification Message",
+    "Hello Message",
+    "Keepalive Message",
+    "Initialization Message"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "A"
+  },
+  {
+   "id": "229",
+   "question": "在Aglie Contyoller 的安全协防中，关于安全联动组件的描述，正确的是：",
+   "options": [
+    "上报日志设备是由网络中部署的网络设备，安全设备，策略服务器，第三方系统等来承担，主要负责提供网络信息与安全日志。",
+    "客户设备是网络信息与安全日志的产生者",
+    "联动策略执行设备由交换机来承担，主要负责安全事件发生后的设备联动部分的安全响应，是执行阻断或引流策略的设备",
+    "Aglie Controller 的安全协防组件负责对日志的采集，处理，事件关联。安全态势展现，安全响应，"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ACD"
+  },
+  {
+   "id": "230",
+   "question": "eSight 中的查看在线用户状态的功能，可以检查是否存在非法访问的用户，以提高网管的安全监控能力。",
+   "options": [
+    "正确，",
+    "错误"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "A"
+  },
+  {
+   "id": "231",
+   "question": "镜像要求所来集的数据实时，真实，可靠。",
+   "options": [
+    "正确",
+    "错误"
+   ],
+   "analysis": "",
+   "type": "judge",
+   "answer": false
+  },
+  {
+   "id": "232",
+   "question": "eSight 网管要实现能够接收并管理设备上报的告警，需要具备哪些条件？",
+   "options": [
+    "设备被网管管理",
+    "设备配置了正确的Trap 参数",
+    "网管上被管理设备要配置正确的SNMP 协议及参数",
+    "网管和设备之间要连通"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ABCD"
+  },
+  {
+   "id": "233",
+   "question": "在MPLS 网络中，针对标签会有不同的操作类型，其中: ‘pop’动作的含义是：",
+   "options": [
+    "在MPLS 标签栈中移除顶部标签。",
+    "在MPLS 标签栈中加入顶部标签",
+    "将顶部标签替换成另外一个数值\nC, 将顶部标签替换成另一组标签，"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "A"
+  },
+  {
+   "id": "234",
+   "question": "下列关于ASPF 和Servermap 的说法，正确的是：",
+   "options": [
+    "ASPF 检查应用层协议信息并且监控连接的应用层协议状态",
+    "ASPF 通过动态的生成ACL 来决定数据包是否通过防火墙。",
+    "配置NAT Server 生成的是静态Server-map",
+    "Servemap 表用五元组来表示一条会话"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "AC"
+  },
+  {
+   "id": "235",
+   "question": "下列选项中，说法错误的是：",
+   "options": [
+    "LSP 分为静态LSP 和动态LSP 两种，静态LSP 由管理员手工配置，动态LSP 则利用路由协议和标签发布协议动态建立。",
+    "手工分配标签需要遵循的原则是:上游节点出标签的值就是下游节点入标签的值。",
+    "通过静态方式分配标签建立的LSP 也能根据网络拓扑变化动态调整，无需管理员干预。",
+    "动态LSP 通过标签发布协议动态建立，入MP-BGP,RSVP-TE,LDP"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "C"
+  },
+  {
+   "id": "236",
+   "question": "DHCP Snooping 是一种DHCP 的安全特性，关于DHCP Snooping的说法，下列描述错误的是：",
+   "options": [
+    "DHCP Snooping 绑定表分为动态绑定表和静态绑定表。",
+    "DHCP Snooping 区分信任端口和非信任端口，对信任端口，不处理DHCP Reply 报文。",
+    "静态绑定表在报文入端口手工输入，也可以手工配置表项老化时间。",
+    "在二层上应用DHCP Snooping 时，不配置Option82 功能也可以获得绑定表所需要的接口信息。"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "AC"
+  },
+  {
+   "id": "237",
+   "question": "当拥塞发生时，通常会影响到QoS 的哪些指标？ABC",
+   "options": [
+    "传输时延",
+    "传输抖动",
+    "传输带宽",
+    "传输距离"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ABC"
+  },
+  {
+   "id": "238",
+   "question": "MPLS 是基于两个不同的平面实现的数据转发，关于此转发机制中的描述，正确的是：",
+   "options": [
+    "当IF 报文进入MPLS 域时，首先查看的是FIB 表。",
+    "系统自动为给使用隧道的上层应用分配一个ID，也称为Tunnel ID.",
+    "如果Tunnel ID 值为0x0，则进入MPLS 转发流程。",
+    "如果Tunnel ID 值不为0x0，则进入正常的IP 转发流程。"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "AB"
+  },
+  {
+   "id": "239",
+   "question": "华为防火墙默认提供的安全区域有，",
+   "options": [
+    "Local 区域",
+    "Trust 区域",
+    "Untrust 区域",
+    "Security 区域"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ABC"
+  },
+  {
+   "id": "240",
+   "question": "下列选项中，属于使用下游自主标签发布方式和有序标签控制方式建立LSP 的过程描述的是：",
+   "options": [
+    "边缘节点发现自己的路由表中出现了新的不属于任何现有的FEC的目的地址，也不会建立一个新的FEC 与之对应。",
+    "LSP 的建立过程实际就是将FEC 和标签进行绑定，并将这种绑定通告给LSP 上的相邻LSR。",
+    "如果出节点有可供分配的标签，则会为FEC 分配标签并主动向上游发出标签映射消息",
+    "节点LSR 收到标签映射消息时，它也需要在标签转发表中增加相应的条目。"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "BCD"
+  },
+  {
+   "id": "241",
+   "question": "在eSight 的告警管理界面中，当一条告警底色为绿色时表示该告警已被确认。",
+   "options": [
+    "正确",
+    "错误"
+   ],
+   "analysis": "",
+   "type": "judge",
+   "answer": false
+  }
+ ]
+}
