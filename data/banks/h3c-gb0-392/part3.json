@@ -1,0 +1,657 @@
+{
+ "questions": [
+  {
+   "id": "1-101",
+   "type": "multiple",
+   "question": "L2TP组件中的LNS和LAC的主要作用有____。",
+   "options": [
+    "LAC将从远程系统处接收到的报文进行L2TP封装后发给LNS",
+    "L2TP隧道主要由LAC维护",
+    "LAC和LNS可以为同一台设备",
+    "LAC和LNS为L2TP会话的终结点"
+   ],
+   "answer": "AD",
+   "analysis": ""
+  },
+  {
+   "id": "1-102",
+   "type": "multiple",
+   "question": "下列关于L2TP隧道(Tunnel)和L2TP会话(Session)的描述正确的是____。",
+   "options": [
+    "同一对LNS和LAC之间只能建立一条L2TP隧道",
+    "同一对LNS和LAC之间可以建立一条或多条L2TP隧道",
+    "L2TP会话可以在L2TP隧道建立之前进行",
+    "L2TP会话必须在L2TP隧道建立之后进行"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "1-103",
+   "type": "multiple",
+   "question": "下列关于L2TP隧道(Tunnel)和L2TP会话(Session)的描述正确的是____。",
+   "options": [
+    "会话标识( Session ID)不同的报文可以复用同一条隧道",
+    "会话标识( Session ID)不同的报文不能复用同一条隧道",
+    "L2TP会话可以在L2TP隧道建立之前进行",
+    "L2TP会话必须在L2TP隧道建立之后进行"
+   ],
+   "answer": "AD",
+   "analysis": ""
+  },
+  {
+   "id": "1-104",
+   "type": "single",
+   "question": "★★ 103/401\nPPP帧被添加L2TP头进行封装时，会被标以正确的Tunnel ID和Session ID，以标识其隧道和会话属性。该L2TP头中的Tunnel ID(隧道标识符)由____分配，Session ID(会话标识符)由____分配。",
+   "options": [
+    "本端LAC，本端LAC",
+    "对端LNS，对端LNS",
+    "本端LAC，对端LNS",
+    "对端LNS，本端LAC"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-105",
+   "type": "single",
+   "question": "PC采用iNode VPN客户端与网络设备建立L2TP隧道和会话的方式，属于L2TP的____拓扑结构。",
+   "options": [
+    "客户LAC模式",
+    "远端发起模式",
+    "独立LAC模式",
+    "LAC发起模式"
+   ],
+   "answer": "A",
+   "analysis": ""
+  },
+  {
+   "id": "1-106",
+   "type": "multiple",
+   "question": "某公司员工经常在外出差，为便于访问公司资源，他应该采用如下哪种L2TP接入和认证方式____。",
+   "options": [
+    "独立L2TP模式",
+    "客户LAC模式",
+    "LAC认证",
+    "LNS认证"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "1-107",
+   "type": "single",
+   "question": "ZLB( Zero-Length Bod)消息是一个只有L2TP头的控制消息，其作用是作为一个明确应答，以确保控制消息的可靠传递。以下四种情况中，LNS不发送ZLB消息给LAC作为应答的有____。",
+   "options": [
+    "LNS收到LAC发送CDN(Call-Disconnect-Notif,呼叫断开通知)消息后",
+    "LNS收到LAC发连的ICCN(Incoming-Call-Connectea，呼叫已连接)消息后",
+    "LNS收到LAC发送的Hello控制消息后",
+    "LNS收到LAC发连的StopCCN(scop-Control-Connection-Notiflcation)消息后"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-108",
+   "type": "multiple",
+   "question": "在独立LAC模式的L2TP基本配置中，有关隧道本端的名称的描进正确的是____。",
+   "options": [
+    "在系统视图下，使用Tunnel name name命令配最本端隧道名称",
+    "在L2TP组视图下，使用Tunnel name name命令配置本端隧道名称",
+    "默认情况下，隧道本端的名称为系统的名称",
+    "默认情况下，隧道本端的名称为空"
+   ],
+   "answer": "BC",
+   "analysis": ""
+  },
+  {
+   "id": "1-109",
+   "type": "multiple",
+   "question": "在独立LAC模式的L2TP基本配置中，有关隧道本端的名称的描述不正确的是____。",
+   "options": [
+    "在L2TP组视图下，使用Tunnel name name命令配置本端隧道名称",
+    "在系统视图下，使用Tunnel name name命令配置本端隧道名称",
+    "默认情况下，隧道本端的名称为系统的名称",
+    "默认情况下，隧道本端的名称为空"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "1-110",
+   "type": "multiple",
+   "question": "在独立LAC模式的L2TP基本配置中，有关隧道验证功能的描述正确的是____。",
+   "options": [
+    "隧道验证请求只能由LAC发起",
+    "隧道验证请求可以由LNS发起",
+    "缺省情况下，隧道验证功能处于关闭状态",
+    "缺省情况下，隧道验证功能处于开启状态"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "1-111",
+   "type": "multiple",
+   "question": "在独立LAC模式的L2TP基本配置中，有关隧道验证功能的描述正确的是____。",
+   "options": [
+    "隧道验证请求可以由LAC发起",
+    "隧道验证请求不能由LNS发起",
+    "缺省情况下，隧道验证功能处于关闭状态",
+    "缺省情况下，隧道验证功能处于开启状态"
+   ],
+   "answer": "AD",
+   "analysis": ""
+  },
+  {
+   "id": "1-112",
+   "type": "multiple",
+   "question": "下列关于PKI工作流程的说法正确的有____。",
+   "options": [
+    "证书申请由实体提出",
+    "实体身份审核由RA完成",
+    "证书由CA颁发",
+    "实体撤销证书需向RA申请"
+   ],
+   "answer": "ABC",
+   "analysis": "D：需向CA申请"
+  },
+  {
+   "id": "1-113",
+   "type": "multiple",
+   "question": "在数字证书申请发放到作废的过程中，PKI(Public Ke Infrastructure，公开密钥体系)的各组成部分的作用分别为_____。",
+   "options": [
+    "实体希望获取数字证书时，首先向RA(注册机构)提出申请，RA审核实体身份后，将实体身份信息和公开密钥以数字签名的方式发送给CA(证书机构)",
+    "CA验证数字签名后，同意实体申请，为实体颁发证书",
+    "CA将已颁发的证书发送到LDAP服务器以提供目录浏览服务",
+    "实体希望撤销证书时，向RA(注册机构)提交申请"
+   ],
+   "answer": "AB",
+   "analysis": "C：RA接收CA返回的证书后，发送到LDAP服务器\nD：需向CA申请"
+  },
+  {
+   "id": "1-114",
+   "type": "multiple",
+   "question": "以下属于非对称密钥算法的是____。",
+   "options": [
+    "RSA",
+    "DSA",
+    "DES",
+    "DH"
+   ],
+   "answer": "ABD",
+   "analysis": ""
+  },
+  {
+   "id": "1-115",
+   "type": "multiple",
+   "question": "以下属于对称密钥算法的是____。",
+   "options": [
+    "RSA",
+    "DSA",
+    "DES",
+    "AES"
+   ],
+   "answer": "CD",
+   "analysis": ""
+  },
+  {
+   "id": "1-116",
+   "type": "multiple",
+   "question": "配置PKI域所信任的CA(权威认证机构)为H3CCA，并向CA发连争讼申请请求时，若使用的实体名为H3C，使用的命令分别为____。",
+   "options": [
+    "在PKI域视图下，配置ca identifier H3CCA",
+    "在PKI域视图下，配置CErtificate identifier H3CCA",
+    "在PKI域视图下，配置CErtificate request entit H3C",
+    "在PKI域视图下，配置ca request entit H3C"
+   ],
+   "answer": "AC",
+   "analysis": "ca identifier 配置信任的CA名称\nCErtificate request entit 配置实体名"
+  },
+  {
+   "id": "1-117",
+   "type": "multiple",
+   "question": "配置PKI域所信任的CA(权威认证机构为)H3CCA，且配置注册服务器的URL为\nca.h3c.com的命令分别为____。",
+   "options": [
+    "在PKI域视图下，配置ca identifier H3CCA",
+    "在PKI域视图下，配置CErtificate identifier H3CCA",
+    "在PKI域视图下，配置CErtificate request url ca.h3c.com",
+    "在PKI域视图下，配置CErtificate url ca.h3c.com"
+   ],
+   "answer": "AC",
+   "analysis": "ca identifier 配置信任的CA名称\nCErtificate request url配置注册服务器"
+  },
+  {
+   "id": "1-118",
+   "type": "multiple",
+   "question": "在设备上通过display ike peer命令显示如下信息，通过该信息可知____。IKE Peer: 123\nexchange mode: aggressive on phase 1\npre-shared-ke simple 123\npeer id type: name\npeer ip address: 10.2.1.1\nlocal ip address:\npeer name: aaa\nnat traversal: enable\ndpd:",
+   "options": [
+    "在IKE协商第一阶段协商模式为主模式",
+    "IKE第一阶段的协商过程中，发起端发送自己的名字给对端用于标识自己的身份",
+    "IKE协商时的本端安全网关名字为aaa",
+    "未配置本端安全网关lP地址，IKE协商时的本端网关lP地址将使用应用安全策略的接口的主lP地址"
+   ],
+   "answer": "BD",
+   "analysis": "A：在IKE协商第一阶段协商模式为野蛮模式\nC：对端的安全网关名字为aaa"
+  },
+  {
+   "id": "1-119",
+   "type": "multiple",
+   "question": "在设备上通过display ike peer命令显示如下信息，通过该信息可知____。IKE Peer: 123\nexchange mode: aggressive on phase 1\npre-shared-ke simple 123\npeer id type: name\npeer ip address: 10.2.1.1\nlocal ip address:\npeer name: aaa\nnat traversal: enable\ndpd:",
+   "options": [
+    "在IKE协商第一阶段协商模式为野蛮模式",
+    "IKE第一阶段的协商过程中，发起端发送自己的lP地址给对端用于标识自己的身份",
+    "IKE协商时的对端安全网关名字为aaa",
+    "未使能IKE NAT穿越功能"
+   ],
+   "answer": "AC",
+   "analysis": "B：发送自己的名字，而不是IP\nD：nat traversal:enable 说明已经使能IKE NAT穿越功能"
+  },
+  {
+   "id": "1-120",
+   "type": "single",
+   "question": "根据如图组网和下列配置可以判断这是一个______技术的应用。RTA:\n[RTA] ike peer 123\n[RTA-ike-peer-123] pre-shared-ke simple 123\n[RTA-ike-peer-123] remote-address 10.1.1.2\n[RTA-ike-peer-123] local-address 10.1.1.1\n[RTA-ike-peer-123] quit\n[RTA]ipsec proposal 1\n[RTA-ipsec-proposal-1]quit\n[RTA]acl number 3000\n[RTA-acl- adv-3000] rule 0 permit ip source 1.1.1.1 0.0.0.0 destination 2.2.2.2 0.0.0.0[RTA]ipsec policy 1 1 isakmp\n[RTA-ipsec-policy-isakmp-1-1] securit acl 3000\n[RTA-ipsec-policy-isakmp-1-1] ike-peer 123\n[RTA-ipsec-policy-isakmp-1-1] proposal 1\n[RTA-ipsec-policy-isakmp-1-1]quit\n[RTA] interface Ethernet0/1/1\n[RTA Ethernet0/1/1] ip address 10.1.1.1 255.255.255.0\n[RTA Ethernet0/1/1]ipsec policy 1\n[RTA]interface Ethernet0/1/0\n[RTA Ethernet0/1/0] ip address 192.168.1.1 255.255.255.0\n[RTA]interface loopback 0\n[RTA- Loopback0]ip address 1.1.1.1 255.255.255.255\n[RTA]interface Tunnel 1\n[RTA-Tunnel1]source 1.1.1.1\n[RTA-Tunnel1]destination 2.2.2.2\n[RTA-Tunnel1]ip address 100.1.1.1 255.255.255.0\n[RTA] ip route-static 2.2.2.2 255.255.255.255 10.1.1.2\n[RTA] ip route-static 192.168.2.0 255.255.255.0 100.1.1.2\nRTB:\n[RTB] ike peer 123\n[RTB-ike-peer-123] pre-shared-ke simple 123\n[RTB-ike-peer-123] remote-address 10.1.1.1\n[RTB-ike-peer-123] local-address 10.1.1.2\n[RTB-ike-peer-123]quit\n[RTB] ipsec proposal 1\n[RTB-ipsec-proposal-1] quit\n[RTB]acl number 3000\n[RTB-acl-adv-3000] rule 0 permit ip source 2.2.2.2 0.0.0.0 destination 1.1.1.1 0.0.0.0[RTB]ipsec policy 1 1 isakmp\n[RTB-ipsec-policy-isakmp-1-1] securit acl 3000\n[RTB-ipsec-policy-isakmp-1-1] ike-peer 123\n[RTB-ipsec-poliyc-isakmp-1-1] proposal 1\n[RTB] interface Ethernet0/1/1\n[RTB-Ethernet0/1/1] ip address 10.1.1.2 255.255.255.0\n[RTB-Ethernet0/1/1] ipsec policy 1\n[RTB] interface Ethernet0/1/0\n[RTB-Ethernet0/1/0] ip address 192.168.2.1 255.255.255.0[RTB] interface Loopback0\n[RTB-Loopback0] ip address 2.2.2.2 255.255.255.255\n[RTB] interface Tunnel 1\n[RTB-Tunnel1]source 2.2.2.2\n[RTB-Tunnel1]destination 1.1.1.1\n[RTB-Tunnel1]ip address 100.1.1.2 255.255.255.0\n[RTB-Tunnel1]keepalive\n[RTB] ip route-static 1.1.1.1 255.255.255.255 10.1.1.1\n[RTB] ip route-static 192.168.1.0 255.255.255.0 100.1.1.1",
+   "options": [
+    "IPsec over GRE",
+    "GRE over IPsec",
+    "L2TP over IPsec",
+    "IPSec over L2TP"
+   ],
+   "answer": "B",
+   "analysis": "ACL列表地址如果是隧道的源、目的地址，类型为GRE over IPsec\nACL列表地址如果是本地的IP地址，类型为IPsec over GRE"
+  },
+  {
+   "id": "1-121",
+   "type": "single",
+   "question": "根据如图组网和下列配置可以判断这是一个____技术的应用。RTA:\n[RTA] ike peer 123\n[RTA-ike-peer-123] pre-shared-ke simple 123\n[RTA-ike-peer-123] remote-address 100.1.1.2\nIRTA-ike-peer-123] local-address 100.1.1.1\n[RTA-ike-peer-123]quit\n[RTA] ipsec proposal 1\n[RTA-ipsec-proposal-1]quit\n[RTA]acl number 3000\n[RTA-acl-adv-3000] rule 0 permit ip source 192.168.1.0 0.0.0.255 destination 192.168.2.0 0.0.0.255\n[RTA]ipsec policy 1 1 isakmp\n[RTA-ipsec-policy-isakmp-1-1] securit acl 3000\n[RTA-ipsec-policy-isakmp-1-1] ike-peer 123\n[RTA-ipsec-policy-isakmp-1-1] proposal 1\n[RTA-ipsec-policy-isakmp-1-1] quit\n[RTA] interface Ethernet0/1/1\n[RTA-Ethernet0/1/1] ip address 10.1.1.1 255.255.255.0\n[RTA] interface Ethernet0/1/0\n[RTA-Ethernet0/1/0] ip address 192.168.1.1 255.255.255.0[RTA] interface Loopback0\n[RTA-Loopback0]ip address 1.1.1.1 255.255.255.255\n[RTA] interface Tunnel 1\n[RTA-Tunnel1]source 1.1.1.1\n[RTA-Tunnel1]destination 2.2.2.2\n[RTA-Tunnel1]ip address 100.1.1.1 255.255.255.0\n[RTA-Tunnel1]keepalive\n[RTA-Tunnel1]ipsec policy 1\n[RTA] ip route-static 2.2.2.2 255.255.255.255 10.1.1.2\n[RTA] ip route-static 192.168.2.0 255.255.255.0 100.1.1.2 RTB:\n[RTB] ike peer 123\n[RTB-ike-peer-123] pre-shared-ke simple 123\n[RTB-ike-peer-123] remote-address 100.1.1.1\n[RTB-ike-peer-123] local-address 100.1.1.2\n[RTB-ike-peer-123]quit\n[RTB] ipsec proposal 1\n[RTB-ipsec-proposal-1] quit\n[RTB]acl number 3000\n[RTB-acl-adv-3000] rule 0 permit ip source 192.168.2.0 0.0.0.255 destination 192.168.1.0 0.0.0.255\n[RTB]ipsec policy 1 1 isakmp\n[RTB-ipsec-policy-isakmp-1-1] securit acl 3000\n[RTB-ipsec-policy-isakmp-1-1] ike-peer 123\n[RTB-ipsec-policy-isakmp-1-1] proposal 1\n[RTB-ipsec-policy-isakmp-1-1] quit\n[RTB] interface Ethernet0/1/1\n[RTB-Ethernet0/1/1] ip address 10.1.1.2 255.255.255.0\n[RTB] interface Ethernet0/1/0\n[RTB-Ethernet0/1/0] ip address 192.168.2.1 255.255.255.0[RTB] interface Loopback0\n[RTB-Loopback0] ip address 2.2.2.2 255.255.255.255\n[RTB] interface Tunnel 1\n[RTB-Tunnel1]source 2.2.2.2\n[RTB-Tunnel1]destination 1.1.1.1\n[RTB-Tunnel1]ip address 100.1.1.2 255.255.255.0\n[RTB-Tunnel1]keepalive\n[RTA-Tunnel1]ipsec policy 1\n[RTB] ip route-static 1.1.1.1 255.255.255.255 10.1.1.1\n[RTB] ip route-static 192.168.1.0 255.255.255.0 100.1.1.1",
+   "options": [
+    "IPSec over GRE",
+    "GRE over IPsec",
+    "L2TP over IPsec",
+    "IPSec over L2TP"
+   ],
+   "answer": "A",
+   "analysis": "ACL列表地址如果是隧道的源、目的地址，类型为GRE over IPsec\nACL列表地址如果是本地的IP地址，类型为IPsec over GRE"
+  },
+  {
+   "id": "1-122",
+   "type": "multiple",
+   "question": "根据对报文的封装形式，IPSec工作模式分为____。",
+   "options": [
+    "隧道模式",
+    "主模式",
+    "传输模式",
+    "野蛮模式"
+   ],
+   "answer": "AC",
+   "analysis": "IPSec具有两种工作模式：\n隧道模式：保护站点到站点的安全性\n传输模式：保护端到端的安全性"
+  },
+  {
+   "id": "1-123",
+   "type": "multiple",
+   "question": "IPSec安全策略包括以下哪几种____。",
+   "options": [
+    "手工配置参数的安全策略",
+    "利用IKE协商参数的安全策略",
+    "利用GRE自动协商方式",
+    "利用L2TP自动协商方式"
+   ],
+   "answer": "AB",
+   "analysis": "SA可通过手工配置和自动协商方式建立：\n手工配置是指在两端设置参数，在两端参数匹配和协商后建立\n自动协商由IKE生成和维护"
+  },
+  {
+   "id": "1-124",
+   "type": "multiple",
+   "question": "在两台远程路由器之间抓取报文，发现数据包由lP头部、ESP头部以及被加密后的数据组成。则该数据包有可能经历如下哪些过程___。",
+   "options": [
+    "GRE over IPSec，IPSec采用传输模式",
+    "GRE over IPSec，IPSec采用隧道模式",
+    "IPSec over GRE，IPSec采用传输模式",
+    "IPSec over GRE，IPSec采用隧道模式"
+   ],
+   "answer": "AB",
+   "analysis": "使用IPSec来加密隧道进行传输，属于IPSec over GRE\n加密数据流后从隧道传输，属于GRE over IPSec。\n注意：本题中提到了加密后的数据，说明采用了 GRE over IPSec技术。\n由于无法判断是传输模式（端到端）还是隧道模式（点到点），所以两种模式都有可能。"
+  },
+  {
+   "id": "1-125",
+   "type": "single",
+   "question": "两台路由器间配置IPSec policy，将策略下发到相应接口上后，使用ping命令检查被保护数据流互通性，发现数据100%通过。使用display ike sa和display ipsec sa俞令，显示为IPSec SA未建立。则IPSec配置失败原因在于____。",
+   "options": [
+    "IPSec proposal中使用了传输模式，而被保护数据流是网段到网段的数据",
+    "IKE的remote-address地址不是对端路由器的接口地址",
+    "IKE的pre-shared-ke配置不匹配",
+    "ACL配置不正确"
+   ],
+   "answer": "D",
+   "analysis": ""
+  },
+  {
+   "id": "1-126",
+   "type": "single",
+   "question": "两台路由器间配置IPSec policy，将策略下发到相应接口上后，使用ping命令检查被保护数据流互通性，发现数据100%通过。使用display ike sa和display ipsec sa命令，显示为IPSec SA未建立。则IPSec配置失败原因在于____。",
+   "options": [
+    "IPSec proposal中使用了隧道模式，而被保护数据流是网段到网段的数据",
+    "使用的是IKE野蛮模式",
+    "ACL配置不正确",
+    "IKE的pre-shared-ke配置不匹配"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-127",
+   "type": "single",
+   "question": "下列关于IPSec与IKE的说法正确的是____。",
+   "options": [
+    "IPSec只能通过与IKE配合方式才能建立起安全联盟",
+    "IKE只能与IPSec配合使用",
+    "IKE只负责为IPSec建立提供安全密钥，不参与IPSec SA协商",
+    "IPSec SA建立后，数据转发与IKE无关"
+   ],
+   "answer": "D",
+   "analysis": ""
+  },
+  {
+   "id": "1-128",
+   "type": "multiple",
+   "question": "下列关于IPSec与IKE的说法不正确的是________。",
+   "options": [
+    "IPSec只能通过与IKE配合方式才能建立起安全联盟",
+    "IKE只能与IPSec配合使用",
+    "IKE只负责为IPSec建立提供安全密钥，不参与IPSec SA协商",
+    "IPSec SA建立后，数据转发与IKE无关"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "1-129",
+   "type": "multiple",
+   "question": "下列关于IKE的说法正确的是________。",
+   "options": [
+    "IKE第一阶段交换模式有主模式和野蛮模式",
+    "IKE第二阶段完成时产生IKE SA",
+    "IKE两种模式下交换密钥都需要进行身份验证",
+    "IKE交换密钥时采用对称密钥算法"
+   ],
+   "answer": "AC",
+   "analysis": "B：IKE在第一阶段建立一个IKE SA为第二阶段协商提供保护，\n第二阶段完成时产生IPSec SA。\nD：采用非对称密钥算法"
+  },
+  {
+   "id": "1-130",
+   "type": "multiple",
+   "question": "下列关于AH(Authentication Header，验证头)和ESP(Encapsulating Securlt Paload，封装安全载荷)的描述正确的有______。",
+   "options": [
+    "两者都可以提供数据的完整性保护",
+    "两者都可以提供数据源验证以及可选的抗重播服务",
+    "两者都可以提供机密性保护",
+    "两者都可以同时使用"
+   ],
+   "answer": "ABD",
+   "analysis": "AH提供数据完整性校验和源验证功能、还提供有限的抗重播\n服务。\nAH不能提供数据加密功能。\nESP能保证数据机密性，使用哈希算法保证报文的完整性和\n真实性，提供一定的抗重播服务。\nAH可以配合ESP使用。"
+  },
+  {
+   "id": "1-131",
+   "type": "multiple",
+   "question": "下列关于AH(Authentication Header，验证头)和ESP(Encapsulating Securlt Paload，封装安全载荷)的描述正确的有______。",
+   "options": [
+    "AH不能提供数据的完整性保护",
+    "两者都可以提供数据源验证以及可选的抗重播服务",
+    "两者都可以提供机密性保护",
+    "两者都可以同时使用"
+   ],
+   "answer": "BD",
+   "analysis": "AH提供数据完整性校验和源验证功能、还提供有限的抗重播\n服务。\nAH不能提供数据加密功能。\nESP能保证数据机密性，使用哈希算法保证报文的完整性和\n真实性，提供一定的抗重播服务。\nAH可以配合ESP使用。"
+  },
+  {
+   "id": "1-132",
+   "type": "multiple",
+   "question": "某企业部门间的业务传输需要采用IPSec提供端到端的安全保护，并要求数据必须进行加密传输。针对该企业业务传输安全性的要求，IPSec应采用哪种工作模式以及封装协议？",
+   "options": [
+    "传输模式",
+    "隧道模式",
+    "ESP封装协议",
+    "AH封装协议"
+   ],
+   "answer": "AC",
+   "analysis": "端到端 传输模式；点到点 隧道模式；\n机密使用ESP。"
+  },
+  {
+   "id": "1-133",
+   "type": "multiple",
+   "question": "某企业部门间的业务传输需要采用IPSec提供端到端的安全保护，并要求数据必须进行加密传输。针对该企业业务传输安全性的要求，IPSec应采用哪种封装协议？",
+   "options": [
+    "AH封装协议",
+    "DES封装协议",
+    "ESP+AH封装协议",
+    "ESP封装协议"
+   ],
+   "answer": "CD",
+   "analysis": "机密使用ESP。"
+  },
+  {
+   "id": "1-134",
+   "type": "multiple",
+   "question": "用IKE为IPsec提供自动协商交换密钥，建立SA的服务时，在IKE协商的第一阶段定义了哪种IKE交换模式？",
+   "options": [
+    "主模式(Main Mode)",
+    "快速模式(Quick Mode)",
+    "野蛮模式(Aggressive Mode)",
+    "信息交换模式(Informational Exchange Mode)"
+   ],
+   "answer": "AC",
+   "analysis": "扩展：\nIKE定义的可能的交换模式有4钟，分别是：主模式(Main Mode)；野蛮模式(Aggressive Mode)；快速模式(Quick Mode)；新群模式(New Group Mode)。\nSA协商的第一阶段：主模式(Main Mode)；野蛮模式(Aggressive Mode)\nSA协商的第二阶段：快速模式(Quick Mode)\n新群模式(New Group Mode)：用于为D-H(Diffie-Hell-man)密钥交换协商一个新的群。"
+  },
+  {
+   "id": "1-135",
+   "type": "single",
+   "question": "用IKE为IPsec提供自动协商交换密钥，建立SA的服务时，在IKE协商的第二阶段定义了哪种IKE交换模式？",
+   "options": [
+    "主模式(Main Mode)",
+    "快速模式(Quick Mode)",
+    "野蛮模式(Aggressive Mode)",
+    "信息交换模式(Informational Exchange Mode)"
+   ],
+   "answer": "B",
+   "analysis": "扩展：\nIKE定义的可能的交换模式有4钟，分别是：主模式(Main Mode)；野蛮模式(Aggressive Mode)；快速模式(Quick Mode)；新群模式(New Group Mode)。\nSA协商的第一阶段：主模式(Main Mode)；野蛮模式(Aggressive Mode)\nSA协商的第二阶段：快速模式(Quick Mode)\n新群模式(New Group Mode)：用于为D-H(Diffie-Hell-man)密钥交换协商一个新的群。"
+  },
+  {
+   "id": "1-136",
+   "type": "single",
+   "question": "和IKE野蛮模式相比，IKE主模式具备以下哪些特点？",
+   "options": [
+    "IKE主模式可以提供身份验证",
+    "采用IKE主模式可以提高协商速度",
+    "在通信双方能预先得知发起者的IP地址，并且需要使用预共享密钥的情况下，只能使用主模式",
+    "IKE主模式的安全性高于野蛮模式"
+   ],
+   "answer": "D",
+   "analysis": "跟野蛮模式PK，身份验证不是特点"
+  },
+  {
+   "id": "1-137",
+   "type": "single",
+   "question": "和IKE主模式相比，IKE野蛮模式具备以下哪些优点？",
+   "options": [
+    "IKE野蛮模式能提供身份验证",
+    "采用IKE野蛮模式可以提高协商速度",
+    "在通信双方可以预先得知发起者的IP地址，并且需要使用预共享密钥的情况下，可以使用野蛮模式",
+    "IKE野蛮模式的安全性高于主模式"
+   ],
+   "answer": "B",
+   "analysis": "预知IP，不算优点；"
+  },
+  {
+   "id": "1-138",
+   "type": "single",
+   "question": "如图所示，两台安全网关的配置分别为：\nRTA\n[RTA] ike peer 123\n[RTA-ike-peer-123] pre-shared-ke simple 123\n[RTA-ike-peer-123] remote-address 10.2.1.2\n[RTA-ike-peer-123] local-address 10.2.1.1\n[RTA-ike-peer-123]quit\n[RTA] ipsec proposal 1\n[RTA-ipsec-proposal-1] quit\n[RTA]acl number 3000\n[RTA-acl-adv-3000] rule 0 permit ip source 10.1.1.0 0.255.255.255[RTA]ipsec policy 1 1 isakmp\n[RTA-ipsec-policy-isakmp-1-1] securit acl 3000\n[RTA-ipsec-policy-isakmp-1-1] ike-peer 123\n[RTA-ipsec-policy-isakmp-1-1] proposal 1\n[RTA-ipsec-policy-isakmp-1-1] quit\n[RTA] interface Ethernet 0/1/0\n[RTA-Ethernet0/1/0] ip address 10.1.1.2 255.255.255.0\n[RTA] interface Serial 0/2/1\n[RTA-Serial0/2/1] ip address 10.2.1.1 255.255.255.0\n[RTA-Serial0/2/1]] ipsec policy 1\nRTB:\n[RTB] ike peer 123\n[RTB-ike-peer-123] pre-shared-ke simple 123\n[RTB-ike-peer-123] remote-address 10.2.1.1\n[RTB-ike-peer-123] local-address 10.2.1.2\n[RTB-ike-peer-123]quit\n[RTB] ipsec proposal 1\n[RTB-ipsec-proposal-1] quit\n[RTB]acl number 3000\n[RTB-acl-adv-3000] rule 0 permit ip source 10.3.1.0 0.255.255.255[RTB]ipsec policy 1 1 isakmp\n[RTB-ipsec-policy-isakmp-1-1] securit acl 3000\n[RTB-ipsec-policy-isakmp-1-1] ike-peer 123\n[RTB-ipsec-policy-isakmp-1-1] proposal 1\n[RTB-ipsec-policy-isakmp-1-1] quit\n[RTB] interface Ethernet 0/1/0\n[RTB-Ethernet0/1/0] ip address 10.3.1.1 255.255.255.0[RTB] interface Serial0/2/1\n[RTB-Serial0/2/1] ip address 10.2.1.2 255.255.255.0\n[RTB-Serial0/2/1] ipsec policy 1\n由此可知______。",
+   "options": [
+    "任何一方发起的SA协商都可以成功",
+    "任何一方发起的SA协商都不能成功",
+    "只有从RTA向RTB发起的SA协商才可以成功",
+    "只有从RTB向RTA发起的SA协商才可以成功"
+   ],
+   "answer": "B",
+   "analysis": "ACL配置错误，RTA和RTB的ACL都没有配置目的地址"
+  },
+  {
+   "id": "1-139",
+   "type": "single",
+   "question": "如图所示，两台安全网关的配置分别为：\nRTA\n[RTA] ike peer 123\n[RTA-ike-peer-123] pre-shared-ke simple 123\n[RTA-ike-peer-123] remote-address 10.2.1.2\n[RTA-ike-peer-123] local-address 10.2.1.1\n[RTA-ike-peer-123]quit\n[RTA] ipsec proposal 1\n[RTA-ipsec-proposal-1] quit\n[RTA]acl number 3000\n[RTA-acl-adv-3000] rule 0 permit ip source 10.1.1.0 0.0.0.255 destination 10.3.1.0 0.0.0.255\n[RTA]ipsec policy 1 1 isakmp\n[RTA-ipsec-policy-isakmp-1-1] securit acl 3000\n[RTA-ipsec-policy-isakmp-1-1] ike-peer 123\n[RTA-ipsec-policy-isakmp-1-1] proposal 1\n[RTA-ipsec-policy-isakmp-1-1] quit\n[RTA] interface Serial0/2/1\n[RTA-Serial0/2/1] ip address 10.2.1.1 255.255.255.0\n[RTA-Serial0/2/1] ipsec polic 1\n[RTA] interface Ethernet 0/1/0\n[RTA-Ethernet0/1/0] ip address 10.1.1.2 255.255.255.0 RTB:\n[RTB] ike peer 123\n[RTB-ike-peer-123] pre-shared-ke simple 123\n[RTB-ike-peer-123] remote-address 10.2.1.1\n[RTB-ike-peer-123] local-address 10.2.1.2\n[RTB-ike-peer-123]quit\n[RTB] ipsec proposal 1\n[RTB-ipsec-proposal-1] quit\n[RTB]acl number 3000\n[RTB-acl-adv-3000] rule 0 permit ip source 10.1.1.0 0.0.0.255 destination 10.3.1.0.0.0.0.255\n[RTB]ipsec policy 1 1 isakmp\n[RTB-ipsec-policy-isakmp-1-1] securit acl 3000\n[RTB-ipsec-policy-isakmp-1-1] ike-peer 123\n[RTB-ipsec-policy-isakmp-1-1] proposal 1\n[RTB-ipsec-policy-isakmp-1-1] quit\n[RTB] interface Serial0/2/1\n[RTB-Serial0/2/1] ip address 10.2.1.2 255.255.255.0\n[RTB-Serial0/2/1]]ipsec policy 1\n[RTB] interface Ethernet 0/1/0\n[RTB-Ethernet0/1/0] ip address 10.3.1.1 255.255.255.0由此可知______。",
+   "options": [
+    "任何一方发起的SA协商都可以成功",
+    "任何一方发起的SA协商都不能成功",
+    "只有从RTA向RTB发起的SA协商才可以成功",
+    "只有从RTB向RTA发起的SA协商才可以成功"
+   ],
+   "answer": "B",
+   "analysis": "ACL配置错误，RTB的ACL源地址和目的地址应该对调。"
+  },
+  {
+   "id": "1-140",
+   "type": "multiple",
+   "question": "在安全网关设备上通过display ipsec sa 命令显示如下信息，通过该信息可知______。===============================\nInterface: Serial0/2/1\npath MTU: 1500\n===============================\n-----------------------------\nIPsec polic name: \"1\"\nsequence number: 1\nmode: isakmp\n-----------------------------\nconnection id: 5\nencapsulation mode: tunnel\nperfect forward secrec: None\ntunnel:\nlocal address: 10.2.1.1\nremote address: 10.2.1.2\nFlow :\nsour addr: 10.1.1.0/255.255.255.0 port: 0 protocol: IP dest addr: 10.3.1.0/255.255.255.0 port: 0 protocol: IP[inbound ESP SAs]\nspi: 909448761 (0x36351639)\nproposal: ESP-ENCRPT-DES ESP-AUTH-MD5\nsa remaining ke duration (btes/sec): 1887435204/83 spi: 909448761 (0x36351639)\nproposal: ESP-ENCRPT-DES ESP-AUTH-MD5\nsa remaining ke duration (btes/sec): 1887435204/83 max received sequence-number: 19\nudp encapsulation used for nat traversal: N\n[outbound ESP SAs]\nspi: 1583842120 (0x5e678348)\nproposal: ESP-ENCRPT-DES ESP-AUTH-MD5\nsa remaining ke duration (btes/sec): 1887435204/83 max sent sequence-number: 20\nudp encapsulation used for nat traversal: N",
+   "options": [
+    "此安全策略工作在隧道模式",
+    "此安全策略需要手工配置密钥、SPI、安全协议和算法等参数",
+    "此安全策略工作在传输模式",
+    "此安全策需要采用IKE动态协商密钥、SPI、安全协议和算法等参数"
+   ],
+   "answer": "AD",
+   "analysis": ""
+  },
+  {
+   "id": "1-141",
+   "type": "multiple",
+   "question": "在安全网关设备上通过display ipsec sa 命令显示如下信息，通过该信息可知______。===============================\nInterface: Serial0/2/1\npath MTU: 1500\n===============================\n-----------------------------\nIPsec polic name: \"1\"\nsequence number: 1\nmode: isakmp\n-----------------------------\nconnection id: 5\nencapsulation mode: transport\nperfect forward secrec: None\ntunnel:\nlocal address: 10.2.1.1\nremote address: 10.2.1.2\nFlow :\nsour addr: 10.1.1.0/255.255.255.0 port: 0 protocol: IP dest addr: 10.3.1.0/255.255.255.0 port: 0 protocol: IP[inbound ESP SAs]\nspi: 909448761 (0x36351639)\nproposal: ESP-ENCRPT-DES ESP-AUTH-MD5\nsa remaining ke duration (btes/sec): 1887435204/83 max received sequence-number: 19\nudp encapsulation used for nat traversal: N\n[outbound ESP SAs]\nspi: 1583842120 (0x5e678348)\nproposal: ESP-ENCRPT-DES ESP-AUTH-MD5\nsa remaining ke duration (btes/sec): 1887435204/83 max sent sequence-number: 20\nudp encapsulation used for nat traversal: N",
+   "options": [
+    "此安全策略工作在隧道模式",
+    "此安全策略未启动IPSec/IKE的NAT穿越功能",
+    "此安全策略采用的是ESP+AH的封装协议",
+    "此安全策略IKE需要采用动态协商密钥、SPI、安全协议和算法等参数"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "1-142",
+   "type": "single",
+   "question": "要清除已建立的IPSec安全联盟，应该使用以下哪个命令？",
+   "options": [
+    "reset ipsec",
+    "reset ipsec policy",
+    "reset ipsec sa",
+    "reset ike sa"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-143",
+   "type": "single",
+   "question": "要清除ike建立的安全隧道，应该使用以下哪个命令？",
+   "options": [
+    "reset ike",
+    "reset ike tunnel",
+    "reset ipsec sa",
+    "reset ike sa"
+   ],
+   "answer": "D",
+   "analysis": ""
+  },
+  {
+   "id": "1-144",
+   "type": "multiple",
+   "question": "以下描述中属于SSL协议握手层功能的有_______。",
+   "options": [
+    "负责建立维护SSL会话",
+    "保证数据传输可靠",
+    "异常情况下关闭SSL连接",
+    "协商加密所使用的密钥参数"
+   ],
+   "answer": "ACD",
+   "analysis": "握手层功能：\n协商通信所用的SSL协议版本;\n协商通信所使用的加密套件;\n协商加密所用的密钥参数;\n通信双方彼此验证对方身份;\n建立维护SSL会话;\n通信出现异常会关闭SSL连接。"
+  },
+  {
+   "id": "1-145",
+   "type": "multiple",
+   "question": "SSL (Securit Sockets Laer，安全套接层)协议握手层包括以下哪几个协议模块？",
+   "options": [
+    "握手协议",
+    "会话维护协议",
+    "告警协议",
+    "密钥改变协议"
+   ],
+   "answer": "ACD",
+   "analysis": "握手层包括握手协议、告警协议、密钥改变协议。"
+  },
+  {
+   "id": "1-146",
+   "type": "multiple",
+   "question": "图中为某企业部署SSL VPN的模式，对该组网模式描述正确的有_______。",
+   "options": [
+    "该组网模式为单臂组网模式",
+    "该组网模式为双臂组网模式",
+    "这种组网的优势在于，外网对内网的所有访问量都经过SSL VPN网关，网关可以对这些流量进行全面控制",
+    "这种组网的优势在于，SSL VPN网关的处理性能不会影响到内网与外网的通讯性能"
+   ],
+   "answer": "BC",
+   "analysis": "双臂模式可以对流量全面控制，保护所有的内网安全，但是有瓶颈;\n单臂模式可避免单点故障影响网络通信，它本身不会成为瓶颈",
+   "images": [
+    "p059_1.jpeg"
+   ]
+  },
+  {
+   "id": "1-147",
+   "type": "multiple",
+   "question": "下列关于SSL VPN运作流程说法正确的是_______。",
+   "options": [
+    "SSL VPN构成包括远程主机、SSL VPN网关和内网资源服务器",
+    "SSL VPN域管理员具有最高管理权限",
+    "域管理员创建域的本地用户、用户组、资源和资源组",
+    "用户登录后，VPN网关终结SSL 连接，根据配置的用户权限决定用户访问的网络资源"
+   ],
+   "answer": "ACD",
+   "analysis": "SSL VPN包括远程主机、SSL VPN网关、内网资源服务器、相关认证、CA类服务器。3种帐号：超级管理员（最高管理权限)、域管理员、普通用户。\n超级管理员可以创建若干域，并指定每个域的域管理员，初始化域管理员密码、给域授予资源组、并授权能否创建新的资源。"
+  },
+  {
+   "id": "1-148",
+   "type": "multiple",
+   "question": "SSL VPN提供以下哪几种接入方式？",
+   "options": [
+    "WEB接入方式",
+    "UDP接入方式",
+    "IP接入方式",
+    "TCP接入方式"
+   ],
+   "answer": "ACD",
+   "analysis": "接入方式：web接入; tcp接入; ip接入"
+  },
+  {
+   "id": "1-149",
+   "type": "multiple",
+   "question": "下列关于SSL VPN访问控制说法正确的是______。",
+   "options": [
+    "静态授权的身份认证包括本地认证和外部认证两种方式",
+    "动态授权需要创建安全策略",
+    "动态授权需要终端安装客户端程序",
+    "动态授权和静态授权是两种独立的访问控制方式"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "1-150",
+   "type": "multiple",
+   "question": "下列关于SSL VPN访问控制说法正确的是______。",
+   "options": [
+    "静态授权的身份认证包括本地认证和外部认证两种方式",
+    "动态授权不需要创建安全策略",
+    "动态授权不需要终端安装客户端程序",
+    "动态授权是静态授权和安全策略授权的交集"
+   ],
+   "answer": "AD",
+   "analysis": ""
+  }
+ ]
+}
