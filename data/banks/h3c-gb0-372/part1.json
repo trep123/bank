@@ -1,0 +1,673 @@
+{
+ "questions": [
+  {
+   "id": "1-1",
+   "type": "multiple",
+   "question": "基于SOA的网路架构将企业IT系统划分成以下哪些层次？",
+   "options": [
+    "网络层",
+    "会话层",
+    "应用层",
+    "基础设施层"
+   ],
+   "answer": "CD",
+   "analysis": "基于SOA的网络架构将企业IT系统划分为基础设施层、服务层、应用层"
+  },
+  {
+   "id": "1-2",
+   "type": "multiple",
+   "question": "基于SOA的网路架构将企业IT系统划分成以下哪些层次？",
+   "options": [
+    "应用层",
+    "业务层",
+    "网络层",
+    "服务层"
+   ],
+   "answer": "AD",
+   "analysis": "基于SOA的网络架构将企业IT系统划分为基础设施层、服务层、应用层"
+  },
+  {
+   "id": "1-3",
+   "type": "single",
+   "question": "基于SOA的网路架构将企业IT系统划分成以下哪些层次？",
+   "options": [
+    "数据层",
+    "服务层",
+    "业务层",
+    "IP网络层"
+   ],
+   "answer": "B",
+   "analysis": "基于SOA的网络架构将企业IT系统划分为基础设施层、服务层、应用层"
+  },
+  {
+   "id": "1-4",
+   "type": "multiple",
+   "question": "下列关于SOA和IToIP的说法正确的是_______。",
+   "options": [
+    "SOA解决方案要求对IT基础构架进行整合，基于网络技术搭建统一的IT基础构架平台。",
+    "SOA以网络为基础，消除异构系统带来的信息鸿沟，整合存储、安全、多媒体等各种服务，实现IT基础设施的构件化和资源化。",
+    "IToIP解决方案体现了SOA的核心思想。",
+    "IToIP允许灵活、快速、高效地构建企业智能应用，能快速适应企业业务流程的变化。"
+   ],
+   "answer": "CD",
+   "analysis": ""
+  },
+  {
+   "id": "1-5",
+   "type": "single",
+   "question": "下列关于IToIP的说法错误的是_______。",
+   "options": [
+    "IToIP要求以IP网络为基础设施构建IT系统。",
+    "各种IT资源可以方便地共享和使用标准的IP基础设施，实现通信、计算、存储、网络等各种技术和应用的进一步融合。",
+    "IToIP将应用与基础架构紧密连接在一起，极大地提高了IT系统的运行效率。",
+    "基于IToIP构建的IT系统能够为用户创建一个标准、兼容、安全、智能和可管理的IT应用环境。"
+   ],
+   "answer": "C",
+   "analysis": "C选项错误，IToIP在同构的IT基础设施智商的中间件及开放平台可以提供行业应用定制的接口，实现将应用和基础架构上的分离，而不是紧密连接在一起。"
+  },
+  {
+   "id": "1-6",
+   "type": "multiple",
+   "question": "XYZ公司要求依据模块化企业网架构构建其网络。XYZ公司在深圳和西安各有1个研发基地；在北京和上海各有一座办公大楼；在23个省会城市拥有超过50人的办事处；在200个中小城市拥有不超过8人的小型办公室；任意时刻通常都有超过200名市场和技术人员在外出差。XZ公司严格禁止员工利用公司网络访问与工作无关的网站。根据这些情况，\nXYZ公司应具备的网络模块是________。",
+   "options": [
+    "大型分支机构网",
+    "远程/分布式办公网",
+    "Internet接入",
+    "专线/分组交换接入"
+   ],
+   "answer": "CD",
+   "analysis": "任意时刻通常都有超过200名市场和技术人员出差，所以要求Internet接入，公司禁止员工利用公司网络访问与工作无关的网站，必须使用专线接入。"
+  },
+  {
+   "id": "1-7",
+   "type": "multiple",
+   "question": "XYZ公司要求依据模块化企业网架构构建其网络。XYZ公司在深圳和西安各有1个研发基地；在北京和上海各有一座办公大楼；在23个省会城市拥有超过50人的办事处；在200个中小城市拥有不超过8人的小型办公室；任意时刻通常都有超过200名市场和技术人员在外出差。由于环境和费用问题，部分办事处无法通过专线或分组交换广域网连接接入总部。根据这些情况，XYZ公司应具备的网络模块是________。",
+   "options": [
+    "大型分支机构网",
+    "专线/分组交换接入",
+    "远程/分布式办公",
+    "VPN接入"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "1-8",
+   "type": "multiple",
+   "question": "XYZ公司要求依据模块化企业网架构构建其网络。XZ公司在深圳和西安各有1个研发基\n地；在北京和上海各有一座办公大楼；在23个省会城市拥有超过50人的办事处；在200个中小城市拥有不超过8人的小型办公室；任意时刻通常都有超过200名市场和技术人员在外出差，其中一部分出差人员经常位于缺乏Internet接入的地区，只能通过电话网拨号连接到总部。由于环境和费用问题，部分办事处无法通过专线或分组交换广域网连接接入总部。根据这些情况，XZ公司应具备的网络模块是________。",
+   "options": [
+    "拨号接入",
+    "安全身份验证",
+    "VPN接入",
+    "大型分支机构网"
+   ],
+   "answer": "AC",
+   "analysis": "只能通过电话网拨号链接到总部，所以需要拨号接入；几个人员的办公室，SOHO人员，移动办公，需部署VPN路由器。"
+  },
+  {
+   "id": "1-9",
+   "type": "single",
+   "question": "模块化网络架构的优点包括______。",
+   "options": [
+    "取代了传统的层级化网络模型，便于进行网络的规划和部署。",
+    "允许不同应用功能或应用系统之间共享数据、资源和能力，参加业务流程。",
+    "允许通过开放的接口来动态调用IT资源，实现标准、兼容、安全、智能和可管理的IT应用环境。",
+    "对每一模块可以分别进行规划和部署，可以通过增删模块的方式增加或去除网络的功能，有利于构建复杂的网络。"
+   ],
+   "answer": "D",
+   "analysis": "H3C模块化网络架构将复杂网络划分为若干边界清晰、功能明确的模块，任何规模的企业网都可以通过若干模块或子模块组合构建而成。这种架构在当今网络建设中日益体现出其优势：\n模块之间相互独立，对每一模块可以分别进行规划和部署，一个模块内部的变化不影响其他模块，便于设计部署和管理维护。\n可以通过增删模块来方便地扩展或去除网络的功能，伸缩性强。\n各模块流量类型和服务类型各不相同，便于控制流量，提供适当的服务。\n在每一模块内部，传统的层级化网络模型仍然有效，便于构建复杂的大规模网络。"
+  },
+  {
+   "id": "1-10",
+   "type": "single",
+   "question": "以下属于汇聚层功能的是______。",
+   "options": [
+    "拥有大量的接口，用于与最终用户计算机相连",
+    "接入安全控制",
+    "高速的包交换",
+    "复杂的路由策略"
+   ],
+   "answer": "D",
+   "analysis": ""
+  },
+  {
+   "id": "1-11",
+   "type": "multiple",
+   "question": "以下属于核心层功能的是_______。",
+   "options": [
+    "拥有大量的接口，用于与最终用户计算机相连",
+    "接入安全控制",
+    "高速的包交换",
+    "必要的路由策略"
+   ],
+   "answer": "CD",
+   "analysis": ""
+  },
+  {
+   "id": "1-12",
+   "type": "multiple",
+   "question": "以下属于接入层功能的是________。",
+   "options": [
+    "拥有大量的接口，用于与最终用户计算机相连",
+    "接入安全控制",
+    "高速的包交换",
+    "复杂的路由策略"
+   ],
+   "answer": "AB",
+   "analysis": ""
+  },
+  {
+   "id": "1-13",
+   "type": "multiple",
+   "question": "层级化网络模型的优点包括_______。",
+   "options": [
+    "增强网络可扩展性",
+    "提高网络吞吐量",
+    "降低端到端延迟",
+    "便于网络的维护"
+   ],
+   "answer": "AD",
+   "analysis": "层次化网络优点：网络结构清晰化、便于规划和维护、增强网络的稳定性、增强网路可扩展性。"
+  },
+  {
+   "id": "1-14",
+   "type": "single",
+   "question": "下列宽带接入传输介质中，可以实现的传输速率最高的是____。",
+   "options": [
+    "同轴电缆",
+    "铜质双绞线",
+    "无线电波",
+    "光纤",
+    "电力线路"
+   ],
+   "answer": "D",
+   "analysis": ""
+  },
+  {
+   "id": "1-15",
+   "type": "multiple",
+   "question": "下列宽带接入传输介质中，比较适合用来对没有传统通信线路的偏远地区进行覆盖的包括____。",
+   "options": [
+    "同轴电缆",
+    "铜质双绞线",
+    "无线电波",
+    "光纤",
+    "电力线路"
+   ],
+   "answer": "CE",
+   "analysis": ""
+  },
+  {
+   "id": "1-16",
+   "type": "single",
+   "question": "在下列光纤接入方式中，光纤化程度最高的是____。",
+   "options": [
+    "FTTC",
+    "FTTH",
+    "FTTB",
+    "FTTA"
+   ],
+   "answer": "B",
+   "analysis": "FTTH光纤入户"
+  },
+  {
+   "id": "1-17",
+   "type": "single",
+   "question": "以太网的1000BASE-T标准采用的线缆是_____最大传输距离为______。",
+   "options": [
+    "2对5类UTP双绞线，100m",
+    "多模光纤，2000m",
+    "4对3类UTP双绞线，100m",
+    "单模光纤，5000m",
+    "4对5类UTP双绞线，100m",
+    "2对STP双绞线，25m"
+   ],
+   "answer": "E",
+   "analysis": ""
+  },
+  {
+   "id": "1-18",
+   "type": "single",
+   "question": "以太网的1000BASE-LX标准采用的线缆是_______最大传输距离为________。",
+   "options": [
+    "2对5类UTP双绞线，100m",
+    "多模光纤，2000m",
+    "4对3类UTP双绞线，100m",
+    "单模光纤，5000m",
+    "4对5类UTP双绞线，100m",
+    "2对STP双绞线，25m"
+   ],
+   "answer": "D",
+   "analysis": ""
+  },
+  {
+   "id": "1-19",
+   "type": "multiple",
+   "question": "星级化网络模型的优点包括_______。",
+   "options": [
+    "增强网络可扩展性",
+    "提高网络吞吐量",
+    "降低端到端延迟",
+    "便于网络的维护"
+   ],
+   "answer": "ACD",
+   "analysis": "星型拓扑结构的优点：\n（1）结构简单，连接方便，管理和维护都相对容易，而且扩展性强。\n（2）网络延迟时间较小，传输误差低。\n（3）在同一网段内支持多种传输介质，除非中心结点故障，否则网络不会轻易瘫痪。因此，星型网络拓扑结构是目前应用最广泛的一种网络拓扑结构。\n扩展：\n星型拓扑结构的缺点\n（1）安装和维护的费用较高\n（2）共享资源的能力较差\n（3）通信线路利用率不高\n（4）对中心结点要求相当高，一旦中心结点出现故障，则整个网络将瘫痪。"
+  },
+  {
+   "id": "1-20",
+   "type": "multiple",
+   "question": "在大型局域网中，网络被分为哪些功能层？______",
+   "options": [
+    "核心层",
+    "汇聚层",
+    "接入层",
+    "管理层"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "2-1",
+   "type": "multiple",
+   "question": "图示为经过STP计算收敛后的稳定拓扑，则下列说法正确的有______。",
+   "options": [
+    "SWA为网络中的根桥",
+    "该BPDU为配置BPDU,目的地址为01-80-C2-00-00-00",
+    "该BPDU的发送周期为HelloTime",
+    "端口保存该BPDU的老化时间为MaxAge"
+   ],
+   "answer": "ABCD",
+   "analysis": "网桥通过交互配置BPDU获取STP计算所需要的参数\n配置BPDU基于二层组播方式发送，目的地址为01-80-C2-00-00-00\n配置BPDU由根桥周期发出，发送周期为Hello Time。\n配置BPDU老化时间为Max Age。\nSWA发送BPDU，所以网络中SWA为跟桥；",
+   "images": [
+    "p012_1.jpeg"
+   ]
+  },
+  {
+   "id": "2-2",
+   "type": "multiple",
+   "question": "关于配置BPDU和TCNBPDU,说法正确的有______。",
+   "options": [
+    "配置BPDU仅从指定端口发出，TCN BPDU仅从根端口发出",
+    "配置BPDU通常仅由根桥周期性发出，TCN BPDU除根桥外其他网桥都可能发出",
+    "配置BPDU通常仅从根端口接收，TCN BPDU仅从指定端口接收",
+    "Alternate端口既不会发送配BPDU也不会发送TCN BPDU"
+   ],
+   "answer": "ABCD",
+   "analysis": "配置BPDU由跟桥从指定端口周期性发出，网桥感知拓扑变化，产生TCN BPDU从根端口发出；"
+  },
+  {
+   "id": "2-3",
+   "type": "single",
+   "question": "关于TCN BPDU的产生，下列说法正确的有______。",
+   "options": [
+    "启用STP的非根桥交换机如果某端口连接了PC机，当该端口进入Forwarding状 交换机不会产生TCN BPDU",
+    "网络中某交换机的指定端口链路断掉，则该交换机一定会产生TCN BPDU",
+    "网络中某交换机的Alternate端口链路断掉，则该交换机不会产生TCN BPDU",
+    "当交换机某端口选择为指定端口或根端口时，交换机会立即发送TCN BPDU"
+   ],
+   "answer": "C",
+   "analysis": "TCN BPDU产生条件：\n网桥上有端口转变为forwarding状态，且该网桥至少包含一个指定端口。\n网桥上有端口从forwarding状态或learning状态转变为blocking状态"
+  },
+  {
+   "id": "2-4",
+   "type": "multiple",
+   "question": "二台路由器通过局域网连接在一起，组成VRRP备份组如果路由器RTA收到路由器RTB发送的VRRP协议报文，报文Priority字段Auth Type字段值为2,则______。 （多项选择\n题）",
+   "options": [
+    "路由器RTB启用VRRPV2协议",
+    "路由器RTB启用VRRPV3协议",
+    "路由器RTB为VRRP IP地址拥有者",
+    "路由器RTB启用了VRRP简单字符认证"
+   ],
+   "answer": "AC",
+   "analysis": "如无特别说明，VRRP均指V2版本；\nVRRP组中的IP地址拥有者周期发送协议报文Úuth type认证类型，0标识无认证，1表示简单字符认证，2标识MD5认证"
+  },
+  {
+   "id": "2-5",
+   "type": "single",
+   "question": "二台路由器通过局域网连接在一起，组成VRRP备份组各接口上配置如下:\n[RTA-GigabitEthernet1 /0]display this\nip address 192.168.0.252 255.255.255.0\nvrrp vrid 1 virtual-ip 192.168.1.254\nvrrp vrid 1 priority 120\n[RTB-GigabitEthernet1/0]display this\nip address 192.168.0.253 255.255.255.0\nvrrp vrid 1 virtual-ip 192.168.1.254\n从上述信息可以得知______。",
+   "options": [
+    "RTA为备份组Master路由器",
+    "RTB为备份组Master路由器",
+    "RTA、RTB都处于VRRP Initialize 状态",
+    "RTA、RTB都处于VRRP Master 状态"
+   ],
+   "answer": "C",
+   "analysis": "虚拟IP地址和接口IP地址不再同一网段，备份组会处于Initalize状态；\n配置的虚拟IP地址和接口IP地址在同以网段，且为合法的主机地址时，备份组才能正常工作，否则，如果配置的虚拟IP地址和接口IP地址不在同一网段，或为接口IP地址所在网段的网络地址或广播地址，虽然可以配置成功，但是备份组会始终处于Initalize状态，此状态下VRRP不起作用"
+  },
+  {
+   "id": "2-6",
+   "type": "single",
+   "question": "二台路由器通过局域网连接在一起，组成VRRP备份组在各接口上对VRRP计时器配置如下：\n[RTA-GigabitEthernet1 /0]vrrp vrid 1 timer advertise 5\n[RTB-GigabitEthernet1/0]vrrp vrid 1 timer advertise 5\nVRRP 备份组1运行正常，RTA为Master, RTB为Backup若设备运行一段时间后，路由器RTA故障,则路由器RTB从Backup变成Master的时间可能为______。",
+   "options": [
+    "3秒",
+    "5秒",
+    "12秒",
+    "20秒"
+   ],
+   "answer": "C",
+   "analysis": "backup转换成master状态是需要3个VRRP通告报文时间(默认3s)+抢占延迟时间（默认0s），此题目没有配置抢占延迟时间，故不考虑\n那么，在正常状态下当RTA故障以后，RTB转换成master是需要3x5s=15s时间；但是题目没有说明RTA是什么时间故障的，即RTB在等待多久收不到VRRP通告消息的，故此分析如下：\n1、当RTB正常等待5s以后，RTA就要发送VRRP通告报文的时候，突然RTA故障，那么RTB是收不到VRRP通告报文的，此是第一次收不到，然后等待2个5s，就是第二次、第三次收不到，所以RTB转换成master状态需要的时间是0+5+5=10s；\n2、当RTB正常等待4s以后，RTA准备发送VRRP通告报文的时候，突然RTA故障，那么RTB过完最后1s以后是收不到VRRP通告报文的，那么它就认为距离上一个包还差1s没有收到报文（上一个包过了5s才会丢弃，此时它才正常等待4s），此是第一次收不到，计时1s，然后等待2个5s，就是第二次、第三次收不到，所以RTB转换成master状态需要的时间是1+5+5=11s；\n3、当RTB正常等待3s以后，RTA准备发送VRRP通告报文的时候，突然RTA故障，那么RTB过完最后2s以后是收不到VRRP通告报文的，那么它就认为距离上一个包还差2s没有收到报文（上一个包过了5s才会丢弃，此时它才正常等待3s），此是第一次收不到，计时2s，然后等待2个5s，就是第二次、第三次收不到，所以RTB转换成master状态需要的时间是2+5+5=12s；\n然后依次类推，可以得出RTB的状态转换需要时间在10s~~15s之间。\n所以，题目选C，12s在转换状态所需时间内。"
+  },
+  {
+   "id": "2-7",
+   "type": "multiple",
+   "question": "在PIM-DM组网中，关于SPT形成的过程（不考虑状态刷新机制），描述正确的有\n______。",
+   "options": [
+    "经过扩散-剪枝过程，形成组播源到组播接收者之间的SPT",
+    "扩散-剪枝过程周期进行",
+    "被剪枝的接口不再向下游发送组播报文",
+    "只要网络拓扑、单播路由信息不变，形成的SPT树就不会改变"
+   ],
+   "answer": "AB",
+   "analysis": ""
+  },
+  {
+   "id": "2-8",
+   "type": "single",
+   "question": "进行三层组播配置之前，首先需要进行的配置是______。",
+   "options": [
+    "进入IGMP视图",
+    "配置IGMP协议版本",
+    "配置PIM协议",
+    "通过multicastrouting-enable命令全局启用组播"
+   ],
+   "answer": "D",
+   "analysis": ""
+  },
+  {
+   "id": "2-9",
+   "type": "multiple",
+   "question": "如果需要在一个三层网络中实现组播数据的转发，至少配置如下协议或功能______。",
+   "options": [
+    "IGMPSnooping 功能",
+    "IGMP协议",
+    "PIM协议",
+    "BSR配置"
+   ],
+   "answer": "BC",
+   "analysis": ""
+  },
+  {
+   "id": "2-10",
+   "type": "multiple",
+   "question": "关于IGMPSnooping 正确的有______。",
+   "options": [
+    "同一个VLAN下既可以配置IGMP,也可以配置IGMPSnooping",
+    "端口快速离开是指当交换机从IGMP Leave报文时，直接把该端口从对应的转发表项的出端口列表中删除",
+    "可以在交换机上启动未知组播组丢弃功能，当交换机收到未知组播数据报文时，只向其路由器端口转发,不在VLAN内广播",
+    "二层设备上使能IGMP Snooping功能，就能够在数据链路层建立并维护组播转发表项，从而在数据链路层正常转发组播数据"
+   ],
+   "answer": "BC",
+   "analysis": "IGMP组播组管理协议运行在主机和与其直接相连的三层组播设备之间，二层组播协议包括IGMP Snooping(IGMP窥探)和组播VLAN。\n端口快速离开是指当交换机从某个端口收到主机发送的离开某组播组的IGMP离开组报文时，直接把该端口从对应转发表现的出端口列表中删除。此后，当交换机收到对该组播组的IGMP特定组查询报文时，交换机将不再向该端口转发。\n可以在交换机上启动丢弃未知组播数据报文功能，当交换机收到未知组播数据报文时，只向其路由器端口转发，不在VLAN内广播，如果交换机没有路由器端口，数据报文会被丢弃，不再转发通f过二层交换机实现IGMP Snooping功能可以解决组播报文在二层被广播发送的问题"
+  },
+  {
+   "id": "2-11",
+   "type": "multiple",
+   "question": "关于RP和BSR,下列说法正确的有______。",
+   "options": [
+    "PIM-SM中RP可以通过手工指定，也可以通过动态选举",
+    "配置RP通过动态选举时，可以把有意成为RP的路由器配置为C-RP",
+    "在一个PIM-SM域中只能有一个BSR",
+    "BSR负责在PIM-SM域收集并发布RP信息"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "2-12",
+   "type": "multiple",
+   "question": "在大型局域网中，常用的链路备份技术有______。",
+   "options": [
+    "链路聚合",
+    "STP",
+    "Smart Link",
+    "RRPP"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "2-13",
+   "type": "multiple",
+   "question": "组播组管理协议的机制主要包含______。",
+   "options": [
+    "路由器维护组播组",
+    "査询器的选举",
+    "成员报告抑制机制",
+    "主机加入和离开组播组"
+   ],
+   "answer": "ABCD",
+   "analysis": "组播组广利协议工作机制：\n主机加入和离开组播组\n路由器维护组播组\n查询器的选举机制\n成员报告抑制机制"
+  },
+  {
+   "id": "2-14",
+   "type": "multiple",
+   "question": "下列关于PIM-SM中RP选择的表述，正确的有______。",
+   "options": [
+    "首先比较C-RP的优先级，优先级较高者获胜",
+    "再比较Hash函数计算的哈希值，值较大者获胜",
+    "最后比较C-RP地址，值较大者获胜",
+    "最后比较C-RP地址，值较小者获胜"
+   ],
+   "answer": "ABC",
+   "analysis": "BSR负责收集网络中由C-RP发来的宣告报文，汇总为RP-Set，通过自举消息发送到PIM-SM域网f络中的各路由器将依据RP-Set提供的消息，使用相同的规则从众多C-RP中为特定组播组选择其对应的RP首先比较C-RP的优先级，优先级较高者获胜\n若优先级相同，则使用哈希(Hash)函数计算哈希值，该值较大者获胜\n若优先级和哈希值都相同，则C-RP地址较大者获胜"
+  },
+  {
+   "id": "2-15",
+   "type": "multiple",
+   "question": "下列关于PIM-SSM的表述，正确的有______。",
+   "options": [
+    "为与IGMP早期版本兼容，PIMSSM中接收者也使用IGMP V2发送加入消息",
+    "PIM-SSM可以简单看与PIM-SM类似，当主机发送加入消息后，设备向组播源方向发送(*, G)加入消息",
+    "组播报文沿着组播源到接收者之间的SPT到达接收者",
+    "与PIM-SM相比，PIM-SSM不需要RP,提高了报文转发效率"
+   ],
+   "answer": "CD",
+   "analysis": ""
+  },
+  {
+   "id": "2-16",
+   "type": "multiple",
+   "question": "下列关于PIM加入过程的表述，正确的有______。",
+   "options": [
+    "PIM-SSM中DR的组播加入路径是从源到DR的最优转发路径",
+    "PIM-SM中DR的组播加入路径是从源到DR的最优转发路径",
+    "PIM-SM中RP的组播源加入路径是从源到RP的最优转发路径",
+    "PIM-DM中DR的组播加入路径是从源到DR的最优转发路径"
+   ],
+   "answer": "AC",
+   "analysis": "PIM-SSM中的接收者通过IGMPV3通知DR接收指定源发送的组播数据；\nPIM-SSM通过PIM-SM的一部分机制来实现，可以看作是PIM-SM的子集。PIM-SSM的机制包含邻居发现和DR选举以及加入过程。\nPIM-SSM的邻居发现和DR选举机制与PIM-SM的对应机制相同。由于接收者事先已经通过某种途径知道子组播源的IP地址，所以PIM-SSM的加入过程和PIM-SM的加入过程相比有所区别。PIM-SSM的邻居发现和DR选举机制与PIM-SM的对应机制相同。由于接收者事先已经通过某种途径知道子组播源的IP地址，所以PIM-SSM的加入过程和PIM-SM的加入过程相比有所区别。\nPIM-SSM模式中，由于主机事先知道了组播源的位置，可以直接向组播源发起加入，所以不需要在网络中选举RP，简化了协议的处理，并且组播报文开始就沿着SPT传送，不需要RPT到SPT的切换，提高了报文转发的效率。"
+  },
+  {
+   "id": "2-17",
+   "type": "single",
+   "question": "高可靠冗余网络设计的核心目标是______。",
+   "options": [
+    "最大限度地提高网络带宽",
+    "最大限度地确保网络访问安全",
+    "最大限度地避免网络单点故障的存在",
+    "最大限度地降低网络管理复杂度"
+   ],
+   "answer": "C",
+   "analysis": "随着园区网规模的不断扩大，承载在园区网上的应用也越来越丰富，许多关键应用要求网络提供不间断服务器，这就要求网络设备具备高可靠性，不存在单点故障。"
+  },
+  {
+   "id": "2-18",
+   "type": "multiple",
+   "question": "下列技术中属于冗余备份技术中的链路备份技术的有______。",
+   "options": [
+    "STP",
+    "RRPP",
+    "Smart-Link",
+    "动态路由",
+    "链路聚合"
+   ],
+   "answer": "ABCE",
+   "analysis": ""
+  },
+  {
+   "id": "2-19",
+   "type": "multiple",
+   "question": "通过査看PIM路由表项，可以了解到的内容有______。",
+   "options": [
+    "(S,G)或(*,G)表项的入接口",
+    "(S,G)或(*:G)表项的上游邻居",
+    "(S,G)或(*,G)表项的下游接口",
+    "(S,G)或(*:G)表项的老化时间"
+   ],
+   "answer": "ABCD",
+   "analysis": "使用命令display pim routing-table可以查看PIM路由表的内容，PIM路由表由PIM协议生成，其中包含(*，G)和(S，G)表项的个数及表项详细内容，表项内容包含PIM模式、上游接口、下游接口、RPF邻居、表项存在的时间和超时时间等信息。"
+  },
+  {
+   "id": "2-20",
+   "type": "multiple",
+   "question": "下列技术中属于三层组播技术的有______。",
+   "options": [
+    "PIM",
+    "IGMPSnooping",
+    "IGMP",
+    "MVR"
+   ],
+   "answer": "AC",
+   "analysis": ""
+  },
+  {
+   "id": "2-21",
+   "type": "multiple",
+   "question": "关于VoiceVLAN的工作模式，说法正确的有______。",
+   "options": [
+    "VoiceVLAN的工作模式包含自动和手动两种",
+    "自动模式下，系统会识别IP Phone发出的报文，如果匹配为语音报文，则将连接IPPhone的端口加入\nVoice VLAN",
+    "手动模式下，需要手工将IP Phone加入Voice VLAN中",
+    "手动模式下，系统将不会向端口下发ACL"
+   ],
+   "answer": "ABC",
+   "analysis": "自动模式手工模式：\n自动模式：\nVoice VLAN存在并使能通过语音报文触发，当端口收到Voice VLAN的源MAC为OUI MAC的报文时端口自动加入Voice VLAN下发ACL提高报文优先级\n手工模式：\nVoice VLAN存在并使能手工配置将端口加入Voice VLAN下发ACL提高报文优先级"
+  },
+  {
+   "id": "2-22",
+   "type": "multiple",
+   "question": "下列选项中，可用于身份认证的技术包括______。",
+   "options": [
+    "802.1X认证",
+    "PortaL认证",
+    "RADIUS",
+    "包过滤",
+    "EAD"
+   ],
+   "answer": "ABC",
+   "analysis": "802.1x协议是一种基于端口的网络接入控制协议，在局域网接入设备的端口这一级对所接入的用户进行认证和控制。\nPORTAL认证通常被称为WEB认证，即必须通过门户网站认证，才能访问网络资源。\nRADIUS(Remote Authentication Dial In User Service,远程认证拨号用户服务)是一种分布式、客户端/服务器模式的信息交换协议，能保护网络不受未授权访问的干扰，常应用在要求较高安全性、又允许远程用户访问的各种网络环境中"
+  },
+  {
+   "id": "2-23",
+   "type": "multiple",
+   "question": "关于VoiceVLAN的端口过滤模式，说法正确的有______。",
+   "options": [
+    "VoiceVLAN的端口过滤模式可以分为安全模式和普通模式两种",
+    "对于普通模式下，端口加入VoiceVLAN后设备不再检验报文的MAC地址",
+    "安全模式下，设备将对每一个要进入VoiceVLAN传输的报文都进行MAC匹配检査",
+    "缺省情况下，VoiceVLAN工作在普通模式"
+   ],
+   "answer": "ABC",
+   "analysis": "根据交换机是否在Voice VLAN内过滤非语音报文可以分为安全模式和普通模式，在普通模式下，IP电话下联的数据终端即可以在Voice VLAN内发送接收数据报文，也可以在其他VLAN内发送接收数据报文，但如果数据报文和语音报文都在Voice VLAN内转发，语音报文容易因数据报文的突发而受到影响，语音通信变的不可靠。在f安全模式下，IP电话下联的数据终端则只可以在其他VLAN内接收发送数据报文，如果Voice\nVLAN内收到子非语音报文则会被安全检查机制过滤丢弃，从而确保了语音报文的正常转发。"
+  },
+  {
+   "id": "2-24",
+   "type": "single",
+   "question": "在如图所示的组网连接中，SWA/SWB/SWC在同一个MSTP域内并配置相同的域配置stp region-configuration\nregion-name h3c\ninstance1 vlan 10\ninstance 2 vlan 20\ninstance 2 vlan 30\nactive region-configuration\n三个互联链路的端口都为Access,且属于如图所标识的VLAN三台交换机分别创建Access链路对应的VLAN虚接口并在虚接口上运行OSPF其VLAN虚接口的IP地址分配如下：SWA：vlan-interface 10 (192.168.10.1)；vlan-interface 30(192.168.30.1)\nSWB：vlan-interface 10 (192.168.10.2)；vlan-interface 20(192.168.20.1)\nSWC：vlan-interface 20 (192.168.20.2)；vlan-interface 30(192.168.30.2)\n当互联端口都UP且STP和OSPF计算完毕后，下列有关网络连通性描述正确的有\n______。",
+   "options": [
+    "三台交换机可以两两建立OSPF邻居关系",
+    "三台交换机中其中有两台交换机无法建立OSPF邻居关系",
+    "三台交换机的所有互联地址都可以相互可达",
+    "6个互联地址之间，至少有两个互联地址相互不可达"
+   ],
+   "answer": "A",
+   "analysis": "",
+   "images": [
+    "p020_2.jpeg"
+   ]
+  },
+  {
+   "id": "2-25",
+   "type": "single",
+   "question": "在如图所示的组网连接中，SWA和SWB同时开启STP和Loopback-detection 请确认SWA和SWB各端口状态描述正确的有______。",
+   "options": [
+    "SWA的G1/0/1可能由STP检测到环路存在而被阻塞",
+    "SWB的G1/0/2或G1/0/3之间由STP检测到环路存在而阻塞其中之一",
+    "SWB的G1/0/2和G1/0/3之间由Loopback-detection检测到环路存在而阻塞其中之一"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "2-26",
+   "type": "single",
+   "question": "在如图所示的组网连接中，SWA和SWB为三层交换机，运行STP+VRRP,且初始配置完成后SWA为STP的根和VRRP的Master，SWC为二层交换机下联接入终端，下列有关网络链路故障后的描述正确______。",
+   "options": [
+    "当SWA和SWB之间的链路中断后，STP的拓扑将变化，SWC的两个上行端口都将变为Forwarding",
+    "当SWA和SWB之间的链路中断后，VRRP的Master将发生切换，SWB将成为新的VRRPMaster",
+    "当SWA和SWC之间的链路中断后，STP的拓扑将变化，SWC的G1/0/2变为Forwarding",
+    "SWA和SWC 间的链路中断后，VRRP的Master将保持不变，但SWC下联终端无发和网关通信"
+   ],
+   "answer": "A",
+   "analysis": "SWA是root，SWB,SWC是非root，所以当SWA与SWB之间的链路断后，SWC与SWB之间的链路恢复通畅VRRP的Master不会发生切换，应为当SWA和SWB之间链路发生中断后，SWB认为自己是跟桥，但是由于SWC还可以收到SWA发来的高优先级的BPDU，所以会告诉SWB，根桥还存活，并且SWC将自己被阻塞的端口打开，让SWA和SWB之间还能够传送VRRP的协议包，保证SWA设备Master的地位，由于无法确定\nSWA->SWC和SWA->SWB->SWC之间的Cost值，所以无法确定SWC的G1/0/1接口还是G1/0/2接口从\nBlokck转换为Forwarding",
+   "images": [
+    "p021_3.jpeg"
+   ]
+  },
+  {
+   "id": "2-27",
+   "type": "multiple",
+   "question": "在如图所示的组网连接中，SWA和SWB为三层交换机，运行STP+VRRP ,且初始配置完成后SWA为STP的根和VRRP的MasterSWC为二层交换机下联接入终端下列有关网络链路故障后的描述正确______。",
+   "options": [
+    "当SWB和SWC之间的链路中断后，STP其余链路上的端口状态没有变化，都仍然保持Forwarding",
+    "当SWB和SWC之间的链路中断后，VRRP的Master将保持不变，SWC下联终端仍然可以正常通信",
+    "当图示中只有SWB和SWC之间的链路完好时，SWA和SWB都将成为VRRP的Master,此时SWC下端可以和网关正常通信",
+    "当图示中只有SWB和SWC之间的链路完好时，VRRP的Master将保持不变，但SWC下联终端无法和网关通信"
+   ],
+   "answer": "AB",
+   "analysis": "当SWB和SWC之间链路中断后，由于SWB和SWC之间链路在开始计算STP的时候处于BLOCK状态，所以其他链路之间状态不会发生改变；",
+   "images": [
+    "p022_4.jpeg"
+   ]
+  },
+  {
+   "id": "2-28",
+   "type": "multiple",
+   "question": "主机PCA、PCB 和PCC 分别连接接在交换机SWA 的Ethernet1/0/1 Ethernet1/0/2 和\nEthernet1/0/24\n端口上,并且其地址处于同一网段,在SWA上査看VLAN有如下显示：\n[SWA]display vlan 10\nVLAN ID: 10\nVLAN Type: static\nRoute Interface: not configured\nDescription: VLAN 0010\nName: VLAN 0010\nTagged Ports: none\nUntagged Ports:\nEthernet1/0/1 Ethernet1/0/24\n[SWA]display vlan 20\nVLAN ID: 20\nVLAN Type: static\nRoute Interface: not configured\nDescription: VLAN 0020\nName: VLAN 0020\nTagged Ports: none\nUntagged Ports:\nEthernet1/0/2Ethernet1/0/24\n[SWA]display vlan 30\nVLAN ID: 30\nVLAN Type: static\nRoute Interface: not configured\nDescription: VLAN 0030\nName: VLAN 0030\nTagged Ports: none\nUntagged Ports:\nEthernetl/0/1 Ethernetl/0/2 Ethernet1/0/24\n从以上输出信息可以判断______。",
+   "options": [
+    "PCA可以和PCB互通",
+    "PCA可以和PCC互通",
+    "PCB可以和PCC互通",
+    "PCA、PCB和PCC之间两两不能互通"
+   ],
+   "answer": "BC",
+   "analysis": ""
+  },
+  {
+   "id": "2-29",
+   "type": "multiple",
+   "question": "在交换机SWA上执行display interface Ethernet 1/0/2命令后，输出信息如下:[SWA]display interface Ethernet 1/0/2\nEthernetl/0/2 current state: UP\nPVID: 10\nMdi type: auto\nLink delay is 0(sec)\nPort link-type: trunk\nVLAN passing: 1 (default vlan), 10\nVLAN permitted: 1 (default vlan), 2-4094\nTrunk port encapsulation: IEEE 802.1q\nPort priority: 0\n从以上输出可以判断______。",
+   "options": [
+    "端口Ethernet1/0/2只允许VLAN 1和VLAN 10的数据侦通过",
+    "当前交换机存在的VLAN只有VLAN1和VLAN10",
+    "带有VLAN1标签的数据帧离开端口Ethernet1/0/2时不会被剥离标签",
+    "带有VLAN20标签的数据帧进入端口Ethernet1/0/2时将被丢弃"
+   ],
+   "answer": "BCD",
+   "analysis": ""
+  },
+  {
+   "id": "2-30",
+   "type": "single",
+   "question": "交换机SWA, SWB通过二根光纤千兆以太网链路连接在一起，其中交换机SWA上有如下接口配置:\n[SWA]interface GigabitEthernet 1/0/1\n[SWA-GigabitEthernet1/0/1]gvrp\n[SWA-GigabitEthernet1/0/1]port link-type trunk\n[SWA-GigabitEthernet1/0/1]port trunk permit vlan 1 10\n[SWA]interface GigabitEthernet 1/0/2\n[SWA-GigabitEthernet1/0/2]port link-type trunk\n[SWA-GigabitEthernet1/0/2]port trunk permit vlan 1 10\n从上述可以得知______。",
+   "options": [
+    "GigabitEthernet1/0/1 和GigabitEthernet1/0/2 无法加入同一个聚合组",
+    "只有将GigabitEthernet1/0/2的配置改为与GigabitEthernet1/0/1 一致，二者才可以加入同一个聚合组",
+    "若SWA换机开启MSTP,则GigabitEthernet 1/0/1和GigabitEthernet 1/0/2之中有一个会被阻塞",
+    "若SWA交换机开启MSTP,则GigabitEthernet1/0/1和GigabitEthernet1/0/2可以参加转发"
+   ],
+   "answer": "D",
+   "analysis": "第一类配置：此类配置可以在聚合端口和成员端口上配置，但是不会参与操作Key的计算，比如GVRP、MSTP等；\n第二类配置：如果成员端口与聚合端口的第二类配置不同，那么该成员端口不能称为Selected端口；端口隔离、QinQ配置、VLAN配置、MAC地址学习配置；"
+  }
+ ]
+}
