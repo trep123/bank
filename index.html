@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#4f6bff" />
+  <title>题库 · 在线练习与模拟考试</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%234f6bff'/><path d='M20 18h18a8 8 0 0 1 8 8v20H26a6 6 0 0 1-6-6z' fill='white'/><path d='M27 30l5 5 9-10' stroke='%234f6bff' stroke-width='4' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script>
+    // 尽早应用主题，避免闪烁
+    (function () {
+      var t = localStorage.getItem('qb:theme');
+      if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.theme = t;
+    })();
+  </script>
+</head>
+<body>
+  <div id="app">
+    <div class="boot"><div class="spinner"></div></div>
+  </div>
+  <div id="toast-root"></div>
+  <noscript>请启用 JavaScript 以使用题库系统。</noscript>
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>
