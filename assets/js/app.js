@@ -1,9 +1,9 @@
-import * as auth from './auth.js';
-import * as store from './store.js';
-import { listBanks, getBank, isCorrect, typeCount, letter } from './bank.js';
+import * as auth from './auth.js?v=20261013b';
+import * as store from './store.js?v=20261013b';
+import { listBanks, getBank, isCorrect, typeCount, letter } from './bank.js?v=20261013b';
 import {
   $, $$, esc, rich, shuffle, fmtTime, fmtDuration, fmtDate, uid, toast, confirmDialog, icon, TYPE_LABEL,
-} from './utils.js';
+} from './utils.js?v=20261013b';
 
 const app = $('#app');
 let cleanup = null; // 当前视图的清理函数（计时器、键盘监听等）
