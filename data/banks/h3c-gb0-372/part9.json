@@ -1,0 +1,69 @@
+{
+ "questions": [
+  {
+   "id": "2-381",
+   "type": "multiple",
+   "question": "交换机[SWA] dot1x authentication-method eap  _______。",
+   "options": [
+    "采用EAP中继认证",
+    "采用EAP终结认证",
+    "交换机需要RADIUS服务器支持EAP属性：EAP-Message-Authenticator",
+    "交换机需要RADIUS服务器支持EAP 采用pap和chap"
+   ],
+   "answer": "AC",
+   "analysis": ""
+  },
+  {
+   "id": "2-382",
+   "type": "single",
+   "question": "路由器IGMP协议的版本可以在_______视图中配置。",
+   "options": [
+    "用户视图",
+    "系统全局视图",
+    "IGMP视图",
+    "接口视图"
+   ],
+   "answer": "D",
+   "analysis": ""
+  },
+  {
+   "id": "2-383",
+   "type": "multiple",
+   "question": "关于交换机的端口模式和IP电话语音流类型的配合关系，说法正确的有_______。",
+   "options": [
+    "如果IP电话语音流为tagged语音流，则交换机端口可以工作在自动和手动模式",
+    "如果IP电话语音流为untagged语音流，则交换机端口只能工作在手动模式",
+    "自动模式下，端口不能为Access端口",
+    "手动模式下，端口只能为Trunk端口"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "2-384",
+   "type": "multiple",
+   "question": "关于IP报文的优先级标记，说法正确的有_______。",
+   "options": [
+    "当前IP报文的TOS字段，包含IP优先级，服务类型两个字段，其中IP优先级占3bit",
+    "DSCP中定义了四类网络流程，其中加速转发EF类分为四个小类EF1/2/3/4",
+    "802.1P优先级由VLANtag中的prionity字段标识",
+    "802.1P优先级分为0-3共4个等级"
+   ],
+   "answer": "AC",
+   "analysis": "Priority：802.1P优先级，3bit，取值0-7（共8个等级）\nEF取值46（101110）"
+  },
+  {
+   "id": "2-385",
+   "type": "single",
+   "question": "PIM中Hello报文的组播目的地址是以下哪一项?",
+   "options": [
+    "224.0.0.9",
+    "224.0.0.5",
+    "224.0.0.13",
+    "224.0.0.21"
+   ],
+   "answer": "C",
+   "analysis": ""
+  }
+ ]
+}
