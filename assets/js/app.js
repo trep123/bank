@@ -226,7 +226,7 @@ async function viewHome() {
     return `
     <article class="bank-card" style="--accent:${esc(color)}">
       <div class="bank-head">
-        <div class="bank-icon">${esc(b.icon || b.title.slice(0, 1))}</div>
+        <div class="bank-icon ${(b.icon || '').length > 2 ? 'sm' : ''}">${esc(b.icon || b.title.slice(0, 1))}</div>
         <div class="bank-title">
           <h3>${esc(b.title)}</h3>
           <p>${esc(b.description || '')}</p>
@@ -238,6 +238,7 @@ async function viewHome() {
         ${tc.single ? `<span class="tag">单选 ${tc.single}</span>` : ''}
         ${tc.multiple ? `<span class="tag">多选 ${tc.multiple}</span>` : ''}
         ${tc.judge ? `<span class="tag">判断 ${tc.judge}</span>` : ''}
+        ${tc.fill ? `<span class="tag">填空 ${tc.fill}</span>` : ''}
       </div>
       <div class="progress-block">
         <div class="progress-meta"><span>已练习 <b>${done}</b> / ${total}</span><span>正确率 <b>${done ? Math.round((right / done) * 100) : 0}%</b></span></div>
@@ -293,7 +294,11 @@ async function viewHome() {
  * ======================================================= */
 function renderQuestion(q, { index, total, sel = '', revealed = false, fav = false, flagged = false, showFlag = false, showFav = true }) {
   const multi = q.type === 'multiple';
-  const opts = q.options.map((text, i) => {
+  const fill = q.type === 'fill';
+  const opts = fill ? `
+      <div class="fill-wrap ${revealed ? (isCorrect(q, sel) ? 'correct' : 'wrong') : ''}">
+        <input class="fill-input" data-fill type="text" autocomplete="off" spellcheck="false" placeholder="在此输入答案，按 Enter 确认" value="${esc(sel)}" ${revealed ? 'disabled' : ''} />
+      </div>` : q.options.map((text, i) => {
     const k = letter(i);
     const chosen = sel.includes(k);
     const isAns = q.answer.includes(k);
@@ -312,6 +317,9 @@ function renderQuestion(q, { index, total, sel = '', revealed = false, fav = fal
         <span class="opt-mark">${mark}</span>
       </button>`;
   }).join('');
+  const imgs = q.images?.length ? `<div class="q-images">${q.images.map((src) => `
+      <button class="q-img" data-zoom="${esc(src)}" title="点击放大"><img src="${esc(src)}" alt="题目配图" loading="lazy" /></button>`).join('')}</div>` : '';
+  const showAns = (v) => (q.type === 'judge' ? esc(q.options[v === 'A' ? 0 : 1]) : fill ? esc(v) : v);
 
   let feedback = '';
   if (revealed) {
@@ -322,7 +330,7 @@ function renderQuestion(q, { index, total, sel = '', revealed = false, fav = fal
         <div class="feedback-head">
           <span class="feedback-ico">${ok ? icon('check') : icon('x')}</span>
           <strong>${ok ? '回答正确' : unanswered ? '未作答' : '回答错误'}</strong>
-          <span class="feedback-ans">正确答案 <b>${q.type === 'judge' ? esc(q.options[q.answer === 'A' ? 0 : 1]) : q.answer}</b>${sel && !ok ? `，你的答案 <b>${q.type === 'judge' ? esc(q.options[sel === 'A' ? 0 : 1]) : sel}</b>` : ''}</span>
+          <span class="feedback-ans">正确答案 <b>${showAns(fill ? q.answer.split('|').join(' 或 ') : q.answer)}</b>${sel && !ok ? `，你的答案 <b>${showAns(sel)}</b>` : ''}</span>
         </div>
         ${q.analysis ? `<div class="analysis"><div class="analysis-title">解析</div><div>${rich(q.analysis)}</div></div>` : ''}
       </div>`;
@@ -339,7 +347,9 @@ function renderQuestion(q, { index, total, sel = '', revealed = false, fav = fal
       </div>
       <div class="q-no">第 <b>${index + 1}</b> 题 <span>/ 共 ${total} 题</span></div>
       <div class="q-text">${rich(q.question)}</div>
+      ${imgs}
       ${multi && !revealed ? '<div class="q-hint">多选题：选择所有正确选项后点击「提交答案」</div>' : ''}
+      ${fill && !revealed ? '<div class="q-hint">填空题：不区分大小写，多余空格会被忽略</div>' : ''}
       <div class="options">${opts}</div>
       ${feedback}
     </article>`;
@@ -374,6 +384,23 @@ function keyToOption(e, q) {
   }
   return null;
 }
+
+/* 图片放大查看 */
+function openLightbox(src) {
+  const el = document.createElement('div');
+  el.className = 'lightbox';
+  el.innerHTML = `<img src="${esc(src)}" alt="" /><button class="icon-btn lightbox-close" title="关闭">${icon('x')}</button>`;
+  document.body.appendChild(el);
+  requestAnimationFrame(() => el.classList.add('show'));
+  const close = () => { el.classList.remove('show'); document.removeEventListener('keydown', onKey, true); setTimeout(() => el.remove(), 200); };
+  const onKey = (e) => { if (e.key === 'Escape') { e.stopPropagation(); close(); } };
+  document.addEventListener('keydown', onKey, true);
+  el.addEventListener('click', close);
+}
+document.addEventListener('click', (e) => {
+  const z = e.target.closest?.('[data-zoom]');
+  if (z) openLightbox(z.dataset.zoom);
+});
 
 /* =========================================================
  * 练习模式
@@ -485,6 +512,26 @@ async function viewPractice(bankId, mode) {
       st.pos = idx;
       store.save(d);
     }
+    focusFill();
+  }
+
+  function focusFill() {
+    const inp = $('[data-fill]');
+    if (inp && !inp.disabled && window.matchMedia('(pointer: fine)').matches) inp.focus();
+  }
+  app.addEventListener('input', onInput);
+  onCleanup(() => app.removeEventListener('input', onInput));
+  function onInput(e) {
+    if (!e.target.matches('[data-fill]')) return;
+    session[idx].sel = e.target.value.trim();
+    $('[data-primary]').disabled = !session[idx].sel;
+  }
+  app.addEventListener('keydown', onFillKey);
+  onCleanup(() => app.removeEventListener('keydown', onFillKey));
+  function onFillKey(e) {
+    if (!e.target.matches('[data-fill]') || e.key !== 'Enter' || e.isComposing) return;
+    e.preventDefault();
+    submit();
   }
 
   function choose(k) {
@@ -618,8 +665,8 @@ async function viewExamSetup(bankId) {
               .map((s) => `<option value="${s}" ${s === bank.exam.passScore ? 'selected' : ''}>${s} 分</option>`).join('')}</select></label>
         </div>
         <ul class="rules">
-          <li>${icon('shuffle')} 从题库 ${total} 题中随机抽题（单选 ${tc.single} · 多选 ${tc.multiple} · 判断 ${tc.judge}）</li>
-          <li>${icon('target')} 计分权重：单选 ${bank.scores.single} 分、多选 ${bank.scores.multiple} 分、判断 ${bank.scores.judge} 分，折算为百分制；多选题须全部选对才得分</li>
+          <li>${icon('shuffle')} 从题库 ${total} 题中随机抽题（${['single', 'multiple', 'judge', 'fill'].filter((t) => tc[t]).map((t) => `${TYPE_LABEL[t].slice(0, 2)} ${tc[t]}`).join(' · ')}）</li>
+          <li>${icon('target')} 计分权重：${['single', 'multiple', 'judge', 'fill'].filter((t) => tc[t]).map((t) => `${TYPE_LABEL[t].slice(0, 2)} ${bank.scores[t]} 分`).join('、')}，折算为百分制；多选题须全部选对才得分</li>
           <li>${icon('clock')} 时间到自动交卷；中途刷新或关闭页面可继续作答</li>
           <li>${icon('flag')} 可标记不确定的题目，交卷前在答题卡中快速定位</li>
         </ul>
@@ -638,7 +685,7 @@ async function viewExamSetup(bankId) {
     const count = Number(f.count.value);
     const minutes = Number(f.duration.value);
     // 按题型排序：单选 → 多选 → 判断，题型内随机
-    const order = { single: 0, multiple: 1, judge: 2 };
+    const order = { single: 0, multiple: 1, judge: 2, fill: 3 };
     const picked = shuffle(bank.questions).slice(0, count).sort((a, b) => (order[a.type] ?? 9) - (order[b.type] ?? 9));
     store.saveDraft({
       id: uid(),
@@ -716,6 +763,12 @@ async function viewExamRun(bankId) {
     $('[data-next]').disabled = idx === list.length - 1;
     const nm = $('[data-next-main]');
     nm.innerHTML = idx === list.length - 1 ? '检查并交卷' : `下一题 ${icon('right')}`;
+    renderSide();
+    const inp = $('[data-fill]');
+    if (inp && window.matchMedia('(pointer: fine)').matches) inp.focus();
+  }
+
+  function renderSide() {
     const answered = list.filter((x) => draft.answers[x.id]).length;
     $('[data-pbar]').style.width = `${(answered / list.length) * 100}%`;
     $('[data-sgrid]').innerHTML = sheetHTML(
@@ -727,6 +780,22 @@ async function viewExamRun(bankId) {
       <div><b class="warn">${draft.flags.length}</b><span>标记</span></div>`;
     $('.sheet-cell.current')?.scrollIntoView({ block: 'nearest' });
     persist();
+  }
+
+  app.addEventListener('input', onInput);
+  onCleanup(() => app.removeEventListener('input', onInput));
+  function onInput(e) {
+    if (!e.target.matches('[data-fill]')) return;
+    const v = e.target.value.trim();
+    if (v) draft.answers[list[idx].id] = v; else delete draft.answers[list[idx].id];
+    renderSide();
+  }
+  app.addEventListener('keydown', onFillKey);
+  onCleanup(() => app.removeEventListener('keydown', onFillKey));
+  function onFillKey(e) {
+    if (!e.target.matches('[data-fill]') || e.key !== 'Enter' || e.isComposing) return;
+    e.preventDefault();
+    if (idx < list.length - 1) move(1);
   }
 
   function choose(k) {
