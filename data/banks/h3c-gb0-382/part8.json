@@ -1,0 +1,690 @@
+{
+ "questions": [
+  {
+   "id": "1-351",
+   "type": "multiple",
+   "question": "在图示网络中，各路由器间BGP路由学习正常，BGP路由属性都取缺省值。在RTA上将路由8.0.0.0引入BGP 中后，如要使RTD 上路由8.0.0.0 的下一跳指向RTC，则下列调整方法中可行的有______。",
+   "options": [
+    "设定RTD发送给RTB的路由Local Preference值为200",
+    "设定RTD发送给RTB的路由Local Preference值为50",
+    "设定RTD发送给RTC的路由Local Preference值为200",
+    "设定RTD发送给RTC的路由Local Preference值为50"
+   ],
+   "answer": "BC",
+   "analysis": "local preference值越高，优先级越高。\n无图无真相。"
+  },
+  {
+   "id": "1-352",
+   "type": "multiple",
+   "question": "在图示网络中，各路由器间BGP路由学习正常，BGP路由属性都取缺省值。在RTD上将路由9.0.0.0引入BGP 中后，如要使RTA 上路由9.0.0.0 的下一跳指向RTB，则下列调整方法中可行的有______。",
+   "options": [
+    "设定RTA发送给RTB的路由Local Preference值为200",
+    "设定RTA发送给RTB的路由Local Preference值为50",
+    "设定RTA发送给RTC的路由Local Preference值为200",
+    "设定RTA发送给RTC的路由Local Preference值为50"
+   ],
+   "answer": "AD",
+   "analysis": "local preference值越高，优先级越高。\n无图无真相。"
+  },
+  {
+   "id": "1-353",
+   "type": "multiple",
+   "question": "在图示网络中，各路由器间BGP路由学习正常，BGP路由属性都取缺省值。在RTD上将路由9.0.0.0引入BGP 中后，如要使RTA 上路由9.0.0.0 的下一跳指向RTB，则下列调整方法中不可行的有______。",
+   "options": [
+    "设定RTA发送给RTB的路由Local Preference值为200",
+    "设定RTA发送给RTB的路由Local Preference值为50",
+    "设定RTA发送给RTC的路由Local Preference值为200",
+    "设定RTA发送给RTC的路由Local Preference值为50"
+   ],
+   "answer": "BC",
+   "analysis": "local preference值越高，优先级越高。\n无图无真相。"
+  },
+  {
+   "id": "1-354",
+   "type": "multiple",
+   "question": "在图示网络中，各路由器间BGP路由学习正常，BGP路由属性都取缺省值。在RTD上将路由9.0.0.0引入BGP 中后，如要使RTA 上路由9.0.0.0 的下一跳指向RTB，则下列调整方法中可行的有______。",
+   "options": [
+    "设定RTB发送给RTD的路由MED值为200",
+    "设定RTB发送给RTD的路由MED值为50",
+    "设定RTC发送给RTD的路由MED值为200",
+    "设定RTC发送给RTD的路由MED值为50"
+   ],
+   "answer": "BC",
+   "analysis": "MED值，值越小优先级越高。\n无图无真相。"
+  },
+  {
+   "id": "1-355",
+   "type": "multiple",
+   "question": "在图示网络中，各路由器间BGP路由学习正常，BGP路由属性都取缺省值。在RTD上将路由9.0.0.0引入BGP 中后，如要使RTA 上路由9.0.0.0 的下一跳指向RTC，则下列调整方法中可行的有______。",
+   "options": [
+    "设定RTB发送给RTD的路由MED值为200",
+    "设定RTB发送给RTD的路由MED值为50",
+    "设定RTC发送给RTD的路由MED值为200",
+    "设定RTC发送给RTD的路由MED值为50"
+   ],
+   "answer": "AD",
+   "analysis": "MED值，值越小优先级越高。\n无图无真相。"
+  },
+  {
+   "id": "1-356",
+   "type": "multiple",
+   "question": "配置BGP对路由进行控制时，常用的过滤器有_____。",
+   "options": [
+    "Filter-policy",
+    "Route-policy",
+    "AS-Path list",
+    "ACL"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "1-357",
+   "type": "multiple",
+   "question": "以下关于过滤器说法正确的是______。",
+   "options": [
+    "Filter-policy可以实现对接收到的路由或者发布的路由进行过滤，可以修改BGP的属性值",
+    "Route-policy可以在路由的接收、发布和引入环节进行过滤，可以修改BGP的属性值",
+    "AS-path list是针对AS而不是针对具体路由来进行路由控制",
+    "在几种过滤器中，Route-policy的功能较丰富"
+   ],
+   "answer": "BCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-358",
+   "type": "single",
+   "question": "以下关于过滤器的说法中不正确的是______。",
+   "options": [
+    "Filter-policy可以实现对接收到的路由或者发布的路由进行过滤，可以修改BGP的属性值",
+    "Route-policy可以在路由的接收、发布和引入环节进行过滤，可以修改BGP的属性值",
+    "AS-path list是针对AS而不是针对具体路由来进行路由控制",
+    "在几种过滤器中，Route-policy的功能较丰富"
+   ],
+   "answer": "A",
+   "analysis": ""
+  },
+  {
+   "id": "1-359",
+   "type": "single",
+   "question": "在图示网络中，各路由器间BGP路由学习正常，BGP路由属性都取缺省值。在RTA上将路由100.10.1.0/24引入BGP中后，RTE的BGP路由表中100.10.1.0/24的下一跳是\n______？",
+   "options": [
+    "RTA",
+    "RTB",
+    "RTC",
+    "RTD"
+   ],
+   "answer": "D",
+   "analysis": "无图无真相，死记硬背。"
+  },
+  {
+   "id": "1-360",
+   "type": "single",
+   "question": "在图示网络中，各路由器间BGP路由学习正常，BGP路由属性都取缺省值。在RTA上将路由100.10.1.0/24引入BGP中后，RTD的BGP路由表中100.10.1.0/24的下一跳是______？",
+   "options": [
+    "RTA",
+    "RTB",
+    "RTC",
+    "RTE"
+   ],
+   "answer": "A",
+   "analysis": "无图无真相，死记硬背。"
+  },
+  {
+   "id": "1-361",
+   "type": "single",
+   "question": "①  ^$\n② .*\n③ ^100_\n④ _100$\n在正则表达式中，表示本地路由的是______。",
+   "options": [
+    "图示答案1",
+    "图示答案2",
+    "图示答案3",
+    "图示答案4"
+   ],
+   "answer": "A",
+   "analysis": "^$ 表示匹配的字符串为空，即AS_PATH为空，表示只匹配本地路由。.*   表示匹配任意字符串，即AS_PATH为任意，表示匹配所有路由。无图无真相。\n常见的正则表达式特殊符号\n？        允许前面的一个字符出现零次或者一次\n.           匹配任意一个字符\n*****     允许前面的字符出现零次，一次或者多次\n+          允许前面的字符出现一次或者多次\n^          必须在开头出现\n$          需要在结尾出现\n[]          表示一组字符的集合，如果集合中第一个字符为\"^\"，则表示补集\n_          下杠，匹配一个符号，如逗号、左大括号、右大括号、左括号、右括号和空格等符号，在表达式的开头或结尾时还可作起始符、结束符（同^ ，$）\n-           中杠，连接符\n\\           转义操作符，去除特殊字符的特殊意义"
+  },
+  {
+   "id": "1-362",
+   "type": "single",
+   "question": "①  ^$\n② .*\n③ ^100_\n④ _100$\n在正则表达式中，表示全部路由的是______。",
+   "options": [
+    "图示答案1",
+    "图示答案2",
+    "图示答案3",
+    "图示答案4"
+   ],
+   "answer": "B",
+   "analysis": "^$ 表示匹配的字符串为空，即AS_PATH为空，表示只匹配本地路由。\n.*   表示匹配任意字符串，即AS_PATH为任意，表示匹配所有路由。\n无图无真相。\n常见的正则表达式特殊符号\n？        允许前面的一个字符出现零次或者一次\n.           匹配任意一个字符\n*****     允许前面的字符出现零次，一次或者多次\n+          允许前面的字符出现一次或者多次\n^          必须在开头出现\n$          需要在结尾出现\n[]          表示一组字符的集合，如果集合中第一个字符为\"^\"，则表示补集\n_          下杠，匹配一个符号，如逗号、左大括号、右大括号、左括号、右括号和空格等符号，在表达式的开头或结尾时还可作起始符、结束符（同^ ，$）\n-           中杠，连接符\n\\           转义操作符，去除特殊字符的特殊意义"
+  },
+  {
+   "id": "1-363",
+   "type": "single",
+   "question": "下列对于Route-policy的描述中，不正确的是______？",
+   "options": [
+    "如果Route-policy中定义了一个以上的节点，各节点中至少应该有一个节点的匹配模式是permit",
+    "在Route-policy的一个节点中，必须至少包含一个if-match子句",
+    "在一个Route-policy中，不同节点之间的关系为或",
+    "在Route-policy的同一个节点中，不同if-match子句之间的关系为与"
+   ],
+   "answer": "B",
+   "analysis": "在route-policy的一个节点中，可以没有if-match子句。"
+  },
+  {
+   "id": "1-364",
+   "type": "single",
+   "question": "①  ^$\n② .*\n③ ^65000_65099\n④ 65000_65099$\n要匹配始发AS 号为65000-65099的BGP路由，正则表达式应该如何定义？",
+   "options": [
+    "图示答案1",
+    "图示答案2",
+    "图示答案3",
+    "图示答案4"
+   ],
+   "answer": "C",
+   "analysis": "正则表达式：^65000_65099"
+  },
+  {
+   "id": "1-365",
+   "type": "multiple",
+   "question": "以下BGP路由过滤方式中，哪些可以直接在BGP PEE的入或者出方向应用？",
+   "options": [
+    "route-policy",
+    "filter-policy",
+    "ip-prefix list",
+    "acl"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "1-366",
+   "type": "single",
+   "question": "组网如图示，RTB、RTC 各向RTA 发布一条10.1.1.0/24 BGP路由，RTB发布路由的LP为设置200，RTC发布路由的MED设置为200。请问RTA优选哪一条BGP路由？",
+   "options": [
+    "RTB，因为BGP优选自治系统内部路由。",
+    "RTB，因为RTB路由的LP为200，大于RTC路由的LP。",
+    "RTC，因为RTC 路由没有LP属性，所以不比较LP，而RTC的MED 值100优选RTC路由。",
+    "RTC，因为BGP优选自治系统外部路由。"
+   ],
+   "answer": "B",
+   "analysis": "优选路由：LP>MED",
+   "images": [
+    "p189_102.jpeg"
+   ]
+  },
+  {
+   "id": "1-367",
+   "type": "single",
+   "question": "组网如图示，RTB 向RTA发布路由13.14.3.0/24，LP 为150，MED 为50。RTC从RTA收到的路由13.14.3.0/24的LP 和MED各为多少？",
+   "options": [
+    "没有LP，没有MED",
+    "LP 150，MED 50",
+    "没有LP，MED 50",
+    "LP 100，没有MED"
+   ],
+   "answer": "A",
+   "analysis": "没有LP也没有MED。因为LP、MED都是非传递属性。",
+   "images": [
+    "p190_103.jpeg"
+   ]
+  },
+  {
+   "id": "1-368",
+   "type": "single",
+   "question": "在OSPF 100进程中导入MED值为1000的BGP路由，route-polic应该如何配置？",
+   "options": [
+    "route-policy bgp 2 ospf 100 permit node 10\nif-match med 1000",
+    "route-policy bgp 2 ospf 100 permit node 10\nif-match cost 1000",
+    "route-policy bgp 2 ospf 100 permit node 10\nif-match med 1000\nroute-policy bgp 2 ospf 100 permit node 20",
+    "route-policy bgp 2 ospf 100 permit node 10\nif-match cost 1000\nroute-policy bgp 2 ospf 100 permit node 20"
+   ],
+   "answer": "B",
+   "analysis": "BGP路由导入到OSPF中，MED值作为cost。\n所以if-match 需要匹配cost 1000"
+  },
+  {
+   "id": "1-369",
+   "type": "single",
+   "question": "组网如图示，RTB 向RTA发布路由10.1.1.0/24，LP 为200，MED 为200。RTC从RTA收到的路由10.1.1.0/24的LP 和MED各为多少？",
+   "options": [
+    "LP 200，MED 200",
+    "没有LP，MED 200",
+    "LP200，没有MED",
+    "没有LP，没有MED"
+   ],
+   "answer": "D",
+   "analysis": "没有LP也没有MED。med是optional non-transitive属性；LP不能传出AS。\n因为LP、MED都是非传递属性。",
+   "images": [
+    "p191_104.jpeg"
+   ]
+  },
+  {
+   "id": "1-370",
+   "type": "multiple",
+   "question": "以下关于as-path list的描述，正确的有______。",
+   "options": [
+    "as-path list分为basic和advanced两种。",
+    "as-path lis使用正则表达式定义",
+    "as-path lis的名字可以使用数字，也可以使用字符",
+    "一个as-path list可以配置多个表项，表项之间是或的关系"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "1-371",
+   "type": "single",
+   "question": "如图所示，RAT与RTB，RTC，RTD建立了IBGP对等体关系。RTA在向这三个IBGP对等体发布路由时候使用统一的过滤器3001，通过peer grout实现。为实现如上目的，管理员在RTA上配置如下：\n[RTA-BGP]group in as-number 100\n[RTA-BGP]peer in connect-interface Loopback0\n[RTA-BGP]peer 10.0.0.2 group in\n[RTA-BGP]peer 10.0.0.3 group in\n[RTA-BGP]peer 10.0.0.4 group in\n[RTA-BGP]peer in filter-polic 3001 export\n则在上述配置语句中，错误的是______。",
+   "options": [
+    "[RTA-BGP]group in as-number 100",
+    "[RTA-BGP]peer in connect-interface Loopback0",
+    "[RTA-BGP]peer 10.0.0.2 group in\n[RTA-BGP]peer 10.0.0.3 group in\n[RTA-BGP]peer 10.0.0.4 group in",
+    "[RTA-BGP]peer in filter-polic3001 export"
+   ],
+   "answer": "A",
+   "analysis": "配置错误的为A，应该为group in internal"
+  },
+  {
+   "id": "1-372",
+   "type": "single",
+   "question": "如图所示,RTA与RTB,RTC,RTD 建立了IBGP对等体关系。RTA在向这三个IBGP对等体发布路由时候使用统一的过滤器3001，通过peer group实现。为实现如上目的，管理员在RTA上配置如下：\n[RTA-BGP]group in internal\n[RTA-BGP]peer in connect-interface Loopback0\n[RTA-BGP]peer 10.0.0.2 group in\n[RTA-BGP]peer 10.0.0.3 group in\n[RTA-BGP]peer 10.0.0.4 group in\n[RTA-BGP]peer in filter-polic 3001\n则上述配置语句中，错误的是______。",
+   "options": [
+    "[RTA-BGP]group in internal",
+    "[RTA-BGP]peer in connect-interface Loopback0",
+    "[RTA-BGP]peer 10.0.0.2 group in\n[RTA-BGP]peer 10.0.0.3 group in\n[RTA-BGP]peer 10.0.0.4 group in",
+    "[RTA-BGP]peer in filter-polic 3001"
+   ],
+   "answer": "D",
+   "analysis": "配置错误的为D，应该为peer in filter-polic 3001 export"
+  },
+  {
+   "id": "1-373",
+   "type": "multiple",
+   "question": "如图，RTB 与RTA 和RTD建立EBGP邻居关系，且AS100内使用了联盟解决大规模路由问题。如果RTA向RTB 发布了路由10.1.1.0/24 。则关于该路由在RTB上的发布情况，以下说法正确的是______。",
+   "options": [
+    "如果该路由携带NO_EXPORT 属性，则RTB不会向RTC 和RTD发布该路由。",
+    "如果该路由携带NO_EXPORT 属性，则RTB向RTC 发布该路由，但不会向RTD发布该路由。",
+    "如果该路由携带NO_EXPORT_SUBCONFED 属性，则RTB不会向RTC 和RTD发布该路由。",
+    "如果该路由携带NO_EXPORT_SUBCONFED 属性，则RTB向RTC 发布该路由，但不会向RTD发布该路由。"
+   ],
+   "answer": "BC",
+   "analysis": "NO_EXPORT属性的路由可发布给联盟内的其他AS，但不会发布给联盟外的AS；\nNO_EXPORT_SUBCONFED属性的路由只能在本AS内发布。不能发布给联盟其他子AS或联盟外的AS。\n无图无真相。"
+  },
+  {
+   "id": "1-374",
+   "type": "multiple",
+   "question": "如图，RTB 与RTA 和RTD建立EBGP邻居关系，且AS100内使用了联盟解决大规模路由问题。如果RTA向RTB 发布了路由10.1.1.0/24 。则关于该路由在RTB上的发布情况，以下说法正确的是______。",
+   "options": [
+    "如果该路由携带NO_EXPORT 属性，则RTB不会向RTC 和RTD发布该路由。",
+    "如果该路由携带NO_EXPORT 属性，则RTB不会向RTC 发布该路由，但会向RTD发布该路由。",
+    "如果该路由携带NO_EXPORT_SUBCONFED 属性，则RTB不会向RTC 和RTD发布该路由。",
+    "如果该路由携带NO_EXPORT_SUBCONFED 属性，则RTB不会向RTC 发布该路由，但会向RTD发布"
+   ],
+   "answer": "C",
+   "analysis": "NO_EXPORT属性的路由可发布给联盟内的其他AS，但不会发布给联盟外的AS；\nNO_EXPORT_SUBCONFED属性的路由只能在本AS内发布。不能发布给联盟其他子AS或联盟外的AS。\n无图无真相。"
+  },
+  {
+   "id": "1-375",
+   "type": "single",
+   "question": "图示的三个自治系统AS200 为AS100和AS300的过滤AS ，其中AS100向AS200发布了路由10.1.1.0/24。主要设备配置如下所示：\nRTC：\nbgp 100\nnetwork 10.1.1.0 255.255.255.0\nundo snchronization\npeer 200.1.2.2 as-number 200\npeer 200.1.2.2 route-policy COM exporty\npeer 200.1.2.2 advertise-community\n#\nroute-policy COM permit node 10\napply community 100:100\n#\nRTB\n#\nbgp 200\nundo snchronization\npeer 200.1.2.1 as-number 100\npeer 200.1.3.2 as-number 300\npeer 200.1.2.1 route-policy COM importy\npeer 200.1.3.2 advertise-community\n#\nroute-policy COM permit node 10\nif-match community 10\napply community 200:200\n#\nip community-list 10 permit 100:100\n则在RTC上，关于10.1.1.0/24的路由说法正确的是____。",
+   "options": [
+    "它的团体属性为<100:100>，因为该团体属性表示了路由的来源。",
+    "它的团体属性为<200:200> ，因为该团体属性被中间AS做了更改。",
+    "它的团体属性为<100:100>, <200:200>，因为该团体属性实际上被中间AS做了追加。",
+    "它的团体属性为空，因为该团体属性不会再向外部AS传递。"
+   ],
+   "answer": "B",
+   "analysis": "",
+   "images": [
+    "p193_105.jpeg"
+   ]
+  },
+  {
+   "id": "1-376",
+   "type": "single",
+   "question": "图示的三个自治系统AS200 为AS100和AS300的过滤AS ，其中AS100向AS200发布了路由10.1.1.0/24。主要设备配置如下所示：\nRTC：\nbgp 100\nnetwork 10.1.1.0 255.255.255.0\nundo synchronization\npeer 200.1.2.2 as-number 200\npeer 200.1.2.2 route-policy COM exporty\npeer 200.1.2.2 advertise-community\n#\nroute-policy COM permit node 10\napply community 100:100\n#\nRTB\n#\nbgp 200\nundo synchronization\npeer 200.1.2.1 as-number 100\npeer 200.1.3.2 as-number 300\npeer 200.1.2.1 route-policy COM import\n#\nroute-policy COM permit node 10\nif-match community 10\napply community 200:200\n#\nip community-list 10 permit 100:100\n则在RTC 上，关于10.1.1.0/24 的路由说法正确的是____。",
+   "options": [
+    "它的团体属性为<100:100>，因为该团体属性表示了路由的来源。",
+    "它的团体属性为<200:200> ，因为该团体属性被中间AS做了更改。",
+    "它的团体属性为<100:100>, <200:200>，因为该团体属性实际上被中间AS做了追加。",
+    "它的团体属性为空，因为该团体属性不会向外部AS传递。"
+   ],
+   "answer": "D",
+   "analysis": "RTB缺少 peer advertise-community命令，缺省不发布community。扩展：undo\nsynchronization命令用来关闭BGP与IGP的同步功能",
+   "images": [
+    "p195_106.jpeg"
+   ]
+  },
+  {
+   "id": "1-377",
+   "type": "multiple",
+   "question": "如图所示的三个自治系统中，AS200 为AS100 和AS300 的过滤AS ，其中AS100内部生成路由10.1.1.0/24 ，10.1.2.0/24 ，10.1.3.0/24。主要设备配置如下所示。\nRTC：\nbgp 100\naggregate 10.1.0.0 255.255.0.0\nnetwork 10.1.1.0 255.255.255.0\nnetwork 10.1.2.0 255.255.255.0\nnetwork 10.1.3.0 255.255.255.0\nundo synchronization\npeer 200.1.2.2 as-number 200\nRTB：\nbgp 200\naggregate 10.1.0.0 255.255.0.0 as-set detail-suppressed\nundo synchronization\npeer 200.1.2.1 as-number 100\npeer 200.1.3.2 as-number 300\n则关于各设备上的路由学习情况，以下说法正确的是_______。",
+   "options": [
+    "在RTA上，10.1.0.0/16路由的AS-PATH 属性为200 、100 ，该路由的AGGRAGATOR ID为RTC的地址。",
+    "在RTA上，10.1.0.0/16路由的AS-PATH 属性为200 ，该路由的AGGRAGATOR ID为RTB的地址。",
+    "在RTB 上，BGP 路由表中有聚合路由10.1.0.0/16 ，也有10.1.1.0/24、10.1.2.0/24 、10.1.3.0/24等明细路由。",
+    "在RTA上，只能学习到10.1.0.0/16的聚合路由。"
+   ],
+   "answer": "CD",
+   "analysis": "rtb上做路由聚合，所以明细路由和聚合路由都存在，由于在聚合后配置了as-set detail-suppressed参数，所以rta从rtb接收到的只能是聚合后的10.1.0.0/16\n1、在发布汇总路由条目的时候同时抑制所有的明细路由\n因为BGP协议的一些特殊性，只能够抑制部分的路由信息，所以我们需要使用到\nsuppressed-policy\n2、在配置命令前，将AS_SET关键字激活，则BGP在汇总路由时，将携带上明细的\nAS_PATH属性，来进行防环\n所以明细的AS_PATH属性传递到了RTA，并且抑制了明细路由\n选项CD正确，\nA选项，如果修改成AGGRAGATOR ID为RTB的地址，就正确了\nB选项，AS_PATH属性为200、100，所以B也错",
+   "images": [
+    "p196_107.jpeg"
+   ]
+  },
+  {
+   "id": "1-378",
+   "type": "multiple",
+   "question": "如图所示的三个自治系统中，AS200 为AS100 和AS300 的过滤AS ，其中AS100内部生成路由10.1.1.0/24 ，10.1.2.0/24 ，10.1.3.0/24。主要设备配置如下所示。\nRTC：\nbgp 100\naggregate 10.1.0.0 255.255.0.0\nnetwork 10.1.1.0 255.255.255.0\nnetwork 10.1.2.0 255.255.255.0\nnetwork 10.1.3.0 255.255.255.0\nundo synchronization\npeer 200.1.2.2 as-number 200\nRTB：\nbgp 200\naggregate 10.1.0.0 255.255.0.0 as-set detail-suppressed\nundo synchronization\npeer 200.1.2.1 as-number 100\npeer 200.1.3.2 as-number 300\n则关于各设备上的路由学习情况，以下说法正确的是_______。",
+   "options": [
+    "在RTA上，10.1.0.0/16路由的AS-PATH 属性为200、100 ，该路由的AGGRAGATOR ID为RTC的地址。",
+    "在RTA上，10.1.0.0/16路由的AS-PATH 属性为200 ，该路由的AGGRAGATOR ID为RTB的地址。",
+    "在RTA上，10.1.0.0/16路由的AS-PATH 属性为200、100 ，该路由的AGGRAGATOR ID为RTB的地址。",
+    "RTA上只能学习到0.1.0.0/16的聚合路由。"
+   ],
+   "answer": "CD",
+   "analysis": "rtb上做路由聚合，所以明细路由和聚合路由都存在，由于在聚合后配置了as-set detail-suppressed参数，所以rta从rtb接收到的只能是聚合后的10.1.0.0/16\n1、在发布汇总路由条目的时候同时抑制所有的明细路由\n因为BGP协议的一些特殊性，只能够抑制部分的路由信息，所以我们需要使用到\nsuppressed-policy\n2、在配置命令前，将AS_SET关键字激活，则BGP在汇总路由时，将携带上明细的\nAS_PATH属性，来进行防环\n所以明细的AS_PATH属性传递到了RTA，并且抑制了明细路由\n选项CD正确，\nA选项，如果修改成AGGRAGATOR ID为RTB的地址，就正确了\nB选项，AS_PATH属性为200、100，所以B也错",
+   "images": [
+    "p197_108.jpeg"
+   ]
+  },
+  {
+   "id": "1-379",
+   "type": "multiple",
+   "question": "在图所示网络中，RTA、RTB、RTC 、RTD 处于同一AS 种，并建立了如图所示的IBGP连接。以下关于BGP反射器设置的说法，哪些是正确的？",
+   "options": [
+    "为增强路由可靠性，AS100中最好设置两个集群，RTA为RTC 的反射器，RTB为RTD的反射器。",
+    "为增强路由可靠性，AS100中将RTA、RTC均设置为RTB、RTD 的反射器。",
+    "RTA 和RTB必须设置为互为反射器和客户机。",
+    "如果RTC 和RTD 也建立IBGP对等体，应该在反射器上设置undo reflect between-\nclients。"
+   ],
+   "answer": "BD",
+   "analysis": "路由反射器的定义\n利用路由反射可以解决这一问题。在一个AS内，其中一台路由器作为路由反射器RR(RouteReflector)，其它路由器做为客户机(Client)。客户机与路由反射器之间建立IBGP连接。路由反射器和它的客户机组成一个集群(Cluster)。路由反射器在客户机之间传递(反射)路由信息，而客户机之间不需要建立BGP连接。\n既不是反射器也不是客户机的BGP路由器被称为非客户机(Non-Client)。非客户机与路由反射器之间，以及所有的非客户机之间仍然必须建立全连接关系。\n当RR收到IBGP发来的路由，首先使用BGP选择路由的策略选择最佳路由。在公布学习到的路由信息时，RR按照RFC2796中的规则发布路由：\n1)从非客户机IBGP对等体学到的路由，发布给此RR的所有客户机。\n2)从客户机学到的路由，发布给此RR的所有非客户机和客户机(发起此路由的客户机除外)。\n3)从EBGP对等体学到的路由，发布给所有的非客户机和客户机。\nRR的一个好处就是配置方便，因为只需要在反射器上配置，客户机不需要知道自己是客户机。",
+   "images": [
+    "p198_109.jpeg"
+   ]
+  },
+  {
+   "id": "1-380",
+   "type": "multiple",
+   "question": "在图所示网络中，RTA、RTB、RTC 、RTD 处于同一AS 种，并建立了如图所示的IBGP连接。以下关于BGP反射器设置的说法，哪些是正确的？",
+   "options": [
+    "为增强路由可靠性，AS100中中将RTA、RTB均设置为RTC、RTD 的放射器。",
+    "RTA 和RTB必须设置为互为反射器和客户机。",
+    "RTE只需设置为RTB的客户机。",
+    "如果RTC 和RTD 也建立IBGP对等体，应该在反射器上设置undo reflect between-\nclients。"
+   ],
+   "answer": "AD",
+   "analysis": "路由反射器的定义\n利用路由反射可以解决这一问题。在一个AS内，其中一台路由器作为路由反射器RR(RouteReflector)，其它路由器做为客户机(Client)。客户机与路由反射器之间建立IBGP连接。路由反射器和它的客户机组成一个集群(Cluster)。路由反射器在客户机之间传递(反射)路由信息，而客户机之间不需要建立BGP连接。\n既不是反射器也不是客户机的BGP路由器被称为非客户机(Non-Client)。非客户机与路由反射器之间，以及所有的非客户机之间仍然必须建立全连接关系。\n当RR收到IBGP发来的路由，首先使用BGP选择路由的策略选择最佳路由。在公布学习到的路由信息时，RR按照RFC2796中的规则发布路由：\n1)从非客户机IBGP对等体学到的路由，发布给此RR的所有客户机。\n2)从客户机学到的路由，发布给此RR的所有非客户机和客户机(发起此路由的客户机除外)。\n3)从EBGP对等体学到的路由，发布给所有的非客户机和客户机。\nRR的一个好处就是配置方便，因为只需要在反射器上配置，客户机不需要知道自己是客户机。",
+   "images": [
+    "p199_110.jpeg"
+   ]
+  },
+  {
+   "id": "1-381",
+   "type": "multiple",
+   "question": "如图所示，RTB 、RTC 与RTA 建立IBGP 对等体，且RTA为RTB 和RTC 的反射器。目前RTA 和RTC为连接Internet 的出口路由器。为了使RTB 经过RTA 或RTC 访问因特网，在RTA 和RTC上配置了缺省路由，并使用network 命令进行了发布。以下说法正确的是\n_____。",
+   "options": [
+    "RTB 优选RTA 访问Internet 。只有RTA的出口中断，RTB才经RTC访问Internet",
+    "RTB 优选RTC 访问Internet 。只有RTB的出口中断，RTB才经RTA访问Internet",
+    "RTB优选RTA和RTC ，取决于RTA和RTC发布的缺省路由的属性",
+    "如果实现RTB优选RTC 访问Internet ，则需在RTB和RTC之间建立对等体关系并设置相关路由属性。"
+   ],
+   "answer": "AD",
+   "analysis": "路由反射器的定义\n利用路由反射可以解决这一问题。在一个AS内，其中一台路由器作为路由反射器RR(RouteReflector)，其它路由器做为客户机(Client)。客户机与路由反射器之间建立IBGP连接。路由反射器和它的客户机组成一个集群(Cluster)。路由反射器在客户机之间传递(反射)路由信息，而客户机之间不需要建立BGP连接。\n既不是反射器也不是客户机的BGP路由器被称为非客户机(Non-Client)。非客户机与路由反射器之间，以及所有的非客户机之间仍然必须建立全连接关系。\n当RR收到IBGP发来的路由，首先使用BGP选择路由的策略选择最佳路由。在公布学习到的路由信息时，RR按照RFC2796中的规则发布路由：\n1)从非客户机IBGP对等体学到的路由，发布给此RR的所有客户机。\n2)从客户机学到的路由，发布给此RR的所有非客户机和客户机(发起此路由的客户机除外)。\n3)从EBGP对等体学到的路由，发布给所有的非客户机和客户机。\nRR的一个好处就是配置方便，因为只需要在反射器上配置，客户机不需要知道自己是客户机。",
+   "images": [
+    "p200_111.jpeg"
+   ]
+  },
+  {
+   "id": "1-382",
+   "type": "single",
+   "question": "如图所示，RTB 、RTC 与RTA 建立IBGP 对等体，且RTA为RTB 和RTC 的反射器。目前RTA 和RTC为连接Internet 的出口路由器。为了使RTB 经过RTA 或RTC 访问因特网，在RTA 和RTC上配置了缺省路由，并使用network 命令进行了发布。以下说法正确的是\n_____。",
+   "options": [
+    "RTB上形成两条等价缺省路由。",
+    "RTB优选RTA访问Internet ，因为到达RTA的路径更短。",
+    "RTB优选RTA和RTC，取决于RTA和RTC发布的缺省路由属性。",
+    "如果实现RTB优选RTC访问Internet，则需要RTB和RTC之间建立对等体关系并设置相关路由属性。"
+   ],
+   "answer": "D",
+   "analysis": "",
+   "images": [
+    "p201_112.jpeg"
+   ]
+  },
+  {
+   "id": "1-383",
+   "type": "multiple",
+   "question": "如图的联盟部署中，以下哪些说法是正确的？",
+   "options": [
+    "在RTA上执行bgp 65002命令启动BGP进程 ，在RTE上执行display bgp peer，应该可以看到属于AS65002 的EBGP 邻居RTA",
+    "RTA 上执行display bgp peer 可看到RTB 为IBGP邻居，RTC为EBGP邻居。",
+    "假设RTE发布路由10.1.1.0在RTD上会看到该路由的AS-PATH 属性为(65002) 100。",
+    "相对与反射器来说，联盟的一个缺点是所有路由器都要支持联盟，因此RTB和RTD上都要配置confederation id 和confederation peer-as等相关命令。"
+   ],
+   "answer": "BC",
+   "analysis": ""
+  },
+  {
+   "id": "1-384",
+   "type": "multiple",
+   "question": "如图的联盟部署中，以下哪些说法是错误的？",
+   "options": [
+    "在RTA上执行bgp 65002命令启动BGP进程 ，在RTE上执行display bgp peer，应该可以看到属于AS65002 的EBGP 邻居RTA",
+    "RTA 上执行display bgp peer 可看到RTB为IBGP邻居，RTE为EBGP邻居。",
+    "假设RTE发布路由10.1.1.0,在RTD上会看到该路由的AS-PATH 属性为100,因为该路由经过了AS100.",
+    "相对与反射器来说，联盟的一个缺点是所有路由器都要支持联盟，因此RTB和RTD上都要配置confederation id 和confederation peer-as等相关命令。"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-385",
+   "type": "single",
+   "question": "如下三个AS 组成的网路中，AS200 向外发布本地网段路由10.1.1.0/24。主要设备配置如下所示。\nRTA：\nbgp 100\ndampening\nundo synchronization\npeer 1.1.1.1 as-number 200\npeer 2.2.2.2 as-number 300\npeer 1.1.1.1 ebgp-max-hop 2\npeer 1.1.1.1 connect-interface LoopBack0\npeer 2.2.2.2 ebgp-max-hop 2\npeer 2.2.2.2 connect-interface LoopBack0\nRTB：\nbgp 200\nnetwork 10.1.1.0 255.255.255.0\nundo synchronization\npeer 10.10.10.10 as-number 100\npeer 10.10.10.10 ebgp-max-hop 2\npeer 10.10.10.10 connect-interface LoopBack0\n系统每次衰减值为1000，且关于衰减的缺省参数为：\nCeiling Value : 16000\nReuse Value : 750\nReach HalfLife Time(in second) : 900\nUnreach HalfLife Time(in second) : 900\nSuppress-Limit : 2000\n则RTB的本地网段10.1.1.0/24连续发生____次震荡（中断后又立即回复）后，RTC上不再有该路由，直到RTB该路由的惩罚值小于____。",
+   "options": [
+    "2 750",
+    "3 750",
+    "2 2000",
+    "3 2000"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-386",
+   "type": "single",
+   "question": "如下三个AS 组成的网路中，AS200 向外发布本地网段路由10.1.1.0/24。主要设备配置如下所示。\nRTA：\nbgp 100\ndampening\nundo synchronization\npeer 1.1.1.1 as-number 200\npeer 2.2.2.2 as-number 300\npeer 1.1.1.1 ebgp-max-hop 2\npeer 1.1.1.1 connect-interface LoopBack0\npeer 2.2.2.2 ebgp-max-hop 2\npeer 2.2.2.2 connect-interface LoopBack0\nRTB：\nbgp 200\nnetwork 10.1.1.0 255.255.255.0\nundo synchronization\npeer 10.10.10.10 as-number 100\npeer 10.10.10.10 ebgp-max-hop 2\npeer 10.10.10.10 connect-interface LoopBack0\n系统每次衰减值为1000，且关于衰减的缺省参数为：\nCeiling Value : 16000\nReuse Value : 750\nReach HalfLife Time(in second) : 900\nUnreach HalfLife Time(in second) : 900\nSuppress-Limit : 2000\n则RTB的本地网段10.1.1.0/24连续发生____次震荡（中断后又立即回复）后，RTC上不再有该路由，直到RTB该路由的惩罚值小于____。",
+   "options": [
+    "16000 750",
+    "16000 2000",
+    "2000 1000",
+    "2000 750"
+   ],
+   "answer": "D",
+   "analysis": ""
+  },
+  {
+   "id": "1-387",
+   "type": "multiple",
+   "question": "图示是BGP多出口企业网络。关于在多出口企业网络中的BGP部署，以下说法中正确的是：",
+   "options": [
+    "BGP 多出口企业网络中，可以有（1）ISP只发布缺省路由，（2）ISP发布缺省路由部分和Internet明细路由，（3）ISP 发布全部Internet路由三种方式。",
+    "方式（1）中，RTC可以依据自己的策略，通过IGP来选择其中某条缺省路由而到达Internet。",
+    "方式（2）中，RTC可以依据自己的策略，通过部分Internet明细路由以及通过IGP协议选择其中某条缺省路由到达Internet。",
+    "通常，在方式（3）RTC可以根据自己的策略 ，通过IGP来选择访问Interner的最优路径。"
+   ],
+   "answer": "ABC",
+   "analysis": "无图无真相。死记硬背。"
+  },
+  {
+   "id": "1-388",
+   "type": "multiple",
+   "question": "图示是BGP多出口企业网络。关于在多出口企业网络中的BGP部署，以下说法中正确的是：",
+   "options": [
+    "BGP 多出口企业网络中，可以有（1）ISP只发布缺省路由，（2）ISP发布缺省路由部分和Internet明细路由，（3）ISP 发布全部Internet路由三种方式。",
+    "方式（1）中，RTC可以依据自己的策略，通过IGP来选择其中某条缺省路由而到达Internet。",
+    "方式（2）中，RTC可以依据自己的策略，通过IGP协议选择其中某条缺省路由到达Internet。",
+    "通常，在方式（3）RTC可以根据自己的策略 ，通过IGP来选择访问Interner的最优路径。"
+   ],
+   "answer": "AD",
+   "analysis": "无图无真相。死记硬背。"
+  },
+  {
+   "id": "1-389",
+   "type": "multiple",
+   "question": "以下哪些属于BGP公认团体属性？",
+   "options": [
+    "INTERNET",
+    "PUBLIC",
+    "NO_ADVERTISE",
+    "NO_ADVERSTISEMENT"
+   ],
+   "answer": "AC",
+   "analysis": "BGP公认团体属性包括：\nINTERNET,NO_EXPORT,NO_ADVERTISE,NO_EXPORT_SUBCONFED。"
+  },
+  {
+   "id": "1-390",
+   "type": "multiple",
+   "question": "在自治系统内部，可以采用哪些技术减少iBGP邻居数量？",
+   "options": [
+    "路由聚合",
+    "路由反射器",
+    "对等体组",
+    "联盟"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "1-391",
+   "type": "single",
+   "question": "以下关于BGP Peer Group描述正确的是？",
+   "options": [
+    "iBGP和eBGP邻居可以放在同一个Peer Group中",
+    "BGP邻居加入Peer Group后，不能单独对该邻居应用路由策略",
+    "BGP Peer Group分为internal 、external两类",
+    "BGP Peer Group 可以解决iBGP全连接问题"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-392",
+   "type": "single",
+   "question": "以下关于BGP Peer Group描述正确的是？",
+   "options": [
+    "BGP Peer Group的缺省类型为external",
+    "BGP Peer Group的缺省类型为internal",
+    "BGP Peer 必须属于某个BGP Peer Group，否则无法建立邻居关系",
+    "对BGP Peer Group 只能配置入方向的oute-polic"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-393",
+   "type": "single",
+   "question": "BGP 路由表中有两条明细路由10.10.1.0/24 1、0.10.2.0/24 ，团体属性分别为100:1 、100:2，在BGP视图下配置aggregate 10.10.0.0 255.255.0.0 ，请问生成聚合路由10.10.0.0/16的团体属性为多少？",
+   "options": [
+    "100:1",
+    "100:2",
+    "100:1 100:2",
+    "没有团体属性"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-394",
+   "type": "single",
+   "question": "BGP 路由表中有两条明细路由50.50.1.0/24 、50.50.2.0/24 ，AS_PATH分别为100 200i 、100 300i，在BGP视图下配置ggregate 50.0.0.0 255.0.0.0 detail-suppressed ，请问生成聚合路由50.0.0.0/8的AS_PATH为多少？",
+   "options": [
+    "i",
+    "100 200 300i",
+    "200 100 300i",
+    "100 200 100 300i"
+   ],
+   "answer": "A",
+   "analysis": ""
+  },
+  {
+   "id": "1-395",
+   "type": "single",
+   "question": "BGP 路由表中有两条明细路由10.10.1.0/24 、10.10.2.0/24 ，用户要求对外发布10.10.1.0/24和汇聚路由10.10.0.0/16 ，不对外发布10.10.2.0/24，请问应该如何实现？",
+   "options": [
+    "acl number 2000\nrule permit source 10.10.2.0 0.0.0.255\nbgp 100\naggregate 10.10.0.0 255.255.0.0 suppress-policy test\nroute-policy test permit node 10\nif-match acl 2000",
+    "acl number 2000\nrule permit source 10.10.2.0 0.0.0.255\nbgp 100\naggregate 10.10.0.0 255.255.0.0 suppress-policy test\nroute-policy test deny node 10\nif-match acl 2000\nroute-policy test permit node 20",
+    "acl number 2000\nrule permit source 10.10.2.0 0.0.0.255\nbgp 100\naggregate 10.10.0.0 255.255.0.0 origin-policy test\nroute-policy test permit node 10\nif-match acl 2000",
+    "acl number 2000\nrule permit source 10.10.2.0 0.0.0.255\nbgp 100\naggregate 10.10.0.0 255.255.0.0 origin-policy test\nroute-policy test deny node 10\nif-match acl 2000\nroute-policy test permit node 20"
+   ],
+   "answer": "A",
+   "analysis": "suppress-policy：用于抑制特定明细路由。\norigin-policy：用于为指定明细路由而产生，否则汇总路由不会产生。"
+  },
+  {
+   "id": "1-396",
+   "type": "single",
+   "question": "组网如图示，RTA、RTB为路由反射器，RTC、RTD为路由反射器客户端，RTC、RTD之间需要互相学习BGP路由，请问应该如何规划？",
+   "options": [
+    "RTA、RTB配置相同的cluster-id,RTC与RTA建立iBGP邻居关系，RTD与RTB建立iBGP邻居关系",
+    "RTA、RTB配置相同的cluster-id,RTC与RTA建立iBGP邻居关系，RTD与RTA建立iBGP邻居关系",
+    "RTA、RTB配置不同的cluster-id,RTC与RTB建立iBGP邻居关系，RTD与RTA建立iBGP邻居关系",
+    "RTA、RTB配置不同的cluster-id,RTC与RTA建立iBGP邻居关系，RTD与RTA建立iBGP邻居关系"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-397",
+   "type": "single",
+   "question": "组网如图示，RTA、RTB为路由反射器，RTC、RTD为路由反射器客户端，RTC、RTD之间需要互相学习BGP路由，请问应该如何规划，才能减少重复路由信息传递，并达到最高可靠性？",
+   "options": [
+    "RTA、RTB配置相同的cluster-id,RTC与RTA建立iBGP邻居关系，RTD与RTB建立iBGP邻居关系",
+    "RTA、RTB配置相同的cluster-id,RTC与RTA、RTB建立iBGP邻居关系，RTD与RTA、RTB建立iBGP邻居关系",
+    "RTA、RTB配置不同的cluster-id,RTC与RTA建立iBGP邻居关系，RTD与RTB建立iBGP邻居关系",
+    "RTA、RTB配置不同的cluster-id,RTC与RTA、RTB建立iBGP邻居关系，RTD与RTA、RTB建立iBGP邻居关系"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-398",
+   "type": "single",
+   "question": "以下关于联盟的说法正确的是？",
+   "options": [
+    "联盟的子自治系统内部必须建立全连接iBGP邻居关系，不能使用路由反射器",
+    "联盟的子自治系统之间建立eBGP邻居关系，因此LP不能跨子自治系统传递",
+    "联盟子自治系统号可以与主自治系统相同",
+    "联盟内部所有BGP路由器都需要支持联盟功能"
+   ],
+   "answer": "D",
+   "analysis": ""
+  },
+  {
+   "id": "1-399",
+   "type": "single",
+   "question": "BGP视图下配置了路由衰减dampening 20 10 2000 4000 10000 ，路由10.10.1.0/24的当前惩罚值为5000 ，状态为可达，20分钟后该路由是否可用？",
+   "options": [
+    "可用，因为20分钟后惩罚值降为1250，小于reuse值2000",
+    "可用，因为20分钟后惩罚值降为1250，小于reuse值4000",
+    "不可用，因为20分钟后惩罚值降为2500，大于reuse值2000",
+    "可用，因为20分钟后惩罚值降为2500，小于reuse 值4000"
+   ],
+   "answer": "C",
+   "analysis": "20分钟后不可用。路由衰减。dampening后的参数依次为half-life-reachable（指定可达路由的半衰期）、half-life-unreachable（指定不可达路由的半衰期）、reuse（指定路由解除抑制状态的阈值）、suppress（指定路由进入抑制状态的阈值）、ceiling（惩罚上限\n值）"
+  },
+  {
+   "id": "1-400",
+   "type": "single",
+   "question": "组网如图示，用户AS 号为100 ，分别通过ISP1 、ISP2 接入Internet ，ISP1 的AS 列表为{201 、202、203}，ISP2 的AS 列表{301、302 、303} ，要求用户访问ISP1 始发路由时优先选择ISP1线路，访问ISP2始发路由时优先选择ISP2线路，访问其他Internet 地址优先选择ISP1，请问应该如何实现？",
+   "options": [
+    "[RTA]\nbgp 100\nPeerRTD route-policy test import\ndefault local-preference 200\nroute-policy test permit node 10\nif-match as-path 1\napply local-preference 200\nip as-path 1 permit _201$\nip as-path 1 permit _202$\nip as-path 1 permit _203$\n[RTB]\nbgp 100\npeerRTD route-policy test import\nroute-policy test permit node 10\nif-match as-path 1\napply local-preference 200\nip as-path 1 permit _301$\nip as-path 1 permit _302$\nip as-path 1 permit _303$",
+    "[RTA]\nbgp 100\npeerRTD route-policy test import\ndefault local-preference 200\n[RTB]\nbgp 100\npeerRTD route-policy test import route-policy test permit node 10 if-match as-path 1\napply local-preference 200\nip as-path 1 permit _301$\nip as-path 1 permit _302$\nip as-path 1 permit _303$",
+    "[RTA]\nbgp 100\npeerRTD route-policy test import default local-preference 200\nroute-policy test permit node 10 if-match as-path 1\napply local-preference 300\nroute-policy test permit node 20 ip as-path 1 permit _201$\nip as-path 1 permit _202$\nip as-path 1 permit _203$\n[RTB]\nbgp 100\ndefault local-preference 200",
+    "[RTA]\nbgp 100\ndefault local-preference 200\n[RTB]\nbgp 100\npeerRTD route-policy test import route-policy test permit node 10 if-match as-path 1\napply local-preference 300\nip as-path 1 permit _301$\nip as-path 1 permit _302$\nip as-path 1 permit _303$"
+   ],
+   "answer": "B",
+   "analysis": "访问其他Internet地址优先选择ISP1，rta上不需要配置路由策略，只需在rtb上配置。",
+   "images": [
+    "p209_113.jpeg"
+   ]
+  }
+ ]
+}
