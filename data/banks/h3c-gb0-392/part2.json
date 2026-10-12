@@ -1,0 +1,647 @@
+{
+ "questions": [
+  {
+   "id": "1-51",
+   "type": "multiple",
+   "question": "在ADSL的PPPoE应用中，当CPE侧使用MSR路由器+ADSL接口卡进行组网，CO侧\nDSLAM使用ATM上行时，在CPE侧的路由器上需要对哪些接口进行配置（不考虑CPE侧的局域网连接）?",
+   "options": [
+    "DSL接口",
+    "以太网口",
+    "Virtual-Ethernet",
+    "Virtual-Template",
+    "拨号接口"
+   ],
+   "answer": "BE",
+   "analysis": ""
+  },
+  {
+   "id": "1-52",
+   "type": "multiple",
+   "question": "在ADSL的PPPoE应用中，当CPE侧使用MSR路由器+ADSL Modem进行组网，CO侧DSLAM使用ATM上行时，在CPE侧的路由器上需要对哪些接口进行配置？",
+   "options": [
+    "DSL接口",
+    "以太网口",
+    "Virtual-Ethernet",
+    "Virtual-Template",
+    "拨号接口"
+   ],
+   "answer": "AE",
+   "analysis": ""
+  },
+  {
+   "id": "1-53",
+   "type": "multiple",
+   "question": "在ADSL的PPPoE应用中，当CPE侧使用MSR路由器+ADSL接口卡进行组网，CO侧\nDSLAM使用ATM上行时，在CO侧的集中路由器(PPPoE Server)上需要对哪些接口进行PPPoE相关的配置？",
+   "options": [
+    "DSL接口",
+    "以太网口",
+    "Virtual-Ethernet",
+    "Virtual-Template",
+    "拨号接口"
+   ],
+   "answer": "ACD",
+   "analysis": ""
+  },
+  {
+   "id": "1-54",
+   "type": "multiple",
+   "question": "在ADSL的PPPoE应用中，当CPE侧使用MSR路由器+ADSL接口卡进行组网，co侧DSLAM使用IP上行时，在co侧的集中路由器(PPPoE Server)上需要对哪些接口进行PPPoE相关的配置？",
+   "options": [
+    "DSL接口",
+    "以太网口",
+    "Virtual-Ethernet",
+    "Virtual-Template",
+    "拨号接口"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "1-55",
+   "type": "single",
+   "question": "ADSL2+中用来传输数据的频带范围为____。",
+   "options": [
+    "20KHz～1MHz",
+    "0～4 KHz",
+    "1.1MHz～2_2MHz",
+    "20KHz～2.2MHz",
+    "高于10MHZ"
+   ],
+   "answer": "D",
+   "analysis": ""
+  },
+  {
+   "id": "1-56",
+   "type": "multiple",
+   "question": "下列ADSL标准中，无需使用分离器的是____。",
+   "options": [
+    "ITU 992.1",
+    "ITU 992.2",
+    "ITU 992.3",
+    "ITU 992.4"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "1-57",
+   "type": "multiple",
+   "question": "某运营商希望在一个用户相对密集，传输距离较短的社区部署ADSL (ADSL2)系统，用户对带宽的要求不高，更加注重其经济性和安装维护的易用性。基于以上需求，在选择ADSL (ADSL2)标准时比较理想的是____。",
+   "options": [
+    "ITU 992.1",
+    "ITU 992.2",
+    "ITU 992.3",
+    "ITU 992.4"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "1-58",
+   "type": "multiple",
+   "question": "ADSL数据的理论传输速率和以下哪些选项有关？",
+   "options": [
+    "线路激活协商结果",
+    "子承载通道的数目",
+    "调制速率",
+    "子承载通道速率"
+   ],
+   "answer": "BCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-59",
+   "type": "single",
+   "question": "ADSL连接的VPI/VCI参数在____协商确定。",
+   "options": [
+    "线路激活",
+    "DMT调制",
+    "建立低层链路VCC",
+    "PPPoE协商"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-60",
+   "type": "multiple",
+   "question": "ADSL应用中常见的VPI/VCI值包括____。",
+   "options": [
+    "0/30",
+    "0/35",
+    "0/32",
+    "0/16"
+   ],
+   "answer": "BC",
+   "analysis": ""
+  },
+  {
+   "id": "1-61",
+   "type": "multiple",
+   "question": "下列关于ADSL2相对于ADSL的改进的说法中正确的是____。",
+   "options": [
+    "ADSL2在频带的范围是ADSL的两倍",
+    "在相同的传输速率下，ADSL2可以比ADSL传输更长的距离",
+    "ADSL2相对ADSL增加了新的运行模式",
+    "ADSL可以支持灵活的带宽绑定功能，如IMA（Inverse Multiplexing forA TM，ATM反向复用）"
+   ],
+   "answer": "BCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-62",
+   "type": "multiple",
+   "question": "下列VPN技术中，属于第三层VPN的有____。",
+   "options": [
+    "L2TP VPN",
+    "BGP/MPLS VPN",
+    "VLL",
+    "IPSec VPN"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "1-63",
+   "type": "multiple",
+   "question": "下列VPN技术中，属于第二层VPN的有____。",
+   "options": [
+    "VPLS",
+    "VLL",
+    "GRE VPN",
+    "IPSec VPN"
+   ],
+   "answer": "AB",
+   "analysis": ""
+  },
+  {
+   "id": "1-64",
+   "type": "multiple",
+   "question": "以下哪些VPN技术适用于企业员工，通过Internet远程接入企业私网的情况？",
+   "options": [
+    "SSL VPN",
+    "L2TP VPN",
+    "GRE VPN",
+    "BGP/MPLS VPN"
+   ],
+   "answer": "AB",
+   "analysis": ""
+  },
+  {
+   "id": "1-65",
+   "type": "single",
+   "question": "以下哪些VPN技术适用于出差在外的企业员工，通过Internet远程接入企业似网的情况？",
+   "options": [
+    "BGP/MPLS VPN",
+    "GRE VPN",
+    "SSL VPN",
+    "VLL"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-66",
+   "type": "multiple",
+   "question": "关于L2TP VPN与GRE VPN描述不正确的是____。",
+   "options": [
+    "都是点到点的VPN",
+    "都支持隧道验证",
+    "都支持动态获取地址",
+    "都是基于UDP封装"
+   ],
+   "answer": "ACD",
+   "analysis": "L2TP是点到点 、GRE是端到端\nL2TP不支持动态获取地址\nL2TP基于UDP封装、GRE基于IP封装"
+  },
+  {
+   "id": "1-67",
+   "type": "single",
+   "question": "关于L2TP VPN与GRE VPN描述正确的是____。",
+   "options": [
+    "都是点到点的VPN",
+    "都支持隧道验证",
+    "都属于L3 VPN（Laer 3 VPN，三层VPN）技术",
+    "都是基于lP封装"
+   ],
+   "answer": "B",
+   "analysis": "L2TP是点到点 、GRE是端到端\nL2TP属于二层、GRE属于三层\nL2TP基于UDP封装、GRE基于IP封装"
+  },
+  {
+   "id": "1-68",
+   "type": "single",
+   "question": "关于L2TP VPN与SSL VPN描述正确的是____。",
+   "options": [
+    "都需要安装、维护客户端",
+    "都支持Web接入方式",
+    "都支持lP接入方式",
+    "都是基于UDP封装"
+   ],
+   "answer": "C",
+   "analysis": "SSL VPN包括WEB接入、TCP接入、IP接入；使用web不需要客户端\n实现vpn客户端自动安装运行等；减少客户端维护工作\nL2TP VPN不支持web接入"
+  },
+  {
+   "id": "1-69",
+   "type": "multiple",
+   "question": "关于L2TP VPN与SSL VPN描述不正确的是____。",
+   "options": [
+    "都需要安装、维护客户端",
+    "都支持Web接入方式",
+    "都支持lP接入方式",
+    "都是基于TCP封装"
+   ],
+   "answer": "ABD",
+   "analysis": "SSL VPN包括WEB接入、TCP接入、IP接入；使用web不需要客户端\n实现vpn客户端自动安装运行等；减少客户端维护工作\nL2TP VPN不支持web接入"
+  },
+  {
+   "id": "1-70",
+   "type": "multiple",
+   "question": "按照网络层次的不同，VPN可以分为以下哪几种类型？",
+   "options": [
+    "Intranet VPN",
+    "Internet VPN",
+    "Layer2 VPN",
+    "Layer3 VPN"
+   ],
+   "answer": "CD",
+   "analysis": ""
+  },
+  {
+   "id": "1-71",
+   "type": "multiple",
+   "question": "按照运营模式的不同，VPN可以分为以下哪几种类型____。",
+   "options": [
+    "Intranet VPN",
+    "Internet VPN",
+    "CPE-Based VPN",
+    "Network-Based VPN"
+   ],
+   "answer": "CD",
+   "analysis": ""
+  },
+  {
+   "id": "1-72",
+   "type": "single",
+   "question": "以下对GRE VPN和BGP/MPLS VPN描述正确的有____。",
+   "options": [
+    "都可以分隔地址空间",
+    "都是点对点的隧道",
+    "GRE VPN能够分隔地址空间，BGP/MPLS VPN不能分隔地址空间",
+    "GRE VPN不能分隔地址空间，BGP/MPLS VPN能分隔地址空间"
+   ],
+   "answer": "D",
+   "analysis": "GRE是一种点到点隧道\nBGP 动态建立隧道"
+  },
+  {
+   "id": "1-73",
+   "type": "single",
+   "question": "以下对GRE VPN和BGP/MPLS VPN描述正确的有____。",
+   "options": [
+    "都可以分隔地址空间",
+    "都是点对点的隧道",
+    "GRE VPN不能分隔地址空间，BGP/MPLS VPN能分隔地址空间",
+    "GRE VPN可以提供数据加密等高级的安全性，BGP/MPLS VPN不能提供此类安全性"
+   ],
+   "answer": "C",
+   "analysis": "GRE是一种点到点隧道\nBGP 动态建立隧道"
+  },
+  {
+   "id": "1-74",
+   "type": "multiple",
+   "question": "下列有关GRE的描述哪些是错误的？",
+   "options": [
+    "承载IP头以UDP端口号47标识GRE头",
+    "GRE用以太协议类型0x0800标识载荷包为IP",
+    "GRE VPN仅限于传送单播数据",
+    "采用IP over IP的GRE封装方式，公网和私网接口地址可以重合"
+   ],
+   "answer": "ACD",
+   "analysis": "A：承载IP协议的封装 用IP协议号47标识GRE头\nC：GRE VPN可以传送组播数据\nD：公网和私网接口地址不可以重合"
+  },
+  {
+   "id": "1-75",
+   "type": "multiple",
+   "question": "下列有关GRE的描述哪些是正确的？",
+   "options": [
+    "承载lP头以lP协议号47标识GRE头",
+    "GRE用以太协议类型0x0806标识载荷包为lP",
+    "GRE VPN可以传送组播数据",
+    "采用IP over IP的GRE封装方式，公网和私网接口地址不可以重合"
+   ],
+   "answer": "ACD",
+   "analysis": "以IP作为载荷协议的GRE封装用0x0800标识"
+  },
+  {
+   "id": "1-76",
+   "type": "multiple",
+   "question": "在某路由器上执行display interface tunnel命令显示GRE隧道接口的信息如下：<Router>display interface Tunnel 0\nTunnel 0 current state: UP\nLine protocol current state: UP\nDescription: Tunnel 0 Interface\nThe Maximum Transmit Unit is 1476\nInternet Address is 192.1.2.1/24 Primar\nEncapsulation is TUNNEL, aggregation ID not set\nTunnel source 10.1.11.1, destination 10.1.13.1\nTunnel keepalive enable, Period(10 s), Retries(3)\nTunnel protocol/transport GRE/IP\nGRE ke disabled\nChecksumming of GRE packets disabled\nLast 300 seconds input: 0 btes/sec,0 packets/sec\nLast 300 seconds output: 0 btes/sec,0 packets/sec\n4 packets input, 72 btes\n0 input error\n1 packets output, 24 btes\n0 output error\n以上述信息可以得知____。",
+   "options": [
+    "Tunnel接口处于UP状态，MTU为1476字节",
+    "Tunnel接口启动了Keepalive功能，一旦路由器30s内收不到对方发来的Keeplive报文，即认为隧道不可用，虽然Tunnel接口的仍处于UP状态，但以此Tunnel接口为出接口的静态路由会从路由表中消失；",
+    "隧道没有启动验证，也没有启动校验",
+    "隧道源端lP地址为192.1.1.1"
+   ],
+   "answer": "AC",
+   "analysis": "启动keepalive，连续3次收不到对方发来的keeplive即认为隧道不可用，tunnel接口置为down，然后静态路由从路由表中删除。"
+  },
+  {
+   "id": "1-77",
+   "type": "multiple",
+   "question": "在某路由器上执行display interface tunnel显示GRE隧道接口的信息如下:\ndisplay interface Tunnel 0\nTunnel 0 current statle: UP\nLine protocol current state: UP\nDescription: Tunnel 0 Interface\nThe Maximum transmit Unit is 1476\nInternet Addess is 192.1.1.1/24 Primar\nEncapsulation is TUNNEL, aggregation ID not set\nTunnel source 10.1.11.1 destination 10.1.13.1\nTunnel keepalive enable Period(10 s), Retries(3)\nTunnel protocol/transport GRE/IP\nGRE key disable\nChecksumming of GRE packets disabled\nLast 300 seconds input: 0 btes/sec, 0 packets/sec\nLast 300 seconds output: 0 bytes/sec, 0 packets/sec\n4 packets input, 72bytes\n0 input error\n1 packets output, 24 btes\n0 output error\n从上述信息可以得知____。",
+   "options": [
+    "Tunnel接口处于UP状态，MTU为1467字节",
+    "Tunnel接口启动了Keepalive功能，一旦路由器30s内收不到对方发来的Keeplive报文，即认为隧道不可用",
+    "隧道启动验证，没有启动校验",
+    "隧道源端lP地址为10.1.11.1"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "1-78",
+   "type": "multiple",
+   "question": "下列有关GRE VPN配置的描述正确的是____。",
+   "options": [
+    "配置GRE VPN时，无论采用静态路由还是动态路由，Tunnel接口都应该启动Keepalive功能，以探测隧道接口的实际工作情况",
+    "Tunnel接口的源端地址和目的端地址唯一标识了一个隧道，在隧道两端设备的Tunnel接口上的源端地址和目的端地址必须相同",
+    "Tunnel接口启动了Keepalive功能后，在默认情况下，一旦路由器3次收不到对方发来的Keepalive报文，即认为隧道不可用",
+    "缺省情况下，Tunnel接口报文的封装模式为GRE"
+   ],
+   "answer": "CD",
+   "analysis": "A：动态可以不启动Keepalive\nB：两端设备的Tunnel接口上源端地址和目的端地址位置对调"
+  },
+  {
+   "id": "1-79",
+   "type": "multiple",
+   "question": "下列有关GREVPN配置的描述不正确的是____。",
+   "options": [
+    "配置GRE VPN时，如果采用静态路由，Tunnel接口都应该启动Keeplive功能，以探测隧道接口的实际工作情况，如果采用动态路由，可以不用启动Keeplive功能",
+    "Tunnel接口的源端地址和目的端地址唯一标识了一个隧道，在隧道两端设备的Tunrel接口上的源端地址和目的端地址必须相同",
+    "Tunnel接口启动了Keeplive功能后，在默认情况下，一旦路由器3次收不到对方发来的Keeplive报文，即认为隧道不可用",
+    "缺省情况下，Tunnel接口报文的封装模式不是GRE"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "1-80",
+   "type": "single",
+   "question": "GRE协议封装的报文中，载荷协议为IPX协议，承载协议为lP协议，该报文从链路层到载荷数据的封装顺序为____。",
+   "options": [
+    "链路层→IP→GRE→IPX→载荷数据",
+    "链路层→IPX→GRE→IP→载荷数据",
+    "链路层→GRE→IP→IPX→载荷数据",
+    "链路层→GRE→IPX→IP→载荷数据"
+   ],
+   "answer": "A",
+   "analysis": ""
+  },
+  {
+   "id": "1-81",
+   "type": "multiple",
+   "question": "四台路由器R1、R2、R3和R4顺序相连，R1和R4上创建Loopback0接口，接口地址分别为1.1.1.1和4.4.4.4，四台设备分别配置静态路由协议，保证R1和R4的Loopback0地址路由可达，R1和R4间建立GRE Tunnel，查看R1上Tunnel接口信息如下：\n[R1]display interface Tunnel 0\nTunnel 0 current state: UP\nLine protocol current state: UP\nDescription: Tunnel 0 Interface\nThe Maximum transmit Unit is 1476\nInternet Addess is 10.0.0.1/30 Primar\nEncapsulation is TUNNEL aggregation ID not set\nTunnel source 1.1.1.1 destination 4.4.4.4\nTunnel keeepalive disable\nTunnel protocol/transport GRE/IP\nGRE key disable\nChecksumming of GRE packets disabled\nLast 300 seconds input: 2 btes/secl 0 packet/sec\nLast 300 seconds output: 2 bytes/sec, 0 packets/sec\n15 packets input 840bytes\n0 input error\n27 packets output, 1248btes\n0 output error\n此时，若中断R2和R3之间链路，则下列说法正确的是____。",
+   "options": [
+    "R1上的Tunnel接口保持UP状态",
+    "R1上的Tunnel接口状态DOWN",
+    "R4的Tunnel接口IP地址应为10.0.0.2",
+    "R4的Tunnel接口的源lP为4.4.4.4，目的lP为1.1.1.1"
+   ],
+   "answer": "ACD",
+   "analysis": "4台设备配置了静态路由协议，无法检测到链路中断信息。所以隧道接口还是保持UP状态。"
+  },
+  {
+   "id": "1-82",
+   "type": "multiple",
+   "question": "四台路由器R1、R2、R3和R4顺序相连，R1和R4上创建Loopback0接口，接口地址分别为1.1.1.1和4.4.4.4，四台设备分别配置动态路由协议，保证R1和R4的Loopback0地址路由可达，R1和R4间建立GRE Tunnel，查看R1上Tunnel接口信息如下：\n[R1]display interface Tunnel 0\nTunnel 0 current state: UP\nLine protocol current state: UP\nDescription: Tunnelo Interface\nThe Maximum Transmit Unit is 1476\nInternet Address is 10.0.0.1/30 Primar\nEncapsulation is TUNNEL, aggregation ID not set\nTunnel source 1.1.1.1, destination 4.4.4.4\nTunnel keepalive disable\nTunnel protocol/transport GRE/IP\nGRE key disabled\nChecksumming of GRE packets disabled\nLast 300 seconds input: 2 btes/sec, 0 packets/sec\nLast 300 seconds output: 2 btes/sec, 0 packets/sec\n15 packets input, 840 btes\n0 input error\n27 packets output, 1248 btes\n0 output error\n此时，若中断R2和R3之间链路，则下列说法正确的是____。",
+   "options": [
+    "R1上的Tunnel接口保持UP状态",
+    "R1上的Tunnel接口状态DOWN",
+    "R4的Tunnel接口的源lP为1.1.1.1，目的lP为4.4.4.4",
+    "R4的Tunnel接口lP地址应为10.0.0.2"
+   ],
+   "answer": "BD",
+   "analysis": "配置动态路由协议可以检测到链路中断信息，所以隧道接口为down。"
+  },
+  {
+   "id": "1-83",
+   "type": "fill",
+   "question": "lP over lP的GRE封装中，GRE头的Protocol Tpe字段的十六进制值为0x____。（填写16进制数字)",
+   "answer": "0800",
+   "analysis": ""
+  },
+  {
+   "id": "1-84",
+   "type": "fill",
+   "question": "IP over IP的GRE封装中，IP用协议号____标示GRE头。（填写阿拉伯数字)",
+   "answer": "47",
+   "analysis": ""
+  },
+  {
+   "id": "1-85",
+   "type": "multiple",
+   "question": "三台路由器如图所示，在Router1和RouLer3之间创建GRE隧道，三台路由器配置命令分别为:\nRouter1:\n[Router1]interface Serial 0/2/0\n[Router1-Serial0/2/0]ip address 10.1.1.1 24\n[Router1]interface loopback 0\n[Router1-LoopBack0]ip address 1.1.1.1 32\n[Router1]interface Tunnel 0\n[Router1-Tunnel0]source 10.1.1.1\n[Router1-Tunnel0]destination 20.1.1.2\n[Router1-Tunnel0]ip address 100.1.1.1 24\n[Router1]ospf\n[Router1-ospf-1]area 0\n[Router1-ospf-1-area-0.0.0.0]network 10.1.1.1 0.0.0.255\n[Router1]ip route-static 3.3.3.3 32 100.1.1.2\nRouter2:\n[Router2]interface Serial 0/2/0\n[Router2-Serial0/2/0]ip address 10.1.1.2 24\n[Router2]interface Serial 0/2/1\n[Router2-Serial0/2/0]ip address 20.1.1.1 24\n[Router2]ospf\n[Router1-ospf-1]area 0\n[Router1-ospf-1-area-0.0.0.0]network 10.1.1.2 0.0.0.255\n[Router1-ospf-1-area-0.0.0.0]network 20.1.1.1 0.0.0.255\nRouter3:\n[Router3]interface Serial 0/2/0\n[Router3-Serial0/2/0]ip address 20.1.1.2 24\n[Router3]interface loopback 0\n[Router3-LoopBack0]ip address 3.3.3.3 32\n[Router3]interface Tunnel 0\n[Router3-Tunnel0]source 20.1.1.2\n[Router3-Tunnel0]destination 1 0.1.1.1\n[Router3-Tunnel0]ip address 100.1.1.2\n[Router3]ospf\n[Router3-ospf-1]area 0\n[Router3-ospf-1-area-0.0.0.0] network 20.1.1.2 0.0.0.255\n[Router3]ip route-static 1.1.1.1 32 100.1.1.1\n在Router1上使用命令ping -a 1.1.1.1 3.3.3.3，检查连通性，100%收到ICMP回包。上述过程中，以下对各路由器对数据包的处理过程的描述，正确的是____。",
+   "options": [
+    "Router1进行ICMP Echo Request报文GRE封装",
+    "Router2进行lP数据包转发",
+    "Router2进行ICMP Echo Request报文GRE解封装",
+    "Router3进行ICMP Echo Reply报文GRE封装"
+   ],
+   "answer": "ABD",
+   "analysis": "未配置静态路由的执行IP数据包转发\n配置静态路由的执行数据包封装\nRouter1进行ICMP Echo Request报文GRE封装\nRouter1进行ICMP Echo reply 报文GRE解封装\nRouter2进行lP数据包转发\nRouter3进行ICMP Echo Request报文GRE解封装\nRouter3进行ICMP Echo reply 报文GRE封装"
+  },
+  {
+   "id": "1-86",
+   "type": "single",
+   "question": "三台路由器如图所示，在Router1和Router3之间创建GRE隧道，三台路由器配置命令分别为：\nRouter1：\n[Router1]interface Serial 0/2/0\n[Router1-Serial0/2/0]ip address 10.1.1.1 24\n[Router1]interface loopback 0\n[Router1-LoopBack0]ip address 1.1.1.1 32\n[Routerl]interface Tunnel 0\n[Router1-Tunnel0]source 10.1.1.1\n[Router1-Tunnel0]destination 20.1.1.2\n[Router1-Tunnel0]ip address 100.1.1.1 24\n[Router1]ospf\n[Router1-ospf-1]area 0\n[Router1-ospf-1-area-0.0.0.0] network 10.1 .1 .1 0.0.0.255\n[Router1]ip route-static 3.3.3.3 32 100.1.1.2\nRouter2:\n[Router2]interface Serial 0/2/0\n[Router2-Serial0/2/0]ip address 10.1.1.2 24\n[Router2]interface Serial 0/2/1\n[Router2-Serial0/2/1]ip address 20.1.1.1 24\n[Router2]ospf\n[Router2-ospf-1]area 0\n[Router2-ospf-1-area-0.0.0.0] network 10.1.1.2 0.0.0.255\n[Router2-ospf-1-area-0.0.0.0] network 20.1.1.1 0.0.0.255\nRouter3:\n[Router3]interface Serial 0/2/0\n[Router3-Serial0/2/0]ip address 20.1.1.2 24\n[Router3]interface loopback 0\n[Router3-Loop Back0]ip address 3.3.3.3 32\n[Router3]interface Tunnel 0\n[Router3-Tunnel0]source 20.1.1.2\n[Router3-Tunnel0]destination 10.1.1.1\n[Router3-Tunnel0]ip address 100.1.1.2\n[Router3]ospf\n[Router3-ospf-l]area 0\n[Router3-ospf-l-area-0.0.0.0] network 20.1.1.2 0.0.0.255\n[Router3]ip route-static 1.1.1.1 32 100.1.1.1\n在Router上使用命令ping -a 1.1.1.1 3.3.3.3，检查连通性，l00%收到icmp回包。上进过程中，以下对各路由器对数据包的处理过程酌描述，正确的是_____。",
+   "options": [
+    "Router1进行ICMP Echo Request报文GRE解封装",
+    "Router1进行ICMP Echo reply 报文GRE封装",
+    "Router2进行ICMP Echo Request报文GRE解封装",
+    "Router3进行ICMP Echo reply 报文GRE封装"
+   ],
+   "answer": "D",
+   "analysis": "未配置静态路由的执行IP数据包转发\n配置静态路由的执行数据包封装\nRouter1进行ICMP Echo Request报文GRE封装\nRouter1进行ICMP Echo reply 报文GRE解封装\nRouter2进行lP数据包转发\nRouter3进行ICMP Echo Request报文GRE解封装\nRouter3进行ICMP Echo reply 报文GRE封装"
+  },
+  {
+   "id": "1-87",
+   "type": "multiple",
+   "question": "三台路由器如图所示,在Router1和Router3之间创建GRE隧道, 三台路由器配置分别为:Router1 :\n[Router1]interface Serial 0/2/0\n[Router1-Serial0/2/0]ip address 10.1.1.1 24\n[Router1]interface loopback 0\n[Router1-LoopBack0]ip address 1.1.1.1 32\n[Router1]interface Tunnel 0\n[Router1-Tunnel0]source 10.1.1.1\n[Router1-Tunnel0]destination 20.1.1.2\n[Router1-Tunnel0]ip address 100.1.1.1 24\n[Router1]ospf\n[Router1-ospf-1]area 0\n[Router1-ospf-1-area-0.0.0.0]network 10.1.1.1 0.0.0.255\n[Router1-ospf-1-area-0.0.0.0]network 1.1.1.1 0.0.0.0\nRouter2:\n[Router2]interface Serial 0/2/0\n[Router2-Serial0/2/0]ip address 10.1.1.2 24\n[Router2]interface Serial 0/2/1\n[Router2-Serial0/2/1]ip address 20.1.1.1 24\n[Router2]ospf\n[Router2-ospf-1]area 0\n[Router2-ospf-1-area-0.0.0.0] network 10.1.1.2 0.0.0.255\n[Router2-ospf-1-area-0.0.0.0] network 20.1.1.1 0.0.0.255\nRouter3:\n[Router3]interface Serial 0/2/0\n[Router3-Serial0/2/0]ip address 20.1.1.2 24\n[Router3-Serial0/2/0]quit\n[Router3]interface loopback 0\n[Router3-Loop Back0]ip address 3.3.3.3 32\n[Router3]interface Tunnel 0\n[Router3-Tunnel0]source 20.1.1.2\n[Router3-Tunnel0]destination 10.1.1.1\n[Router3-Tunnel0]ip address 100.1.1.2\n[Router3]ospf\n[Router3-ospf-1]area 0\n[Router3-ospf-1-area-0.0.0.0]network 20.1.1.2 0.0.0.255\n[Router3-ospf-1-area-0.0.0.0]network 3.3.3.3 0.0.0.0\n在Router上使用命令ping -a 1.1.1.1 3.3.3.3，检查连通性，l00%收到icmp回包。上进过程中，以下对各路由器对数据包的处理过程酌描述，正确的是_____。",
+   "options": [
+    "Router1进行ICMP Echo Request报文GRE解封装",
+    "Router1进行IP数据包转发",
+    "Router3进行IP数据包转发",
+    "Router3进行ICMP Echo repl 报文GRE封装"
+   ],
+   "answer": "BC",
+   "analysis": "未配置静态路由的执行IP数据包转发\n配置静态路由的执行数据包封装\nRouter1进行lP数据包转发\nRouter2进行lP数据包转发\nRouter3进行lP数据包转发"
+  },
+  {
+   "id": "1-88",
+   "type": "single",
+   "question": "在GRE Tunnel接口视图下，配置Keeplive报文的发送周期为10s，判断隧道中断所需要的Keeplive报文的传送次数为3，命令为____。",
+   "options": [
+    "keepalive 10 3",
+    "keepalive 3 10",
+    "keepalive-interval 10",
+    "keepalive-times 3"
+   ],
+   "answer": "A",
+   "analysis": ""
+  },
+  {
+   "id": "1-89",
+   "type": "single",
+   "question": "在GRE Tunnel接口视图下，配置隧道封装模式为GRE的完整命令为____。",
+   "options": [
+    "tunnel protocol gre",
+    "tunnel gre",
+    "tunnel-protocol gre",
+    "protocol gre"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-90",
+   "type": "single",
+   "question": "在L2TP组网中，LNS对用户的验证方式有三种：代理验证、强制CHAP认证和LCP重协商，优先级最高的是____。",
+   "options": [
+    "代理验证",
+    "强制CHAP验证",
+    "LCP重协商",
+    "都相同"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-91",
+   "type": "multiple",
+   "question": "在L2TP组网中，LNS对用户的验证方式有哪几种？",
+   "options": [
+    "代理验证",
+    "强制CHAP验证",
+    "IPCP重协商",
+    "LCP重协商"
+   ],
+   "answer": "ABD",
+   "analysis": ""
+  },
+  {
+   "id": "1-92",
+   "type": "single",
+   "question": "通过____命令可以显示L2TP隧道信息。",
+   "options": [
+    "display l2tp tunnel",
+    "display l2tp session",
+    "display l2tp status",
+    "display l2tp verbos"
+   ],
+   "answer": "A",
+   "analysis": ""
+  },
+  {
+   "id": "1-93",
+   "type": "single",
+   "question": "通过____命令可以显示L2TP会话信息。",
+   "options": [
+    "display l2tp tunnel",
+    "display l2tp session",
+    "display l2tp status",
+    "display l2tp verbos"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-94",
+   "type": "multiple",
+   "question": "下列关于L2TP中客户机、LAC和LNS的表述，正确的有_____。",
+   "options": [
+    "客户机可以同时作为LNS",
+    "一个LAC可以同时与多个LNS建立连接",
+    "客户机可以同时作为LAC",
+    "LAC可以同时作为LNS"
+   ],
+   "answer": "BC",
+   "analysis": ""
+  },
+  {
+   "id": "1-95",
+   "type": "multiple",
+   "question": "下列关于L2TP中客户机、LAC和LNS的表述，正确的有_____。",
+   "options": [
+    "一个LAC同时只能与一个LNS建立连接",
+    "一个LAC可以同时与多个LNS建立连接",
+    "客户机可以同时作为LAC",
+    "客户机可以同时作为LNS"
+   ],
+   "answer": "BC",
+   "analysis": ""
+  },
+  {
+   "id": "1-96",
+   "type": "single",
+   "question": "PC作为客户机，采用客户LAC模式通过iNode与LNS建立L2TP隧道，提示获取lP超时，则出现此问题可能的原因为____。",
+   "options": [
+    "iNode上用户名密码错误",
+    "tunnel接口验证不通过",
+    "IP地址池配置错误",
+    "LNS对LAC认证不通过"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-97",
+   "type": "single",
+   "question": "在L2TP VPN中，LAC（L2TP Access Concentrator，L2TP访问集中器)接收到从远程系统向服务器方发送的lP数据包，需要对数据包进行相应的封装后发送给LNS（L2TP\nNetwork Server，L2TP网络服务器)，LAC和LNS间传送的数据包的封装格式为____。",
+   "options": [
+    "私网数据包→L2TPT头→PPP头→UDP头→公网IP头",
+    "私网数据包→PPP头→UDP头→L2TPT头→公网IP头",
+    "私网数据包→PPP头→L2TPT头→UDP头→公网IP头",
+    "私网数据包→PPP头→UDP头→公网IP头→L2TPT头"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-98",
+   "type": "single",
+   "question": "在L2TP组网中，配置LNS与客户端之间重新进行强制CHAP验证的命令为____。",
+   "options": [
+    "在L2TP-group视图下，配置命令mandator-chap",
+    "在全局视图下，配置命令mandator-chap",
+    "在L2TP-group视图下，配置命令authentication-mode mandator-chap",
+    "在L2TP-group视图下，配置命令mandator chap"
+   ],
+   "answer": "A",
+   "analysis": ""
+  },
+  {
+   "id": "1-99",
+   "type": "single",
+   "question": "在L2TP组网中，配置LNS对用户进行LCP重协商验证方式的命令为____。",
+   "options": [
+    "在L2TP-group视图下，配置mandator-lcp",
+    "在全局视图下，配置manclator-lcp",
+    "在L2TP-group视图下，配置authentication-mode mandator-lcp",
+    "在L2TP-group视图下，配置mandator lcp"
+   ],
+   "answer": "A",
+   "analysis": ""
+  },
+  {
+   "id": "1-100",
+   "type": "multiple",
+   "question": "L2TP组件中的LNS和LAC的主要作用有____。",
+   "options": [
+    "LNS将从远程系统(Remote system)处接收到的报文进行L2TP封装后发给LAC",
+    "LNS与LAC共同维护L2TP隧道",
+    "LAC可以存在于远程系统上",
+    "LNS可以存在于远程系统上"
+   ],
+   "answer": "BC",
+   "analysis": "LAC是LNS和远程系统的中转站，LAC和远程系统可以合并。"
+  }
+ ]
+}
