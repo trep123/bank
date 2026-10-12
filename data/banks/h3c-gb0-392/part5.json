@@ -1,0 +1,651 @@
+{
+ "questions": [
+  {
+   "id": "1-201",
+   "type": "multiple",
+   "question": "在BGP MPLS VPN的组网中，某一私网用户报文有两层MPLS标签，关于这两层MPLS标签的说法正确的是____。",
+   "options": [
+    "内层标签是私网标签，由MP-BGP协议分配",
+    "内层标签是公网标签，由LDP协议分配",
+    "内外层标签值不可能相同",
+    "内外层标签值有可能相同"
+   ],
+   "answer": "AD",
+   "analysis": ""
+  },
+  {
+   "id": "1-202",
+   "type": "multiple",
+   "question": "在BGP MPLS VPN的组网中，某一私网用户报文有一层MPLS标签，关于这一层MPLS标签的说法正确的是_____。",
+   "options": [
+    "该标签是公网标签",
+    "该标签是私网标签",
+    "该标签值必然为3",
+    "该标签是由MP-BGP协议分配的"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "1-203",
+   "type": "single",
+   "question": "MPLS的倒数第二跳技术降低了___报文转发复杂度。",
+   "options": [
+    "倒数第二跳公网设备",
+    "倒数第一跳公网设备",
+    "倒数第一跳和第二跳公网设备",
+    "私网设备"
+   ],
+   "answer": "B",
+   "analysis": "在最后一跳，最外层的标签已经没有意义，因此可以在倒数第二跳将标签弹出，减少最后一跳的负担。如果只有一层标签，则最后一跳直接进行IP转发；否则，对内层标签做标签转发。"
+  },
+  {
+   "id": "1-204",
+   "type": "multiple",
+   "question": "在MPLS网络中标签值3具有特殊含义，它表示______。",
+   "options": [
+    "如果某转发等价类的MPLS标签转发表项的出标签为3，表示该设备是该转发等价类的倒数第二跳设备",
+    "如果某转发等价类的MPLS标签转发表项的入标签为3，表示该设备是该转发等价类的倒数第二跳设备",
+    "如果某转发等价类的MPLS标签转发表项的出标签为3，表示该设备是该转发等价类的倒数第一跳设备",
+    "如果某转发等价类的MPLS标签转发表项的入标签为3，表示该设备是该转发等价类的倒数第一跳设备"
+   ],
+   "answer": "AD",
+   "analysis": "上游的出标签等于下游的入标签。"
+  },
+  {
+   "id": "1-205",
+   "type": "multiple",
+   "question": "在BGP MPLS VPN组网中，下列关于标签的关系说法正确的是___。",
+   "options": [
+    "MPLS使能倒数第二跳以后，倒数第二跳和最后一跳公网设备之间的报文只有一层MPLS标签，是私网标签",
+    "公网设备之间，私网报文通常有两层MPLS标签，其中外层是公网标签",
+    "PE和CE设备之间，私网报文只有一层MPLS标签，是私网标签",
+    "私网标签在所有的PE和P设备上都不能被识别"
+   ],
+   "answer": "AB",
+   "analysis": "C：无标签"
+  },
+  {
+   "id": "1-206",
+   "type": "multiple",
+   "question": "多VRF技术中，一个VRF将拥有______。",
+   "options": [
+    "独立的路由表",
+    "独立的路由协议进程",
+    "独立的物理或逻辑接口",
+    "独立的路由器CPU"
+   ],
+   "answer": "ABC",
+   "analysis": "支持多VRF技术的路由器划分多个VRF分配给不同VPN;\n每个VPN拥有独立的表项、端口、路由协议。"
+  },
+  {
+   "id": "1-207",
+   "type": "single",
+   "question": "BGP MPLS VPN 组网中，用户私网报文由CE侧进入PE设备时，PE如何判断该报文所属的VPN____。",
+   "options": [
+    "根据报文所携带的私网标签判断",
+    "根据报文的目的IP地址判断",
+    "根据报文的源IP地址判断",
+    "根据报文进入PE设备的接口所属的VPN判断"
+   ],
+   "answer": "D",
+   "analysis": ""
+  },
+  {
+   "id": "1-208",
+   "type": "multiple",
+   "question": "OSPF协议的一个进程与某VPN进行绑定以后，将出现______。",
+   "options": [
+    "该OSPF进程学习到的路由仅存在于该VPN的路由表",
+    "该OSPF进程只能与和它OSPF进程号相同的CE设备建立OSPF 邻居",
+    "该OSPF进程学习到的路由会存在于公网路由表",
+    "该OSPF进程只能与该VPN 所绑定接口下连的CE设备建立OSPF邻居"
+   ],
+   "answer": "AD",
+   "analysis": ""
+  },
+  {
+   "id": "1-209",
+   "type": "multiple",
+   "question": "下列关于MPLS lsr-id描述正确的是_______。",
+   "options": [
+    "lsr-id用来在MPLS网络中标识一台LSR设备",
+    "lsr-id的格式与IP地址相同",
+    "lsr-id在MPLS网络中唯一",
+    "lsr-id必须配置成与该LSR的Router ID相同"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "1-210",
+   "type": "multiple",
+   "question": "在BGP MPLS VPN组网的某台公网设备上，采用display mpls ldp lsp 命令检查其标签转发表时，结果如下，说明_______。[PE1]dis mpls ldp lsp\nLDP LSP Information\n---------------------------------------------------------------------------------------------SN DestAddress/Mask In/OutLabel Next-Hop In/Out-Interface\n---------------------------------------------------------------------------------------------1    1.1.1.1/32                    3/NULL          127.0.0.1   Eth0/0/InLoop0 2    1.1.1.2/32                    NULL/1024   100.0.0.2   ---------Eth0/0\n3    1.1.1.3/32                    NULL/3          100.0.0.2   ---------Eth0/0",
+   "options": [
+    "针对1.1.1.2/32这一转发等价类，在该设备上出标签为1024",
+    "针对1.1.1.2/32这一转发等价类，在该设备上入标签为1024",
+    "针对1.1.1.3/32这一转发等价类，该设备是倒数第二跳",
+    "针对1.1.1.1/32这一转发等价类，该设备是倒数第二跳"
+   ],
+   "answer": "AC",
+   "analysis": ""
+  },
+  {
+   "id": "1-211",
+   "type": "multiple",
+   "question": "在BGP MPLS VPN组网的某台公网设备上，采用display mpls ldp lsp 命令检查其标签转发表时，结果如下，说明_______。[PE1]dis mpls ldp lsp\nLDP LSP Information\n--------------------------------------------------------------------------------------------SN DestAddress/Mask In/OutLabel Next-Hop In/Out-Interface\n--------------------------------------------------------------------------------------------1    1.1.1.1/32                    3/NULL         127.0.0.1   Eth0/0/InLoop0 2    1.1.1.2/32                    NULL/1024  100.0.0.2   ---------Eth0/0\n3    1.1.1.3/32                    NULL/3         100.0.0.2   ---------Eth0/0",
+   "options": [
+    "1.1.1.1/32 是PE1 的本地接口地址，所有出标签为NULL，入标签为3",
+    "1.1.1.3/32 是PE1 的本地接口地址，所有入标签为NULL，出标签为3",
+    "1.1.1.2/32 是与PE1直连的公网设备接口地址，所有出标签为1024",
+    "1.1.1.3/32 是与PE1直连的公网设备接口地址，所有出标签为3"
+   ],
+   "answer": "AD",
+   "analysis": ""
+  },
+  {
+   "id": "1-212",
+   "type": "single",
+   "question": "在BGP MPLS VPN组网中，两PE之间BGP邻居已经建立成功，但MP-BGP邻居不能建立的原因可能是____。",
+   "options": [
+    "两PE间公网路由不可达",
+    "在BGP的VPNv4地址族中未使能对应的邻居",
+    "两PE中没有需要互通的VPN",
+    "PE之间没有建立起MPLS公网隧道"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-213",
+   "type": "single",
+   "question": "在PE上见擦某VPN的私网路由表，发现可以通过MP-BGP路由协议学习到对端VPN用户的私网路由，而此时检查该PE下连CE 设备路由表，却发现无法学习到该私网路由，可能是下面的哪些原因____。",
+   "options": [
+    "PE与CE之间的路由协议异常，不能正常交互路由信息",
+    "PE之间的MP-BGP邻居建立异常",
+    "PE与此CE互联的接口未与该VPN进行绑定"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-214",
+   "type": "single",
+   "question": "下列哪条命令可以检查MPLS LDP 的Session是否建立完成？",
+   "options": [
+    "display mpls ldp",
+    "display mpls ldp lsp",
+    "display mpls ldp session"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-215",
+   "type": "single",
+   "question": "下列哪条命令可以检查是否存在某一转发定价类的LSP______。",
+   "options": [
+    "display mpls ldp peer",
+    "display mpls ldp lsp",
+    "display mpls ldp session",
+    "display mpls ldp"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-216",
+   "type": "single",
+   "question": "如何查看两台PE设备之间的MP-BGP邻居是否已经建立成功_____。",
+   "options": [
+    "display bgp vpnv4 all peer",
+    "display bgp vpnv4 peer",
+    "display mp-bgp peer"
+   ],
+   "answer": "A",
+   "analysis": "display bgp vpnv4 { all | vpn-instance vpn-instance-name } routing-table peer ipv4-address { advertised-routes | received-routes [ active ] }\nall 查看所有VPNv4的BGP路由统计信息"
+  },
+  {
+   "id": "1-217",
+   "type": "single",
+   "question": "如何查看PE设备学习到BGP 私网路由_____。",
+   "options": [
+    "display bgp routing-table",
+    "display bgp vpnv4 routing-table",
+    "display mp-bgp routing-table",
+    "display bgp vpnv4 all routing-table"
+   ],
+   "answer": "D",
+   "analysis": "display bgp vpnv4 { all | vpn-instance vpn-instance-name } routing-table peer ipv4-address { advertised-routes | received-routes [ active ] }\nall 查看所有VPNv4的BGP路由统计信息"
+  },
+  {
+   "id": "1-218",
+   "type": "multiple",
+   "question": "部署BGP MPLS VPN网络时，为了能够建立PE之间端到端的MPLS隧道，需要做到____。",
+   "options": [
+    "不能聚合公网互联接口地址路由",
+    "不能聚合PE的Loopback接口地址路由",
+    "PE不能聚合从CE学习到私网路由",
+    "PE之间需要互相学习到对端PE的Loopback接口地址的32位掩码的精确路由"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "1-219",
+   "type": "multiple",
+   "question": "在PE上配置建立一个VPN时，下列说法正确的是____。",
+   "options": [
+    "VPN的名称由用户根据理解、查看方便的需要自行设置，不同的VPN的名称不能相同",
+    "在一台PE上，需要为每个VPN规划一个独立的RD值",
+    "RT的值与VPN用户之间的互访关系有关，但其Impert target和Export target属性值必须相同",
+    "用户需要为每个VPN用户，规划一个唯一的私网标签值"
+   ],
+   "answer": "AB",
+   "analysis": ""
+  },
+  {
+   "id": "1-220",
+   "type": "multiple",
+   "question": "PE与CE之间运行的路由协议，有下列哪些特殊要求____。",
+   "options": [
+    "PE和CE之间必须运行动态路由协议，不能配置静态路由",
+    "PE和CE之间运行的路由协议在PE上需要与对应的VPN进行绑定",
+    "PE和CE之间如果运行OSPF路由协议，要求在PE上的OSPF进程号与CE上的OSPF进程号必须部署成相同",
+    "PE和CE之间不能选择运行IBGP路由协议"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "1-221",
+   "type": "multiple",
+   "question": "PE之间建立MP-BGP邻居时，下列说法正确的是______。",
+   "options": [
+    "PE 之间需要建立OSPF邻居关系",
+    "需要进入BGP的VPNv4地址族视图，使能MP-BGP邻居关系",
+    "PE之间需要采用loopback接口地址建立BGP邻居关系"
+   ],
+   "answer": "BC",
+   "analysis": ""
+  },
+  {
+   "id": "1-222",
+   "type": "multiple",
+   "question": "在配置BGP MPLS VPN 是需要配置本地VPN私网路由和MP-BGP路由的互相引入，关于这部分配置下列说法正确的是____。",
+   "options": [
+    "配置本地VPN私网路由和MP-BGP路由的互相引入，使得PE设备从本地CE学习到的路由可以通过MP-BGP路由协议发布给远端PE",
+    "配置本地VPN私网路由和MP-BGP路由的互相引入，使得PE设备通过MP-BGP路由协议从远端PE设备学习到的私网路由，可以通过PE和CE之间的路由协议发布给本地的CE",
+    "PE和CE之间选用EBGP路由协议的时候，无需再配置本地VPN私网路由和MP-BGP路由的互相引入",
+    "配置将本地私网路由引入到MP-BGP时，应该在BGP的VPNv4地址族中引入"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "1-223",
+   "type": "single",
+   "question": "在BGP MPLS VPN组网的公网设备上，采用display mpls ldp session 命令检查LDP邻居建立状况时，发现邻居状态时Operational，说明____。",
+   "options": [
+    "与此邻居的LDP邻居已建立成功，可以交互标签信息",
+    "与此邻居之间已经完成标签交互",
+    "与此邻居无法建立LDP邻居关系，因为LDP相关参数不匹配",
+    "与此邻居无法建立LDP邻居关系，因为对端未使能LDP协议"
+   ],
+   "answer": "A",
+   "analysis": ""
+  },
+  {
+   "id": "1-224",
+   "type": "multiple",
+   "question": "安全管理需要关注的内容有____。",
+   "options": [
+    "用户对安全制度的遵守情况",
+    "网络上发生的安全事件",
+    "网络上用户的行为",
+    "网络上的流程情况"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-225",
+   "type": "multiple",
+   "question": "设备安全加固手段包括____。",
+   "options": [
+    "加强自身的密码强度",
+    "设置自身的访问控制",
+    "设置访问控制列表控制用户互动",
+    "关闭FTP等服务"
+   ],
+   "answer": "ABD",
+   "analysis": ""
+  },
+  {
+   "id": "1-226",
+   "type": "multiple",
+   "question": "AAA支持_____的授权方式。",
+   "options": [
+    "本地授权",
+    "直接授权",
+    "HWTACACS授权",
+    "RADIUS授权"
+   ],
+   "answer": "ACD",
+   "analysis": "AAA 支持以下授权方式：\n不授权：不对用户进行授权处理。\n本地授权：根据网络接入服务器为本地用户账号配置的相关属性进行授权\nHWTACACS 授权：由 HWTACACS 服务器对用户进行授权。\nif-authenticated 授权：如果用户通过了认证，而且使用的认证模式是本地或远端认证，则用户授权通过。RADIUS 认证成功后授权：RADIUS 协议的认证和授权是绑定在一起的，不能单独使用 RADIUS 进行授权"
+  },
+  {
+   "id": "1-227",
+   "type": "multiple",
+   "question": "AAA支持______的认证方式。",
+   "options": [
+    "本地认证",
+    "直接认证",
+    "HWTACACS授权",
+    "RADIUS授权"
+   ],
+   "answer": "ACD",
+   "analysis": "AAA 支持以下认证方式：\n不认证：对用户非常信任，不对其进行合法检查，一般情况下不采用这种方式。\n本地认证：将用户信息配置在网络接入服务器上。本地认证的优点是速度快，可以为运营降低成本，缺点是存储信息量受设备硬件条件限制。\n远端认证：将用户信息配置在认证服务器上。支持通过RADIUS（Remote Authentication Dial In User\nService）协议或 HWTACACS（HuaWei Terminal Access Controller Access Control System）协议进行远端认证。"
+  },
+  {
+   "id": "1-228",
+   "type": "multiple",
+   "question": "★★ 227/401\n用户接入认证授权的方式有___。",
+   "options": [
+    "本地认证授权",
+    "RADIUS认证授权",
+    "CA认证授权",
+    "HWTACAC认证授权"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-229",
+   "type": "multiple",
+   "question": "登陆网络设备时用户认证授权方式有______。",
+   "options": [
+    "本地认证授权",
+    "RADIUS认证授权",
+    "CA认证授权",
+    "HWTACAC认证授权"
+   ],
+   "answer": "ABD",
+   "analysis": ""
+  },
+  {
+   "id": "1-230",
+   "type": "multiple",
+   "question": "从网络结构上来分析，网络安全威胁在于______。",
+   "options": [
+    "网络内部",
+    "网络外部",
+    "数据传输过程中",
+    "数据产生过程中"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "1-231",
+   "type": "multiple",
+   "question": "要对公司网络进行加固，需要对____用户进行认证授权。",
+   "options": [
+    "接入内部网络的用户",
+    "登陆网络设备的用户",
+    "接入网络的网络打印机/视频终端等",
+    "浏览公司对外网站的用户"
+   ],
+   "answer": "AB",
+   "analysis": ""
+  },
+  {
+   "id": "1-232",
+   "type": "multiple",
+   "question": "一个安全的网络要满足______条件。",
+   "options": [
+    "确保接入网络内部的用户合法和安全",
+    "接internet时有着足够的安全防范体系",
+    "在internet上传输数据时有着足够的加密和防伪手段",
+    "整个网络有着完善的管理制度"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-233",
+   "type": "multiple",
+   "question": "用户行为管理需要关注的内容有_____。",
+   "options": [
+    "用户访问了哪些网站",
+    "用户上网时通过了NAT转换，转换成哪个公网地址",
+    "用户什么时候访问了互联网",
+    "用户上网使用的是何种计算机"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "1-234",
+   "type": "multiple",
+   "question": "从网络层次、业务或应用角度来分析，网络安全威胁的来源于____。",
+   "options": [
+    "设备自身物理上安全威胁",
+    "网络层的安全威胁",
+    "应用层的安全威胁",
+    "病毒的安全威胁",
+    "安全制度漏洞带来的威胁"
+   ],
+   "answer": "ABCDE",
+   "analysis": ""
+  },
+  {
+   "id": "1-235",
+   "type": "multiple",
+   "question": "网络安全事件管理需要关注的内容有_____。",
+   "options": [
+    "网络上发生过的网络攻击事件",
+    "网络上检测到ARP病毒",
+    "网络中设备机房中断",
+    "网络设备机房发生火灾"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "1-236",
+   "type": "multiple",
+   "question": "流量管理需要关注的内容有_____。",
+   "options": [
+    "各条链路上有多少流量",
+    "在出口处，各类用用所占的带宽比例是怎样的",
+    "网络中每类业务的流量时间分布情况如何",
+    "网络中各类流量的峰值和平均值"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-237",
+   "type": "multiple",
+   "question": "良好的安全制度应做到_____。",
+   "options": [
+    "确保每一项工作都有规章制度可循",
+    "确保安全制度能够形成一个良性循环，不断自我完善",
+    "对长期遵循安全制度的人员进行奖励",
+    "对于违反安全制度的人员进行处罚"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-238",
+   "type": "multiple",
+   "question": "使用NAT技术进行安全防御的好处有_____。",
+   "options": [
+    "使用NAT技术后，内网用户访问外网业务的可用性不受影响",
+    "使用NAT技术后，外部人员无法得到内部网络信息",
+    "使用NAT技术后，内外网络被隔断",
+    "使用NAT技术后，可以避免两个内部网络互联时由于地址引起的问题"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-239",
+   "type": "multiple",
+   "question": "对于应用层攻击防御说法正确的是_____。",
+   "options": [
+    "应用层攻击防御一般的网络设备可以完成",
+    "应用层攻击防御需要采用专业的安全设备来完成",
+    "应用层攻击防御需要实时更新攻击特征库",
+    "应用层攻击防御可以采用固定的策略一劳永逸地完成"
+   ],
+   "answer": "BC",
+   "analysis": ""
+  },
+  {
+   "id": "1-240",
+   "type": "multiple",
+   "question": "对于畸形报文防御说法正确的有_____。",
+   "options": [
+    "ping of death攻击是利用超大尺寸的报文进行攻击的",
+    "Teardrop类的攻击利用UDP包重组时重叠移动的漏洞来进行攻击的",
+    "畸形TCP报文攻击是通过将TCP的标志设置为特定数值的报文进行攻击的",
+    "要防御畸形报文攻击，需要对每一种攻击的特点进行针对性防御"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-241",
+   "type": "multiple",
+   "question": "对于畸形报文防御说法正确的有_____。",
+   "options": [
+    "针对ping of death攻击，可以通过检测Ping请求报文的长度是否超过65536字节来辨别是否为攻击报文，若长度超过65536字节，则直接丢弃该报文",
+    "针对Teardrop类的攻击，可以通过缓存分片信息，每一个源、目的IP、报文ID相同的构成一组，最大缓存10000组，在缓存数据达到最大时，直接丢弃分片，同时根据缓存的分片信息，分析IP报文分段的合法性，直接丢弃不合法的IP报文的方式来抵御攻击",
+    "针对畸形TCP报文攻击，可以通过判断TCP报文标志位来判断报文是否为攻击报文，对于6个标志位全为1或6个标志位全为0或SN 和FIN为同时为1的报文直接丢弃",
+    "畸形报文攻击需要对每一种攻击进行针对性防御"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-242",
+   "type": "multiple",
+   "question": "建议的设备安全加固手段包括_____。",
+   "options": [
+    "使用public作为网管访问团体字",
+    "分级设置登录用户权限",
+    "设置所有IP地址均可以登录设备",
+    "关闭FTP等服务"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "1-243",
+   "type": "multiple",
+   "question": "关于非对称加密算法说法正确的是____。",
+   "options": [
+    "非对称加密算法效率高",
+    "非对称加密算法适合于传输数据量较大的环境",
+    "非对称加密算法有RAS,DH等",
+    "非对称加密算法为每个用户分一对密钥，一个公钥和一个私钥"
+   ],
+   "answer": "CD",
+   "analysis": ""
+  },
+  {
+   "id": "1-244",
+   "type": "multiple",
+   "question": "下列属于对称加密算法的是______。",
+   "options": [
+    "RAS",
+    "RC4",
+    "AES",
+    "DES"
+   ],
+   "answer": "BCD",
+   "analysis": "RC4严格上说是流加密"
+  },
+  {
+   "id": "1-245",
+   "type": "multiple",
+   "question": "下列属于保障数据完整性手段的有_____。",
+   "options": [
+    "数字签名",
+    "数字摘要",
+    "对称加密",
+    "非对称加密"
+   ],
+   "answer": "AB",
+   "analysis": ""
+  },
+  {
+   "id": "1-246",
+   "type": "multiple",
+   "question": "AAA支持_____的计费方式。",
+   "options": [
+    "本地计费",
+    "不计费",
+    "TACACS计费",
+    "RADIUS计费"
+   ],
+   "answer": "BCD",
+   "analysis": "AAA 支持以下计费方式：\n不计费：不对用户计费。\n远端计费：支持通过 RADIUS 服务器或 HWTACACS 服务器进行远端计费。"
+  },
+  {
+   "id": "1-247",
+   "type": "multiple",
+   "question": "ASPF 防火墙具备的功能有____。",
+   "options": [
+    "根据基于连接的应用层协议状态，动态地决定数据包是否被允许通过防火墙进入内部网络，以便阻止恶意的入侵",
+    "提供对不可信站点的Java Blocking(Java阻断)功能",
+    "增强的会话日志功能",
+    "能够检测传输协议信息，能够根据源、目的地址及端口，决定TCP或UDP报文是否可以通过防火墙进入内部网络"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-248",
+   "type": "multiple",
+   "question": "可以利用数据包中的_____来区分数据流，以便于进行访问控制。",
+   "options": [
+    "利用源/目的MAC地址",
+    "利用源/目的IP地址",
+    "利用源/目的端口号",
+    "利用URL信息"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-249",
+   "type": "multiple",
+   "question": "在状态检测防火墙的配置中，_____是必须配置。",
+   "options": [
+    "全局启动防火墙功能",
+    "定义ASPF策略",
+    "在接口下应用ASPF策略",
+    "调整TCP/UDP协议的检测时间"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "1-250",
+   "type": "multiple",
+   "question": "采用逻辑隔离方式进行业务隔离的手段有______。",
+   "options": [
+    "建立IPSec隧道",
+    "使用SSL VPN",
+    "组建MPLS-VPN网络",
+    "使用专线"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  }
+ ]
+}
