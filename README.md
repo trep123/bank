@@ -108,6 +108,8 @@ node tools/adduser.js --list                      # 查看用户
 | `exam` | 模拟考试默认题量、时长（分钟）、及格分 |
 | `scores` | 各题型分值，按权重折算为百分制；多选题须全对才得分 |
 
+题目较多时可拆成分卷：在题库文件中用 `"parts": ["hcia-ai/part1.json", "hcia-ai/part2.json"]` 代替 `questions`，每个分卷文件包含自己的 `questions` 数组。
+
 题干、选项、解析中可用反引号书写 `行内代码`，`\n` 换行。
 
 ## 📁 目录结构
