@@ -1,0 +1,704 @@
+{
+ "questions": [
+  {
+   "id": "2-231",
+   "type": "single",
+   "question": "二台路由器通过局域网连接在一起，组成VRRP备份组，各接口上配置如下：\n[RTA-GigabitEthernet1/0]display this\nip address 192.168.0.252 255.255.255.0\nvrrp vrid 1 virtual-ip 192.168.0.254\n[RTB-GigabitEthernet1/0]display this\nip address 192.168.0.253 255.255.255.0\nvrrp vrid 1 virtual-ip 192.168.0.254\n从上述信息可以得知______。",
+   "options": [
+    "RTA为备份组Master路由器",
+    "RTB为备份组Master路由器",
+    "RTA、RTB无法选举出备份组Master路由器",
+    "RTA、RTB都处于VRRP Master 状态"
+   ],
+   "answer": "B",
+   "analysis": "当优先级相同时，将会比较接口的主IP地址。优先级的取值范围为0到255，数值越大标明优先级越高，优先级缺省值是100，但是可配置范围是1到254.0为系统保留为特殊用途来使用255保留给IP地址拥有者。"
+  },
+  {
+   "id": "2-232",
+   "type": "multiple",
+   "question": "组播应用基于UDP,故组播应用存在如下缺点______。",
+   "options": [
+    "无拥塞控制",
+    "数据包重复接收",
+    "可以纠正组播数据包乱序到达的问题",
+    "尽最大努力交付，无法保证低延时应用需求"
+   ],
+   "answer": "ABD",
+   "analysis": "由于组播应用基于UDP而非TCP，这就决定了组播应用存在UDP响应的缺点：\n组播数据基于Best Effort(最大努力交付)发送，无法保证语音、视频等应用的优先传输，当报文丢失时，采用应用层的重传机制无法保证实时应用的低延时需求；\n不提供拥塞控制机制，当网络出现拥塞时，无法为高优先级的应用保留带宽，\n无法实现组播数据包重复检测，当网络拓扑发生变化时，接收者可能会收到重复的报文，需要应用层去剔除；\n无法纠正组播数据包乱序到达的问题。"
+  },
+  {
+   "id": "2-233",
+   "type": "multiple",
+   "question": "关于单播、组播和广播的对比，正确的有______。",
+   "options": [
+    "和单播相比，组播可以减少链路负载",
+    "和广播相比，组播可以提升链路使用率",
+    "和广播相比，组播可以减轻发送源的负担",
+    "和单播相比，组播可以减轻发送源的负担"
+   ],
+   "answer": "ABD",
+   "analysis": ""
+  },
+  {
+   "id": "2-234",
+   "type": "single",
+   "question": "组播IP 地址为229.130.130.1，其对应的MAC地址为______。",
+   "options": [
+    "00-00-5E-02-82-01",
+    "01-00-5E-02-82-01",
+    "00-00-5E-82-82-01",
+    "01-00-5E-82-82-01"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "2-235",
+   "type": "multiple",
+   "question": "以下哪个地址不属于IPv4组播地址______。",
+   "options": [
+    "232.255.255.255",
+    "242.255.255.250",
+    "239.255.255.255",
+    "224.0.0.13"
+   ],
+   "answer": "B",
+   "analysis": "组播地址范围\n224.0.0.0-239.255.255.255\n本地协议预留组播地址\n224.0.0.0-224.0.1.255\n本地管理组地址\n239.0.0.0-239.255.255.255\n用户组播地址\n224.0.2.0-238.255.255.255\n组播MAC地址：\n以太网：01-00-5E-XX-XX-XX"
+  },
+  {
+   "id": "2-236",
+   "type": "single",
+   "question": "以下哪个地址不属于IPv4组播地址______。",
+   "options": [
+    "232.255.255.255",
+    "240.0.0.5",
+    "239.255.255.255",
+    "224.0.0.13"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "2-237",
+   "type": "multiple",
+   "question": "以下哪些协议不是运行在主机和路由器之间的组播组管理协议? ______",
+   "options": [
+    "IGMPV2",
+    "MSDP",
+    "PIM-DM",
+    "PIM-SM",
+    "MLD"
+   ],
+   "answer": "BCD",
+   "analysis": "组播路由协议根据作用范围组可以分为域内组播路由协议和域间组播路由协议，其中域内组播路由协议主要包括DVMRP，距离矢量组播路由协议、MOSPF组播OSPF协议，和PIM协议无关组播，域间组播路由协议主要包括MSDP组播源发现协议、MBGP组播BGP\n组播侦听者（Multicast Listener）是那些希望接收组播数据的主机节点。\n路由器通过MLD协议，可以了解自己的直连网段上是否有IPv6组播组的侦听者，并在数据库里做相应记录。同时，路由器还维护与这些IPv6组播地址相关的定时器信息。"
+  },
+  {
+   "id": "2-238",
+   "type": "multiple",
+   "question": "以下哪些协议是运行在路由器和路由器之间的组播路由协议______。",
+   "options": [
+    "IGMPV2",
+    "DVMRP",
+    "PIM",
+    "MOSPF",
+    "MLD"
+   ],
+   "answer": "BCD",
+   "analysis": ""
+  },
+  {
+   "id": "2-239",
+   "type": "multiple",
+   "question": "下列关于组播路由协议的表述，正确的有______。",
+   "options": [
+    "组播路由协议有密集和稀疏两种模式",
+    "在密集模式下，组播数据流采用推的方式从组播源泛洪发送到网络的每个角落，组播接收者被动的接收组播报文",
+    "在稀疏模式下，组播数据流采用拉的方式从组播源发送到组播接收者，组播接收者主动发送接收请求",
+    "域内组播路由协议包括：MSDP、DVMRP、MOSPF、PIM"
+   ],
+   "answer": "ABC",
+   "analysis": "域内组播路由协议根据建立的组播分发树不通可以分为基于SPT的组播路由协议和基于RPT的组播路由协议，其中基于SPT的组播路由协议包括PIM DM(Protocol Independent Multicast-Dense Mode，协议无关组播，密集模式）、DVMRP、MOSPF，基于RPT的组播路由协议包括PIM SM(Protocol Independent\nMulticast-Sparse Mode，协议无关组播 稀疏模式）。\n在密集模式下，组播数据流采用“推”的方式从组播源泛红发送到网络中的每一个角落，组播接收者采用被动接收的方式接收组播报文。\n在稀疏模式下，组播数据流采用“拉“的方式从组播源发送到组播接收者，组播接收端路由器主动向组播源发送接收请求，组播报文只会发送到真正有接收需求的网段。"
+  },
+  {
+   "id": "2-240",
+   "type": "multiple",
+   "question": "通过査看IGMP组信息，可以了解到的内容有______。",
+   "options": [
+    "路由器维护的组播组信息",
+    "组播组Report报文个数",
+    "组播组IGMP査询器",
+    "组播组第一个发送Report报文的主机地址"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "2-241",
+   "type": "multiple",
+   "question": "由于网络规模扩大可能导致管理工作越来越繁重，因此在网络建设初期，网络管理员都希望采取各种各样的技术来降低网络管理工作量其中最为常用的方法是简化网络结构，统一网络设备等方法下列哪些技术属于简化网络结构的技术______。",
+   "options": [
+    "SNMP协议",
+    "集群技术",
+    "堆叠技术",
+    "万兆以太网"
+   ],
+   "answer": "BC",
+   "analysis": "集群、堆叠应用，化繁为简"
+  },
+  {
+   "id": "2-242",
+   "type": "multiple",
+   "question": "为了实现网络的高效管理，在大型园区网络中我们常常需要部署哪些服务器______。",
+   "options": [
+    "网管服务器",
+    "FTP服务器",
+    "Telnet服务器",
+    "日志服务器",
+    "NTP服务器"
+   ],
+   "answer": "ADE",
+   "analysis": ""
+  },
+  {
+   "id": "2-243",
+   "type": "multiple",
+   "question": "作为某企业的网络管理主管，王总在网络建设中坚持如下网络技术和网络设备的选择应用原则作为网络工程师的您认为那些技术的选择和应用对网络管理是不利的______。",
+   "options": [
+    "网络设备至少由三个不同的厂家提供",
+    "路由协议必须选择标准的动态路由协议",
+    "要求所有设备都必须支持标准的拓扑发现协议",
+    "各厂家网络设备必须采用自己的网络管理系统进行管理"
+   ],
+   "answer": "AD",
+   "analysis": ""
+  },
+  {
+   "id": "2-244",
+   "type": "multiple",
+   "question": "路由器运行IGMPV2协议,其直连局域网中的主机收到的Query报文中GroupAddress可能为______。",
+   "options": [
+    "255.255.255.255",
+    "224.0.0.1",
+    "0.0.0.0",
+    "225.1.1.1",
+    "224.0.0.2"
+   ],
+   "answer": "CD",
+   "analysis": "组播地址范围\n224.0.0.0-239.255.255.255\n本地协议预留组播地址\n224.0.0.0-224.0.1.255\n本地管理组地址\n239.0.0.0-239.255.255.255\n用户组播地址\n224.0.2.0-238.255.255.255\n组播MAC地址：\n以太网：01-00-5e-xx-xx-xx"
+  },
+  {
+   "id": "2-245",
+   "type": "multiple",
+   "question": "以下关于组播VLAN的表述，正确的是______。",
+   "options": [
+    "组播VLAN既节省了带宽，又减轻了三层设备的负担",
+    "需要将主机所属的VLAN配置为组播VLAN的子VLAN",
+    "组播VLAN需要启用IGMP-Snooping功能",
+    "组播VLAN的子VLAN必须同时启用IGMP-Snooping功能"
+   ],
+   "answer": "ABC",
+   "analysis": "使用组播VLAN功能可以解决在二层交换机上配置了组播VLAN后，路由器只需把组播数据在组播VLAN内复制一份发送给二层交换机，而不必在每个用户VLAN内都复制一份，从而节省了网络带宽，也减轻了路由器负担。\n配置组播VLAN时，首先需要把某个VLAN配置为组播VLAN，再将用户VLAN添加到该组播VLAN内，使其称为组播VLAN的子VLAN。\nIGMP Snooping将在组播VLAN中对路由器端口进行维护，而在各子VLAN中对成员端口进行维护。"
+  },
+  {
+   "id": "2-246",
+   "type": "single",
+   "question": "当主机收到IGMPV2査询器发出的通用组査询（GeneralQuery)报文后，______。",
+   "options": [
+    "主机立即发送MembershipReport报文",
+    "Report报文的目的地址与报文中的GroupAddress地址相同",
+    "Report报文的目的地址为224.0.0.1",
+    "主机只有收到通用组査询（GeneralQuery)后才会发送Membership Report报文"
+   ],
+   "answer": "B",
+   "analysis": "IGMP查询器周期性地以组播方式向本地网段的所有主机发送IGMP GeneralQuery报文，目的地址为\n224.0.0.1，TTL为1。\n收到General Query报文后，如果有主机希望接收该组播地址的数据，会对General Query报文进行响应。为了防止Membership Report报文发生冲突，主机会等等一段时间后，才会发送Membership Report报文，延迟时间为[0，Max Reps Time]之间的一个随机值，Max Reps Time为最大响应延时，由路由器在General\nQuery报文中发布。目的地址为主机要加入的组播组地址。如果该主机收到其他主机发送的Membership\nReport报文后，经过判断发现是关于同一个组的Membership Report报文，则主机会取消自己的\nMembership Report报文的发送，从而减少了本地网段的信息流量。"
+  },
+  {
+   "id": "2-247",
+   "type": "multiple",
+   "question": "当IGMPV2主机离开某组播组时，会发送LeaveGroup报文，如下表述正确的是 ______。",
+   "options": [
+    "査询路由器收到Leave报文后立即发送特定组査询报文",
+    "Leave报文的目的地址与报文中的GroupAddress地址相同",
+    "Leave报文的目的地址为224.0.0.2",
+    "査询路由器收到Leave报文后立即删除相关Group的组播组表项"
+   ],
+   "answer": "AC",
+   "analysis": "当一个主机离开某组播组时会向本地网段内的所有组播路由器发送Leave Group报文，目的地址224.0.0.2,报文中包含要离开的组播组地址信息。\n当IGMP查询器收到Leave Group报文后，会发送另外一种查询报文Group Specifie Query报文，用于确认该组播组在网段内是否还有成员存在。Group Specifie Query报文的目的地址为索要查询的指定组播地址。如果主机仍然需要收到组播组的数据，所以主机收到Group-Specific Query报文后，会在[0,Max Reps Time]时间内回复Membership Report报文。IGMP查询器在最大响应时间内收到了主机的Membership Report报文，认为组播组仍然有接收者，所以继续维护该组播组，由于主机都离开后，网段内不再有组播组的成员，所以在最大响应时间内无法收到关于组播组的Membership Report报文，IGMP查询者将删除组播组的表项，此后不会再将目的地址为该组播地址的报文发送到该网段"
+  },
+  {
+   "id": "2-248",
+   "type": "multiple",
+   "question": "以下哪个组播组管理协议可以支持SSM模型______。",
+   "options": [
+    "IGMPVl",
+    "IGMPV2",
+    "IGMPV3",
+    "MLDVl",
+    "MLDV2"
+   ],
+   "answer": "CE",
+   "analysis": ""
+  },
+  {
+   "id": "2-249",
+   "type": "multiple",
+   "question": "在共享网段存在多台IGMPv2组成员主机(Client1/Client2/Client3),同时还存在多台\nIGMPv2路由器(Router1/Router2),如下图所示：\n192.168.207.254 192.168.207.253\nRouter1 Router2\n+++++\nClientl Client2 Client3\n192.168.207.1 192.168.207.2 192.168.207.3\n那么，如下表述正确的是______。",
+   "options": [
+    "Routerl、Router2定期向共享网段发送通用组査询",
+    "只有Router1定期向共享网段发送通用组査询",
+    "只有Router2定期向共享网段发送通用组査询",
+    "主机收到査询报文后，只有Clients发送Report报文",
+    "主机收到通用组査询报文后，Client1、Client2、Client3都可能发送Report报文",
+    "主机收到通用组査询报文后，第一台主机发送Report报文后，其他主机Report报文被抑制"
+   ],
+   "answer": "CE",
+   "analysis": "网段上具有最小接口IP地址的路由器为该网段的查询器。\nIGMP查询器周期的以组播方式向本地网段内的所有主机发送IGMP General Query报文，目的地址为\n224.0.0.1,TTL为1。\n收到General Query报文后，由于多个主机都希望接收组播组的数据，所以会对General Query报文进行响应。为了防止Membership Report报文发生冲突，所有主机会等待一段时间后，才会发送Membership\nReport报文，延迟时间为【0，Max Reps Time】之间一个随机值，Max Reps Time为最大响应延时，由路由器在General Query报文中发布。假设某个主机延时时间小于其他主机的延时时间，则该主机会首先发送Membership Report报文，目的地址为主机要加入的组播组地址。其他主机收到该主机发送的Membership Report报文后，经过判断发现是关于同一个组的Membership Report报文，则其他主机会取消自己的\nMembership Report报文的发送，从而减少了本地网段的信息流量。"
+  },
+  {
+   "id": "2-250",
+   "type": "multiple",
+   "question": "在共享网段存在多台IGMPV2组成员主机(Client1/Client2/Client3),同时还存在多台\nIGMPv2路由器(Router1/Router2),如下图所示：\n||192.168.207.254 192.168.207.253\n|| Router1 Router2\n||+++++\n||Clientl Client2 Client3\n||192.168.207.1 192.168.207.2192.168.207.3\n那么，如下表述正确的是______。",
+   "options": [
+    "Routerl、Router2定期向共享网段发送通用组査询",
+    "只有Router1定期向共享网段发送通用组査询",
+    "只有Router2定期向共享网段发送通用组査询",
+    "主机收到査询报文后，只有Clients发送Report报文",
+    "主机收到通用组査询报文后，Client1、Client2、Client3都可能发送Report报文",
+    "主机收到通用组査询报文后,Client1发送加入A组的Report报文不会抑制Client2加入B组的Report报文"
+   ],
+   "answer": "CEF",
+   "analysis": "网段上具有最小接口IP地址的路由器为该网段的查询器。\nIGMP查询器周期的以组播方式向本地网段内的所有主机发送IGMP General Query报文，目的地址为\n224.0.0.1,TTL为1。\n收到General Query报文后，由于多个主机都希望接收组播组的数据，所以会对General Query报文进行响应。为了防止Membership Report报文发生冲突，所有主机会等待一段时间后，才会发送Membership\nReport报文，延迟时间为【0，Max Reps Time】之间一个随机值，Max Reps Time为最大响应延时，由路由器在General Query报文中发布。假设某个主机延时时间小于其他主机的延时时间，则该主机会首先发送Membership Report报文，目的地址为主机要加入的组播组地址。其他主机收到该主机发送的Membership Report报文后，经过判断发现是关于同一个组的Membership Report报文，则其他主机会取消自己的\nMembership Report报文的发送，从而减少了本地网段的信息流量。"
+  },
+  {
+   "id": "2-251",
+   "type": "multiple",
+   "question": "关于IGMPV2消息报文的目的IP地址和协议报文中的组地址（GroupAddress)字段填充正确的是______。",
+   "options": [
+    "通用组査询报文的目的IP地址为224.0.0.1，报文中的组地址字段为0.0.0.0",
+    "特定组査询报文的目的IP地址与报文中的组地址相同",
+    "成员Report报文的目的IP地址与报文中的组地址相同",
+    "成员Leave报文的目的IP地址与报文中的组地址相同"
+   ],
+   "answer": "ABC",
+   "analysis": "IGMPv2协议报文\nType为IGMP报文类型，包含Membership Query报文、版本1的Membership Report报文、版本2的\nMembership Report报文和Leave Group报文\nMax Reps Time为最大响应时间，只有Membership Query报文使用该字段\n不同报文组地址有不同含义\nGeneral Query报文的组地址字段值为0\nGroup-Specific Query报文中，组地址为被查询的组播组地址\nMembership Report报文和Leave Group报文中，组地址为主机要加入或离开的组播组地址\nIGMP查询器周期性地以组播方式向本地网段内的所有主机发送IGMP General Query报文，目的地址为\n224.0.0.1.TTL为1\n在IGMPv2中，当一个主机离开某个组播组时会向本地网段内的所有组播路由器发送Leave Group报文，目的地址为224.0.0.2，报文中包含要离开组播组地址信息。当IGMP查询器收到Leave Group报文后，会发送另外一种查询报文Group Secific Query报文，用于确认该组播组在网段内是否还有成员存在，Group\nSpecific Query报文的目的地址为所要查询的指定组播地址。"
+  },
+  {
+   "id": "2-252",
+   "type": "multiple",
+   "question": "如图所示，在共享网段存在2台组成员主机Client1和Client2，分别运行不同版本的IGMP协议，同时还存在一台IGMPV2路由器Router,那么如下表述正确的是______。",
+   "options": [
+    "Router按照IGMPv2协议方式工作",
+    "Router按照IGMPv1协议方式工作",
+    "CIient1的主机报告抑制Client2的主机报告",
+    "CIient2的主机报告抑制Client1的主机报告"
+   ],
+   "answer": "BC",
+   "analysis": "IGMPv2主机的membership report报文，会被IGMPv1的主机发送的report抑制\nIGMPv2和IGMPv1的兼容\n与IGMPv1路由器的兼容\n当IGMPv2主机发现IGMPv1路由器，则必须发送版本1的Report报文，且不再发送Leave报文\n当网段上同时存在IGMPv1路由器和IGMPv2路由器，则查询器的IGMP版本必须使用较低版本的即IGMPv1与IGMPv1主机的兼容\nIGMPv2路由器如果发现IGMPv1主机，则必须忽略后续收到的Leave报文\nIGMPv2主机的Report报文会被IGMPv1主机的Report报文抑制",
+   "images": [
+    "p147_70.jpeg"
+   ]
+  },
+  {
+   "id": "2-253",
+   "type": "single",
+   "question": "当IGMPV3主机希望离开组播组G时，主机会主动发送Membership Report报文，报文中包含的组记录为______。",
+   "options": [
+    "TO_IN(A, G)",
+    "TO_EX(A, G)",
+    "TO_IN(Null, G)",
+    "TO_EX(Null, G)"
+   ],
+   "answer": "C",
+   "analysis": "IGMPv3增加了对特定源组查询的支持，在Group-and-Source-Specific Query报文中，即携带组地址，还携带一个或多个源地址。IGMPv3取消了Leave Group报文类型，通过在Membership Report报文中申明不再接收任何源发送给某组播组的数据，即可实现离开这个组播组的功能。Membership Report报文的目的地址使用组播地址224.0.0.22.不再使用具体组播组的地址。"
+  },
+  {
+   "id": "2-254",
+   "type": "multiple",
+   "question": "关于组播组管理协议IGMPv1、IGMPV2、IGMPv3三个版本的表述，正确的是______。",
+   "options": [
+    "三个版本査询器的选举原则相同",
+    "IGMPv1没有离开消息",
+    "IGMPV2、IGMPV3有特定组査询消息",
+    "只有IGMPV3设计了特定组加入机制",
+    "IGMPV2、IGMPV3设计了成员报告抑制机制"
+   ],
+   "answer": "BCD",
+   "analysis": "IGMPv1本身不支持查询器选举，这个工作需要组播路由协议配置支持，IGMPv1中没有Leave Group报文，当主机离开某个组时，不会发送任何消息选择默默离开，如果该主机为组播组的最后一位接收者，则路由器默认情况下需要最多两个普遍查询间隔即两分钟的时间才能得知组播组没有成员，在此期间路由器会继续将组播数据发送到该网段，浪费大量网络带宽；IGMPv1无法支持特定组查询和特定源的加入。\nIGMPv2在IGMPv1的基础上，增加了查询器选择机制，并且通过使用Leave Group报文和Group Secific\nQuery报文大大减少了路由器感知主机离开某个组的时间，IGMPv2不支持针对特定源组的加入。\nIGMPv3在IGMPv3的基础上只能加了对特定源组加入的支持，路由器也可以针对特定源组进行查询。"
+  },
+  {
+   "id": "2-255",
+   "type": "multiple",
+   "question": "关于组播组管理协议IGMPv1、IGMPV2、IGMPv3三个版本的表述，正确的是______。",
+   "options": [
+    "三个版本査询器的选举原则相同",
+    "IGMPv1没有离开消息",
+    "IGMPV2、IGMPV3有特定组査询消息",
+    "只有IGMPV3设计了特定组加入机制",
+    "IGMPV3取消了成员报告抑制机制"
+   ],
+   "answer": "BCDE",
+   "analysis": "IGMPv1本身不支持查询器选举，这个工作需要组播路由协议配置支持，IGMPv1中没有Leave Group报文，当主机离开某个组时，不会发送任何消息选择默默离开，如果该主机为组播组的最后一位接收者，则路由器默认情况下需要最多两个普遍查询间隔即两分钟的时间才能得知组播组没有成员，在此期间路由器会继续将组播数据发送到该网段，浪费大量网络带宽；IGMPv1无法支持特定组查询和特定源的加入。\nIGMPv2在IGMPv1的基础上，增加了查询器选择机制，并且通过使用Leave Group报文和Group Secific\nQuery报文大大减少了路由器感知主机离开某个组的时间，IGMPv2不支持针对特定源组的加入。\nIGMPv3在IGMPv3的基础上只能加了对特定源组加入的支持，路由器也可以针对特定源组进行查询。"
+  },
+  {
+   "id": "2-256",
+   "type": "multiple",
+   "question": "关于IGMP-Snooping工作原理，正确的是______。",
+   "options": [
+    "二层设备依靠IGMP-sliooping侦听IGMP消息，在二层维护组播地址转发表项",
+    "通过侦听IGMPQuery报文，IGMP-Snooping确定路由端口",
+    "通过侦听IGMPReport报文，IGMP-Snooping添加端口到已知组播组或者建立新的组播转发表项"
+   ],
+   "answer": "ABC",
+   "analysis": "IGMP Snooping是运行在二层设备上的组播约束机制，用于管理和控制组播组，运行IGMP Snooping的二层设备通过对收到的IGMP报文进行分析，为端口和MAC组播地址建立起映射关系，并根据这样的映射关系转发组播数据。"
+  },
+  {
+   "id": "2-257",
+   "type": "multiple",
+   "question": "关于组播分发树模型SPT,以下表述正确的是______。",
+   "options": [
+    "SPT模型中，组播源到达任何一个接收者所经过的路径都是最优的",
+    "SPT上的每台路由器都会维护(S,G)表项",
+    "SPT上的每台路由器都会维护(*,G)表项",
+    "不同组播源以自己为根，独立建立SPT"
+   ],
+   "answer": "ABD",
+   "analysis": ""
+  },
+  {
+   "id": "2-258",
+   "type": "multiple",
+   "question": "关于组播分发树模型,以下表述正确的是______。",
+   "options": [
+    "组播分发树模型分为SPT和RPT两种",
+    "SPT上的每台路由器都会维护(S,G)表项",
+    "RPT上的每台路由器都会维护(*,G)表项",
+    "不同组播源以自己为根，独立建立RPT"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "2-259",
+   "type": "multiple",
+   "question": "当路由器收到组播数据后，査找组播转发表______。",
+   "options": [
+    "如果组播转发表中不存在对应的(S,G)表项，路由器丢弃组播数据",
+    "如果组播转发表中存在对应的(S,G)表项，且该报文实际到达的接口与表项中入接口相匹配，路由器转发组播数据",
+    "如果组播转发表中存在对应的(S,G)表项，但该报文实际到达的接口与表项中入接口不匹配，路由器丢弃组播数据",
+    "如果组播数据RPF接口与(S,G)表项中的入接口不符，路由器会将表项的入接口更新为检査得到的RPF"
+   ],
+   "answer": "BD",
+   "analysis": "当路由器收到组播数据报文后，查找组播转发表：\n如果组播转发表中存在对应的(S,G)表项，则对该报文执行RPF检查，将得到的RPF接口作为(S,G)表项的入接口，并结合路由信息得到(S,G)表项的出接口列表。\n若该报文实际到达的接口正式RPF接口，则RPF检查通过，向出接口列表中的所有出接口转发该报文；若该报文实际到达的接口不是其RPF接口，则RPF检查失败，丢弃该报文。\n如果组播转发表中已存在(S,G)表项，且该报文实际到达的接口与入接口相匹配，则向出接口列表中的所有出接口转发该报文。\n如果组播转发表中已存在(S,G)表项，但该报文实际到达的接口与表项中的入接口不匹配，则对此报文执行RPF检查。\n如果检查得到的RPF接口与表项中的入接口一致，则说明当前(S,G)表项正确，该报文RPF检查失败，丢弃这个来自错误路径的报文。\n如果其RPF接口与表项中的入接口不符，则说明(S,G)表项已过时，于是把表项中的入接口更新为检查得到的RPF接口，如果该报文实际到达的接口正是该RPF接口，则向出接口列表中的所有出接口转发该报文，否则将其丢弃。"
+  },
+  {
+   "id": "2-260",
+   "type": "multiple",
+   "question": "如图所示组网中，路由器的单播路由表如下：\n那么，接收者(Receiver)会收到的组播数据为______。",
+   "options": [
+    "(100.1.1.1, 226.1.1.1)",
+    "(200.1.1.1, 226.2.2.2)",
+    "(100.1.1.1, 226.3.3.3)"
+   ],
+   "answer": "AB",
+   "analysis": "",
+   "images": [
+    "p150_71.jpeg",
+    "p150_72.jpeg"
+   ]
+  },
+  {
+   "id": "2-261",
+   "type": "multiple",
+   "question": "如图所示PIM-DM组网中，路由器RT1、RT2的部分单播路由表如下:\n<RT1>display ip routing-table\nRouting Tables: Public\nDestination/Mask  Proto    Pre    Cost     NextHop     Interface\n1.1.1.0/24                 XXXX    P1-1  C1-1     10.1.1.1        Port1\n1.1.0.0/16                 XXXX    P1-2  C1-2     10.1.1.1        Port1\n<RT2>display ip routing-table\nRouting Tables: Public\nDestination/Mask  Proto    Pre    Cost     NextHop     Interface\n1.1.1.0/24                 XXXX    P2-1  C2-1     11.1.1.1        Port2\n1.1.1.1/32                 XXXX    P2-2  C2-2     11.1.1.1        Port2\n那么，当路由器RT1、RT2进行Assert时，获胜的一方应该是______。",
+   "options": [
+    "如果P1-1>P2-1, C1-1<C2-1,则RT1获胜",
+    "如果P1-1>P2-2, C1-1<C2-2,则RT2获胜",
+    "如果P1-1=P2-1, C1-1<C2-1,则RT1获胜",
+    "如果P1-1=P2-2, C1-1<C2-2,则RT2获胜",
+    "如果P1-1=P2-1, C1-1=C2-1,则RT1获胜",
+    "如果P1-1=P2-2, C1-1=C2-2,则RT2获胜"
+   ],
+   "answer": "BF",
+   "analysis": "Assert消息的比较规则如下：\n到组播源S的单播路由的优先级较高者获胜；\n如果到组播源S的单播路由的优先级相等，那么组播源的Metric值较小者获胜；如果到组播源S的Metric值也相等，则本地接口IP地址较大者获胜。\n优先值数值大，优先级会比较小。优先级较大，Metric较小，IP地址较大，比较的应该是p1-1,p2-2,因为要根据最优路由——最长掩码匹配",
+   "images": [
+    "p151_73.jpeg"
+   ]
+  },
+  {
+   "id": "2-262",
+   "type": "multiple",
+   "question": "如图所示PIM-DM组网中，路由器RT1、RT2的部分单播路由表如下:<RT1>display ip routing-table\nRouting Tables: Public\nDestination/Mask  Proto    Pre    Cost     NextHop     Interface\n1.1.1.0/24                 XXXX    P1-1  C1-1     10.1.1.1        Port1\n1.1.0.0/16                 XXXX    P1-2  C1-2     10.1.1.1        Port1\n<RT2>display ip routing-table\nRouting Tables: Public\nDestination/Mask  Proto    Pre    Cost     NextHop     Interface\n1.1.1.0/24                 XXXX    P2-1  C2-1     11.1.1.1        Port2\n1.1.1.1/32                 XXXX    P2-2  C2-2     11.1.1.1        Port2\n那么，当路由器RT1、RT2进行Assert时，获胜的一方应该是______。",
+   "options": [
+    "如果P1-1<P2-1, C1-1<C2-1,则RT1获胜",
+    "如果P1-1<P2-2, C1-1<C2-2,则RT2获胜",
+    "如果P1-1=P2-1, C1-1>C2-1,则RT1获胜",
+    "如果P1-1=P2-2, C1-1>C2-2,则RT2获胜",
+    "如果P1-1=P2-1, C1-1=C2-1,则RT1获胜",
+    "如果P1-1=P2-2, C1-1=C2-2,则RT2获胜"
+   ],
+   "answer": "DF",
+   "analysis": "Assert消息的比较规则如下：\n到组播源S的单播路由的优先级较高者获胜；\n如果到组播源S的单播路由的优先级相等，那么组播源的Metric值较小者获胜；\n如果到组播源S的Metric值也相等，则本地接口IP地址较大者获胜。\n优先值数值大，优先级会比较小。优先级较大，Metric较小，IP地址较大，比较的应该是p1-1,p2-2,因为要根据最优路由——最长掩码匹配",
+   "images": [
+    "p152_74.jpeg"
+   ]
+  },
+  {
+   "id": "2-263",
+   "type": "single",
+   "question": "如图所示PIM-DM组网中，路由器RT1、RT2的部分单播路由表如下:\n<RT1>display ip routing-table\nRouting Tables: Public\nDestination/Mask  Proto    Pre    Cost     NextHop     Interface\n1.1.1.0/24                 XXXX    P1-1  C1-1     10.1.1.1        Port1\n1.1.0.0/16                 XXXX    P1-2  C1-2     10.1.1.1        Port1\n<RT2>display ip routing-table\nRouting Tables: Public\nDestination/Mask  Proto    Pre    Cost     NextHop     Interface\n1.1.1.0/24                 XXXX    P2-1  C2-1     11.1.1.1        Port2\n1.1.1.1/32                 XXXX    P2-2  C2-2     11.1.1.1        Port2\n那么，当路由器RT1、RT2进行Assert时，获胜的一方应该是______。",
+   "options": [
+    "如果P1-1>P2-2, C1-1<C2-2,则RT1获胜",
+    "如果P1-2>P2-2, C1-2<C2-2,则RT2获胜",
+    "如果P1-1=P2-2, C1-1<C2-2,则RT1获胜",
+    "如果P1-2=P2-2, C1-2<C2-2,则RT2获胜",
+    "如果P1-1=P2-2, C1-1=C2-2,则RT1获胜",
+    "如果P1-2=P2-2, C1-2=C2-2,则RT2获胜"
+   ],
+   "answer": "C",
+   "analysis": "Assert消息的比较规则如下：\n到组播源S的单播路由的优先级较高者获胜；\n如果到组播源S的单播路由的优先级相等，那么组播源的Metric值较小者获胜；\n如果到组播源S的Metric值也相等，则本地接口IP地址较大者获胜。\n优先值数值大，优先级会比较小。优先级较大，Metric较小，IP地址较大，比较的应该是p1-1,p2-2,因为要根据最优路由——最长掩码匹配",
+   "images": [
+    "p153_75.jpeg"
+   ]
+  },
+  {
+   "id": "2-264",
+   "type": "multiple",
+   "question": "如图所示PIM-DM组网中，路由器RT1、RT2的部分单播路由表如下:\n<RT1>display ip routing-table\nRouting Tables: Public\nDestination/Mask  Proto    Pre    Cost     NextHop     Interface\n1.1.0.0/16                 XXXX    P1-1  C1-1     10.1.1.1        Port1\n1.1.1.0/24                 XXXX    P1-2  C1-2     10.1.1.1        Port1\n<RT2>display ip routing-table\nRouting Tables: Public\nDestination/Mask  Proto    Pre    Cost     NextHop     Interface\n1.1.1.0/24                 XXXX    P2-1  C2-1     11.1.1.1        Port2\n1.1.1.1/32                 XXXX    P2-2  C2-2     11.1.1.1        Port2\n那么，当路由器RT1、RT2进行Assert时，获胜的一方应该是______。",
+   "options": [
+    "如果P1-1>P2-2, C1-1<C2-2,则RT1获胜",
+    "如果P1-2>P2-2, C1-2<C2-2,则RT2获胜",
+    "如果P1-1=P2-2, C1-1<C2-2,则RT1获胜",
+    "如果P1-2=P2-2, C1-2<C2-2,则RT2获胜",
+    "如果P1-1=P2-2, C1-1=C2-2,则RT1获胜",
+    "如果P1-2=P2-2, C1-2=C2-2,则RT2获胜"
+   ],
+   "answer": "BF",
+   "analysis": "注意本题RT1的路由表，最长掩码，是1.1.1.0/24 对应的是P1-2\nAssert消息的比较规则如下：\n到组播源S的单播路由的优先级较高者获胜；\n如果到组播源S的单播路由的优先级相等，那么组播源的Metric值较小者获胜；\n如果到组播源S的Metric值也相等，则本地接口IP地址较大者获胜。\n优先值数值大，优先级会比较小。优先级较大，Metric较小，IP地址较大，比较的应该是p1-2,p2-2,因为要根据最优路由——最长掩码匹配",
+   "images": [
+    "p154_76.jpeg"
+   ]
+  },
+  {
+   "id": "2-265",
+   "type": "multiple",
+   "question": "以下PIMV2的几种消息中，目的地址为组播地址的有______。",
+   "options": [
+    "Hello",
+    "Join",
+    "Prune",
+    "Assert",
+    "Graft",
+    "Graft-ACK"
+   ],
+   "answer": "ABCD",
+   "analysis": "PIM路由器周期性的以组播方式发送PIM-Hello消息，目的组播地址为224.0.0.13，所有PIM路由器都是该组播组的成员。\n嫁接过程中，Graft消息和Graft ACK都是单播方式发送的，其中Graft消息目的地址为RPF邻居的IP地址，RPF邻居回复的Graft ACK的目的地址为本路由器发送嫁接消息的源IP地址。"
+  },
+  {
+   "id": "2-266",
+   "type": "multiple",
+   "question": "以下PIMV2的几种消息中，目的地址为单播地址的有______。",
+   "options": [
+    "Hello",
+    "Register",
+    "Join",
+    "Prune",
+    "Assert",
+    "Graft"
+   ],
+   "answer": "BF",
+   "analysis": "PIM路由器周期性的以组播方式发送PIM-Hello消息，目的组播地址为224.0.0.13，所有PIM路由器都是该组播组的成员。\n嫁接过程中，Graft消息和Graft ACK都是单播方式发送的，其中Graft消息目的地址为RPF邻居的IP地址，RPF邻居回复的Graft ACK的目的地址为本路由器发送嫁接消息的源IP地址。"
+  },
+  {
+   "id": "2-267",
+   "type": "multiple",
+   "question": "下列关于PIMSM共享网段DR的表述，正确的有______。",
+   "options": [
+    "只有当接收者侧有多台路由器连到该共享网段，且路由器运行IGMPV1时，才需要进行DR选举",
+    "接收者侧的DR负责向RP发送加入报文",
+    "组播源侧的DR负责向RP发送注册报文",
+    "组播源侧的DR必须运行IGMP,否则接收者侧的接收者不能收到组播流量"
+   ],
+   "answer": "BC",
+   "analysis": "PIM-SM使用“拉(Pull)模式\"传送组播数据，其基本原理如下：\nPIM-SM假设所有主机都不需要接收组播数据，只向明确提出需要组播数据的主机转发。\n使用RP作为共享树的根，连接接收者的DR向某组播组对应的RP发送加入消息(Join)，该消息被逐跳送达RP，所经过的路径就形成了RPT的分支。\n组播源如果要向某组播组发送组播数据，首先由组播源侧DR负责向RP进行注册，然后组播源把组播数据发向RP，当组播数据到达RP后，被复制并沿着RPT发送给接收者"
+  },
+  {
+   "id": "2-268",
+   "type": "multiple",
+   "question": "下列关于PIMSM共享网段DR选举过程的表述，正确的有______。",
+   "options": [
+    "选举DR时，首先比较Hello消息的优先级，拥有最高Hello消息优先级的路由器将成为该网段的DR",
+    "如果Hello消息的优先级相同，则共享网段Routerid大的路由器将成为该网段的DR",
+    "如果Hello消息的优先级相同，则共享网段接口IP地址大的路由器将成为该网段的DR",
+    "选举DR后，再选举BDR,当DR出现故障时，BDR迅速接替其工作，保障组播流量正常转发"
+   ],
+   "answer": "AC",
+   "analysis": "DR选举：\nDR的选举方式和PIM-DM中介绍的选举方式相同。首先，比较Hello报文中的优先级，拥有最高Hello报文优先级的路由器将称为DR，如果优先级相同，则需要比较路由器接口IP地址的大小，IP地址最大的路由器将称为DR。\n接收者侧的DR必须运行IGMP，否则连接在该DR上的接收者将不能通过该DR加入组播组。"
+  },
+  {
+   "id": "2-269",
+   "type": "multiple",
+   "question": "如图所示组网中，RT1、RT2和RT3之间运行PIM-SM协议，RP为1.1.1.1，RT3上连有接收者，且在相应接口上使能IGMP,组播源2.2.2.2连接在RT2上在RT3査看单播路由表如下：\n[RT3]display ip routing-table\nRouting Tables: Public\nDestinations ：11 Routes ：12\nDestination/Mask    Proto    Pre    Cost     NextHop       Interface\n1.1.1.1/32                   OSPF    10      1562     192.168.0.1   S0/2/0\n2.2.2.2/32                   OSPF    10      1562     192.168.2.1   S0/2/1\n127.0.0.0/8                 Direct    0        0            127.0.0.1        InLoop0\n127.0.0.1/32               Direct    0        0            127.0.0.1        InLoop0\n192.168.0.0/30           Direct    0        0            192.168.0.2   S0/2/0\n192.168.0.1/32           Direct    0        0            192.168.0.1   S0/2/0\n192.168.0.2/32           Direct    0        0            127.0.0.1        InLoop0\n192.168.1.0/30          OSPF    10       3124     192.168.2.1   S0/2/1\nOSPF    10       3124     192.168.0.1   S0/2/0\n192.168.2.0/30          Direct     0        0            192.168.2.2   S0/2/1\n192.168.2.1/32          Direct     0        0            192.168.2.1   S0/2/1\n192.168.2.2/32          Direct     0        0            127.0.0.1        InLoop0\n那么，当接收者（Receiver)发送组加入请求后，下列哪些路由器上存在(*, G)表项\n______。",
+   "options": [
+    "RT1",
+    "RT2",
+    "RT3"
+   ],
+   "answer": "AC",
+   "analysis": "PIM-SM需要RP作为共享的根\n发现通往RP（1.1.1.1）的路由，下一跳地址是192.168.0.1,那么路径是：接收者---->RT3---->RT1--->RP\n（1.1.1.1）\n那么RT3接收到IGMP成员报告报文，创建（*.G）表项，并向上游发送（*.G）Join报文； RT1接收到Join报文，创建（*.G）表项，并向上游发送（*.G）Join报文;\n最后RP（1.1.1.1）接收到Join报文，创建（*.G）表项，查询组播组对应RP1.1.1.1（发现为自己），不再发送（*.G）Join报文；所以答案是AC",
+   "images": [
+    "p157_77.jpeg"
+   ]
+  },
+  {
+   "id": "2-270",
+   "type": "multiple",
+   "question": "如图所示组网中，RT1、RT2和RT3之间运行PIM SM协议，RP为1.1.1.1。RT3上连有接收者，且在相应接口上使能IGMP在RT3査看单播路由表如下：\n[RT3]display ip routing-table\nRouting Tables: Public\nDestinations ：10 Routes ：10\nDestination/Mask    Proto    Pre    Cost     NextHop       Interface\n1.1.1.1/32                   OSPF    10      1562     192.168.2.1   so/2/1\n127.0.0.0/8                 Direct    0        0            127.0.0.1       InLoop0\n127.0.0.1/32               Direct    0        0            127.0.0.1       InLoop0\n192.168.0.0/30          Direct     0        0           192.168.0.2   S0/2/0\n192.168.0.1/32          Direct     0        0           192.168.0.1   S0/2/0\n192.168.0.2/32          Direct     0        0           127.0.0.1        InLoop0\n192.168.1.0/30          OSPF    10       3124    192.168.2.1    s0/2/1\n192.168.2.0/30          Direct     0        0           192.168.2.2    s0/2/1\n192.168.2.1/32          Direct     0        0           192.168.2.1    s0/2/1\n192.168.2.2/32          Direct     0        0           127.0.0.1        InLoop0\n那么，当接收者（Receiver)发送组加入请求后，下列哪些路由器上存在(*, G)表项\n______。",
+   "options": [
+    "RT1",
+    "RT2",
+    "RT3"
+   ],
+   "answer": "BC",
+   "analysis": "PIM-SM需要RP作为共享的根\n发现通往RP（1.1.1.1）的路由，下一跳地址是192.168.2.1,那么路径是：接收者---->RT3---->RT2--->RP\n（1.1.1.1）\n那么RT3接收到IGMP成员报告报文，创建（*.G）表项，并向上游发送（*.G）Join报文； RT2接收到Join报文，创建（*.G）表项，并向上游发送（*.G）Join报文;\n最后RP（1.1.1.1）接收到Join报文，创建（*.G）表项，查询组播组对应RP1.1.1.1（发现为自己），不再发送（*.G）Join报文；所以答案是BC",
+   "images": [
+    "p158_78.jpeg"
+   ]
+  },
+  {
+   "id": "2-271",
+   "type": "multiple",
+   "question": "如图所示组网中，RT1、RT2和RT3之间运行PIM-SM协议，RP为1.1.1.1，RT3上连有接收者，且在相应接口上使能IGMP，组播源2.2.2.2连接在RT2上，在RT3査看单播路由表如下：\n[RT3]display ip routing-table\nRouting Tables: Public\nDestinations ：11 Routes ：12\nDestination/Mask    Proto     Pre     Cost     NextHop       Interface\n1.1.1.1/32                   OSPF     10       1562     192.168.2.1   S0/2/1\n2.2.2.2/32                   OSPF     10       1562     192.168.2.1   S0/2/1\n127.0.0.0/8                 Direct     0         0            127.0.0.1       InLoop0\n127.0.0.1/32               Direct     0         0            127.0.0.1       InLoop0\n192.168.0.0/30           Direct     0         0            192.168.0.2  S0/2/0\n192.168.0.1/32           Direct     0         0            192.168.0.1  S0/2/0\n192.168.0.2/32           Direct     0         0            127.0.0.1       InLoop0\n192.168.1.0/30           OSPF     10       3124     192.168.2.1   S0/2/1\nOSPF     10       3124     192.168.0.1   S0/2/0\n192.168.2.0/30           Direct     0         0            192.168.2.2   S0/2/1\n192.168.2.1/32           Direct     0         0            192.168.2.1   S0/2/1\n192.168.2.2/32           Direct     0         0            127.0.0.1        InLoop0\n那么，当接收者（Receiver)发送组加入请求后，下列哪些路由器上存在(*, G)表项\n______。",
+   "options": [
+    "RT1",
+    "RT2",
+    "RT3"
+   ],
+   "answer": "ABC",
+   "analysis": "PIM-SM需要RP作为共享的根\n发现通往RP（1.1.1.1）的路由，下一跳地址是192.168.2.1,那么路径是：接收者---->RT3---->RT2----\n>RT1--->RP（1.1.1.1）\n那么RT3接收到IGMP成员报告报文，创建（*.G）表项，并向上游发送（*.G）Join报文； RT2接收到Join报文，创建（*.G）表项，并向上游发送（*.G）Join报文;接着RT1接收到Join报文，创建（*.G）表项，并向上游发送（*.G）Join报文;\n最后RP（1.1.1.1）接收到Join报文，创建（*.G）表项，查询组播组对应RP1.1.1.1（发现为自己），不再发送（*.G）Join报文；所以答案是ABC",
+   "images": [
+    "p160_79.jpeg"
+   ]
+  },
+  {
+   "id": "2-272",
+   "type": "multiple",
+   "question": "如图所示组网中，RT1、RT2、RT3和RT4之间互连线除共享以太网部分为10Mbps链路外，其余均为1000Mbps链路，运行OSPF协议使路由互通这4台路由器间均运行PIM-SM协议，RP为1.1.1.1RT1与RT2下游接口上连有接收者，且均在相应接口上使能IGMP那\n么，当接收者（Received）发送组加入请求后，下列哪些路由器上存在(*, G)表项\n______。",
+   "options": [
+    "RT1",
+    "RT2",
+    "RT3",
+    "RT4"
+   ],
+   "answer": "ABCD",
+   "analysis": "无图无真相。\n选路规则，同优先级，同COST，IP地址大的优先"
+  },
+  {
+   "id": "2-273",
+   "type": "multiple",
+   "question": "如图所示组网中，RT1、RT2和RT3之间运行PIM-SM协议，RP为1.1.1.1，RT3上连有接收者，且在相应接口上使能IGMP，在RT3査看单播路由表如下：\n[RT3]display ip routing-table\nRouting Tables: Public\nDestinations ：10 Routes ：10\nDestination/Mask    Proto    Pre    Cost     NextHop       Interface\n1.1.1.1/32                   OSPF    10      1562     192.168.0.1   S0/2/0\n127.0.0.0/8                 Direct    0        0            127.0.0.1       InLoop0\n127.0.0.1/32               Direct    0        0            127.0.0.1       InLoop0\n192.168.0.0/30           Direct    0        0            192.168.0.2  S0/2/0\n192.168.0.1/32           Direct    0        0            192.168.0.1  S0/2/0\n192.168.0.2/32           Direct    0        0            127.0.0.1       InLoop0\n192.168.1.0/30          OSPF    10      3124      192.168.2.1   s0/2/1\n192.168.2.0/30          Direct    0        0             192.168.2.2   s0/2/1\n192.168.2.1/32          Direct    0        0             192.168.2.1   s0/2/1\n192.168.2.2/32          Direct    0        0             127.0.0.1       InLoop0\n那么，当接收者（Receiver)发送组加入请求后，下列哪些路由器上存在(*, G)表项\n______。",
+   "options": [
+    "RT1",
+    "RT2",
+    "RT3"
+   ],
+   "answer": "AC",
+   "analysis": "PIM-SM需要RP作为共享的根\n发现通往RP（1.1.1.1）的路由，下一跳地址是192.168.0.1,那么路径是： RT3---->RT1--->RP（1.1.1.1）那么RT3接收到IGMP成员报告报文，创建（*.G）表项，并向上游发送（*.G）Join报文； RT1接收到Join报文，创建（*.G）表项，并向上游发送（*.G）Join报文;\n最后RP（1.1.1.1）接收到Join报文，创建（*.G）表项，查询组播组对应RP1.1.1.1（发现为自己），不再发送（*.G）Join报文；所以答案是AC",
+   "images": [
+    "p162_80.jpeg"
+   ]
+  },
+  {
+   "id": "2-274",
+   "type": "multiple",
+   "question": "下列关于PIM-SM加入过程的表述，正确的有______。",
+   "options": [
+    "只要DR本地有组播组G的接收者时，DR就会周期性地向上游发送加入消息",
+    "当DR本地没有组播组G的接收者时，DR会向上游路由器发送剪枝消息",
+    "如果上游路由器接收到剪枝消息的接口下的共享网段仍有接收者，则该接收者会发送组加入消息",
+    "PIM-SM和PIM-DM都存在剪枝否决过程"
+   ],
+   "answer": "ABCD",
+   "analysis": "只要DR本地有组播组G的接收者，DR就会周期性的向上游发送加入消息，保证上游路由器正常发送组播报文到本地。当DR相连的所有网段都没有组播组G的接收者时，DR会向上游路由器发送剪枝消息，通知上游停止向自己发送组播G的报文。"
+  },
+  {
+   "id": "2-275",
+   "type": "multiple",
+   "question": "如图所示组网中，RT1、RT2、RT3和RT4之间互连线除共享以太网部分为10M链路外，其余均为1000M链路，运行OSPF协议使路由互通这4台路由器间均运行PIMSM协议，RP为1.1.1.1 ，RT1与RT2下游接口上连有接收者，且均在相应接口上使能IGMP那么，当接收者（Receiver)发送组加入请求后，下列哪些路由器上存在(*, G)表项______。",
+   "options": [
+    "RT1",
+    "RT2",
+    "RT3",
+    "RT4"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "2-276",
+   "type": "multiple",
+   "question": "运行PIM-DM的路由器会周期性发送Hello消息，用于发现邻居、建立并维护邻居关系，以下关于Hello消息描述正确的有______。",
+   "options": [
+    "路由器以组播方式发送PIM Hello,目的地址为224.0.0.13",
+    "所有PIM路由器都是224.0.0.13的组播组成员",
+    "当路由器运行IGMPV2时，通过PIM Hello消息为共享网段选举DR,并由DR作为IGMP的Querier",
+    "选举DR时，拥有较高Hello消息优先级的路由器将成为DR",
+    "如果Hello消息优先级相同，接口IP地址较大的路由器将成为DR"
+   ],
+   "answer": "ABDE",
+   "analysis": "PIM路由器周期性地以组播方式发送PIM Hello，目的组播地址为224.0.0.13，所有PIM路由器都是该组播组的成员。\n选举DR时，首先比较Hello消息的优先级，拥有最高Hello消息优先级的路由器称为该网段的DR，如果Hello消息的优先级相同，则通过比较路由器接口IP地址来竞选DR，IP地址最大的路由器将成为DR。当DR出现故障时，其余路由器在超时后没有收到DR发送的Hello消息，则会触发新的DR选举过程。\n在IGMPV2中，增加了独立的查询器选举机制，其选举过程如下：\n所有IGMPv2路由器在初始时都认为自己是查询器，并向本地网段内的所有主机和路由器发送IGMP General Query报文，目的地址为224.0.0.1。\n本地网段中的其他IGMPv2路由器在收到该报文后，将报文的源IP地址与自己的接口地址作比较。通过比较，IP地址最小的路由器将称为本网段的查询器，其它路由器成为非查询器(Non-Querier)。\n所有非查询器上都会启动一个定时器，在该定时器超时前，如果收到了来自查询器的IGMP查询报文，则重置该定时器，否则，就认为当前查询器失效，从而发起新的查询器选举过程。\nC错：DM模式，且只有运行ICMPV1的时候才行；SM模式，任意版本ICMP都要选举DR"
+  },
+  {
+   "id": "2-277",
+   "type": "multiple",
+   "question": "运行PIM-DM的路由器会周期性发送Hello消息，用于发现邻居、建立并维护邻居关系，以下关于Hello消息描述正确的有______。",
+   "options": [
+    "路由器以组播方式发送PIM Hello,目的地址为224.0.0.13",
+    "当共享网段上有多台路由器运行IGMPV1时,通过PIM Hello消息为共享网段选举DR,并由DR作为IGMP的Querier",
+    "选举DR时，拥有较高Hello消息优先级的路由器将成为DR",
+    "如果Hello消息优先级相同，接口IP地址较小的路由器将成为DR",
+    "如果其余路由器在超时时间内未收到DR发送的Hello消息，则触发新的DR选举过程"
+   ],
+   "answer": "ABCE",
+   "analysis": "PIM路由器周期性的以组播方式发送PIM Hello，目的组播地址为224.0.0.13，所有PIM路由器都是该组播组的成员。\n选举DR时，首先比较Hello消息的优先级，拥有最高Hello消息优先级的路由器称为该网段的DR，如果Hello消息的优先级相同，则通过比较路由器接口IP地址来竞选DR，IP地址最大的路由器将称为DR，当DR出现故障时，其余路由器在超时后没有收到DR发送的Hello消息，则会触发新的DR选举过程。"
+  },
+  {
+   "id": "2-278",
+   "type": "single",
+   "question": "下列关于PIM-SM注册过程的表述，正确的有______。",
+   "options": [
+    "与PIM-DM的PUSH方式不同，在PIM-SM中，组播源只在有下游接收者时才开始发送组播流量",
+    "组播源初始发送流量时，与之相连的DR会封装若干空Register消息向RP进行注册",
+    "RP第一次收到源注册消息后，会向组播源发送(*,G)加入消息，沿途建立(*,G)表项",
+    "RP正常收到组播源组播转发的流量后，向其下游接口组播转发直至组播接收者，沿途形成一颗从RP到组播接收者的RPT"
+   ],
+   "answer": "D",
+   "analysis": "组播源不关心有没有接收者，会一直向某组播组G发送组播数据。当组播源侧的DR收到组播组G的报文时，会建立(S,G)表项，同时将连接组播源的接口作为(S,G)表项的入接口。\nDR将收到的组播报文封装在Register消息中，单播发送到对应的RP，RP收到单播Register消息后，判断本地是否存在对应的(*,G)表项。如果存在(*，G)表项，RP将Register消息中封装的报文取出，然后从(*，G)表项的出接口发送出去。\nRP会为该组播源创建对应的(S,G)表项，入接口为收到单播Register报文的接口，出接口和(*,G)表项中的出接口相同。然后，RP向组播源方向发送特定源和组的Join消息，Join消息将沿着RP指向组播源的单播路由逐跳发送，最后到达组播源侧的DR。沿途每一台路由器都会建立(S,G)表项。\n组播源侧的DR收到Join消息后，将接收Join消息的接口添加到(S,G)表项的出接口列表中，此时，形成了组播源到RP之间的一颗SPT。"
+  },
+  {
+   "id": "2-279",
+   "type": "multiple",
+   "question": "下列关于PIM-SM的表述，正确的有______。",
+   "options": [
+    "组播源初始发送流量时，与之相连的DR上会形成(S,G)表项",
+    "在收到组播源的注册消息时，RP向组播源方向发送加入消息，待收到组播源正常组播转发来的流量时才生成(S, G)表项",
+    "RP只有在接收到组播源组播转发的数据后，才会向下游转发组播流量",
+    "组播流量从RP正常转发至组播接收者之前，沿途路由器都已建立起了(*,G)表项"
+   ],
+   "answer": "AD",
+   "analysis": "组播源不关心有没有接收者，会一直向某组播组G发送组播数据。当组播源侧的DR收到组播组G的报文时，会建立(S,G)表项，同时将连接组播源的接口作为(S,G)表项的入接口。\nDR将收到的组播报文封装在Register消息中，单播发送到对应的RP。RP收到单播Register消息后，判断本地是否存在对应的(*,G)表项，如果存在(*,G)表项，RP将Register消息中封装的组播报文取出，然后(*,G)表项的出接口发送出去。\nRP会为该组播源创建对应的(S,G)表项，入接口为收到单播Register报文的接口，出接口和(*,G)表项中的出接口相同。然后，RP向组播源方向发送特定源和组的Join消息，Join消息将沿着RP指向组播源的单播路由逐跳发送，最后到达组播源侧的DR。沿途每一台路由器都会建立(S,G)表项。\n组播源侧的DR收到Join消息后，将接收Join消息的接口添加到(S,G)表项的出接口列表中，此时，形成了组播源到RP之间的一颗SPT。"
+  },
+  {
+   "id": "2-280",
+   "type": "multiple",
+   "question": "下列关于PIM-SM注册抑制定时器的表述，正确的有______。",
+   "options": [
+    "组播源的DR路由器会维护一个注册抑制定时器,若定时器超时，DR会向RP单播组播源注册消息",
+    "为避免注册抑制定时器超时，DR会在定时器超时前，将封装了组播数据的Register消息发往RP",
+    "RP收到DR的注册消息后，会发送注册停止消息，并更新本地的(S,G)和(*, G)表项",
+    "DR收到注册停止消息后，会更新注册抑制定时器，并继续以组播方式发送数据"
+   ],
+   "answer": "AD",
+   "analysis": "组播源发送出的组播报文会通过两种方式发送到RP，一种是由DR进行注册封装，单播发送到RP；一种是通过DR本地的(S,G)表项沿着SPT组播发送到RP.\n当单播和组播发送的报文到达RP时，RP将丢弃单播注册封装的报文，而将以组播方式接收的报文发送到RPT上。同时，RP会向组播源侧的DR单播发送Register-Stop消息，通知DR停止单播注册封装过程。此\n后，组播报文将仅沿着SPT发送到RP，再由RP发送到RPT上。\n组播源的DR路由器会维护一个注册抑制定时器，在定时器时间范围内，DR都以组播方式发送数据，而不去封装注册报文。在定时器超时前，DR会发送若干空Register消息，该消息没有封装任何组播数据，仅仅用来提醒RP；该发送Register-Stop消息了，否则DR会重新通过单播发送注册封装报文。RP收到空Register消息后会发送Register-Stop消息，同时更新本地的(S,G)表项，而DR收到Register Stop消息后会更新注册抑制定时器，并继续以组播方式发送数据。\n网络中形成两颗树，一颗是组播源到RP的SPT，一颗是从RP到组播接收者的RPT。可以看到组播源到RP所经过的路径是最优的，但是从组播源到接收者之间的路径不一定是最优的，因为必须通过RP转发。当网络中组播源和接收者数据众多时，RP将会成为网络性能的瓶颈，并降低了网络带宽的使用率，增加了报文转发的路径延迟。"
+  }
+ ]
+}
