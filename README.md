@@ -100,9 +100,10 @@ node tools/adduser.js --list                      # 查看用户
 | 字段 | 说明 |
 | --- | --- |
 | `id` | 题目唯一编号（数字或字符串）。**发布后请勿改动**，练习记录、错题和收藏都依赖它 |
-| `type` | `single` 单选 / `multiple` 多选 / `judge` 判断 |
+| `type` | `single` 单选 / `multiple` 多选 / `judge` 判断 / `fill` 填空 |
 | `options` | 选项数组（最多 10 个）；判断题可省略，默认「正确 / 错误」 |
-| `answer` | 单选 `"B"`；多选 `"ABD"`；判断 `true` / `false`。也支持下标数组 `[0, 2]` |
+| `answer` | 单选 `"B"`；多选 `"ABD"`；判断 `true` / `false`；填空为文本（不区分大小写，可用竖线分隔多个可接受答案）。也支持下标数组 `[0, 2]` |
+| `images` | 题目配图文件名数组，可选；路径相对于 `data/banks/` + 题库文件中的 `imageBase`，例如 `"imageBase": "h3c-gb0-372/img/"` |
 | `analysis` | 解析，可选 |
 | `chapter` | 章节，可选 |
 | `exam` | 模拟考试默认题量、时长（分钟）、及格分 |
@@ -127,7 +128,7 @@ bank/
 │       └── utils.js
 ├── data/
 │   ├── users.json      # 用户与密码哈希
-│   └── banks/          # 题库 JSON
+│   └── banks/          # 题库 JSON（大题库拆分卷，配图放在各自的 img/ 目录）
 └── tools/adduser.js    # 用户管理脚本
 ```
 
