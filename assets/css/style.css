@@ -296,6 +296,7 @@ kbd {
   font-size: 24px; font-weight: 800; color: var(--accent);
   background: color-mix(in srgb, var(--accent) 12%, transparent);
 }
+.bank-icon.sm { font-size: 16px; letter-spacing: -.3px; }
 .bank-title { flex: 1; min-width: 0; }
 .bank-title h3 { font-size: 17px; font-weight: 800; }
 .bank-title p { margin: 3px 0 0; color: var(--muted); font-size: 13px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
@@ -614,6 +615,37 @@ kbd {
 .toast-success { background: var(--success); color: #fff; }
 .toast-warning { background: var(--warning); color: #1b2232; }
 .toast-error { background: var(--danger); color: #fff; }
+
+
+/* 填空题 */
+.badge-fill { background: rgba(236, 72, 153, .12); color: #db2777; }
+[data-theme="dark"] .badge-fill { color: #f472b6; }
+.fill-wrap { position: relative; }
+.fill-input {
+  width: 100%; height: 54px; padding: 0 18px; border-radius: 14px;
+  border: 1.5px solid var(--border); background: var(--surface-2); outline: none;
+  font-family: var(--mono); font-size: 16px; transition: border-color .15s, box-shadow .15s, background .15s;
+}
+.fill-input:focus { border-color: var(--primary); background: var(--surface); box-shadow: 0 0 0 4px var(--primary-soft); }
+.fill-wrap.correct .fill-input { border-color: var(--success); background: var(--success-soft); color: var(--success); }
+.fill-wrap.wrong .fill-input { border-color: var(--danger); background: var(--danger-soft); color: var(--danger); }
+.fill-input:disabled { opacity: 1; -webkit-text-fill-color: currentColor; }
+
+/* 题目配图 */
+.q-images { display: flex; flex-wrap: wrap; gap: 12px; margin: -6px 0 20px; }
+.q-img {
+  padding: 8px; border-radius: 14px; border: 1px solid var(--border); background: #fff;
+  cursor: zoom-in; max-width: 100%; transition: box-shadow .15s, border-color .15s;
+}
+.q-img:hover { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-soft); }
+.q-img img { display: block; max-width: 100%; max-height: 340px; border-radius: 8px; }
+.lightbox {
+  position: fixed; inset: 0; z-index: 150; display: grid; place-items: center; padding: 24px;
+  background: rgba(10, 14, 25, .82); backdrop-filter: blur(4px); opacity: 0; transition: opacity .2s; cursor: zoom-out;
+}
+.lightbox.show { opacity: 1; }
+.lightbox img { max-width: min(1100px, 96vw); max-height: 90vh; border-radius: 12px; background: #fff; padding: 10px; box-shadow: var(--shadow-lg); }
+.lightbox-close { position: absolute; top: 18px; right: 18px; }
 
 /* ---------- 响应式 ---------- */
 @media (max-width: 1000px) {
