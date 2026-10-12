@@ -1,0 +1,657 @@
+{
+ "questions": [
+  {
+   "id": "1-1",
+   "type": "multiple",
+   "question": "下列关于接入网的说法正确的是_____。",
+   "options": [
+    "接入通常指的是用户网络和靠近用户网络的运营商局端机房之间的连接",
+    "相对于骨干网络，接入网往往是网络传输速度的瓶颈",
+    "接入网通常包括用户传输系统、复用设备或用户网络终端设备",
+    "接入网也可以是以太网"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-2",
+   "type": "multiple",
+   "question": "MPCP协议定义的控制消息中，由OLT发出的是______。",
+   "options": [
+    "GATE",
+    "Report",
+    "Register_Req",
+    "Register",
+    "Register_Ack"
+   ],
+   "answer": "AD",
+   "analysis": "1.OLT发出gate消息\n2.ONU返回report消息\n3.ONU发出register_req消息\n4.OLT发出register消息\n5.ONU发出register_ACK消息"
+  },
+  {
+   "id": "1-3",
+   "type": "multiple",
+   "question": "下列关于EPCN网络中的VLAN规划的说法正确的有_____。",
+   "options": [
+    "PSPV方式对于同一用户的所有业务采用同一VLAN来进行标记，其实施业务质量得不到保证。",
+    "PUPV模式下，在小区内所有用户都共享同一个业务vlan id。",
+    "PUPSPV模式可以精确标识用户与业务，每个用户的每种业务都有相应的vlan id标识。",
+    "PUPSPV模式的部署需要设备支持QinQ技术。"
+   ],
+   "answer": "CD",
+   "analysis": "PSPV方式下OLT透传vlan，只对业务进行vlan划分。不对用户划分。"
+  },
+  {
+   "id": "1-4",
+   "type": "multiple",
+   "question": "与IPsec VPN相比，SSL VPN具备以下哪些优点？",
+   "options": [
+    "无客户端",
+    "免安装、免维护客户端",
+    "速度快",
+    "高细粒度的访问控制"
+   ],
+   "answer": "BD",
+   "analysis": "SSL直接使用浏览器即可完成安装和维护客户端，并且基于TCP层次可以穿越NAT"
+  },
+  {
+   "id": "1-5",
+   "type": "single",
+   "question": "GRE协议封装的报文中，载荷协议为IPX协议，承载协议为IP协议，该报文从链路层到载荷数据的封装顺序为链路层____GRE____载荷数据。",
+   "options": [
+    "lP，IPX",
+    "IPX，IP",
+    "IP，IP",
+    "IPX，IPX"
+   ],
+   "answer": "A",
+   "analysis": "链路层---承载协议----封装协议----载荷协议---数据报文"
+  },
+  {
+   "id": "1-6",
+   "type": "single",
+   "question": "用PC作为客户机，采用客户LAC模式通过iNode与LNS建立L2TP隧道，用户登录成功了，但无法正常通信，则出现此问题可能的原因为____。",
+   "options": [
+    "用户名密码错误",
+    "tunnel接口验证不通过",
+    "远程系统到LNS的公网传输不稳定",
+    "LNS对LAC认证不通过"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-7",
+   "type": "multiple",
+   "question": "下列关于IKE的说法正确的是____。",
+   "options": [
+    "IKE第一阶段交换模式有主模式和快速模式",
+    "IKE第二阶段完成时产生IKE SA",
+    "IKE两种模式下交换密钥都需要进行身份验证",
+    "IKE交换密钥时采用非对称密钥算法"
+   ],
+   "answer": "CD",
+   "analysis": "IKE第一阶段：主模式和野蛮模式，产生IKE SA\n第二阶段：快速模式，产生IPSEC SA"
+  },
+  {
+   "id": "1-8",
+   "type": "multiple",
+   "question": "下列关于PKI工作流程的说法正确的有____。",
+   "options": [
+    "证书申请由实体提出",
+    "实体身份审核由CA完成",
+    "证书由RA颁发",
+    "实体撤销证书需向CA申请"
+   ],
+   "answer": "AD",
+   "analysis": "实体提出申请，RA进行审核，CA进行颁发，撤销向CA申请。"
+  },
+  {
+   "id": "1-9",
+   "type": "multiple",
+   "question": "以下描述中不属于SSL协议握手层功能的有____。",
+   "options": [
+    "负责建立维护SSL会话",
+    "保证数据传输可靠",
+    "异常情况下关闭SSL连接",
+    "验证数据的完整性"
+   ],
+   "answer": "BD",
+   "analysis": "握手协议包括负责建立SSL、维护SSL会话。传输过程中出现异常\n将负责SSL连接关闭"
+  },
+  {
+   "id": "1-10",
+   "type": "single",
+   "question": "MPLS转发中压标签(PUSH)操作发生在MPLS网络中的什么设备上？",
+   "options": [
+    "该报文进入MPLS网络处的LER设备上",
+    "MPLS网络中间的所有LSR设备上",
+    "该报文离开MPLS网络址的LER设备上",
+    "MPLS网络的所有设备上"
+   ],
+   "answer": "A",
+   "analysis": "非MPLS网络与LER设备连接，LER给进入MPLS网络的报文分配标签"
+  },
+  {
+   "id": "1-11",
+   "type": "multiple",
+   "question": "RT与RD的关系描述错误的是____。",
+   "options": [
+    "同一VPN的RT值必须与RD值相同",
+    "RD值是其所属VPN的RT属性的Import Target属性或Export Target属性列表中的一个",
+    "同一台设备上不同VPN的RD值和RT属性值都不能配置成相同"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "1-12",
+   "type": "multiple",
+   "question": "通过MP-BGP协议从远端学习过来的私网路由，PE将记录该私网路由的下列哪些信息？",
+   "options": [
+    "该私网路由路由的RT Import Target属性",
+    "该私网路由的私网标签",
+    "该私网路由的RD值"
+   ],
+   "answer": "BC",
+   "analysis": ""
+  },
+  {
+   "id": "1-13",
+   "type": "multiple",
+   "question": "MP-BGP协议相对于BGP协议的改动包括_____。",
+   "options": [
+    "新增MP REACH NLRI属性",
+    "新增MP UNREACH NLRI属性",
+    "新增Extended Communities属性",
+    "新增VPNv4地址族"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-14",
+   "type": "multiple",
+   "question": "关于DOS攻击的说法正确的有____。",
+   "options": [
+    "DOS攻击以降低被攻击系统服务提供能力为目的",
+    "对于DOS攻击中的TCP FLOOD攻击，可以采用TCP代理机制来进行防御",
+    "对于DOS攻击中的FTP FLOOD攻击，可以采取限制每秒的连接数来进行防御",
+    "对于DOS攻击，可以通过在网络设备上配置相应的访问控制列表来进行防御"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "1-15",
+   "type": "multiple",
+   "question": "下列关于对称加密算法的说法正确的是____。",
+   "options": [
+    "对称加密算法效率较高",
+    "对称加密算法适合于传输数据量较大的环境",
+    "对称加密算法有AES、3DES、DES等",
+    "对称加密算法的安全性完全依赖于密钥本身的安全性"
+   ],
+   "answer": "ABCD",
+   "analysis": "对称的速度快，安全性不如非对称的"
+  },
+  {
+   "id": "1-16",
+   "type": "fill",
+   "question": "某公司PBX通过一根T1线路连接到运营商电话网络，因公司规模扩展，需要能够满足并发50路语音通话，需要再申请____根T1线路？（填写阿拉伯数字）",
+   "answer": "1",
+   "analysis": "T1为1.5M，50路语音需要50*56K=2800K带宽"
+  },
+  {
+   "id": "1-17",
+   "type": "multiple",
+   "question": "在S3610交换机上配置了如下命令：\nqos map-table dot1p-lp\nimport 1 export 4\nimport 2 export 5\ninterface Ethernet1/0/8\nport link-mode bridge\nport link-type trunk\nport trunk permit vlan 1 4\nqos trust dot1p\ninterface Ethernet1/0/9\nport link-mode bridge\nport link-type trunk\nport trunk permit vlan 1 4\nqos gts an cir 65000 cbs 2000000\n则当流量为40Mbps的vlan id为4且802.1p优先级为1的报文，以及流量为40Mbps的vlan id为4且802.1p优先级为2的报文同时从端口E 1/0/8进入，从端口E1/0/9转发时，以下说法中正确的是____。",
+   "options": [
+    "80Mbps的报文正常转发",
+    "报文流量整形为65Mbps进行转发",
+    "802.1p优先级为1的报文在出端口E1/0/9有丢包",
+    "802.1p优先级为1的报文存出端口E1/0/9全部转发",
+    "802.1p优先级为2的报文在出端口E1/0/9有丢包",
+    "802.1p优先级为2的报文在出端口E1/0/9全部转发",
+    "部分配置有误"
+   ],
+   "answer": "BCF",
+   "analysis": "qos trust dot1p //配置了信任qos,所以流量整形生效\n优先级2的优先级高，优先处理"
+  },
+  {
+   "id": "1-18",
+   "type": "multiple",
+   "question": "在MSR路由器上使用命令：\ndis qos wfq interface GigabitEthernet 0/1\n得到如下信息：\nInterface: GigabitEthernet0/1\nOutput queue:(Urgent queuing : Size/Length/Discards)..0/100/0 Output queue:(Protocol queuing：Size/Length/Discards)..0/500/0 Output queue:(Weighted Fair queuing：Size/Length/Discarcds)..1023/1024/52719 Hashed by DSCP\nHashed queues:1/2/64 (Active/Max active/Total)\n则以下说法中正确的是____。",
+   "options": [
+    "端口使用WFQ队列，权重类型为DSCP",
+    "端口使用WFQ队列，权重类型为IP优先级",
+    "当前激活的队列数是2",
+    "历史激活过的最大队列数是2",
+    "队列最大长度为1024,当前有数据拥塞，并且有丢包"
+   ],
+   "answer": "ADE",
+   "analysis": ""
+  },
+  {
+   "id": "1-19",
+   "type": "multiple",
+   "question": "在MSR路由器配置如下命令：\ndis qos wfq interface GigabitEthernet 0/1\n得到如下消息：\ninterface GigabitEthernet0/1\nOutput queue:(Urgabit queuing Size /discards)..0/100/0\nOutput queue:(Urgabit queuing Size /discards)..0/100/0\nOutput queue:(weighted fair queuing Size/length /discards)..1023/1024/52719 Hashed by DSCP\nHashed queues:1/2/64(Active/max active/total)\n则以下说法中不正确的是____。",
+   "options": [
+    "端口使用WFQ队列，权重类型为DSCP",
+    "端口使用WFQ队列，权重类型为IP类型",
+    "当前激活的队列数是2",
+    "历史激活过的最大队列数是2",
+    "队列最大长度为1024当前有数据拥塞，并且有丢包"
+   ],
+   "answer": "BC",
+   "analysis": ""
+  },
+  {
+   "id": "1-20",
+   "type": "multiple",
+   "question": "在MSR路由器配置命令如下:\nacl number 2001\nrule 0 permit source 192.168.2.0 0.0.0.255\nacl number 2002\nrule 0 permit source 192.168.3.0 0.0.0.255\nacl number 2003\nrule 0 permit source 192.168.0.0 0.0.0.255\n#\ntraffic classifier 2 operator or\nif-match acl 2001\nif-match classifier 1\ntraffic classifier 1 operator and\nif-match acl 2002\nif-match acl 2003\n#\ntraffic behavior 2\nfilter deny\n#\nqos policy 2\nclassifier 2 behavior 2\n#\ninterface GigabitEthernet0/1\nport link-mode route\nip address 192.168.1.1 255.255.255.0\nqos apply policy 2 outbound\n则当源地址分别为192.168.2.2. 192.168.3.2. 192.168.0.2的报文从端口G0/1向外转发时，以下说法正确的是____。",
+   "options": [
+    "源地址为192.168.2.2的报文正常转发",
+    "源地址为192.168.3.2的报文正常转发",
+    "源地址为192.168.0.2的报文正常转发",
+    "三条流的报文都被阻断"
+   ],
+   "answer": "BC",
+   "analysis": "qos policy 2\nclassifier 2 behavior 2\n既classifier 2 与 behavior 2 绑定，所以acl 2001 or classifier 1的流量将被阻止。而classifier 1的操作是and,需要同时满足acl 2002 和 acl 2003，这显然是不成立的。所以最后就只有 acl 2001的流量被阻止了。\nacl 2002 和 acl 2003的报文正常转发。"
+  },
+  {
+   "id": "1-21",
+   "type": "multiple",
+   "question": "在MSR路由器配置命令如下:\nacl number 2000\nrule 0 permit source 192.168.0.0 0.0.0.255\nacl number 2002\nrule 0 permit source 192.168.2.0 0.0.0.255\n#\ntraffic classifier 2 operator and\nif-match acl 2002\ntraffic classifier 1 operator and\nif-match acl 2000\n#\ntraffic behavior 2\nqueue af bandwidth pct 30\ntraffic behavior 1\nqueue ef bandwidth pct 30 cbs-ratio 25\n#\nqos policy test\nclassifier 1 behavior 1\nclassifier 2 behavior 2\n#\ninterface GigbitEthernet0/1\nport link-mode route\nduplex full\nspeed 10\nip address 192.168.1.1 255.255.255.0\nqos reserved-bandwidth pct 90\nqos apply policy test outbound\n当源地址分别为192.168.0.2、192.168.2.2的报文流量速率分别为4Mbps、4Mbps，无其它背景流量，从端口G0/1向外转发时。则队下说法不正确的是____。",
+   "options": [
+    "源地址为192.168.0.2的报文转发速率约为4Mbps",
+    "源地址为192.168.0.2的报文转发速率约为3Mbps",
+    "源地址为192.168.0.2的报文转发速率约为2.7Mbps",
+    "源地址为192.168.2.2的报文转发速率约为4Mbps",
+    "源地址为192.168.2.2的报文转发速率约为3Mbps",
+    "源地址为192.168.2.2的报文转发速率约为2.7Mbps"
+   ],
+   "answer": "ABDE",
+   "analysis": "qos reserved-bandwidth pct 90,\n接口10Mbps的90%，既接口带宽为9Mbp\nqueue af bandwidth pct 30\n既流量大小为9Mbp的30%，等于2.7Mbp"
+  },
+  {
+   "id": "1-22",
+   "type": "single",
+   "question": "下列PPPoE的报文中，哪些是以广播形式发送的？",
+   "options": [
+    "PADI(PPPoE Active Discover Initiation)",
+    "PADO(PPPoE Active Discover Offer)",
+    "PADR (PPPoE Active Discover Request)",
+    "PADS(PPPoE Active Discover Session-Confirmation)",
+    "PADT( PPPoE Active Discover Terminate)"
+   ],
+   "answer": "A",
+   "analysis": "PPPOE建立过程\npppoe c 在以太网口上发广播PADI 包含serivce-name\npppoe s 收到PADI后发回PADO 包含serivce-name\npppoe c 发送单播PADR包含serivce-name\npppoe s 发回PADS 包含session-id serivce-name\n用户和服务器都可以发送PADT终止会话 包含session-id"
+  },
+  {
+   "id": "1-23",
+   "type": "multiple",
+   "question": "下列PPPoE的报文中，哪些可能包含有效的PPP Session-ID信息？",
+   "options": [
+    "PADI(PPPoE Active Discover Initiation)",
+    "PADO(PPPoE Active Discover Offer)",
+    "PADR (PPPoE-Active Discover Request)",
+    "PADS(PFoPoE Active Discover Session-Confirmation)",
+    "PADT (PPPoE Active Discover Terminate)"
+   ],
+   "answer": "DE",
+   "analysis": "PPPOE建立过程\npppoe c 在以太网口上发广播PADI 包含serivce-name\npppoe s 收到PADI后发回PADO 包含serivce-name\npppoe c 发送单播PADR包含serivce-name\npppoe s 发回PADS 包含session-id serivce-name\n用户和服务器都可以发送PADT终止会话 包含session-id"
+  },
+  {
+   "id": "1-24",
+   "type": "multiple",
+   "question": "在PPPoE协商过程中，下列的PPPoE报文中，哪些必须包含Service-Name信息？",
+   "options": [
+    "PADI(PPPoE Active Discover Initiation)",
+    "PADO(PPPoE Active Discover Offer)",
+    "PADR (PPPoE-Active Discover Request)",
+    "PADT (PPPoE Active Discover Terminate)"
+   ],
+   "answer": "ABC",
+   "analysis": "PPPOE建立过程\npppoe c 在以太网口上发广播PADI 包含serivce-name\npppoe s 收到PADI后发回PADO 包含serivce-name\npppoe c 发送单播PADR包含serivce-name\npppoe s 发回PADS 包含session-id serivce-name\n用户和服务器都可以发送PADT终止会话 包含session-id"
+  },
+  {
+   "id": "1-25",
+   "type": "multiple",
+   "question": "在PPPoE的PPP Session价段，PPPoE client和PPPoE server之间交换的以太网数据帧中，其目的MAC地址可以是____。",
+   "options": [
+    "广播MAC地址",
+    "组播MAC地址",
+    "PPPoE client的MAC地址",
+    "PPPoE server的MAC地址"
+   ],
+   "answer": "CD",
+   "analysis": ""
+  },
+  {
+   "id": "1-26",
+   "type": "fill",
+   "question": "请在以下PPPoE Client的置中补充正确的参数:（请填写阿拉伯数字）\n[HG] dialer-rule 1 ip permit\n[HG] interface dialer 2\n[HG-Dialer1] dialer user user1\n[HG-Dialer1] dialer-group____?____\n[HG-Dialer1] dialer bundle ____?___\n[HG-Dialer1] ip address ppp-negotiate\n[HG-Dialer1] ppp pap local-user user1 password simple pass1\n[HG] interface ethernet 0/0\n[HG-Ethernet0/0] pppoe-client dial-bundle-number 10",
+   "answer": "1 10",
+   "analysis": ""
+  },
+  {
+   "id": "1-27",
+   "type": "multiple",
+   "question": "在以太网接入应用中，关于运行商接入网边缘的接入点AN和汇聚设备AGG部署说法正确的有____。",
+   "options": [
+    "AN采用二层交换机时，相对于三层交换机可队实现更高密度的终端用户接入",
+    "AN采用二层交换机时，在AN和AGG上需要支持和部署复杂的二层隔离和安全特性",
+    "AN采用三层交换机时，相对于二层交换机更加有助于控制广播域的范围",
+    "AN采用三层交换机时，一台AGG设备最多可接用户终端数将不再受限于其自身MAC地址表项数"
+   ],
+   "answer": "BCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-28",
+   "type": "fill",
+   "question": "在PPPoE应用中，接入端的以太网MAC地址在PPPoE的_____阶段确定。（请填写英文）",
+   "answer": "Discovery",
+   "analysis": ""
+  },
+  {
+   "id": "1-29",
+   "type": "single",
+   "question": "在一个典型的PPPoE组网中，PPPoE Server和PPPoE Client均为MSR路由器，如果希望PPPoE工作在永久在线模式，需要进行以下哪些配置？",
+   "options": [
+    "PPPoE Server 上配置：[RTA-virtual-Template1] pppoe-client dial-bundle-number 1",
+    "PPPoE Client 上配置：[HG-Dialer1] pppoe-client dial-bundle-number 1",
+    "PPPoE Client 上配置：[HG-Ethernet0/0] pppoe-client dial-bundle-number 1",
+    "PPPoE-Server 上配置：[RTA-Virtual-Template1] pppoe-client dial-bundle-number 1 idle-timeout 65535",
+    "PPPoE Server 上配置：[RTA- Ethernet0/0] pppoe-client dial-bundle-number 1",
+    "PPPoE Client 上配置：[HG-Dialer1] pppoe-client dial-bundle-number 1 idle-timeout 0"
+   ],
+   "answer": "C",
+   "analysis": "在Client接口视图下不配置idle-timeout则会话永久在线"
+  },
+  {
+   "id": "1-30",
+   "type": "single",
+   "question": "在一个典型的PPPoE组网中，PPPoE Server和PPPoE Client均为MSR路由器，如果希望PPPoE会话空闲3分钟后自动断线，需要进行以下哪些配置？",
+   "options": [
+    "PPPoE Server上配置：[RTA-Virtual--Template1] pppoe-client dial-bundle-number 1 idle-timeout 180",
+    "PPPoE Client上配置：[HG-Dialer1] pppoe-client dial-bundle-number 1 idle-timeout 3",
+    "PPPoE-Client上配置：[HG-Dialer1] pppoe-client dial-bundle-number 1 idle-timeout 3",
+    "PPPoE-Server上配置：[RTA-Virttual-Template1] pppoe-client dial-bundle-number 1 idle-timeout 3",
+    "PPPoE Server上配置：[RTA-Ethernet0/0] pppoe-client dial-bundle-number l idle-timeout 180",
+    "PPPoE Client上配置：[HG-Ethernet0/0]pppoe-client dial-bundle-number 1 idle-timeout 180"
+   ],
+   "answer": "F",
+   "analysis": ""
+  },
+  {
+   "id": "1-31",
+   "type": "single",
+   "question": "在EPON系统中，ONU设备连接用户的端口是____。",
+   "options": [
+    "OLT",
+    "ONU",
+    "NNI",
+    "UNI"
+   ],
+   "answer": "D",
+   "analysis": "网络侧接口NNI，用户侧接口UNI。"
+  },
+  {
+   "id": "1-32",
+   "type": "multiple",
+   "question": "EPON测距和时延补偿技术是上行信道复用的关键，其主要通过MPCP定义的_____处理过程实现。",
+   "options": [
+    "Discovery Processing",
+    "Registration Processing",
+    "Report Processing",
+    "Gate Processing"
+   ],
+   "answer": "AD",
+   "analysis": ""
+  },
+  {
+   "id": "1-33",
+   "type": "single",
+   "question": "某企业的分支机构和总部之间有大量的双向视频和语音通信需求，如果要选择一种宽带接入方式用于连接分支机构和总部，下列选项中最为理想的是_____。",
+   "options": [
+    "APON/BOPN",
+    "ADSL",
+    "EPON"
+   ],
+   "answer": "C",
+   "analysis": "EPON上下行带宽一样。"
+  },
+  {
+   "id": "1-34",
+   "type": "multiple",
+   "question": "MPCP协议定义的控制消息中，由ONU发出的是______。",
+   "options": [
+    "GATE",
+    "Report",
+    "Register_Req",
+    "Register",
+    "Register_Ack"
+   ],
+   "answer": "BCE",
+   "analysis": "1.OLT发出gate消息\n2.ONU返回report消息\n3.ONU发出register_req消息\n4.OLT发出register消息\n5.ONU发出register_ACK消息"
+  },
+  {
+   "id": "1-35",
+   "type": "multiple",
+   "question": "在ONU的注册过程中，通过广播信道发送的MPCP控制消息包括_____。",
+   "options": [
+    "普通GATE",
+    "Report",
+    "Register_Req",
+    "Register",
+    "Register_Ack",
+    "发现GATE"
+   ],
+   "answer": "BCDF",
+   "analysis": "广播：\n1. 发现gate\n2. report\n3. register-req\n4. register\n单播：\n5. 普通gate\n6. register-ack"
+  },
+  {
+   "id": "1-36",
+   "type": "multiple",
+   "question": "在ONU的注册过程中，通过单播信道发送的MPCP控制消息包括_____。",
+   "options": [
+    "普通GATE",
+    "Report",
+    "Register_Req",
+    "Register",
+    "Register_Ack",
+    "发现GATE"
+   ],
+   "answer": "AE",
+   "analysis": "广播：\n1. 发现gate\n2. report\n3. register-req\n4. register\n单播：\n5. 普通gate\n6. register-ack"
+  },
+  {
+   "id": "1-37",
+   "type": "single",
+   "question": "在ONU的注册过程中，包含LLID（Logical Link ID，逻辑链路标志）信息的控制消息包括____。",
+   "options": [
+    "普通GATE",
+    "Report",
+    "Register_Req",
+    "Register",
+    "Register_Ack",
+    "发现GATE"
+   ],
+   "answer": "D",
+   "analysis": ""
+  },
+  {
+   "id": "1-38",
+   "type": "multiple",
+   "question": "在如图所示的EPON组网中，OLT向网络中所有的ONU（ONU1到ONUn）发送数据，下列说法中正确的是____。",
+   "options": [
+    "线路0上有到所有ONU的数据",
+    "线路1上有到所有ONU的数据",
+    "线路2上只有到ONU2的数据",
+    "线路0～n上的下行数据都是一样"
+   ],
+   "answer": "ABD",
+   "analysis": ""
+  },
+  {
+   "id": "1-39",
+   "type": "single",
+   "question": "当ONU端口的链路类型为Access，其对上行报文的处理方式为____ 。",
+   "options": [
+    "只允许不带tag的报文通过，并为报文添加缺省VLAN的tag",
+    "仅允许带有缺省VLAN tag的报文通过，并去Tag",
+    "对于收到的不带Tag的报文，添加缺省VLAN tag,对于收到的带tag的报文，直接转发",
+    "仅允许带tag的报文通过"
+   ],
+   "answer": "A",
+   "analysis": ""
+  },
+  {
+   "id": "1-40",
+   "type": "single",
+   "question": "当ONU端口的链路类型为Access，其对下行报文的处理方式为____。",
+   "options": [
+    "只允许不带tag的报文通过，并为报文添加缺省VLAN的tag",
+    "仅允许带有缺省VLAN tag的报文通过，并去Tag",
+    "对于收到的不带Tag的报文，添加缺省VLAN Tag，对于收到的带Tag的报文，直接转发",
+    "仅允许带Tag的报文通过"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-41",
+   "type": "single",
+   "question": "当ONU端口的链路类型为Trunk，其对上行报文的处理方式为_____。",
+   "options": [
+    "只允许不带tag的报文通过，并为报文添加缺省VLAN的tag",
+    "仅允许带有缺省VLAN tag的报文通过，并去Tag",
+    "对于收到的不带Tag的报文，添加缺省VLAN Tag，对于收到的带Tag的报文，直接转发",
+    "仅允许带Tag的报文通过"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-42",
+   "type": "single",
+   "question": "当ONU端口的链路类型为Trunk，其对下行报文的处理方式为_____。",
+   "options": [
+    "只允许不带tag的报文通过，并为报文添加缺省VLAN的tag",
+    "仅允许带有缺省VLAN tag的报文通过，并去Tag",
+    "对于收到的不带Tag的报文，添加缺省VLAN Tag，对于收到的带Tag的报文，直接转发",
+    "仅允许带Tag的报文通过"
+   ],
+   "answer": "D",
+   "analysis": ""
+  },
+  {
+   "id": "1-43",
+   "type": "single",
+   "question": "在EPON应用中，如果用户端的家庭网关或者交换机是运营商提供并统一进行VLAN管理的，那么在UNI端口上VLAN操作模式应该配置为____。",
+   "options": [
+    "VLAN标记模式",
+    "VLAN透传模式",
+    "VLAN Translation模式",
+    "VLAN Tag模式"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-44",
+   "type": "single",
+   "question": "在EPCN网络的常用VLAN划分方法中，哪种方式采用了双层VLAN的规划？",
+   "options": [
+    "PUPV",
+    "PSPV",
+    "PUPSPV",
+    "PSV"
+   ],
+   "answer": "C",
+   "analysis": "PSPV为普通单层VLAN，PUPSPV为QINQ 二层vlan"
+  },
+  {
+   "id": "1-45",
+   "type": "single",
+   "question": "对于一个光节点覆盖1000户的860MHz HFC网络，采用64QAM调制方式时，网络带宽全部用于点对点的业务户均带宽为____。",
+   "options": [
+    "7Mbps",
+    "5Mbps",
+    "3.5Mbps",
+    "12.5Mbps",
+    "10Mbps"
+   ],
+   "answer": "C",
+   "analysis": "在860MHz HFC网络中，下行带宽采用64QAM调制方式时为3.5Gbps\n1000户平均带宽 3.5G/1000=3.5M"
+  },
+  {
+   "id": "1-46",
+   "type": "single",
+   "question": "常见EoC技术使用的基带数据信号频率范围一般为____。",
+   "options": [
+    "87MHz～108MHz",
+    "0～30MHz",
+    "5～65Mhz",
+    "110MHz~l000MHz"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-47",
+   "type": "single",
+   "question": "根据中华人民共和国行业标准G/T 106-1999《有线电视广播系统技术规范》的规定_____频段用来传送传统的模拟电视节目、数字电视节目和VOD。",
+   "options": [
+    "87MHz～108MHz",
+    "0～30MHz",
+    "5～65Mhz",
+    "110MHz~l000MHz"
+   ],
+   "answer": "D",
+   "analysis": ""
+  },
+  {
+   "id": "1-48",
+   "type": "multiple",
+   "question": "下列关于EPCN的说法正确的有____。",
+   "options": [
+    "EPCN属于无源EoC技术，用户终端为无源设备，系统传输损耗容限较低，从而在一定程度上限制了其应范围。",
+    "EPCN属于有源EoC技术，用户终端为有源设备，因此避免了没有无源EoC技术在组网拓扑上的局限性。",
+    "EPCN系统主要部署存有线电视网络的同轴分配网络部分，在HFC主干网上主要采用EPON技术与之配合。",
+    "EPCN符合DOCSIS l.0/1.1/2.013.0等基于HFC的宽带接入规范。"
+   ],
+   "answer": "BC",
+   "analysis": ""
+  },
+  {
+   "id": "1-49",
+   "type": "multiple",
+   "question": "在如图所示的EPCN组网中，从CLT向用户1，2，3发送数据时，下列说法中正确的是____。",
+   "options": [
+    "终端用户1会收到包1、2、3，但是它仅仅接受包1，丢弃包2和包3",
+    "CNU1只会收到包1",
+    "CNU1会收到包1、2、3，但是它仅仅发送包1给终端用户1，丢弃包2和包3",
+    "终端用户1只会收到包1",
+    "CNU1会收到包1、2、3并把它们全部发给终端用户1"
+   ],
+   "answer": "CD",
+   "analysis": ""
+  },
+  {
+   "id": "1-50",
+   "type": "single",
+   "question": "下列DSL技术中，传输速率最高的是____。",
+   "options": [
+    "ADSL",
+    "ADSL2+",
+    "VDSL",
+    "SHDSL",
+    "HDSL"
+   ],
+   "answer": "C",
+   "analysis": ""
+  }
+ ]
+}
