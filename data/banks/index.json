@@ -7,6 +7,14 @@
       "description": "共 333 题：单选 133 · 多选 110 · 判断 90，均含解析",
       "icon": "AI",
       "color": "#4f6bff"
+    },
+    {
+      "id": "h3c-gb0-372",
+      "file": "h3c-gb0-372.json",
+      "title": "H3CSE-RS GB0-372 高级路由交换技术1",
+      "description": "共 405 题：单选 107 · 多选 289 · 填空 9，含拓扑配图",
+      "icon": "H3C",
+      "color": "#e11d48"
     }
   ]
 }
