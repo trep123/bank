@@ -3,18 +3,10 @@
     {
       "id": "hcia-ai",
       "file": "hcia-ai.json",
-      "title": "HCIA-AI 认证练习",
-      "description": "机器学习、深度学习基础与华为昇腾 AI 生态",
+      "title": "HCIA-AI 认证题库",
+      "description": "共 333 题：单选 133 · 多选 110 · 判断 90，均含解析",
       "icon": "AI",
       "color": "#4f6bff"
-    },
-    {
-      "id": "web-basics",
-      "file": "web-basics.json",
-      "title": "前端基础",
-      "description": "HTML、CSS、JavaScript 与浏览器常识",
-      "icon": "</>",
-      "color": "#0ea5a4"
     }
   ]
 }
