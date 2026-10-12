@@ -1,0 +1,768 @@
+{
+ "questions": [
+  {
+   "id": "121",
+   "question": "在USG 系列防火墙中，DMZ 区域的安全级别是多少？",
+   "options": [
+    "5",
+    "50",
+    "86",
+    "100"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "B"
+  },
+  {
+   "id": "122",
+   "question": "包过滤的防火墙的主要特点包括：",
+   "options": [
+    "随着ACL 复杂度和长度的增加，防火墙过滤性能呈指数下降趋势。",
+    "静态的ACL 规则难以适应动态的安全过滤要求。",
+    "不检查会话状态也不分析数据，这很容易让黑客蒙混过关。",
+    "能够完全控制网络信息的交换，控制会话过程，具有较高的安全性。"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "D"
+  },
+  {
+   "id": "123",
+   "question": "SDN 架构主要包含两个接口:NBI 北向接口和SBI 南向接口。",
+   "options": [
+    "正确",
+    "错误"
+   ],
+   "analysis": "",
+   "type": "judge",
+   "answer": false
+  },
+  {
+   "id": "124",
+   "question": "MPLS 是一种标签转发技术，对MPLS 的描述错误的是：",
+   "options": [
+    "采用面向连接的控制平面和无连接的数据平面。",
+    "控制平面实现路由信息的传递和标签的分发，数据平面实现报文在建立的标签转发路径上传送。",
+    "MPLS 域内交换机只需要根据封装在IP 头外面的标签进行转发即可。",
+    "对于传统的IP 转发，MPLS 标签转发大大提高了数据转发的效率。"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "A"
+  },
+  {
+   "id": "125",
+   "question": "IETF 定义的多协议标签交换技术(MPLS)是一种第三层交换技术，它由不同的设备组成，其中负责为网络流添加/删除标记的设备，是下列哪种路由器",
+   "options": [
+    "标签分发路由器",
+    "标签边缘路由器",
+    "标签交换路由器",
+    "标签传送路由器"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "B"
+  },
+  {
+   "id": "126",
+   "question": "DHCP 服务器可以采用不同的地址范围为客户机进行分配，关于分配地址的描述，正确的是：",
+   "options": [
+    "可以是DHCP 服务器的数据中与客户端MAC 地址静态绑定的IP 地址。",
+    "可以是客户端曾经使用过的IP 地址，即客户端发送的\nDHCP-DISCOVER 报文中请求IP 地址选项的地址。",
+    "在DHCP 地址池中顺序查找可分配的IP 地址，即最先找到的IP 地址。",
+    "关于DHCP 服务器查询到的超过租期，发生冲突的IP 地址，如果找到可用的IP 地址，则可进行分配。",
+    "可以是客户端曾经和别的客户端发生冲突的IP 地址。"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ABCD"
+  },
+  {
+   "id": "127",
+   "question": "对Agile Controller 的业务\n随型应用场景的描述，错误的是:D",
+   "options": [
+    "各部门办公人员访问服务器资源时，权限策略都都Agile Controller 统一部署，而管理员只需要关注部门间互访问关系的设计，并选取园区中关键位置为策略执行点，部署完成后，无论用户在何位置，以何种方式接入，都可以获得其访问权限",
+    "可实现外包人员与内部员工写作办公，并基于策略与IP，结合策略自动部署功能，可以快速实现多团队一起办公，同时保证每个用户都能够有正确的网络访问权限，还可根据需要控制团队成员间的数据共享行为，保障企业数据的安全。",
+    "当网关资源有限时，可结合自动优选网关和VIP 优先上线，实现保证VIP 用户可以享有优质网络体验。",
+    "人员的办公需求由Agile Controller 自动识别，不需要人工配置，且无论用户在何时何地都可以获得其访问权限。"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "D"
+  },
+  {
+   "id": "128",
+   "question": "在VAR应用场景中，可以将AR路由器的哪些功能虚拟化到server上？",
+   "options": [
+    "防火墙",
+    "VOIP",
+    "NAT",
+    "VPN"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ABCD"
+  },
+  {
+   "id": "129",
+   "question": "DHCP Snooping 是一种DHCP 安全特性，可以用于防御多种攻击，其中包括：",
+   "options": [
+    "防御饿死攻击",
+    "防御DHCP 仿冒者攻击",
+    "防御TCP flag 攻击。",
+    "防御中间人攻击和IP/MAC spooning 攻击。"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ABD"
+  },
+  {
+   "id": "130",
+   "question": "LDP 消息有多种类型，其中session message 可以实现以下哪些功能？",
+   "options": [
+    "监控LDP session 的TCP 连接的完整性。",
+    "终止未完成的lable request message",
+    "释放标签。",
+    "在LDP session 建立过程中协商参数"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "AD"
+  },
+  {
+   "id": "131",
+   "question": "在peer-to-peer VPN 网络中，与客户端设备直接相连，并负责VPN 业务接入运营商网络的设备是：",
+   "options": [
+    "CE 设备",
+    "PE 设备",
+    "P 设备",
+    "Client 设备"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "B"
+  },
+  {
+   "id": "132",
+   "question": "MPLS VPN的出现主要是为了解决传统VPN技术的一些固有缺陷，其中最重要的是为了解决下列哪类问题",
+   "options": [
+    "私网路由不能互通",
+    "专线价格昂贵",
+    "带宽资源不能充分利用",
+    "地址空间重叠"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "D"
+  },
+  {
+   "id": "133",
+   "question": "NFV 的定义是：",
+   "options": [
+    "网络基础设施虚拟化",
+    "网络功能虚拟化",
+    "网络总线虚拟化",
+    "网络结构虚拟化"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "B"
+  },
+  {
+   "id": "134",
+   "question": "关于配置防火墙安全区域的安全级别的描述，错误的是：",
+   "options": [
+    "新建的安全区域，系统默认其安全级别为1.",
+    "只能为自定义的安全区域设定安全级别。",
+    "安全级别一旦设定，不允许更改。",
+    "同一系统中，两个安全区域不允许配置相同的安全级别。"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "A"
+  },
+  {
+   "id": "135",
+   "question": "LDP 会话用于LSR 之间交换标签映射，释放等消息，关于LDP 会话建立过程的描述，正确的是：",
+   "options": [
+    "两台LSR 之间通过交换hello 消息来触发LDP session 的建立。",
+    "Initialization message用来在LDPsession建立过程中协商参数。",
+    "Keepalive message 用来监控LDP session 的TCP 连接的完整性。",
+    "当入节点LSR 收到标签映射消息时，就完成了LDP 会话的建立。"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ABC"
+  },
+  {
+   "id": "136",
+   "question": "VRRP 可以同哪些机制结合来监视上行链路的连通性？",
+   "options": [
+    "接口track",
+    "BFD",
+    "NQA",
+    "Ip-link"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ABCD"
+  },
+  {
+   "id": "137",
+   "question": "下列选项中，Agile Controller 不支持哪种准入方式？",
+   "options": [
+    "802.1x",
+    "portal",
+    "MAC 旁路",
+    "SACG",
+    "AAA"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "E"
+  },
+  {
+   "id": "138",
+   "question": "ASPF 技术使得防火墙能够支持如FTP 等多通信协议，同时还可以对复杂的应用制定相应的安全策略",
+   "options": [
+    "正确",
+    "错误"
+   ],
+   "analysis": "",
+   "type": "judge",
+   "answer": true
+  },
+  {
+   "id": "139",
+   "question": "流量分类是按照一定的规则来识别符合某类特征的报文，而且特征不同的报文可以享受到不同的服务，故由于分类规则按照参考值信息的不同，流量分类可分为简单流和复杂流。",
+   "options": [
+    "正确",
+    "错误"
+   ],
+   "analysis": "",
+   "type": "judge",
+   "answer": true
+  },
+  {
+   "id": "140",
+   "question": "通常在配置QoS 中的Diff-serv 时，边界路由器会通过报文的源地址和目的地址等对报文进行分类，对不同的报文设置不同的IP 优先级，而其它的路由器只需要根据IP 优先级来对报文进行识别即可。",
+   "options": [
+    "正确",
+    "错误"
+   ],
+   "analysis": "",
+   "type": "judge",
+   "answer": true
+  },
+  {
+   "id": "141",
+   "question": "BFD 控制报文封装在UDP 报文中进行传送，那么多跳BFD 控制报文的端口号是：",
+   "options": [
+    "2784",
+    "3784",
+    "4784",
+    "5784"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "C"
+  },
+  {
+   "id": "142",
+   "question": "VRP 版本支持的BFD 版本号是：",
+   "options": [
+    "Version1",
+    "Version2",
+    "Version3",
+    "Version4"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "A"
+  },
+  {
+   "id": "143",
+   "question": "VXLAN 技术就是为了建立一个跨DC 的二次网络。",
+   "options": [
+    "正确",
+    "错误"
+   ],
+   "analysis": "",
+   "type": "judge",
+   "answer": false
+  },
+  {
+   "id": "144",
+   "question": "下列选项中，不属于华为eSight 创建的缺省角色是：",
+   "options": [
+    "Administrator",
+    "Monitor",
+    "Operator",
+    "End-User"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "D"
+  },
+  {
+   "id": "145",
+   "question": "传统网络的局限性不包括下列哪项？",
+   "options": [
+    "网络协议实现复杂，运维难度较大",
+    "流量路径的调整能力不够灵活",
+    "网络新业务升级的速度较慢",
+    "不同厂家设备实现机制相似，操作命令差异较小，易于操作。"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "D"
+  },
+  {
+   "id": "146",
+   "question": "DHCP Server 即DHCP 服务器，负责客户端IP 地址的分配。在配置DHCP Server 时，需要包括以下哪些步骤？",
+   "options": [
+    "全局使能DHCP 功能",
+    "配置DHCP 的optionB2 选项",
+    "采用全局地址池的DHCP 服务器模式时，配置全局地址池",
+    "采用端口地址池的DHCP 服务器模式时，配置端口地址池"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ACD"
+  },
+  {
+   "id": "147",
+   "question": "以下关于QoS 中Integrated Service 服务器模型的说法，错误的是：",
+   "options": [
+    "传送Qos 请求的信令是RSVP，它用来通知路由器应用程序的Qos需求",
+    "它可以提供保证的带宽和时延来满足应用程序的要求",
+    "它可以提供负载控制服务(Controlled-Load service)，保证即使在网络过载(overload)的情况下，能对报文提供近似于网络未过载类似的服务，在网络拥塞的情况下，保证某些应用程序的报文的低时延和高通过。",
+    "在这种模型下，网络将为每个流（由源和目的两段的IP 地址、端口号）维护一个状态。并基于这个状态执行报文的分类、流量监管(policing)、排队及其调度，来满足对应用程序的承诺。"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "D"
+  },
+  {
+   "id": "148",
+   "question": "镜像端口的主要角色分为：",
+   "options": [
+    "镜像端口",
+    "本地观察端口",
+    "远程镜像端口",
+    "中继端口"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ABC"
+  },
+  {
+   "id": "149",
+   "question": "以下哪类防火墙处理非首包的数据流时，其转发效率最高？",
+   "options": [
+    "包过滤防火墙",
+    "代理防火墙",
+    "状态检测防火墙",
+    "软件防火墙"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "C"
+  },
+  {
+   "id": "150",
+   "question": "状态检测防火墙的主要特点包括以下哪一项？",
+   "options": [
+    "处理速度慢",
+    "后续包处理性能优异",
+    "只能检测网络层",
+    "针对每一包进行包过滤检测"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "B"
+  },
+  {
+   "id": "151",
+   "question": "如图所示是一个运行MPLS 的网络，并在SWA 上查看LDP 会话的信息，那么以下说法错误的是：",
+   "options": [
+    "2.2.2.2 0 中的2.2.2.2 表示邻居的lsr-id",
+    "2.2.2.2 0 表示是基于平台的标签空间",
+    "Operational 表示LDP 进程在操作中，还没有完全建立",
+    "Passive 表示SWA 处于被动方",
+    "Passive 表示SWB 处于被动方"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "C",
+   "images": [
+    "p030_5.jpeg"
+   ]
+  },
+  {
+   "id": "152",
+   "question": "PQ 的分类机制支持使用标准或扩展的IP 访问列表",
+   "options": [
+    "正确",
+    "错误"
+   ],
+   "analysis": "",
+   "type": "judge",
+   "answer": true
+  },
+  {
+   "id": "153",
+   "question": "关于MPLS 的标签空间，描述错误的是：",
+   "options": [
+    "16~1023 是静态LSP 和静态CR-LSP 共享的标签空间",
+    "1024 以上是LDP、RSVP-TE、MP-BGP 等动态信令协议共享的标签空间。",
+    "最后一跳收到标签控件为0 的报文直接进行IP 转发或进行下一层标签转发",
+    "倒数第二跳LSR 进行标签交换时，如果发现交换后的标签值为3，则将标签弹出，并将报文发给最后一跳"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "C"
+  },
+  {
+   "id": "154",
+   "question": "如果两台设备相连，且其中一台设备支持BFD 检测功能，而另外一台设备不支持，那么支持BFD 检测功能的设备可以利用BFD 的哪个功能特性来实现链路的连通性检测？",
+   "options": [
+    "快速握手",
+    "接口状态联动",
+    "单臂回声",
+    "双向检测"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "C"
+  },
+  {
+   "id": "155",
+   "question": "下列IP Precedence 的取值中，代表Immediate 的业务流量的是：",
+   "options": [
+    "0",
+    "2",
+    "5",
+    "6"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "B"
+  },
+  {
+   "id": "157",
+   "question": "防火墙和路由器都能够实现安全防范的功能，所以他们可以互相替换使用。",
+   "options": [
+    "正确",
+    "错误"
+   ],
+   "analysis": "",
+   "type": "judge",
+   "answer": false
+  },
+  {
+   "id": "158",
+   "question": "MPLS Header 长度为32bits，包括长度为20bits 的标签，该标签用于报文转发；长度为3bits 的EXP 通常用来承载IP 报文中的优先级；长度为1bits 的栈底标志S，用来表明是否是最后一个标签（MPLS 标签可以多层嵌套）;下面关于长度为8bits 的TTL 的描述，正确的是：",
+   "options": [
+    "作用类似IP 头部的TTL，用来防止报文环路",
+    "主要是用于标签管理时的控制",
+    "用于标签分发时对上游设备的控制",
+    "对于LSR 进行限制"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "A"
+  },
+  {
+   "id": "159",
+   "question": "拥塞避免机制中的丢弃策略不包括：",
+   "options": [
+    "FIFO",
+    "RED",
+    "WRED",
+    "WFQ"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "AD"
+  },
+  {
+   "id": "160",
+   "question": "设备间建立BFD 会话过程中，不会经历下列哪种状态？",
+   "options": [
+    "2-way",
+    "down",
+    "init",
+    "up"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "A"
+  },
+  {
+   "id": "161",
+   "question": "下面关于BFD 会话的建立方式，描述错误的是：",
+   "options": [
+    "BFD 会话只能通过动态方式建立",
+    "静态配置BFD 会话是指通过命令行，手工配置BFD 会话参数，包括本地标识符和远端标识符等。",
+    "动态建立BFD 会话时，。动态分配本地标识符。",
+    "系统通过划分标识符区域的方式，来区分静态BFD 会话和动态BFD会话"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "A"
+  },
+  {
+   "id": "162",
+   "question": "在USG 系列防火墙中，以下哪个安全区域可以被管理员删除？",
+   "options": [
+    "Security 区域",
+    "Trust 区域",
+    "Untrust 区域",
+    "DMZ 区域"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "A"
+  },
+  {
+   "id": "163",
+   "question": "关于MPLS 中标签的封装格式的描述，正确的是：",
+   "options": [
+    "MPLS 单个标签的总长度为4 个字符(32bits)",
+    "标签中的TTL 字段和IP 分组中的TTL（Time To Live ，生存时间）意义相同，也具有防止环路的作用",
+    "标签中的S 字段:1bits，用于标识该标签是否是栈底标签，值为1时表面为倒数第二层标签",
+    "对于以太网、PPP 的分组，标签堆栈像垫层一样，位于二层报文与数据之间，有VLAN tag 时，放到VLAN tag 之前"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "AB"
+  },
+  {
+   "id": "164",
+   "question": "在DHCP 运行过程中，如果客户端IP 地址在相约过去87.5%还没有完成续约的话，客户将发送什么报文再次续约？",
+   "options": [
+    "DHCP discover 广播报文",
+    "DHCP release 单播报文",
+    "DHCP request 广播报文",
+    "DHCP request 单播报文"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "C"
+  },
+  {
+   "id": "165",
+   "question": "在DHCP 运行过程中，会交互多种报文类型，那么下列哪些报文不是从客户端发往服务器的？",
+   "options": [
+    "DHCP NAK",
+    "DHCP REQUEST",
+    "DHCP DISCOVER",
+    "DHCP RELEASE"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "A"
+  },
+  {
+   "id": "166",
+   "question": "在网络层，以下不可以用来对IP 报文进行分类的有：",
+   "options": [
+    "报文长度",
+    "VLAN ID",
+    "源IP 地址和目的IP 地址",
+    "Tos 字段"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "B"
+  },
+  {
+   "id": "167",
+   "question": "在华为路由器上配置远程端口镜像功能，实现将远程端口镜像出去的报文，可以通过三层IP 网络传达到监控设备，其命令是：",
+   "options": [
+    "mirror-sever destination-ip 10.1.0.1 source-ip 192.168.1.1",
+    "monitor-sever destination-ip 10.1.0.1 source-ip 192.168.1.1",
+    "observe-sever destination-ip 10.1.0.1 source-ip 192.168.1.1",
+    "sever destination-ip 10.1.0.1 source-ip 192.168.1.1"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "C"
+  },
+  {
+   "id": "168",
+   "question": "下列关于VRRP 的描述，错误的是：",
+   "options": [
+    "VRRP 是一种冗余备份协议，为具有组播或广播能力的局域网（如以太网）设计，保证当局域网内主机的下一跳路由器设备出现故障时，可以及时地由另一台路由器来代替，从而保证网络通信的连续性和可靠性",
+    "在使用VRRP 协议时，需要在路由器上配置虚拟路由器号和虚拟IP地址，直接使用主路由器的展示MAC，这样在这个网络中将加入来一个虚拟路由器。",
+    "网络上的主机与虚拟路由器通信，不需要了解这个网络上物理路由器的所有信息",
+    "一个虚拟路由器由一个主路由器和若干个备份路由器组成，主路由器实现真正的转发功能，当主路由器出现故障时，一个备份路由器将成为新的主路由器并接替它的工作"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "B"
+  },
+  {
+   "id": "169",
+   "question": "DU 标签分发方式下，如果采用Liberal 保持方式，则设备都会保留所有LDP Peer 发来的标签，无论该LDP Peer 是否为到达目的网段的",
+   "options": [
+    "正确",
+    "错误"
+   ],
+   "analysis": "",
+   "type": "judge",
+   "answer": true
+  },
+  {
+   "id": "170",
+   "question": "关于时延和抖动，下面描述正确的是：",
+   "options": [
+    "端到端时延等于处理时延与队列时延之和",
+    "抖动是因为每个包的端到端时延不相等造成的",
+    "抖动的大小跟时延的大小相关，时延小则抖动的范围也小，时延大则可能的抖动范围也大",
+    "抖动的大小跟时延不相关"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "BC"
+  },
+  {
+   "id": "171",
+   "question": "NFV 和SDN 是高度互补、相互依赖的关系，所以必须结合使用。",
+   "options": [
+    "正确",
+    "错误。"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "B"
+  },
+  {
+   "id": "172",
+   "question": "关于VRRP master 设备的描述，错误的是：",
+   "options": [
+    "定期发送VRRP 报文。",
+    "以虚拟MAC 地址响应应对虚拟IP 地址的ARP 请求。",
+    "转发目的MAC 地址为虚拟MAC 地址的IP 报文。",
+    "即使该路由器已经为Master，也会被优先级高的Backup 路由器抢占。"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "AD"
+  },
+  {
+   "id": "173",
+   "question": "流镜像端口能够实现将镜像端口上特定业务流的报文，传送到监控设备进行分析和监控的功能。",
+   "options": [
+    "正确",
+    "错误"
+   ],
+   "analysis": "",
+   "type": "judge",
+   "answer": false
+  },
+  {
+   "id": "174",
+   "question": "对于防火墙安全区域的描述，下列说法正确的是：",
+   "options": [
+    "防火墙的不同安全区域，优先级可以相同",
+    "防火墙的同一个接口可以分属不同的安全区域。",
+    "防火墙的不同接口可以属于同一安全区域。",
+    "防火墙的自带安全区域可以被删除。"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "C"
+  },
+  {
+   "id": "175",
+   "question": "LDP 要求可靠而有序地传递消息，除了以下哪个消息使用UDP 之外，其余都需要使用TCP 报文？",
+   "options": [
+    "Discovery message",
+    "Session message",
+    "Advertisement message",
+    "Notification message"
+   ],
+   "analysis": "",
+   "type": "single",
+   "answer": "A"
+  },
+  {
+   "id": "176",
+   "question": "华为eSight 网管软件都支持哪些设备发现方式？",
+   "options": [
+    "指定某个IP 地址",
+    "指定某个IP 地址段",
+    "指定产品型号",
+    "通过EXCEL 表格（指定IP 地址）进行导入"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ABD"
+  },
+  {
+   "id": "177",
+   "question": "NFV 具备哪些优点？",
+   "options": [
+    "减少设备成本，能源开销",
+    "缩短网络运营业务创新周期",
+    "网络设备可以统一版本，统一管理接入租户",
+    "单一平台为不同应用、租户提供服务"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ABD"
+  },
+  {
+   "id": "178",
+   "question": "下列关于华为esight 网管软件的描述，错误的是：",
+   "options": [
+    "向导式安装，轻量级系统。",
+    "采用CS 架构，可以直接使用浏览器随时随地的访问网路。",
+    "面向不同的客户提供相应的解决方案。",
+    "支持对多广商设备进行统一管理。"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "AB"
+  },
+  {
+   "id": "179",
+   "question": "关于VRRP slave 设备的描述，正确的是：",
+   "options": [
+    "当Slave 收到Master 发送的VRRP 报文时，可判断Master 的状态是否正常。",
+    "当收到优先级为0 的VRRP 报文时，Slave 会直接切换为Master。",
+    "Slave 会丢弃目的MAC 地址为虚拟MAC 地址的IP 报文。",
+    "Slave 会响应目的IP 地址为虚拟IP 地址的IP 报文。"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "ABC"
+  },
+  {
+   "id": "180",
+   "question": "在Diff-Serv 域的核心路由器通常只需要进行简单流分类。",
+   "options": [
+    "正确",
+    "错误"
+   ],
+   "analysis": "",
+   "type": "judge",
+   "answer": true
+  },
+  {
+   "id": "181",
+   "question": "在MPLS VPN 网络中，数据包在进入公网被转发时，会被封装上两层MPLS 标签，下列选项中对数据包的处理过程，描述正确的是：",
+   "options": [
+    "数据包在倒数第二跳设备上被弹出外层标签后转发给对端PE 设备。",
+    "对端PE 设备收到的是不带标签的IP 数据包。",
+    "倒数第二跳设备弹出外层标签的依据是数据包携带的外层标签为显示空标签3。",
+    "对端PE 设备依据内层标签将数据包正确发送到相应的VPN 中。"
+   ],
+   "analysis": "",
+   "type": "multiple",
+   "answer": "AD"
+  }
+ ]
+}
