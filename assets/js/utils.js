@@ -109,7 +109,7 @@ export function confirmDialog({ title = '提示', message = '', okText = '确定
   });
 }
 
-export const TYPE_LABEL = { single: '单选题', multiple: '多选题', judge: '判断题' };
+export const TYPE_LABEL = { single: '单选题', multiple: '多选题', judge: '判断题', fill: '填空题' };
 
 /** 图标（内联 SVG） */
 const ICONS = {
