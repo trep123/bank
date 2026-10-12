@@ -1,0 +1,693 @@
+{
+ "questions": [
+  {
+   "id": "1-51",
+   "type": "single",
+   "question": "在H3C设备中，RIP协议路由的缺省优先级值是________。",
+   "options": [
+    "10",
+    "100",
+    "150",
+    "255"
+   ],
+   "answer": "B",
+   "analysis": "OSPF路由协议的缺省优先级：内部10，外部150，rip为100，静态路由协议为60，直连路由为0，ibgp为80，bgp为170。"
+  },
+  {
+   "id": "1-52",
+   "type": "multiple",
+   "question": "下列路由协议中，_______支持手工路由聚合。",
+   "options": [
+    "RIP-1",
+    "RIP-2",
+    "OSPF",
+    "BGP"
+   ],
+   "answer": "BCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-53",
+   "type": "single",
+   "question": "如图所示，某局域网采用MSR路由器上连到ISP。如果要在MSR路由器的出接口上实现基于报文的负载分担，则以下哪些配置是必须的？",
+   "options": [
+    "[MSR-Ethernet1/1] ip fast-forwarding inbound\n[MSR-Ethernet1/2] ip fast-forwarding inbound",
+    "[MSR-Ethernet1/1] ip fast-forwarding outbound\n[MSR-Ethernet1/2] ip fast-forwarding outbound",
+    "[MSR-Ethernet1/1]undo ip fast-forwarding inbound\n[MSR-Ethernet1/2]undo ip fast-forwarding inbound",
+    "[MSR-Ethernet1/1]undo ip fast-forwarding outbound\n[MSR-Ethernet1/2]undo ip fast-forwarding outbound"
+   ],
+   "answer": "D",
+   "analysis": "",
+   "images": [
+    "p024_6.jpeg"
+   ]
+  },
+  {
+   "id": "1-54",
+   "type": "single",
+   "question": "如图所示，某局域网采用MSR路由器上连到ISP。如果要在MSR路由器的出接口上实现基于报文的负载分担，则以下哪些配置是必须的？",
+   "options": [
+    "[MSR]ip fast-forwarding load-sharing",
+    "[MSR-Ethernet1/1]ip fast-forwarding load-sharing",
+    "[MSR-Ethernet1/2]ip fast-forwarding load-sharing",
+    "[MSR]undo ip fast-forwarding load-sharing"
+   ],
+   "answer": "D",
+   "analysis": "",
+   "images": [
+    "p024_7.jpeg"
+   ]
+  },
+  {
+   "id": "1-55",
+   "type": "single",
+   "question": "如图所示，MSR路由器以太接口E1/0 的实际带宽为10Mbps ，串口S2/0的实际链路带宽为64Kbps。为了优先使用高带宽链路，并达到路由备份的目的，以下哪个方案最合理？",
+   "options": [
+    "以太接口E1/0 和串口S2/0 都运行RIP协议",
+    "设置静态路由，出接口为串口S2/0 和以太接口E1/0，优先级值设定相同",
+    "以太接口运行RIP协议。再设置静态路由，出接口为串口S2/0 ，优先级值设定为80",
+    "以太接口运行OSPF协议。 再设置静态路由，出接口为串口S2/0 ， 优先级值设定为80"
+   ],
+   "answer": "D",
+   "analysis": "",
+   "images": [
+    "p025_8.jpeg"
+   ]
+  },
+  {
+   "id": "1-56",
+   "type": "multiple",
+   "question": "如图所示，总部的MSR路由器通过以太接口E1/0连接到分部，同时通过ISDN网络对连接进行备份。此时下列哪些方案可行？",
+   "options": [
+    "总部和分部间的以太链路上运行RIP 协议。再设置静态路由，出接口为Bri2/0，取缺省优先级值",
+    "总部和分部间的以太链路上运行OSPF 协议。再设置静态路由，出接口为Bri2/0，取优先级值为200",
+    "总部和分部间的以太链路上运行OSPF 协议。再设置静态路由，出接口为Bri2/0，取优先级值为0",
+    "总部和分部间的以太链路上运行RIP 协议。再在出接口Bri2/0上设置动态路由备份组"
+   ],
+   "answer": "BD",
+   "analysis": "",
+   "images": [
+    "p025_9.jpeg"
+   ]
+  },
+  {
+   "id": "1-57",
+   "type": "single",
+   "question": "如图所示，总部的MSR路由器通过以太接口E1/0连接到分部，同时通过ISDN网络对连接进行备份。此时下列哪些方案最合理可行？",
+   "options": [
+    "总部和分部间的以太链路上运行RIP 协议。设置静态路由，出接口为Bri2/0，取缺省优先级值",
+    "总部和分部间的以太链路上运行OSPF协议。设置静态路由，出接口为Bri2/0，取优先级值为5",
+    "总部和分部间的以太链路上运行OSPF 协议。设置静态路由，出接口为Bri2/0，取优先级值为0",
+    "总部和分部间的以太链路上运行RIP 协议。在出接口Bri2/0上设置动态路由备份组"
+   ],
+   "answer": "D",
+   "analysis": "",
+   "images": [
+    "p026_10.jpeg"
+   ]
+  },
+  {
+   "id": "1-58",
+   "type": "single",
+   "question": "如图所示，总部的MSR路由器通过以太接口E1/0连接到分部，同时通过ISDN网络对连接进行备份。此时下列哪些方案最合理可行？",
+   "options": [
+    "总部和分部间的以太链路上运行RIP协议。设置静态路由，出接口为Bri2/0，取优先级值200",
+    "总部和分部间的以太链路上运行OSPF协议。设置静态路由，出接口为Bri2/0，取优先级值为5",
+    "总部和分部间的以太链路上运行OSPF协议。设置静态路由，出接口为Bri2/0，取优先级值为0",
+    "总部和分部间的以太链路上运行RIP 协议。设置静态路由，出接口为Bri2/0，取缺省优先级值"
+   ],
+   "answer": "A",
+   "analysis": "",
+   "images": [
+    "p026_11.jpeg"
+   ]
+  },
+  {
+   "id": "1-59",
+   "type": "single",
+   "question": "如图所示，总部的MSR路由器通过2条100Mbps的以太链路连接到分部，要充分利用现有带宽资源，下列哪一个路由方案是最优的？",
+   "options": [
+    "总部和分部间的2条以太链路上同时运行OSPF协议，实现ECMP",
+    "主链路运行OSPF，备份链路运行RIP",
+    "主链路运行RIP，配置静态路由，出接口指向备份链路，设定优先级值为150",
+    "主链路运行OSPF，配置静态路由，出接口指向备份链路"
+   ],
+   "answer": "A",
+   "analysis": "",
+   "images": [
+    "p027_12.jpeg"
+   ]
+  },
+  {
+   "id": "1-60",
+   "type": "single",
+   "question": "如图所示，总部的MSR路由器通过2条100Mbps的以太链路连接到分部，要充分利用现有带宽资源，下列哪一个路由方案是最优的？",
+   "options": [
+    "主链路运行OSPF，备份链路运行RIP",
+    "总部和分部间的2条以太链路上同时运行RIP协议，实现ECMP",
+    "主链路运行RIP，配置静态路由，出接口指向备份链路，设定优先级值为150",
+    "主链路运行OSPF，配置静态路由，出接口指向备份链路"
+   ],
+   "answer": "B",
+   "analysis": "ECMP是等价多路径。",
+   "images": [
+    "p027_13.jpeg"
+   ]
+  },
+  {
+   "id": "1-61",
+   "type": "single",
+   "question": "管理员想在MSR路由器上配置OSPF路由优先级值为60，则下列哪条命令是正确的？",
+   "options": [
+    "[Router]ospf preference 60",
+    "[Router]preference 60",
+    "[Router-ospf-1]ospf preference 60",
+    "[Router-ospf-1]preference 60"
+   ],
+   "answer": "D",
+   "analysis": "配置preference，需要在相应路由协议的进程内配置，命令格式：preference ?"
+  },
+  {
+   "id": "1-62",
+   "type": "single",
+   "question": "管理员想在MSR路由器上配置OSPF路由优先级值为100，则下列哪条命令是正确的？",
+   "options": [
+    "[Router]ospf preference 100",
+    "[Router]preference 100",
+    "[Router-ospf-1]ospf preference 100",
+    "[Router-ospf-1]preference 100"
+   ],
+   "answer": "D",
+   "analysis": "配置preference，需要在相应路由协议的进程内配置，命令格式：preference ?"
+  },
+  {
+   "id": "1-63",
+   "type": "single",
+   "question": "管理员想在MSR路由器上配置RIP路由优先级值为60，则下列哪条命令是正确的？",
+   "options": [
+    "[Router]rip preference 60",
+    "[Router]preference 60",
+    "[Router-rip-1]rip preference 60",
+    "[Router-rip-1]preference 60"
+   ],
+   "answer": "D",
+   "analysis": "配置preference，需要在相应路由协议的进程内配置，命令格式：preference ?"
+  },
+  {
+   "id": "1-64",
+   "type": "single",
+   "question": "路由表中有4条路由172.16.0.0/24、172.16.1.0/24、172.16.2.0/24、172.16.3.0/24。如要进行路由聚合，则正确的聚合后路由是__________。",
+   "options": [
+    "172.16.0.0/22",
+    "172.16.0.0/23",
+    "172.16.0.0/24",
+    "172.16.0.0/25"
+   ],
+   "answer": "A",
+   "analysis": ""
+  },
+  {
+   "id": "1-65",
+   "type": "single",
+   "question": "路由表中有4条路由192.168.0.0/24、192.168.1.0/24、192.168.2.0/24、192.168.3.0/24。如要进行路由聚合，则正确的聚合后路由是__________。",
+   "options": [
+    "192.168.0.0/22",
+    "192.168.0.0/23",
+    "192.168.0.0/24",
+    "192.168.0.0/25"
+   ],
+   "answer": "A",
+   "analysis": ""
+  },
+  {
+   "id": "1-66",
+   "type": "single",
+   "question": "如图所示网络中，所有路由器间都不启用动态路由协议，只能配置静态路由。则RTE上的正确配置应该是_________。",
+   "options": [
+    "ip route-static 10.0.0.0 255.255.254.0 S1/0",
+    "ip route-static 10.0.0.0 255.255.254.0 S2/0",
+    "ip route-static 10.0.0.0 255.255.252.0 S1/0",
+    "ip route-static 10.0.0.0 255.255.252.0 S2/0"
+   ],
+   "answer": "C",
+   "analysis": "",
+   "images": [
+    "p029_14.jpeg"
+   ]
+  },
+  {
+   "id": "1-67",
+   "type": "single",
+   "question": "如图所示网络中，所有路由器间都不启用动态路由协议，只能配置静态路由。则RTE上的正确配置应该是_________。",
+   "options": [
+    "ip route-static 172.16.0.0 255.255.254.0 S1/0",
+    "ip route-static 172.16.0.0 255.255.254.0 S2/0",
+    "ip route-static 172.16.0.0 255.255.252.0 S1/0",
+    "ip route-static 172.16.0.0 255.255.252.0 S2/0"
+   ],
+   "answer": "C",
+   "analysis": "",
+   "images": [
+    "p030_15.jpeg"
+   ]
+  },
+  {
+   "id": "1-68",
+   "type": "single",
+   "question": "如图所示网络中，所有路由器间都不启用动态路由协议，只能配置静态路由。则RTE上的正确配置应该是_________。",
+   "options": [
+    "ip route-static 192.168.0.0 255.255.254.0 S1/0",
+    "ip route-static 192.168.0.0 255.255.254.0 S2/0",
+    "ip route-static 192.168.0.0 255.255.252.0 S1/0",
+    "ip route-static 192.168.0.0 255.255.252.0 S2/0"
+   ],
+   "answer": "C",
+   "analysis": "",
+   "images": [
+    "p030_16.jpeg"
+   ]
+  },
+  {
+   "id": "1-69",
+   "type": "single",
+   "question": "MSR路由器上取消RIP协议自动路由聚合的命令是___________。",
+   "options": [
+    "[Router-rip-1] undo summary",
+    "[Router-rip-1] undo auto-summary",
+    "[Router-Serial1/0] undo summary",
+    "[Router-Serial1/0] undo auto- summary"
+   ],
+   "answer": "A",
+   "analysis": "需要在rip进程内配置，命令格式：undo summary"
+  },
+  {
+   "id": "1-70",
+   "type": "single",
+   "question": "MSR路由器上配置RIP协议手工路由聚合的命令是___________。",
+   "options": [
+    "[Router] rip summary-address 10.1.0.0 22",
+    "[Router-rip-1] rip summary-address 10.1.0.0",
+    "[Router-rip-1] rip summary-address 10.1.0.0 22",
+    "[Router-Serial1/0] rip summary-address 10.1.0.0 22"
+   ],
+   "answer": "D",
+   "analysis": "需要在接口视图下配置。"
+  },
+  {
+   "id": "1-71",
+   "type": "single",
+   "question": "MSR路由器上配置RIP协议手工路由聚合的命令是___________。",
+   "options": [
+    "[Router] rip summary-address 172.16.0.0 22",
+    "[Router-rip-1] rip summary-address 172.16.0.0",
+    "[Router-rip-1] rip summary-address 172.16.0.0 22",
+    "[Router-Serial1/0] rip summary-address 172.16.0.0 22"
+   ],
+   "answer": "D",
+   "analysis": "需要在接口视图下配置。"
+  },
+  {
+   "id": "1-72",
+   "type": "multiple",
+   "question": "路由聚合的优点包括_________。",
+   "options": [
+    "减小路由规模，加快路由匹配速度",
+    "降低路由环路产生的可能性",
+    "降低管理员对路由协议的配置工作",
+    "降低路由更新流量"
+   ],
+   "answer": "AD",
+   "analysis": ""
+  },
+  {
+   "id": "1-73",
+   "type": "multiple",
+   "question": "如图所示网络中，RTA上配置了静态路由ip route-static 0.0.0.0 0.0.0.0 s1/0，RTB上配置了静态路由ip route-static 10.0.0.0 23 s1/0。则在何种情况下，RTA与RTB间会产生路由环路？",
+   "options": [
+    "如果PCA与RTA间的网络连接断开，则RTA与RTB间会产生环路。",
+    "如果PCB与RTA间的网络连接断开，则RTA与RTB间会产生环路。",
+    "如果PCC与RTA间的网络连接断开，则RTA与RTB间会产生环路。",
+    "如果PCD与RTB间的网络连接断开，则RTA 与RTB间会产生环路。"
+   ],
+   "answer": "AB",
+   "analysis": "",
+   "images": [
+    "p032_17.jpeg"
+   ]
+  },
+  {
+   "id": "1-74",
+   "type": "multiple",
+   "question": "OSPF协议中进行DR/BDR选举的优点包括______。",
+   "options": [
+    "减少了维护的邻接关系数量",
+    "DR失效后，BDR立刻成为DR，可以减少路由变化后的收敛时间",
+    "稳定性最高的路由器成为DR/BDR，可以增强网络的健壮性"
+   ],
+   "answer": "AB",
+   "analysis": ""
+  },
+  {
+   "id": "1-75",
+   "type": "multiple",
+   "question": "关于OSPF 协议中DR/BDR选举原则，以下说法错误的是______。",
+   "options": [
+    "优先级值最高的路由器一定会被选举为DR",
+    "接口IP地址最大的路由器一定会被选举为DR",
+    "Router ID最大的路由器一定会被选举为DR",
+    "优先级值为0的路由器一定不参加选举"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "1-76",
+   "type": "single",
+   "question": "在OSPF的广播网络中，同一网段内有4台路由器RTA、RTB、RTC 和RTD ，其优先级分别为2、1、1和0 ，Router ID分别为192.168.1.1 、192.168.2.1、192.168.3.1和\n192.168.4.1 。若在此4 台路由器上同时启用OSPF 协议，OSPF选出的BDR为_____。",
+   "options": [
+    "RTA",
+    "RTB",
+    "RTC",
+    "RTD"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-77",
+   "type": "single",
+   "question": "在OSPF的广播网络中，同一网段内有4台路由器RTA、RTB、RTC 和RTD ，其优先级分别为2、0、1和1，Router ID分别为192.168.1.1 、192.168.2.1、192.168.3.1和\n192.168.4.1 。若在此4 台路由器上同时启动OSPF 协议，OSPF选出的BDR为_____。",
+   "options": [
+    "RTA",
+    "RTB",
+    "RTC",
+    "RTD"
+   ],
+   "answer": "D",
+   "analysis": ""
+  },
+  {
+   "id": "1-78",
+   "type": "single",
+   "question": "在OSPF的广播网络中，同一网段内有4台路由器RTA、RTB、RTC 和RTD ，其优先级分别为2、2、1和2，Router ID分别为172.16.1.1 、172.16.2.1、172.16.3.1和172.16.4.1 。若在此4 台路由器上同时启动OSPF 协议，OSPF选出的DR为_____。",
+   "options": [
+    "RTA",
+    "RTB",
+    "RTC",
+    "RTD"
+   ],
+   "answer": "D",
+   "analysis": ""
+  },
+  {
+   "id": "1-79",
+   "type": "multiple",
+   "question": "OSPF协议中的DD（Database Description，数据库描述）报文的作用有______。",
+   "options": [
+    "协商交互的主从关系",
+    "描述LSA的摘要信息",
+    "回应LSA报文，发送邻居路由器所请求的完整LSA",
+    "路由器处于ExStart状态时，维持邻居关系"
+   ],
+   "answer": "AB",
+   "analysis": ""
+  },
+  {
+   "id": "1-80",
+   "type": "multiple",
+   "question": "两台路由器无法建立OSPF邻居，以下可能的原因有________。",
+   "options": [
+    "双方所配置的验证密码不一致",
+    "双方的Hello时间间隔不一致",
+    "双方接口网路类型为P2P，且DR选举优先级都被修改为0",
+    "通过配置silent-interface 而使双方的相邻接口不发送协议报文"
+   ],
+   "answer": "ABD",
+   "analysis": ""
+  },
+  {
+   "id": "1-81",
+   "type": "multiple",
+   "question": "两台MSR路由器MSR-1和MSR-2通过192.168.1.0/24网段互连。现在需要在路由器MSR-1上配置OSPF协议，与MSR-2正常建立邻接关系，下列哪项配置是可行的？",
+   "options": [
+    "[MSR-1] ospf\n[MSR-1-ospf-1] area 0\n[MSR-1-ospf-1-area-0.0.0.0] network 192.168.1.0 0.0.255.255",
+    "[MSR-1] ospf\n[MSR-1-ospf-1] area 0\n[MSR-1-ospf-1-area-0.0.0.0] network 192.168.1.0 0.0.32.255",
+    "[MSR-1] ospf\n[MSR-1-ospf-1] area 0\n[MSR-1-ospf-1-area-0.0.0.0] network 192.168.1.0 0.0.15.255",
+    "[MSR-1] ospf\n[MSR-1-ospf-1] area 0\n[MSR-1-ospf-1-area-0.0.0.0] network 192.168.16.0 0.0.31.255"
+   ],
+   "answer": "ACD",
+   "analysis": "注意采用反掩码，肯定是奇数。"
+  },
+  {
+   "id": "1-82",
+   "type": "multiple",
+   "question": "两台MSR路由器MSR-1和MSR-2通过172.16.16.0/20网段互连。现在需要在路由器MSR-1上配置OSPF协议，与MSR-2正常建立邻接关系，下列哪项配置是不可行的？",
+   "options": [
+    "[MSR-1] ospf\n[MSR-1-ospf-1] area 0\n[MSR-1-ospf-1-area-0.0.0.0] network 172.16.16.0 0.0.255.255",
+    "[MSR-1] ospf\n[MSR-1-ospf-1] area 0\n[MSR-1-ospf-1-area-0.0.0.0] network 172.16.16.0 0.0.32.255",
+    "[MSR-1] ospf\n[MSR-1-ospf-1] area 0\n[MSR-1-ospf-1-area-0.0.0.0] network 172.16.16.0 0.0.15.255",
+    "[MSR-1] ospf\n[MSR-1-ospf-1] area 0\n[MSR-1-ospf-1-area-0.0.0.0] network 172.16.16.0 0.0.31.255"
+   ],
+   "answer": "B",
+   "analysis": "注意采用反掩码，肯定是奇数。所以B项配置不可行"
+  },
+  {
+   "id": "1-83",
+   "type": "single",
+   "question": "在OSPF协议中，DR路由器用来向所有非DR 路由器发送更新报文的目的地址是_____。",
+   "options": [
+    "224.0.0.4",
+    "224.0.0.5",
+    "224.0.0.6",
+    "224.0.0.9",
+    "非DR路由器的接口地址"
+   ],
+   "answer": "B",
+   "analysis": "OSPF协议中，DR路由器用来向所有非DR路由器发送更新报文的目的地址是224.0.0.5，其他路由器向DR路由器发送更新报文的目的地址是224.0.0.6。"
+  },
+  {
+   "id": "1-84",
+   "type": "single",
+   "question": "在OSPF协议中，路由器用来向DR 路由器发送更新报文的目的地址是_____。",
+   "options": [
+    "224.0.0.4",
+    "224.0.0.5",
+    "224.0.0.6",
+    "224.0.0.9",
+    "非DR路由器的接口地址"
+   ],
+   "answer": "C",
+   "analysis": "OSPF协议中，DR路由器用来向所有非DR路由器发送更新报文的目的地址是224.0.0.5，其他路由器向DR路由器发送更新报文的目的地址是224.0.0.6。"
+  },
+  {
+   "id": "1-85",
+   "type": "single",
+   "question": "在OSPF 协议中，当接口网络类型为P2P（点对点）时，其默认Hello时间间隔和邻居失效时间分别为______。",
+   "options": [
+    "10，30",
+    "10，40",
+    "30，120",
+    "40，120"
+   ],
+   "answer": "B",
+   "analysis": "在OSPF协议中，当接口网络类型为P2P时，默认hello时间间隔和邻居失效时间分别为10，40，扩展：broadcast为10，40，NBMA为30，,120。"
+  },
+  {
+   "id": "1-86",
+   "type": "single",
+   "question": "在OSPF协议中，当接口网络类型为NBMA（非广播多路访问）时，其默认Hello时间间隔和邻居失效时间分别为______。",
+   "options": [
+    "10，30",
+    "10，40",
+    "30，120",
+    "40，120"
+   ],
+   "answer": "C",
+   "analysis": "在OSPF协议中，当接口网络类型为P2P时，默认hello时间间隔和邻居失效时间分别为10，40，扩展：broadcast为10，40，NBMA为30，,120。"
+  },
+  {
+   "id": "1-87",
+   "type": "multiple",
+   "question": "OSPF Stub区域中肯定不会存在______类型的LSA。",
+   "options": [
+    "Type3",
+    "Type4",
+    "Type5",
+    "Type7"
+   ],
+   "answer": "BCD",
+   "analysis": "特殊区域的存在是为了减少区域内的LSA数量，减少路由条目。\n1、Stub 末梢区域\nStub Area 末梢区域，区域内路由器不需要根据特定的外部路由来选择离开区域的出口。区域的ABR会阻止5类LSA进入，减少了LSA数量，同时该区域的ABR会自动下发一条使用3类LSA描述的缺省路由。另外ABR依然会将区域间路由即３类LSA注入到stub区域。此时stub区域存在1类、2类、3类以及使用3类描述缺省路由的LSA。\n2、Totally Stub Area 在Stub基础上，进一步减少3类LSA，但是保留使用3类LSA描述的缺省路由。stub 区域不能引入外部路由。\n3、非完全末梢区域（Not-So-Stub-Area）\nStub 区域阻挡4、5类LSA进入区域，并且禁止接入此区域的路由器引入外部路由。当区域内的路由器需要引入外部路由时，stub不满足组网需要，但是也要使用stub的特性减少\nLSA数量。此时，使用NSSA。NSSA阻挡4、5类LSA进入区域，并且允许路由器引入少量的外部路由。被引入的外部路由以７类LSA描述，并且７类LSA只能在NSSA区域内洪泛，不允许进入Area0，为了使的被NSSA引入的外部路由能够在OSPF其他区域内学习到，\nNSSA的 ABR会将7类LSA转换为5类LSA，然后注入到Area0，从而洪泛到其他区域。另外NSSA中的ABR会下发7类LSA描述的缺省路由，指导路由转发到Area０区域。NSSA引入的外部路由，应该是末端组网，缺省路由不能指向此末端组网。\n4、Totally NSSA  NSSA的ABR将3类LSA阻挡，过滤掉域间路由，但是保留描述缺省路由的3类LSA。"
+  },
+  {
+   "id": "1-88",
+   "type": "multiple",
+   "question": "OSPF TotallStub 区域中肯定不会注入______ 类型的LSA。",
+   "options": [
+    "Type3",
+    "Type4",
+    "Type5",
+    "Type7"
+   ],
+   "answer": "ABCD",
+   "analysis": "特殊区域的存在是为了减少区域内的LSA数量，减少路由条目。\n1、Stub 末梢区域\nStub Area 末梢区域，区域内路由器不需要根据特定的外部路由来选择离开区域的出口。区域的ABR会阻止5类LSA进入，减少了LSA数量，同时该区域的ABR会自动下发一条使用3类LSA描述的缺省路由。另外ABR依然会将区域间路由即３类LSA注入到stub区域。此时stub区域存在1类、2类、3类以及使用3类描述缺省路由的LSA。\n2、Totally Stub Area 在Stub基础上，进一步减少3类LSA，但是保留使用3类LSA描述的缺省路由。stub 区域不能引入外部路由。\n3、非完全末梢区域（Not-So-Stub-Area）\nStub 区域阻挡4、5类LSA进入区域，并且禁止接入此区域的路由器引入外部路由。当区域内的路由器需要引入外部路由时，stub不满足组网需要，但是也要使用stub的特性减少\nLSA数量。此时，使用NSSA。NSSA阻挡4、5类LSA进入区域，并且允许路由器引入少量的外部路由。被引入的外部路由以７类LSA描述，并且７类LSA只能在NSSA区域内洪泛，不允许进入Area0，为了使的被NSSA引入的外部路由能够在OSPF其他区域内学习到，\nNSSA的 ABR会将7类LSA转换为5类LSA，然后注入到Area0，从而洪泛到其他区域。另外NSSA中的ABR会下发7类LSA描述的缺省路由，指导路由转发到Area０区域。NSSA引入的外部路由，应该是末端组网，缺省路由不能指向此末端组网。\n4、Totally NSSA  NSSA的ABR将3类LSA阻挡，过滤掉域间路由，但是保留描述缺省路由的3类LSA。"
+  },
+  {
+   "id": "1-89",
+   "type": "multiple",
+   "question": "OSPF TotallStub 区域中可能注入______ 类型的LSA。",
+   "options": [
+    "Type1",
+    "Type2",
+    "Type4",
+    "Type5"
+   ],
+   "answer": "AB",
+   "analysis": "特殊区域的存在是为了减少区域内的LSA数量，减少路由条目。\n1、Stub 末梢区域\nStub Area 末梢区域，区域内路由器不需要根据特定的外部路由来选择离开区域的出口。区域的ABR会阻止5类LSA进入，减少了LSA数量，同时该区域的ABR会自动下发一条使用3类LSA描述的缺省路由。另外ABR依然会将区域间路由即３类LSA注入到stub区域。此时stub区域存在1类、2类、3类以及使用3类描述缺省路由的LSA。\n2、Totally Stub Area 在Stub基础上，进一步减少3类LSA，但是保留使用3类LSA描述的缺省路由。stub 区域不能引入外部路由。\n3、非完全末梢区域（Not-So-Stub-Area）\nStub 区域阻挡4、5类LSA进入区域，并且禁止接入此区域的路由器引入外部路由。当区域内的路由器需要引入外部路由时，stub不满足组网需要，但是也要使用stub的特性减少\nLSA数量。此时，使用NSSA。NSSA阻挡4、5类LSA进入区域，并且允许路由器引入少量的外部路由。被引入的外部路由以７类LSA描述，并且７类LSA只能在NSSA区域内洪泛，不允许进入Area0，为了使的被NSSA引入的外部路由能够在OSPF其他区域内学习到，\nNSSA的 ABR会将7类LSA转换为5类LSA，然后注入到Area0，从而洪泛到其他区域。另外NSSA中的ABR会下发7类LSA描述的缺省路由，指导路由转发到Area０区域。NSSA引入的外部路由，应该是末端组网，缺省路由不能指向此末端组网。\n4、Totally NSSA  NSSA的ABR将3类LSA阻挡，过滤掉域间路由，但是保留描述缺省路由的3类LSA。"
+  },
+  {
+   "id": "1-90",
+   "type": "multiple",
+   "question": "OSPF TotallNSSA 区域中肯定不会注入______ 类型的LSA。",
+   "options": [
+    "Type3",
+    "Type4",
+    "Type5",
+    "Type7"
+   ],
+   "answer": "BC",
+   "analysis": "特殊区域的存在是为了减少区域内的LSA数量，减少路由条目。\n1、Stub 末梢区域\nStub Area 末梢区域，区域内路由器不需要根据特定的外部路由来选择离开区域的出口。区域的ABR会阻止5类LSA进入，减少了LSA数量，同时该区域的ABR会自动下发一条使用3类LSA描述的缺省路由。另外ABR依然会将区域间路由即３类LSA注入到stub区域。此时stub区域存在1类、2类、3类以及使用3类描述缺省路由的LSA。\n2、Totally Stub Area 在Stub基础上，进一步减少3类LSA，但是保留使用3类LSA描述的缺省路由。stub 区域不能引入外部路由。\n3、非完全末梢区域（Not-So-Stub-Area）\nStub 区域阻挡4、5类LSA进入区域，并且禁止接入此区域的路由器引入外部路由。当区域内的路由器需要引入外部路由时，stub不满足组网需要，但是也要使用stub的特性减少\nLSA数量。此时，使用NSSA。NSSA阻挡4、5类LSA进入区域，并且允许路由器引入少量的外部路由。被引入的外部路由以７类LSA描述，并且７类LSA只能在NSSA区域内洪泛，不允许进入Area0，为了使的被NSSA引入的外部路由能够在OSPF其他区域内学习到，\nNSSA的 ABR会将7类LSA转换为5类LSA，然后注入到Area0，从而洪泛到其他区域。另外NSSA中的ABR会下发7类LSA描述的缺省路由，指导路由转发到Area０区域。NSSA引入的外部路由，应该是末端组网，缺省路由不能指向此末端组网。\n4、Totally NSSA  NSSA的ABR将3类LSA阻挡，过滤掉域间路由，但是保留描述缺省路由的3类LSA。"
+  },
+  {
+   "id": "1-91",
+   "type": "multiple",
+   "question": "OSPF NSSA 区域中可能注入______ 类型的LSA。",
+   "options": [
+    "Type1",
+    "Type2",
+    "Type3",
+    "Type4",
+    "Type5",
+    "Type7"
+   ],
+   "answer": "ABCF",
+   "analysis": "特殊区域的存在是为了减少区域内的LSA数量，减少路由条目。\n1、Stub 末梢区域\nStub Area 末梢区域，区域内路由器不需要根据特定的外部路由来选择离开区域的出口。区域的ABR会阻止5类LSA进入，减少了LSA数量，同时该区域的ABR会自动下发一条使用3类LSA描述的缺省路由。另外ABR依然会将区域间路由即３类LSA注入到stub区域。此时stub区域存在1类、2类、3类以及使用3类描述缺省路由的LSA。\n2、Totally Stub Area 在Stub基础上，进一步减少3类LSA，但是保留使用3类LSA描述的缺省路由。stub 区域不能引入外部路由。\n3、非完全末梢区域（Not-So-Stub-Area）\nStub 区域阻挡4、5类LSA进入区域，并且禁止接入此区域的路由器引入外部路由。当区域内的路由器需要引入外部路由时，stub不满足组网需要，但是也要使用stub的特性减少\nLSA数量。此时，使用NSSA。NSSA阻挡4、5类LSA进入区域，并且允许路由器引入少量的外部路由。被引入的外部路由以７类LSA描述，并且７类LSA只能在NSSA区域内洪泛，不允许进入Area0，为了使的被NSSA引入的外部路由能够在OSPF其他区域内学习到，\nNSSA的 ABR会将7类LSA转换为5类LSA，然后注入到Area0，从而洪泛到其他区域。另外NSSA中的ABR会下发7类LSA描述的缺省路由，指导路由转发到Area０区域。NSSA引入的外部路由，应该是末端组网，缺省路由不能指向此末端组网。\n4、Totally NSSA  NSSA的ABR将3类LSA阻挡，过滤掉域间路由，但是保留描述缺省路由的3类LSA。"
+  },
+  {
+   "id": "1-92",
+   "type": "single",
+   "question": "两台MSR路由器RTA 和RTB 通过192.168.1.0/20网段互联，现在对两台路由器执行如下命令：\n[RTA]ospf 1\n[RTA-ospf-1]area 0\n[RTA-ospf-1-area-0.0.0.0]network 192.168.1.0 0.0.0.255\n[RTB]ospf 100\n[RTB-ospf-100]area 1\n[RTB-ospf-100-area-0.0.0.1]network 192.168.1.0 0.0.0.255\n从以上配置可以判断______。",
+   "options": [
+    "RTA和RTB 可以建立OSPF邻居关系",
+    "RTA和RTB 不可以建立OSPF邻居关系，若将area ID配置成一致，就可以建立OSPF邻居关系",
+    "RTA和RTB 不可以建立OSPF邻居关系，若将OSPF进程号配置成一致，就可以建立\nOSPF邻居关系",
+    "RTA 和RTB 不可以建立OSPF邻居关系，必须将OSPF进程号和area ID都配置成一致，才可以建立OSPF邻居关系"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-93",
+   "type": "single",
+   "question": "两台MSR路由器RTA 和RTB 通过172.16.0.0/24网段互联，现在对两台路由器执行如下命令：\n[RTA]ospf 1\n[RTA-ospf-1]area 0\n[RTA-ospf-1-area-0.0.0.0]network 172.16.0.0 0.0.0.255\n[RTB]ospf 100\n[RTB-ospf-100]area 1\n[RTB-ospf-100-area-0.0.0.1]network 172.16.0.0 0.0.0.255\n从以上配置可以判断______。",
+   "options": [
+    "RTA和RTB 可以建立OSPF邻居关系",
+    "RTA和RTB 不可以建立OSPF邻居关系，若将area ID配置成一致，就可以建立OSPF邻居关系",
+    "RTA和RTB 不可以建立OSPF邻居关系，若将OSPF进程号配置成一致，就可以建立OSPF邻居关系",
+    "RTA 和RTB 不可以建立OSPF邻居关系，必须将OSPF进程号和area ID都配置成一致，才可以建立OSPF邻居关系"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-94",
+   "type": "single",
+   "question": "在MSR路由器RTA上执行如下命令：\n[RTA-GigabitEthernet0/0]ip address 192.168.1.1 24\n[RTA-GigabitEthernet0/0]quit\n[RTA]router id 1.1.1.1\n[RTA]ospf 1 router-id 2.2.2.2\n[RTA-ospf-1]quit\n[RTA]interface LoopBack 0\n[RTA-LoopBack0]ip address 3.3.3.3 32\n在以上配置可以判断RTA的OSPF 进程1的Router ID是______。",
+   "options": [
+    "1.1.1.1",
+    "2.2.2.2",
+    "3.3.3.3",
+    "192.168.1.1"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-95",
+   "type": "multiple",
+   "question": "在MSR路由器RTA上执行display ospf peer命令后，路由器输出如下：\nOSPF Process 1 with Router ID 2.2.2.2\nNeighbor Brief Information\nArea: 0.0.0.0\nRouter ID    Address        Pri    Dead-Time    Interface    State\n3.3.3.3         192.168.1.2    1        37                   GE0/0         Full/DR\n从以上输出可以判断________。",
+   "options": [
+    "RTA 的OSPF进程1的Router ID是2.2.2.2",
+    "RTA 的OSPF进程1 中邻居路由器的Router ID是3.3.3.3",
+    "RTA 通过GE0/0接口与对端互联，且GE0/0的IP地址配置为192.168.1.2",
+    "RTA在互联的网络上被选举成为DR"
+   ],
+   "answer": "AB",
+   "analysis": ""
+  },
+  {
+   "id": "1-96",
+   "type": "multiple",
+   "question": "在MSR路由器RTA上执行display ospf peer命令后，路由器输出如下：OSPF Process 100 with Router ID 2.2.2.2\nNeighbor Brief Information\nArea: 0.0.0.0\nRouter ID    Address         Pri    Dead-Time    Interface    State\n3.3.3.3          192.168.1.2    1        37                   GE0/0         Full/DR\n从以上输出可以判断________。",
+   "options": [
+    "RTA 的OSPF进程1的Router ID是2.2.2.2",
+    "邻居路由器的OSPF Router ID是3.3.3.3",
+    "RTA与邻居之间的失效时间还有37s",
+    "RTA在互联的网络上未被选举成为DR"
+   ],
+   "answer": "BCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-97",
+   "type": "multiple",
+   "question": "在MSR路由器RTA上执行display ospf interface命令后，路由器输出如下：OSPF Process 1 with Router ID 2.2.2.2\nInterfaces\nArea: 0.0.0.0\nIP Address     Type              State   Cost   Pri      DR                   BDR\n192.168.1.1     Broadcast    BDR     1         1       192.168.1.2    192.168.1.1从以上输出可以判断________。",
+   "options": [
+    "RTA 的OSPF进程1的Router ID是2.2.2.2",
+    "当前接口的IP地址是192.168.1.1",
+    "当前接口的OSPF网络类型是Broadcast",
+    "RTA 在该接口所处的网段中被选举为DR"
+   ],
+   "answer": "ABC",
+   "analysis": ""
+  },
+  {
+   "id": "1-98",
+   "type": "multiple",
+   "question": "在MSR路由器RTA上执行display ospf interface命令后，路由器输出如下：OSPF Process 100 with Router ID 2.2.2.2\nInterfaces\nArea: 0.0.0.0\nIP Address    Type              State   Cost    Pri      DR                    BDR\n192.168.1.1    Broadcast    BDR     1          1        192.168.1.2    192.168.1.1从以上输出可以判断______。",
+   "options": [
+    "RTA 的OSPF进程1的Router ID是2.2.2.2",
+    "当前接口的IP地址是192.168.1.1",
+    "当前接口的OSPF网络类型是Broadcast",
+    "RTA 在该接口所处的网段中被选举为BDR"
+   ],
+   "answer": "BCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-99",
+   "type": "multiple",
+   "question": "在MSR路由器RTA上执行display ospf routing命令后，路由器输出如下：OSPF Process 1 with Router ID 1.1.1.1\nRouting Tables\nRouting for Network\nDestination        Cost    Type         NextHop         AdvRouter     Area\n192.168.1.0/24       1       Transit     192.168.1.1     2.2.2.2             0.0.0.0\n192.168.2.0/24       2        Inter         192.168.1.2     2.2.2.2             0.0.0.0\nRouting for ASEs\nDestination            Cost   Type   Tag   NextHop        AdvRouter\n192.168.100.1/32      1      Type2   1       192.168.1.2     3.3.3.3\n192.168.101.1/32      1      Type2   1       192.168.1.2     3.3.3.3\n192.168.102.1/32      1      Type2   1       192.168.1.2     3.3.3.3\n192.168.103.1/32      1      Type2   1       192.168.1.2     3.3.3.3\nTotal Nets: 6\nIntra Area: 1   Inter  Area: 1   ASE: 4   NSSA: 0\n从以上输出可以判断______。",
+   "options": [
+    "总共有6条OSPF路由，其中1条区域内路由，1条区域间路由，4条外部路由",
+    "192.168.100.1 是接收到的Type2 LSA",
+    "192.168.1.0 这个网段在Area0内",
+    "192.168.2.0 这个网段在Area0内"
+   ],
+   "answer": "AC",
+   "analysis": "B中 由于ASE是指引入的外部路由，所以应该是Type5 LSA；\nD中192.168.2.0/24的路由类型为inter，属于区域间路由，不属于本区域,所以不在Area0内。\nIntra：区域内路由； inter：区域间路由；ASE:外部路由；"
+  },
+  {
+   "id": "1-100",
+   "type": "multiple",
+   "question": "在MSR路由器RTA上执行displaospf routing命令后，路由器输出如下：\nOSPF Process 1 with Router ID 1.1.1.1\nRouting Tables\nRouting for Network\nDestination         Cost    Type         NextHop         AdvRouter      Area\n192.168.1.0/24      1         Transit     192.168.1.1      2.2.2.2             0.0.0.0\n192.168.2.0/24      2          Inter         192.168.1.2      2.2.2.2             0.0.0.0\nRouting for ASEs\nDestination             Cost    Type     Tag     NextHop           AdvRouter\n192.168.100.1/32      1        Type1    1         192.168.1.2       3.3.3.3\n192.168.101.1/32      1        Type1    1         192.168.1.2       3.3.3.3\n192.168.102.1/32      1        Type2    1         192.168.1.2       3.3.3.3\n192.168.103.1/32      1        Type2    1         192.168.1.2       3.3.3.3\nTotal Nets: 6\nIntra Area: 1    Inter Area: 1    ASE: 4     NSSA: 0\n从以上输出可以判断______。",
+   "options": [
+    "总共有6条OSPF路由，其中1条区域内路由，1条区域间路由，4条外部路由",
+    "192.168.100.1是接受到的Type1 LSA",
+    "192.168.102.1是接受到的Type2 LSA",
+    "192.168.2.0这个网段不在Area0内"
+   ],
+   "answer": "AD",
+   "analysis": "B、C中 由于ASE是指引入的外部路由，所以应该是Type5 LSA\n扩展：\n① LSA 1 路由器 LSA（Router LSA）\n描述路由器的直连链路状态信息。由每个发起路由器通告，只在本区域内传递，不会超过ABR。\n② LSA 2 网络 LSA（Network LSA）\n描述本区域内 BMA / NBMA（串行连接信息不会在此出现）的网络信息以及连接到此网络的路由器。由本 BMA / NBMA 网络的 DR 或 BDR 通告，只在本区域传递。\n③ LSA 3 网络汇总 LSA（Network summary LSA）\n描述 OSPF 的区域间路由（在路由表中以 O IA 标识）。原 LSA 1 所描述的路由信息会由所在区域的 ABR 将其转换为 LSA 3。由 ABR 通告，3 类 LSA 只在一个区域内扩散，但ABR 可以重新生成 3 类 LSA 以便将其扩散到其他区域（但是有的特殊区域会不让 LSA 3进）。\n注意：LSA 3 每穿越一个 ABR，其 ADV Router（通告路由器）都会发生改变，ADV\nRouter 转变为最后一次穿越的 ABR 路由器。\n④ LSA 5 自治系统外部 LSA （Autonomous system external LSA）\n没有看错，这里是 LSA 5，我们先讲 LSA 5 再反过来看 LSA 4。\nLSA 5 描述的是 OSPF 区域以外的路由（RIP、EIGRP、BGP 等，在路由表中以 O E1 /O E2 标识）。由 ASBR 通告，LSA 5 可以传播到整个 OSPF 的所有区域（特殊区域除外）。\n注意：LSA 5 的 ADV Router 在穿越 ABR 的时候是不会改变的。\n⑤ LSA 4 ASBR 汇总 LSA（ASBR summary LSA）\nLSA 4 所承载的内容是：ASBR 的 Router-ID。LSA 4 其实就是图中 R4（通告路由器）将Area 3 中 R11 的 Router-ID 信息转换为 LSA 4，在整个 OSPF 域中泛洪传播（特殊区域除外）。LSA 4 由 ABR 通告。\n为什么需要 LSA 4？由于 LSA 5 的通告路由器在穿越 ABR 的时候不会改变，如图中 Area 3 的 LSA 5 在穿越 R4 到达 Area 0 时，通告路由器不改变仍然是 R11，因此除了 Area\n3，Area 0 和其他区域都不知道 R11 的信息。此时就需要 LSA 4 为 Area 0 和其他区域提供 R11 的信息，可以这么说，LSA 4 是为 LSA 5 所服务的。\n⑥ LSA 7 NSSA 外部 LSA（NSSA External LSA）：\nLSA 7 通告几乎和 LSA 5 通告是相同的，由 ASBR 通告，只是不像 LSA 5 那样在整个\nOSPF 自治系统内进行泛洪扩散，LSA 7 仅仅在始发这个 LSA 7 的 NSSA Area 和 Total NSSA Area 内部进行泛洪扩散。"
+  }
+ ]
+}
