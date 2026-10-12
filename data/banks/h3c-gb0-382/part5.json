@@ -1,0 +1,713 @@
+{
+ "questions": [
+  {
+   "id": "1-201",
+   "type": "multiple",
+   "question": "对于IS-IS中的NSAP区域地址，下列说法正确的是________。",
+   "options": [
+    "NSAP区域地址用于标识路由域中的区域",
+    "在NSAP 地址12.3456.7890.abcd.ef 中，区域地址是12",
+    "在NSAP 地址12.3456.7890.abcd.ef 中，区域地址是12.3456",
+    "一台路由器最多可以配置3 个NSAP区域地址，通常只配置1个"
+   ],
+   "answer": "ABD",
+   "analysis": ""
+  },
+  {
+   "id": "1-202",
+   "type": "single",
+   "question": "对于IS-IS中NET的描述错误的是________。",
+   "options": [
+    "NET的全称是Network EntitTitle，作用类似于OSPF 和BGP 中的Router ID",
+    "NET是一类特殊的NSAP地址",
+    "在IP网络中，NET 地址中的NSEL值为全0",
+    "每台路由器可以最多可以拥有3个NET ，并且这三个NET可以是任意的"
+   ],
+   "answer": "D",
+   "analysis": ""
+  },
+  {
+   "id": "1-203",
+   "type": "single",
+   "question": "下列NSAP中，可以作为集成化IS-IS的NET地址是_______。",
+   "options": [
+    "10.101.202.303.00",
+    "1000.2000.3000.00",
+    "10.2222.3333.4444.01",
+    "20.AAAA.BBBB.CCCC.00"
+   ],
+   "answer": "D",
+   "analysis": "IS-IS路由net地址组成：区域ID+系统ID+NSEL构成，系统ID：System ID用来在区域内唯一标识终端系统或全网路由器，它的长度固定为6字节，且系统ID必须是唯一的，通常将路由器的MAC地址用作系统ID。NSEL：对于路由器总是为0\n例如，若NET为ab.cdef.1234.5678.9abc.00;\n则Area ID为ab.cdef，System ID为1234.5678.9abc，NSEL为00。"
+  },
+  {
+   "id": "1-204",
+   "type": "single",
+   "question": "下列NSAP中，可以作为集成化IS-IS的NET地址是_______。",
+   "options": [
+    "10.101.202.303.00",
+    "1000.2000.3000.00",
+    "1.2222.3333.4444.00",
+    "00.AAAA.BBBB.CCCC.00"
+   ],
+   "answer": "D",
+   "analysis": "IS-IS路由net地址组成：区域ID+系统ID+NSEL构成，系统ID：System ID用来在区域内唯一标识终端系统或全网路由器，它的长度固定为6字节，且系统ID必须是唯一的，通常将路由器的MAC地址用作系统ID。NSEL：对于路由器总是为0\n例如，若NET为ab.cdef.1234.5678.9abc.00;\n则Area ID为ab.cdef，System ID为1234.5678.9abc，NSEL为00。"
+  },
+  {
+   "id": "1-205",
+   "type": "multiple",
+   "question": "某路由器的IS-IS 进程已经配置NET为01.abcd.0001.0002.0003.00 ，还能继续配置以下哪些NET地址？",
+   "options": [
+    "02.fedc.0010.0020.0030.00",
+    "01.abcd.0001.0003.0002.00",
+    "01.0001.0002.0003.00",
+    "fedc.0001.0002.0003.00"
+   ],
+   "answer": "CD",
+   "analysis": "NSEL：对于路由器总是为0\nSystem ID用来在区域内唯一标识终端系统或全网路由器，它的长度固定为6字节，且系统ID必须是唯一的。所以系统ID不变，即0001.0002.0003；区域ID不能相同，不然会冲突，所以选C、D，不选B"
+  },
+  {
+   "id": "1-206",
+   "type": "multiple",
+   "question": "某路由器的IS-IS 进程已经配置NET为01.abcd.0001.0002.0003.00 ，还能继续配置以下哪些NET地址？",
+   "options": [
+    "02.fedc.0010.0020.0030.00",
+    "abcd.abcd.0001.0002.0003.00",
+    "01.0001.0002.0003.00",
+    "fedc.0001.0002.0003.10"
+   ],
+   "answer": "BC",
+   "analysis": "NSEL：对于路由器总是为0\nSystem ID用来在区域内唯一标识终端系统或全网路由器，它的长度固定为6字节，且系统ID必须是唯一的。所以系统ID不变，即0001.0002.0003；区域ID不能相同，不然会冲突，所以选B、C，不选D是因为NSEL不是0"
+  },
+  {
+   "id": "1-207",
+   "type": "multiple",
+   "question": "路由器使用Router-ID 生成IS-IS进程NET 地址的益处有______。",
+   "options": [
+    "Router-ID和NET 中的System-ID默认就是绑定的，便于维护",
+    "NET 由Router-ID生成，便于记忆",
+    "使用全网唯一的Router-ID 能够保证全网路由器IS-IS进程NET的唯一性",
+    "若发生设备替换，Router-ID 和System-ID都可以灵活修改"
+   ],
+   "answer": "BCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-208",
+   "type": "multiple",
+   "question": "RTA 至RTD等按照图示进行IS-IS组网，RTA、RTC 、RTD的System-ID如图所示。那么下列选项中______可以作为RTB的System-ID。",
+   "options": [
+    "0002.0000.0000",
+    "0003.0000.0000",
+    "0002.0003.0000",
+    "0004.0000.0000"
+   ],
+   "answer": "AC",
+   "analysis": "无图无真相，死记硬背。"
+  },
+  {
+   "id": "1-209",
+   "type": "single",
+   "question": "IS-IS协议报文分为IIH 、CSNP、PSNP和LSP，这四种报文分类是通过______标识的。",
+   "options": [
+    "链路层报文头",
+    "IS-IS通用报文头",
+    "IS-IS专用报文头",
+    "CLV"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-210",
+   "type": "multiple",
+   "question": "IS-IS 中，______ 分为Level-1和Level-2两种类型。",
+   "options": [
+    "IIH",
+    "CSNP",
+    "PSNP",
+    "LSP",
+    "CLV"
+   ],
+   "answer": "ABCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-211",
+   "type": "single",
+   "question": "IS-IS报文中IP Internal ReachabilitInformation CLV 的作用是______。",
+   "options": [
+    "携带IS的区域号",
+    "携带IS的Stem-ID信息",
+    "携带使能IS-IS接口的IP地址信息",
+    "携带IP前缀信息，即IP路由信息"
+   ],
+   "answer": "D",
+   "analysis": "",
+   "images": [
+    "p118_77.jpeg"
+   ]
+  },
+  {
+   "id": "1-212",
+   "type": "single",
+   "question": "IS-IS路由器之间相互传递链路状态。描述链路状态的信息是封装在_______中。",
+   "options": [
+    "链路层报文头",
+    "IS-IS共有报文头",
+    "IS-IS专用报文头",
+    "CLV"
+   ],
+   "answer": "D",
+   "analysis": ""
+  },
+  {
+   "id": "1-213",
+   "type": "single",
+   "question": "在NSAP地址06.2400.0001.0020.0300.01中，哪一部分是Stem ID？",
+   "options": [
+    "2400.0001.0020",
+    "2400.0001.0020.0300",
+    "06.2400",
+    "0001.0020.0300",
+    "01"
+   ],
+   "answer": "D",
+   "analysis": "IS-IS路由net地址组成：区域ID+系统ID+NSEL构成，系统ID：System ID用来在区域内唯一标识终端系统或全网路由器，它的长度固定为6字节，且系统ID必须是唯一的，通常将路由器的MAC地址用作系统ID。NSEL：对于路由器总是为0\n例如，若NET为ab.cdef.1234.5678.9abc.00;\n则Area ID为ab.cdef，System ID为1234.5678.9abc，NSEL为00。"
+  },
+  {
+   "id": "1-214",
+   "type": "single",
+   "question": "在NSAP地址06.2400.0001.0020.0300.01中，哪一部分是区域地址？",
+   "options": [
+    "2400.0001.0020",
+    "2400.0001.0020.0300",
+    "06.2400",
+    "0001.0020.0300",
+    "01"
+   ],
+   "answer": "C",
+   "analysis": "IS-IS路由net地址组成：区域ID+系统ID+NSEL构成，系统ID：System ID用来在区域内唯一标识终端系统或全网路由器，它的长度固定为6字节，且系统ID必须是唯一的，通常将路由器的MAC地址用作系统ID。NSEL：对于路由器总是为0\n例如，若NET为ab.cdef.1234.5678.9abc.00;\n则Area ID为ab.cdef，System ID为1234.5678.9abc，NSEL为00。"
+  },
+  {
+   "id": "1-215",
+   "type": "single",
+   "question": "如图所示，4台路由器连接到一条以太网链路。路由器接口为广播网络类型，进行了DIS选举并建立了邻接关系。此时如果RTA 发生重启，则重启完成后，此链路上的DIS 是\n______。",
+   "options": [
+    "RTA",
+    "RTB",
+    "RTC",
+    "RTD"
+   ],
+   "answer": "A",
+   "analysis": "IS-IS协议中，DIS是抢占类型的,\n选举基于接口的优先级（华为默认为64）\n如果优先级一样，具有最大的SNPA网连节点路由器当选为DIS\n本题中RTA的优先级最大，重启完成后，仍然是RTA被选为DIS",
+   "images": [
+    "p119_78.jpeg"
+   ]
+  },
+  {
+   "id": "1-216",
+   "type": "single",
+   "question": "如图所示，4台路由器连接到一条以太网链路。路由器接口为广播网络类型，进行了DIS选举并建立了邻接关系。此时如果RTA 发生重启，则重启完成后，此链路上的DIS 是______。",
+   "options": [
+    "RTA",
+    "RTB",
+    "RTC",
+    "RTD"
+   ],
+   "answer": "C",
+   "analysis": "无图无真相。\nIS-IS协议中，DIS是抢占类型的,\n选举基于接口的优先级（华为默认为64）\n如果优先级一样，具有最大的SNPA网连节点路由器当选为DIS"
+  },
+  {
+   "id": "1-217",
+   "type": "single",
+   "question": "如图所示，4台路由器连接到一条以太网链路。路由器接口为广播网络类型。则根据图中的信息判断，在该以太网链路上，IS-IS邻接关系共有________个。",
+   "options": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "answer": "D",
+   "analysis": "无图无真相。\n建立邻接关系需要满足如下条件：\n两台L1路由器必须在同一区域才能建立邻接关系。\n两台L2路由器建立L2邻接关系不要求在同一区域。\n一台L1路由器和一台L1/2路由器在相同区域时才能形成L1邻接关系。\n一台L2路由器和一台L1/2路由器不管是同区域还是不同区域，都能形成L2邻接关系。\n两台L1/2路由器，同区域内可形成L1和L2邻接关系，不同区域只能形成L2邻接关系。\n链路两端的IS-IS接口的网络类型必须一样。\n华为设备还要求链路两端的IP地址位于同一个子网，P2P可以配置忽略网段检查，华为设备命令接口下：isis peer-ip-ignore。\nIS-IS要求整个域内路由器使用的System-id长度必须一致，在华为的实现中，System-id长度固定使用6Byte;该规则用于P2P邻接。\n两台路由器使用的最大区域地址数要相同，华为默认支持最大区域地址数是3;该规则用于P2P邻接。\n如果配置了认证，要求两台路由器的认证信息要一致(认证类型和密钥信息)。\n要求链路两端的接口MTU值要一致。在华为的实现中，不管是P2P链路还是广播链路，发送的Hello都是填充至接口MTU大小，用以检查链路两端的接口MTU。\n整体来说IS-IS邻接关系建立的过程更简单，仅通过IIH报文便可以完成。邻接关系建立完成后，再同步LSDB（链路状态数据库），这里和OSPF的顺序不同。"
+  },
+  {
+   "id": "1-218",
+   "type": "single",
+   "question": "如图所示，4台路由器连接到一条以太网链路。路由器接口为广播网络类型。则根据图中的信息判断，在该以太网链路上，IS-IS邻接关系共有________个。",
+   "options": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "answer": "B",
+   "analysis": "无图无真相。\n建立邻接关系需要满足如下条件：\n两台L1路由器必须在同一区域才能建立邻接关系。\n两台L2路由器建立L2邻接关系不要求在同一区域。\n一台L1路由器和一台L1/2路由器在相同区域时才能形成L1邻接关系。\n一台L2路由器和一台L1/2路由器不管是同区域还是不同区域，都能形成L2邻接关系。\n两台L1/2路由器，同区域内可形成L1和L2邻接关系，不同区域只能形成L2邻接关系。\n链路两端的IS-IS接口的网络类型必须一样。\n华为设备还要求链路两端的IP地址位于同一个子网，P2P可以配置忽略网段检查，华为设备命令接口下：isis peer-ip-ignore。\nIS-IS要求整个域内路由器使用的System-id长度必须一致，在华为的实现中，System-id长度固定使用6Byte;该规则用于P2P邻接。\n两台路由器使用的最大区域地址数要相同，华为默认支持最大区域地址数是3;该规则用于P2P邻接。\n如果配置了认证，要求两台路由器的认证信息要一致(认证类型和密钥信息)。\n要求链路两端的接口MTU值要一致。在华为的实现中，不管是P2P链路还是广播链路，发送的Hello都是填充至接口MTU大小，用以检查链路两端的接口MTU。\n整体来说IS-IS邻接关系建立的过程更简单，仅通过IIH报文便可以完成。邻接关系建立完成后，再同步LSDB（链路状态数据库），这里和OSPF的顺序不同。"
+  },
+  {
+   "id": "1-219",
+   "type": "multiple",
+   "question": "在IS-IS 中，P2P类型链路和LAN 类型链路上的Hello消息有何区别？",
+   "options": [
+    "类型不一致，分别采用P2P IIH和LAN IIH",
+    "发送方式不一致，P2P采用单播，LAN采用组播",
+    "发送间隔不一致，P2P是10s，而LAN是3.3s",
+    "LAN IIH中分为Level-1和Level-2两类，而P2P不作区分"
+   ],
+   "answer": "ABD",
+   "analysis": ""
+  },
+  {
+   "id": "1-220",
+   "type": "single",
+   "question": "图示为RTA、RTB、RTC 之间Hello报文的发送情况。根据以上信息可以判断，RTA 和RTC 之间______，RTC与RTB之间______。",
+   "options": [
+    "已建立邻接关系，未建立邻接关系",
+    "未建立邻接关系，已建立邻接关系",
+    "已建立邻接关系，已建立邻接关系",
+    "未建立邻接关系，未建立邻接关系"
+   ],
+   "answer": "A",
+   "analysis": "",
+   "images": [
+    "p122_79.jpeg"
+   ]
+  },
+  {
+   "id": "1-221",
+   "type": "single",
+   "question": "图示为RTA、RTB、RTC 之间Hello报文的发送情况。根据以上信息可以判断，RTA 和RTC 之间______，RTC与RTB之间______。",
+   "options": [
+    "已建立邻接关系，已建立邻接关系",
+    "未建立邻接关系，已建立邻接关系",
+    "已建立邻接关系，未建立邻接关系",
+    "未建立邻接关系，未建立邻接关系"
+   ],
+   "answer": "D",
+   "analysis": "无图无真相"
+  },
+  {
+   "id": "1-222",
+   "type": "multiple",
+   "question": "IS-IS在广播网络类型链路上周期性发送的消息有________。",
+   "options": [
+    "IIH",
+    "LSP",
+    "CSNP",
+    "PSNP"
+   ],
+   "answer": "AC",
+   "analysis": ""
+  },
+  {
+   "id": "1-223",
+   "type": "multiple",
+   "question": "在图示各种路由器建立IS-IS邻居关系后，发送过CSNP消息的路由器有______。",
+   "options": [
+    "RTA",
+    "RTB",
+    "RTC",
+    "RTD"
+   ],
+   "answer": "ACD",
+   "analysis": "RTA、RTB处于NMBA网络中，作为DIS的RTA发送CSNP;RTC和RTD使用P2P方式连接，所以都发送CSNP。",
+   "images": [
+    "p124_80.jpeg"
+   ]
+  },
+  {
+   "id": "1-224",
+   "type": "multiple",
+   "question": "在图示各种路由器建立IS-IS邻居关系并达到同步后，发送过CSNP消息的路由器有______。",
+   "options": [
+    "RTA",
+    "RTB",
+    "RTC",
+    "RTD"
+   ],
+   "answer": "CD",
+   "analysis": "RTC和RTD使用P2P方式连接，所以都发送CSNP。",
+   "images": [
+    "p125_81.jpeg"
+   ]
+  },
+  {
+   "id": "1-225",
+   "type": "single",
+   "question": "如图所示，RTA和RTB在P2P 类型链路上建立IS-IS 邻接关系。RTB 在向RTA 发送LSP_N 后，RTA向RTB发送______ ，RTB在经过计时后又向RTA发送LSP_N ，说明此消息______。",
+   "options": [
+    "PSNP，RTB收到",
+    "PSNP，RTB未收到",
+    "CSNP，RTB收到",
+    "CSNP，RTB未收到"
+   ],
+   "answer": "B",
+   "analysis": "无图无真相，死记硬背。"
+  },
+  {
+   "id": "1-226",
+   "type": "single",
+   "question": "如图所示，RTA 和RTB 在P2P类型链路上建立IS-IS邻接关系。RTB 在向RTA发送LSP_N后，经过一段计时又向RTA发送LSP_N，RTA 随后向RTB发送______，从上可以得知\n______丢失。",
+   "options": [
+    "PSNP，第一个LSP_N",
+    "PSNP，第二个LSP_N",
+    "CSNP，第一个LSP_N",
+    "CSNP，第二个LSP_N"
+   ],
+   "answer": "A",
+   "analysis": ""
+  },
+  {
+   "id": "1-227",
+   "type": "multiple",
+   "question": "RTA 和RTB 如图在P2P类型链路上建立IS-IS邻接关系，图示是RTB从运行IS-IS 开始到发送CSNP的示意，那么消息1 到n 的消息类型可能是______。",
+   "options": [
+    "IIH",
+    "LSP",
+    "PSNP",
+    "CLV"
+   ],
+   "answer": "AB",
+   "analysis": "IS-IS四种报文的作用：1、IIH：建立和维护邻居关系，2、LSP：传输链路状态信息，3、CSNP：通告链路状态数据库（LSDB）中所有摘要信息，4、PSNP：请求和确认链路状态信息。注意本题是从运行IS-IS开始到发送CSNP，所以消息中不可能有PSNP。",
+   "images": [
+    "p126_82.jpeg"
+   ]
+  },
+  {
+   "id": "1-228",
+   "type": "single",
+   "question": "如图所示IS-IS网络中，在路由稳定的情况下，RTB和RTD之间链路增加从地址网段192.168.224.0/24，那么IS-IS拓扑______，IP 路由信息______。",
+   "options": [
+    "改变，改变",
+    "改变，没有改变",
+    "没有改变，改变",
+    "没有改变，没有改变"
+   ],
+   "answer": "C",
+   "analysis": "",
+   "images": [
+    "p127_83.jpeg"
+   ]
+  },
+  {
+   "id": "1-229",
+   "type": "single",
+   "question": "如图所示IS-IS网络中，在路由稳定的情况下，将RTB 上IP 地址192.168.24.1 所在的接口shutdown。那么IS-IS拓扑______，IP路由信息______。",
+   "options": [
+    "改变，改变",
+    "改变，没有改变",
+    "没有改变，改变",
+    "没有改变，没有改变"
+   ],
+   "answer": "A",
+   "analysis": "",
+   "images": [
+    "p128_84.jpeg"
+   ]
+  },
+  {
+   "id": "1-230",
+   "type": "single",
+   "question": "如图所示IS-IS网络中，在路由稳定的情况下，将RTB 和RTD将互联网段改成\n192.168.224.0/24，那么IS-IS拓扑______，IP路由信息______。",
+   "options": [
+    "改变，改变",
+    "改变，没有改变",
+    "没有改变，改变",
+    "没有改变，没有改变"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-231",
+   "type": "multiple",
+   "question": "在下列的NET地址中，哪些是正确的？",
+   "options": [
+    "06.2400.0001.0020.0300.01",
+    "10.0001.0002.0003.00",
+    "20.abcd.1234.00",
+    "02.0017.2700.0001.0002.00"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "1-232",
+   "type": "single",
+   "question": "某路由器有一接口使用帧中继与多个路由器相连，现在需要在这些路由器间运行IS-IS，那么需要在该接口上作何操作？",
+   "options": [
+    "在接口下使能IS-IS",
+    "需要在接口下划分子接口，将每个子接口对应一个邻居，在子接口上使能IS-IS",
+    "需要在接口下将IS-IS网络类型配置为Broadcast",
+    "需要在接口下将IS-IS网络类型配置为P2P"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-233",
+   "type": "single",
+   "question": "如图所示，IS-IS网络中，RTA配置命令如下，请补齐。\n[RTA]isis\n[RTA-isis-1]______\n[RTA-isis-1]interface serial 2/0\n[RTA-Serial2/0]isis enable 1",
+   "options": [
+    "area 1",
+    "network 192.168.12.1 0.0.0.0",
+    "is-level level-1",
+    "network-entit01.1111.1111.1111.00"
+   ],
+   "answer": "D",
+   "analysis": ""
+  },
+  {
+   "id": "1-234",
+   "type": "single",
+   "question": "如图所示IS-IS网络中，RTA和RTB配置如下：\n[RTA]isis\n[RTA-isis-1]is-level level-1\n[RTA-isis-1]network-entit01.1111.1111.1111.00[RTA-isis-1]interface serial 2/0\n[RTA-Serial2/0]isis enable 1\n[RTB]isis\n[RTB-isis-1]network-entit01.2222.2222.2222.00[RTB-isis-1]interface serial 1/0\n[RTB-Serial1/0]isis enable 1\n[RTB-Serial1/0]isis circuit-level level-1\n那么RTA 和RTB 间______。",
+   "options": [
+    "无法建立邻接关系",
+    "只建立Level-1邻接关系",
+    "只建立Level-2邻接关系",
+    "同时建立Level-1和Level-2邻接关系"
+   ],
+   "answer": "B",
+   "analysis": "",
+   "images": [
+    "p130_85.jpeg"
+   ]
+  },
+  {
+   "id": "1-235",
+   "type": "single",
+   "question": "如图所示IS-IS网络中，RTA和RTB配置如下：\n[RTA]isis\n[RTA-isis-1]network-entit01.1111.1111.1111.00[RTA-isis-1]interface serial 2/0\n[RTA-Serial2/0]isis enable 1\n[RTB]isis 2\n[RTB-isis-2]network-entit01.2222.2222.2222.00[RTB-isis-2]interface serial 1/0\n[RTB-Serial1/0]isis enable 2\n[RTB-Serial1/0]isis circuit-level level-2\n那么RTA 和RTB 间______。",
+   "options": [
+    "无法建立邻接关系",
+    "只建立Level-1邻接关系",
+    "只建立Level-2邻接关系",
+    "同时建立Level-1和Level-2邻接关系"
+   ],
+   "answer": "A",
+   "analysis": "ISIS进程不一致",
+   "images": [
+    "p131_86.jpeg"
+   ]
+  },
+  {
+   "id": "1-236",
+   "type": "single",
+   "question": "如图所示IS-IS网络中，RTA、RTB、RTC配置如下：\n[RTA]isis\n[RTA-isis-1]is-level level-1\n[RTA-isis-1]network-entit01.1111.1111.1111.00\n[RTA-isis-1]interface serial 2/0\n[RTA-Serial2/0]isis enable 1\n[RTB]isis\n[RTB-isis-1]is-level level-1\n[RTB-isis-1]network-entit01.2222.2222.2222.00\n[RTB-isis-1]interface serial 1/0\n[RTB-Serial1/0]isis enable 1\n[RTB-Serial1/0]interface Ethernet 0/0\n[RTB-Ethernet0/0]isis enable 1\n[RTC]isisRTC-isis-1]is-level level-1\n[RTC-isis-1]network-entit01.3333.3333.3333.00\n[RTC-isis-1]interface Ethernet 0/0\n[RTC-Ethernet0/0]isis enable 1\n[RTC-Ethernet0/0]interface Ethernet 0/1\n[RTC-Ethernet0/1]isis enable 1\n各路由器路由稳定后，RTA 上IS-IS路由192.168.3.0/24的开销是______。",
+   "options": [
+    "3",
+    "2",
+    "1563",
+    "30",
+    "20"
+   ],
+   "answer": "D",
+   "analysis": "路由稳定后，RTA上isis路由192.168.3.0的开销为30.narrow metric：每个接口不管带宽多少，metric都是10，路径metric最大为2~10，wide metric最大为2~32。所以答案是10+10+10=30",
+   "images": [
+    "p132_87.jpeg"
+   ]
+  },
+  {
+   "id": "1-237",
+   "type": "single",
+   "question": "如图所示IS-IS网络中，RTA、RTB、RTC配置如下：[RTA]isis\n[RTA-isis-1]is-level level-1\n[RTA-isis-1]network-entit01.1111.1111.1111.00\n[RTA-isis-1]interface serial 2/0\n[RTA-Serial2/0]isis enable 1\n[RTA-Serial2/0]isis cost 1\n[RTB]isis\n[RTB-isis-1]is-level level-1\n[RTB-isis-1]network-entit01.2222.2222.2222.00\n[RTB-isis-1]interface serial 1/0\n[RTB-Serial1/0]isis enable 1\n[RTB-Serial1/0]isis cost 1\n[RTB-Serial1/0]interface Ethernet 0/0\n[RTB-Ethernet0/0]isis enable 1\n[RTB-Ethernet0/0]isis cost 1\n[RTC]isisRTC-isis-1]is-level level-1\n[RTC-isis-1]network-entit01.3333.3333.3333.00\n[RTC-isis-1]interface Ethernet 0/0\n[RTC-Ethernet0/0]isis enable 1\n[RTC-Ethernet0/0]isis cost 1\n[RTC-Ethernet0/0]interface Ethernet 0/1\n[RTC-Ethernet0/1]isis enable 1\n[RTC-Ethernet0/1]isis cost 1\n各路由器路由稳定后，RTA上IS-IS 路由192.168.3.0/24 的开销是______。",
+   "options": [
+    "3",
+    "2",
+    "1563",
+    "30",
+    "20"
+   ],
+   "answer": "A",
+   "analysis": "RTA、RTB、RTC各接口配置了cost 1,所以答案是1+1+1=3",
+   "images": [
+    "p133_88.jpeg"
+   ]
+  },
+  {
+   "id": "1-238",
+   "type": "multiple",
+   "question": "如图所示IS-IS网络中，各路由器配置如下：\n[RTA-isis-1]cost-ste compatible\n[RTB-isis-1]cost-ste wide-compatible\n[RTC-isis-1]cost-ste narrow-compatible\n那么能够相互之间正确计算链路开销的是_______。",
+   "options": [
+    "RTA和RTB",
+    "RTB和RTC",
+    "RTA和RTC",
+    "都不行"
+   ],
+   "answer": "ABC",
+   "analysis": "compatible：同时支持发送和接收wide、narrow。",
+   "images": [
+    "p134_89.jpeg"
+   ]
+  },
+  {
+   "id": "1-239",
+   "type": "multiple",
+   "question": "如图所示IS-IS网络中，各路由器配置如下：\n[RTA-isis-1]cost-ste wide\n[RTB-isis-1]cost-ste wide-compatible\n[RTC-isis-1]cost-ste narrow-compatible\n那么能够相互之间正确计算链路开销的是________。",
+   "options": [
+    "RTA和RTB",
+    "RTB和RTC",
+    "RTA和RTC",
+    "都不行"
+   ],
+   "answer": "A",
+   "analysis": "l narrow：接收或发送cost类型为narrow的报文。\nl wide：接收或发送cost类型为wide的报文。\nlwide-compatible：可以接收cost类型为narrow或wide的报文，但却只发送wide的报文。l compatible：可以接收或发送cost类型为narrow或wide的报文。\nl narrow-compatible：可以接收cost类型为narrow或wide的报文，但却只发送narrow的",
+   "images": [
+    "p134_90.jpeg"
+   ]
+  },
+  {
+   "id": "1-240",
+   "type": "multiple",
+   "question": "如图所示IS-IS网络中，各路由器配置如下：\n[RTA-isis-1]cost-ste compatible\n[RTB-isis-1]cost-ste narrow\n[RTC-isis-1]cost-ste wide\n那么能够相互之间正确计算链路开销的是________。",
+   "options": [
+    "RTA和RTB",
+    "RTB和RTC",
+    "RTA和RTC",
+    "都不行"
+   ],
+   "answer": "AC",
+   "analysis": "l narrow：接收或发送cost类型为narrow的报文。\nl wide：接收或发送cost类型为wide的报文。\nlwide-compatible：可以接收cost类型为narrow或wide的报文，但却只发送wide的报文。l compatible：可以接收或发送cost类型为narrow或wide的报文。\nl narrow-compatible：可以接收cost类型为narrow或wide的报文，但却只发送narrow的",
+   "images": [
+    "p135_91.jpeg"
+   ]
+  },
+  {
+   "id": "1-241",
+   "type": "multiple",
+   "question": "如图所示IS-IS网络中，各路由器路由稳定后，RTE 通过邻居学习的IS-IS Level-1路由有______。",
+   "options": [
+    "10.4.5.0/30",
+    "10.3.4.0/30",
+    "10.1.4.0/30",
+    "10.1.5.0/30"
+   ],
+   "answer": "BC",
+   "analysis": "无图无真相，死记硬背。"
+  },
+  {
+   "id": "1-242",
+   "type": "multiple",
+   "question": "如图所示IS-IS网络中，各路由器路由稳定后，RTE的IS-IS LSDB 中IS-IS Level-1路由有______。",
+   "options": [
+    "10.4.5.0/30",
+    "10.3.4.0/30",
+    "10.1.4.0/30",
+    "10.1.5.0/30"
+   ],
+   "answer": "ABCD",
+   "analysis": "无图无真相，死记硬背。"
+  },
+  {
+   "id": "1-243",
+   "type": "multiple",
+   "question": "如图所示IS-IS网络中，各路由器路由稳定后，RTB通过邻居学到的IS-IS Level-1路由有______。",
+   "options": [
+    "10.1.2.0/30",
+    "10.1.3.0/30",
+    "10.2.3.0/30",
+    "10.3.4.0/30"
+   ],
+   "answer": "BD",
+   "analysis": "无图无真相，死记硬背。"
+  },
+  {
+   "id": "1-244",
+   "type": "single",
+   "question": "如图所示IS-IS网络中，各路由器路由稳定后，RTA通过邻居学到的IS-IS Level-2路由有______条。",
+   "options": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "answer": "A",
+   "analysis": "无图无真相，死记硬背。"
+  },
+  {
+   "id": "1-245",
+   "type": "single",
+   "question": "如图所示IS-IS网络中，各路由器路由稳定后，RTC通过邻居学到的IS-IS Level-1路由有______条。",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "answer": "A",
+   "analysis": "无图无真相，死记硬背。"
+  },
+  {
+   "id": "1-246",
+   "type": "single",
+   "question": "如图所示IS-IS网络中，各路由器验证部分配置如下：\n[RTA-Serial2/0]isis authentication-mode md5 h3c\n[RTB-isis-1]area-authentication-mode md5 h3c\n[RTC-isis-1]domain-authentication-mode md5 h3c\n那么RTA和RTB______建立邻居关系，RTB和RTC______建立邻居关系。",
+   "options": [
+    "无法，无法",
+    "无法，可以",
+    "可以，无法",
+    "可以，可以"
+   ],
+   "answer": "B",
+   "analysis": "",
+   "images": [
+    "p137_92.jpeg"
+   ]
+  },
+  {
+   "id": "1-247",
+   "type": "single",
+   "question": "如图所示IS-IS网络中，各路由器验证部分配置如下：[RTA-Serial2/0]isis authentication-mode md5 h3c[RTB-isis-1]area-authentication-mode md5 h3c\n[RTC-isis-1]domain-authentication-mode md5 h3c那么RTA和RTB______同步LSDB，RTB和RTC______同步LSDB。",
+   "options": [
+    "无法，无法",
+    "无法，可以",
+    "可以，无法",
+    "可以，可以"
+   ],
+   "answer": "A",
+   "analysis": "",
+   "images": [
+    "p138_93.jpeg"
+   ]
+  },
+  {
+   "id": "1-248",
+   "type": "single",
+   "question": "如图所示IS-IS网络中，各路由器验证部分配置如下：[RTA-Serial2/0]isis authentication-mode md5 h3c[RTB-isis-1]area-authentication-mode md5 h3c\n[RTC-isis-1]domain-authentication-mode md5 h3c那么在RTB 上，RTA邻居关系的状态为______；而RTC______RTB Level-1 LSP报文 。",
+   "options": [
+    "down；拒绝",
+    "down；接受",
+    "up；拒绝",
+    "up；接受"
+   ],
+   "answer": "D",
+   "analysis": "注意看启用验证的方向。RTA对RTB的报文进行验证，RTB对RTA不进行验证，RTB验证RTC的level-1 LSP，但RTC不对RTB的level-1 LSP验证。",
+   "images": [
+    "p138_94.jpeg"
+   ]
+  },
+  {
+   "id": "1-249",
+   "type": "multiple",
+   "question": "当在IS-IS 中配置了区域验证和域验证后，被验证的IS-IS消息类型包括_________。",
+   "options": [
+    "Hello",
+    "LSP",
+    "CSNP",
+    "PSNP"
+   ],
+   "answer": "BCD",
+   "analysis": ""
+  },
+  {
+   "id": "1-250",
+   "type": "single",
+   "question": "当在IS-IS 中配置了接口邻居关系验证后，被验证的IS-IS消息类型是_________。",
+   "options": [
+    "Hello",
+    "LSP",
+    "CSNP",
+    "PSNP"
+   ],
+   "answer": "A",
+   "analysis": ""
+  }
+ ]
+}
