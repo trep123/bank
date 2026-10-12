@@ -1,0 +1,514 @@
+{
+ "questions": [
+  {
+   "id": "1-451",
+   "type": "multiple",
+   "question": "下列关于路由表与FIB表的说法，哪些是正确的？",
+   "options": [
+    "FIB表中的表项可能来源于路由表，也可能来源于ARP表",
+    "系统将路由表中处于活跃（Active）状态的路由导入到FIB表中",
+    "系统将路由表中处于不活跃（Inactive）状态的路由导入到FIB表中",
+    "FIB表项来源于ARP表，与路由表没有关系"
+   ],
+   "answer": "AB",
+   "analysis": ""
+  },
+  {
+   "id": "1-452",
+   "type": "single",
+   "question": "下列哪些要素是路由表中存在，而FIB表中没有的？",
+   "options": [
+    "目的地址/掩码（Destination/Mask）",
+    "出接口（Interface）",
+    "开销（Cost）",
+    "路由标志（Flag）"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-453",
+   "type": "multiple",
+   "question": "下列哪些要素是路由表和FIB表中共同存在的？",
+   "options": [
+    "目的地址/掩码（Destination/Mask）",
+    "出接口（Interface）",
+    "开销（Cost）",
+    "下一跳（Nexthop）"
+   ],
+   "answer": "ABD",
+   "analysis": ""
+  },
+  {
+   "id": "1-454",
+   "type": "single",
+   "question": "如果在路由器上开启了快速转发功能，则当数据流的第一个包到达接口时，会执行下列哪个操作？",
+   "options": [
+    "查找快速转发表，进行转发",
+    "查找FIB表，进行转发",
+    "首先查找快速转发表，然后查找FIB表转发，同时生成快速转发表项",
+    "首先查找FIB表，然后查找快速转发表转发，同时生成快速转发表项"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-455",
+   "type": "single",
+   "question": "如果在路由器上开启了快速转发功能，则当数据流的最后一个包到达接口时，会执行下列哪个操作？",
+   "options": [
+    "查找快速转发表，进行转发",
+    "查找FIB表，进行转发",
+    "首先查找快速转发表，然后查找FIB表转发，同时生成快速转发表项",
+    "首先查找FIB表，然后查找快速转发表转发，同时生成快速转发表项"
+   ],
+   "answer": "A",
+   "analysis": ""
+  },
+  {
+   "id": "1-456",
+   "type": "single",
+   "question": "要在路由其上开启快速转发功能，下列哪个命令是正确的？",
+   "options": [
+    "[Router] ip fast-forwarding enable",
+    "[Router] ip fast-forwarding inbound",
+    "[Router-Ethernet0/1] ip fast-forwarding enable",
+    "[Router-Ethernet0/1] ip fast-forwarding inbound"
+   ],
+   "answer": "D",
+   "analysis": ""
+  },
+  {
+   "id": "1-457",
+   "type": "multiple",
+   "question": "关于OSPF协议，以下说法正确的是_______。",
+   "options": [
+    "OSPF协议是典型的链路状态路由协议，使用了SPF算法",
+    "在以太网链路上，OSPF协议采用224.0.0.9这一组播地址发送更新报文",
+    "OSPF协议中的路由开销（Cost）主要是根据链路带宽和时延计算出来的",
+    "运行OSPF协议的路由器间通过交换LSA来获知彼此链路状态信息"
+   ],
+   "answer": "AD",
+   "analysis": ""
+  },
+  {
+   "id": "1-458",
+   "type": "multiple",
+   "question": "关于OSPF协议，以下说法错误的是_______。",
+   "options": [
+    "OSPF协议是典型的链路状态路由协议",
+    "OSPF协议中的路由开销（Cost）主要是根据跳数计算出来的",
+    "OSPF协议采用224.0.0.18这一组播地址发送更新报文",
+    "运行OSPF协议的路由器间通过交换LSA来获知彼此链路状态信息"
+   ],
+   "answer": "BC",
+   "analysis": ""
+  },
+  {
+   "id": "1-459",
+   "type": "multiple",
+   "question": "关于OSPF协议和RIPv2协议的比较，以下说法正确的是_______。",
+   "options": [
+    "两种协议都支持路由信息触发更新",
+    "OSPF 协议支持验证，而RIPv2协议不支持",
+    "两种协议都使用了毒性逆转的机制防止路由环路",
+    "RIPv2 协议以跳数作为路由度量值，而OSPF协议以开销（Cost）作为路由度量值"
+   ],
+   "answer": "AD",
+   "analysis": ""
+  },
+  {
+   "id": "1-460",
+   "type": "multiple",
+   "question": "关于OSPF协议和RIPv2协议的比较，以下说法正确的是_______。",
+   "options": [
+    "两种协议都支持路由信息触发更新",
+    "OSPF协议支持VLSM ，而RIPv2协议不支持",
+    "两种协议是常见的IGP路由协议，都支持按类自动聚合",
+    "RIPv2 协议以跳数作为路由度量值，而OSPF协议以开销（Cost）作为路由度量值"
+   ],
+   "answer": "AD",
+   "analysis": ""
+  },
+  {
+   "id": "1-461",
+   "type": "multiple",
+   "question": "OSPF协议Hello报文的作用有_________。",
+   "options": [
+    "建立邻居关系",
+    "维持邻居关系",
+    "对于接收到的LSU报文进行确认",
+    "协商交换DD报文时的主从关系"
+   ],
+   "answer": "AB",
+   "analysis": ""
+  },
+  {
+   "id": "1-462",
+   "type": "multiple",
+   "question": "OSPF协议不属于Hello报文的作用有_________。",
+   "options": [
+    "建立邻居关系",
+    "交换LSA摘要信息",
+    "对于接收到的LSU报文进行确认",
+    "协商DR/BDR"
+   ],
+   "answer": "BC",
+   "analysis": ""
+  },
+  {
+   "id": "1-463",
+   "type": "multiple",
+   "question": "以下属于OSPF协议报文的是_________。",
+   "options": [
+    "Keepalive报文",
+    "LSU报文",
+    "LSP报文",
+    "LSAck报文"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "1-464",
+   "type": "multiple",
+   "question": "关于OSPF协议中的邻居表，以下说法正确的是_________。",
+   "options": [
+    "邻居表中记录了所有建立了邻居关系的路由器。",
+    "路由器的邻居表与区域划分相关。每个区域维护自己独立的邻居表。",
+    "路由器会周期地向邻居表中的邻居发送Hello报文，以检查邻居的状态。",
+    "如果在一定时间间隔内没有收到邻居的Hello报文，就会认为该邻居已经失效。同时，系统启动老化计时器，等老化计时器超时后，立即删除该邻居。"
+   ],
+   "answer": "AC",
+   "analysis": ""
+  },
+  {
+   "id": "1-465",
+   "type": "single",
+   "question": "在MSR 路由器上，千兆以太网、百兆以太网、十兆以太网的缺省OSPF 链路开销值分别是______。",
+   "options": [
+    "1，1，1",
+    "1，1，10",
+    "1，10，100",
+    "1，10，10"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-466",
+   "type": "single",
+   "question": "在MSR 路由器上，千兆以太网、十兆以太网的缺省OSPF 链路开销值分别是______。",
+   "options": [
+    "1,1",
+    "1,10",
+    "1,100",
+    "10,10"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-467",
+   "type": "multiple",
+   "question": "关于OSPF 协议中的LSDB，以下说法正确的是________。",
+   "options": [
+    "LSDB的作用是记录了路由器收到的所有链路状态描述信息",
+    "路由器有多少区域就有多少个LSDB，从不同区域收到的链路状态描述信息存放在彼此独立的LSDB中",
+    "完成LSA交换之后，同一区域的路由器的LSDB应该是一致的",
+    "路由发生变化时，路由器应该很据收到的更新报文，首先更新自己的LSDB，然后再更新路由表"
+   ],
+   "answer": "ACD",
+   "analysis": ""
+  },
+  {
+   "id": "1-468",
+   "type": "single",
+   "question": "对交换机的两个百兆以太网接口进行端口聚合，该聚合后的逻辑接口的OSPF链路开销是_______。",
+   "options": [
+    "0",
+    "0.5",
+    "1",
+    "5"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-469",
+   "type": "multiple",
+   "question": "OSPF协议分层结构的优点是______。",
+   "options": [
+    "减少了ABR 的LSDB大小",
+    "根据需要进行配置，可以将路由震荡控制在某一个区域范围内",
+    "非骨干区域与骨干区域不必有直接物理相连",
+    "降低了对路由器性能的要求"
+   ],
+   "answer": "BD",
+   "analysis": ""
+  },
+  {
+   "id": "1-470",
+   "type": "multiple",
+   "question": "根据如图所示的拓扑，以下关于OSPF路由器类型的说法正确的是________。",
+   "options": [
+    "RTA既是区域内路由器，又是骨干路由器",
+    "RTB既是骨干路由器，又是ABR",
+    "RTD既是骨干路由器，又是ASBR",
+    "RTE不是区域内路由器"
+   ],
+   "answer": "AD",
+   "analysis": "",
+   "images": [
+    "p243_131.jpeg"
+   ]
+  },
+  {
+   "id": "1-471",
+   "type": "multiple",
+   "question": "根据如图所示的拓扑，以下关于OSPF路由器类型的说法正确的是________。",
+   "options": [
+    "RTC是骨干路由器",
+    "RTD不是区域内路由器",
+    "RTE既是骨干路由器，又是ASBR",
+    "RTF既是区域内路由器，又是骨干路由器"
+   ],
+   "answer": "ABC",
+   "analysis": "",
+   "images": [
+    "p244_132.jpeg"
+   ]
+  },
+  {
+   "id": "1-472",
+   "type": "multiple",
+   "question": "根据如图所示的拓扑，RTE的OSPF路由器类型为________。",
+   "options": [
+    "骨干路由器",
+    "区域内路由器",
+    "ABR",
+    "ASBR"
+   ],
+   "answer": "ACD",
+   "analysis": "",
+   "images": [
+    "p245_133.jpeg"
+   ]
+  },
+  {
+   "id": "1-473",
+   "type": "single",
+   "question": "某MSR路由器有三个接口，其IP地址分别为Loopback0:192.168.1.1/32 、\nLoopback1:192.168.2.1/32、GE0/0:192.168.3.1/30。运行OSPF 协议并同时在三个接口上使能OSPF ，则该路由器选择的Router ID为_______。",
+   "options": [
+    "192.168.1.1",
+    "192.168.2.1",
+    "192.168.3.1",
+    "视情况而定，在哪一个接口先使能OSPF协议，就选择哪个接口的IP地址作为Router ID"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-474",
+   "type": "single",
+   "question": "某MSR路由器有三个接口，其IP地址分别为Loopback0:172.16.1.1/32 、\nLoopback1:172.16.2.1/32、GE0/0:192.168.1.1/30 。运行OSPF 协议并同时在三个接口上使能OSPF，则该路由器选择的Router ID为________。",
+   "options": [
+    "192.168.1.1",
+    "172.16.1.1",
+    "172.16.2.1",
+    "视情况而定，在哪一个接口先使能OSPF协议，就选择哪个接口的IP地址作为Router ID"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-475",
+   "type": "single",
+   "question": "某MSR路由器有四个接口，其IP地址分别为Loopback0:1.1.1.1/32 、\nLoopback1:2.2.2.2/32、GE0/0:172.16.1.1/30 、GE0/1:192.168.1.1/30。运行OSPF 协议并仅在在两个接口上使能OSPF ，则该路由器选择的Router ID为_______。",
+   "options": [
+    "1.1.1.1",
+    "2.2.2.2",
+    "172.16.1.1",
+    "192.168.1.1"
+   ],
+   "answer": "B",
+   "analysis": ""
+  },
+  {
+   "id": "1-476",
+   "type": "single",
+   "question": "如果OSPF 接口的链路层协议是ATM，则其缺省的网络类型是_______。",
+   "options": [
+    "Broadcast",
+    "NBMA",
+    "P2P",
+    "P2MP"
+   ],
+   "answer": "B",
+   "analysis": "扩展：NBMA网络是指那些全连通的、非广播、多点可达网络是一种缺省的网络类型，链路层协议为帧中继、ATM或X.25时，接口网络类型默认为NBMA，P2MP网络必须由其他的网络类型强制更改。"
+  },
+  {
+   "id": "1-477",
+   "type": "single",
+   "question": "如果OSPF 接口的链路层协议是HDLC ，则其对应的网络类型是_____。",
+   "options": [
+    "Broadcast",
+    "NBMA",
+    "P2P",
+    "P2MP"
+   ],
+   "answer": "C",
+   "analysis": ""
+  },
+  {
+   "id": "1-478",
+   "type": "multiple",
+   "question": "关于fliter-policy过滤器，以下哪些说法不正确",
+   "options": [
+    "可以在RIP中使用fliter-policy对发送给邻居的整个IP路由表进行过滤",
+    "可以在RIP中使用fliter-policy对从邻居接收的IS-IS路由信息进行过滤",
+    "可以在RIP中使用异常情况下关闭SSL连接",
+    "可以在OSPF中使用fliter-policy对区域间的路由信息进行过滤"
+   ],
+   "answer": "CD",
+   "analysis": ""
+  },
+  {
+   "id": "1-479",
+   "type": "multiple",
+   "question": "如图所示,RTA启用ipv4和ipv6双协议栈可以和PCA和PCB同时通信,那么以下说法正确的是 _______。",
+   "options": [
+    "PCA和PCB如果分别接在RTA的不同物理接口就可以互相通信",
+    "PCA和PCB可以通过RTA中转报文实现互相通信",
+    "PCA和PCB不需要通过RTA中转报文就可以互相通信",
+    "PCA和PCB不能互相通信"
+   ],
+   "answer": "AB",
+   "analysis": ""
+  },
+  {
+   "id": "1-480",
+   "type": "single",
+   "question": "组网如图示,AS100、AS 200、AS 300之间运行eBGP. RTC与RTA、RTC与RTB之间通过广域网链路相连,没有链路故障快速检测机制,如果RTC与RTA之间链路中断, RTC上关\n于 AS 100的路由多长时间才能切换到RTC与RTB之间的链路上?",
+   "options": [
+    "60s-90s之间",
+    "20s-30s之间",
+    "30s-40s之间",
+    "120s-180s之间",
+    "暂无答案"
+   ],
+   "answer": "E",
+   "analysis": "",
+   "images": [
+    "p248_134.jpeg"
+   ]
+  },
+  {
+   "id": "1-481",
+   "type": "single",
+   "question": "组网如图示,AS100、AS200、AS 300之间运行eBGP. RTC与RTA、RTC与RTB之间通过广域网链路相连,没有链路故障快速检测机制,如果RTC与RTA之间链路中断,但RTC上与\nRTA互连接口没有down. RTC上关于  AS 100的路由多长时间才能切换到RTC与RTB之间的链路上?",
+   "options": [
+    "60s-90s之间",
+    "20s-30s之间",
+    "30s-40s之间",
+    "120s-180s之间"
+   ],
+   "answer": "D",
+   "analysis": "BGP的keepalive是60秒一次，三次丢失确认邻居down。",
+   "images": [
+    "p248_135.jpeg"
+   ]
+  },
+  {
+   "id": "1-482",
+   "type": "multiple",
+   "question": "在路由器上执行display ip policy-based-route gigabitinterface ethemet1/0,有如下输出:\nPolicy based routing information for interface GigabitEthemet0/1:\nPolicy name: aaa\nnode 5 permit\napply output-interface Seriall/0\nMatched 0\nTotal matched: 0\n根据上述输出,可知________。",
+   "options": [
+    "已经匹配的报文指定发送接口为GigabitEthemet1/0",
+    "该路由器在接口GigabitEthemet1/0上应用了名称为aaa的PBR",
+    "节点编号为5.匹配模式为允许模式",
+    "该策略路由匹配成功次数为0"
+   ],
+   "answer": "BCD",
+   "analysis": "匹配任意报文，出接口为Serial1/0"
+  },
+  {
+   "id": "1-483",
+   "type": "single",
+   "question": "图示的三个自治系统AS200 为AS100和AS300的过滤AS ，其中AS100向AS200发布了路由10.1.1.0/24。主要设备配置如下所示：\nRTC:\nbgp 100\npeer 200.1.2.2 as-number 200\n#\naddress-family ipv4 unicast\nnetwork 10.1.1.0 255.255.255.0\npeer 200.1.2.2 enable\npeer 200.1.2.2 route-policy COM export\npeer 200.1.2.2 advertise-community\n#\nroute-policy COM permit node 10\napply community 100:100\n#\nRTB:\n#\nbgp 200\npeer 200.1.2.1 as-number 100\npeer 200.1.3.2 as-number 300\n#\naddress-family ipv4 unicast\npeer 200.1.2.1 enable\npeer 200.1.2.1 route-policy COM import\npeer 200.1.3.2 enable\n#\nroute-policy COM permit node 10\nif-match community 10\napply community 200:200\n#\nip community-list 10 permit 100:100\n则在RTC上,关于10.1.1.0/24的路由说法正确的是________。",
+   "options": [
+    "它的团体属性为<100:100>，因为该团体属性表示了路由的来源。",
+    "它的团体属性为<200:200> ，因为该团体属性被中间AS做了更改。",
+    "它的团体属性为<100:100>, <200:200>，因为该团体属性实际上被中间AS做了追加。",
+    "它的团体属性为空，因为该团体属性不会向外部AS传递。"
+   ],
+   "answer": "D",
+   "analysis": "RTB缺少 peer advertise-community命令，缺省不发布community。",
+   "images": [
+    "p249_136.jpeg"
+   ]
+  },
+  {
+   "id": "1-484",
+   "type": "single",
+   "question": "组网如图示，RTA 通过OSPF 100学到10.1.1.0/24路由，并使用network导入BGP。在RTA 上查看10.1.1.0/24路由，显示结果如下：\n[RTA]display ip routing-table 10.1.1.0\nDestination/Mask Protocol Pre Cost Nexthop Interface\n10.1.1.0/24              OSPF      10    2       1.1.1.2      Ethernet0/0\nRTA 上配置default med 200，请访问RTA的BGP 路由表中，10.1.1.0/24的MED属性值为多少？",
+   "options": [
+    "200",
+    "2",
+    "202",
+    "0"
+   ],
+   "answer": "A",
+   "analysis": "MED为非传递属性，BGP从EBGP对等体学到的路由MED默认为EBGP路由的MED。",
+   "images": [
+    "p250_137.jpeg"
+   ]
+  },
+  {
+   "id": "1-485",
+   "type": "single",
+   "question": "组网如图示,RTA通过OSPF 100学到10.1.1.0/24路由,并使用network导入BGP。  在RTA上查看10.1.1.0/24路由,显示结果如下。\n[RTA]display ip routing-table 10.1.1.0\nDestination/Mask             Proto           Pre        Cost         NestHop         Interface\n10.1.1.0/24                          O_INTRA     10            2             12.0.0.2              GE0/0\nRTA上配置default med 200,请问在RTA的BGP路由表中,10.1.1.0/24的MED属性值为多少?",
+   "options": [
+    "0",
+    "200",
+    "2",
+    "202"
+   ],
+   "answer": "C",
+   "analysis": "",
+   "images": [
+    "p251_138.jpeg"
+   ]
+  },
+  {
+   "id": "1-486",
+   "type": "single",
+   "question": "如图所示,RTA和RTB采用GRE随道技术保证IPv6互访,则请选择正确的命令填补下列配置中的空白处。\n[RTA]ipv6\n[RTA]interface E0/0\n[RTA-Ethernet0/0]ip address 119.145.22.193\n[RTA-Ethemet0/0]interface e0/1\n[RTA-Ethemet0/1]ipv6 address 1-A 64\n[RTA-Ethemet0/1]undo ipv6 nd ra halt\n[RTA-Ethemet0/1]interface tunnel 0 mode gre\n[RTA-Tunnel0]source c0/0\n[RTA-Tunnel0] _____________________________[RTA-Tunnel0]ipv6 address auto link-local\n[RTA-Tunnel0]ipv6 route-static 2: 64 tunnel 0\n[RTB]ipv6\n[RTB]interface E0/0\n[RTB-Ethemet0/0]ip address 121.9.14.210\n[RTB-Ethemet0/0]interface e0/1\n[RTB-Ethemet0/1]ipv6 address 2-B 64\n[RTB-Ethemet0/1]undo ipv6 nd ra halt\n[RTB-Ethernet0/1]interface tunnel O mode gre[RTB-Tunnel0]source e0/0\n[RTB-Tunnel0]destination 119.145.22.193\n[RTB-Tunnel0]ipv6 address 2009-2 112\n[RTB-Tunnel0]_____________________________",
+   "options": [
+    "ipv6 address 2009=1 112,\nipv6 route-static 1:: 64 tunnel 0",
+    "destination 119.145.22.193,\nundo ipv6 nd ra halt",
+    "destination 2009-2,\nipv6 route-static 1:: 64 tunnel 0",
+    "destination 121.9.14.210,\nundo ipv6 nd ra halt",
+    "destination 121.9.14.210,\nIpv6 route-static 1: 64 tunnel 0"
+   ],
+   "answer": "E",
+   "analysis": "destination为对端的IPv4地址；缺IPv6路由。静态配置地址，RA无所谓的。",
+   "images": [
+    "p252_139.jpeg"
+   ]
+  },
+  {
+   "id": "1-487",
+   "type": "multiple",
+   "question": "下列属于自动隧道技术的有？",
+   "options": [
+    "GRE隧道",
+    "IPv6-over-IPv4 手动隧道",
+    "6to4",
+    "ISATAP"
+   ],
+   "answer": "CD",
+   "analysis": ""
+  }
+ ]
+}
