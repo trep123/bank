@@ -123,8 +123,8 @@ async function viewLogin() {
     <section class="login-hero">
       <div class="login-hero-inner">
         <div class="brand brand-lg"><span class="brand-logo">${icon('check')}</span><span class="brand-name">题库</span></div>
-        <h1>千题磨一剑，<br>静待花开时。</h1>
-        <p class="lead">每一道题，都是通往远方的一级台阶。日拱一卒，功不唐捐。</p>
+        <h1>青灯照卷，<br>一题一程。</h1>
+        <p class="lead">书山有路，不问归期；一灯一卷，自有星河。</p>
         <ul class="feature-list">
           <li>${icon('bolt')}<div><strong>即时反馈</strong><span>作答后立即显示对错与解析</span></div></li>
           <li>${icon('clock')}<div><strong>模拟考试</strong><span>限时组卷，自动判分，可中断续考</span></div></li>
@@ -134,8 +134,8 @@ async function viewLogin() {
     </section>
     <section class="login-panel">
       <form class="login-card" novalidate>
-        <h2>灯火可亲，欢迎回来</h2>
-        <p class="muted">凭管理员所授账号，续写今日的积累</p>
+        <h2>长风破浪，正当时</h2>
+        <p class="muted">执管理员所授之名，入此书斋</p>
         <label class="field">
           <span class="field-label">用户名</span>
           <div class="input-wrap">${icon('user')}<input name="username" autocomplete="username" placeholder="请输入用户名" autofocus /></div>
