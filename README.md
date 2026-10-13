@@ -69,6 +69,66 @@ node tools/adduser.js --list                      # 查看用户
 
 可为用户加上 `"disabled": true` 停用账号。
 
+## 🗂️ 手动添加题库：文件放置方法
+
+### 本仓库的实际布局
+```
+data/
+├── banks/
+│   ├── index.json                 ← 题库目录（首页列表），每个题库登记一条
+│   ├── hcia-ai.json               ← 题库主文件：标题、考试设置、分卷列表
+│   ├── hcia-ai/
+│   │   ├── part1.json … part7.json   ← 分卷，每卷一个 questions 数组
+│   ├── h3c-gb0-372.json
+│   └── h3c-gb0-372/
+│       ├── part1.json … part9.json
+│       └── img/p012_1.jpeg …         ← 该题库的配图
+├── exports/
+│   ├── hcia-ai.docx               ← 可选：导出下载用的 Word / PDF
+│   └── hcia-ai.pdf
+└── users.json
+```
+
+### 命名约定
+- 题库 `id` 用小写字母、数字和 `-`（如 `hcip-h12-222`），**主文件、分卷目录、导出文件都用同一个 id 命名**。
+- 分卷放 `data/banks/<id>/partN.json`，每卷建议 50–100 题；配图放 `data/banks/<id>/img/`，文件名用英文 / 数字（如 `p012_1.jpeg`）。
+- 题目 `id` 在整个题库内唯一，本仓库用「卷号-序号」（`"1-1"`、`"1-2"`）或纯数字；**发布后不要改**，否则用户的错题、收藏、进度会对不上。
+- 所有 JSON 用 UTF-8 编码、双引号、末尾不能有多余逗号。
+
+### 添加一个新题库的步骤
+1. 新建 `data/banks/<id>/part1.json`（可多卷）：
+   ```json
+   { "questions": [
+     { "id": "1-1", "type": "single", "chapter": "STP", "question": "题干", "options": ["A 项", "B 项", "C 项", "D 项"], "answer": "B", "analysis": "解析", "images": ["p012_1.jpeg"] }
+   ] }
+   ```
+2. 有配图就放进 `data/banks/<id>/img/`，题目里 `images` 只写文件名。
+3. 新建主文件 `data/banks/<id>.json`：
+   ```json
+   {
+     "title": "H3CSE-RS GB0-372 高级路由交换技术1",
+     "description": "共 405 题：单选 107 · 多选 289 · 填空 9，含拓扑配图",
+     "imageBase": "<id>/img/",
+     "exam":   { "count": 60, "duration": 120, "passScore": 80 },
+     "scores": { "single": 1, "multiple": 2, "fill": 1 },
+     "parts":  ["<id>/part1.json", "<id>/part2.json"]
+   }
+   ```
+4. 在 `data/banks/index.json` 的 `banks` 数组里追加一条（`icon` 是卡片上的短文字，`color` 是主题色）：
+   ```json
+   { "id": "<id>", "file": "<id>.json", "title": "…", "description": "…", "icon": "372", "color": "#e11d48" }
+   ```
+5. 可选：把 Word / PDF 放到 `data/exports/`，并在这条记录里加上 `exports`（大小单位为字节，仅用于显示）：
+   ```json
+   "exports": { "docx": "data/exports/<id>.docx", "pdf": "data/exports/<id>.pdf", "docxSize": 95575, "pdfSize": 553034 }
+   ```
+6. push 到 `main`，Pages 部署 1–2 分钟后刷新即可。
+
+### 修改 / 追加题目
+- 追加：在最后一卷末尾加题，或新建 `partN.json` 并加到主文件 `parts` 里；记得同步更新 `description` 里的题量。
+- 修改题干、选项、答案、解析：直接改，保持 `id` 不变。
+- 删除：删掉该题即可（会从用户的错题 / 收藏里消失）。
+
 ## 📚 题库格式
 
 1. 在 `data/banks/` 下新建 JSON 文件
@@ -128,7 +188,8 @@ bank/
 │       └── utils.js
 ├── data/
 │   ├── users.json      # 用户与密码哈希
-│   └── banks/          # 题库 JSON（大题库拆分卷，配图放在各自的 img/ 目录）
+│   ├── banks/          # 题库 JSON（大题库拆分卷，配图放在各自的 img/ 目录）
+│   └── exports/        # 可选：题库导出的 docx / pdf
 └── tools/adduser.js    # 用户管理脚本
 ```
 
