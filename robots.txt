@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tiku.0x-z.cn/sitemap.xml
