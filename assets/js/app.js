@@ -1,6 +1,6 @@
-import * as auth from './auth.js?v=20261013c';
-import * as store from './store.js?v=20261013c';
-import { listBanks, getBank, isCorrect, typeCount, letter } from './bank.js?v=20261020a';
+import * as auth from './auth.js?v=20261020b';
+import * as store from './store.js?v=20261020b';
+import { listBanks, getBank, isCorrect, typeCount, letter } from './bank.js?v=20261020b';
 import {
   $, $$, esc, rich, shuffle, fmtTime, fmtDuration, fmtDate, uid, toast, confirmDialog, icon, TYPE_LABEL,
 } from './utils.js?v=20261013c';

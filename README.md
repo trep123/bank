@@ -1,6 +1,6 @@
 # 题库 · 前端简易题库系统
 
-一个纯静态的在线刷题系统：**题库用 SQLite 数据库（`data/bank.db`）存储，浏览器端通过 [sql.js](https://github.com/sql-js/sql.js)（WebAssembly）直接读取；用户账号存放在 `data/users.json`，密码经 PBKDF2-SHA256 加盐哈希**。无需后端、无需构建，可直接部署到 GitHub Pages。
+一个纯静态的在线刷题系统：**题库用 SQLite 数据库（`data/bank.db`）存储，浏览器端通过 [sql.js](https://github.com/sql-js/sql.js)（WebAssembly）直接读取，用户账号也在同一个数据库的 `users` 表里，密码经 PBKDF2-SHA256 加盐哈希**。无需后端、无需构建，可直接部署到 GitHub Pages。
 
 ## ✨ 功能
 
@@ -47,39 +47,37 @@ npx serve .
 
 ## 👤 用户管理
 
+用户存放在 `data/bank.db` 的 **`users`** 表，用脚本管理（只需 Python 3）：
+
 ```bash
-node tools/adduser.js zhangsan MyPass123 "张三"   # 添加或修改密码
-node tools/adduser.js --remove zhangsan           # 删除用户
-node tools/adduser.js --list                      # 查看用户
+python tools/adduser.py zhangsan MyPass123 "张三"         # 添加或修改密码（默认角色 user）
+python tools/adduser.py lisi MyPass123 "李四" admin       # 指定角色
+python tools/adduser.py --disable zhangsan                # 停用账号（--enable 恢复）
+python tools/adduser.py --remove zhangsan                 # 删除用户
+python tools/adduser.py --list                            # 查看用户
 ```
 
-脚本会生成随机盐并计算哈希，写入 `data/users.json`，提交到仓库即可生效。
+脚本会生成随机盐并计算哈希写入数据库，提交 `data/bank.db` 即可生效。
 
-`data/users.json` 结构：
-
-```json
-{
-  "algorithm": "PBKDF2-SHA256",
-  "iterations": 100000,
-  "users": [
-    { "username": "admin", "name": "管理员", "role": "admin", "salt": "…", "hash": "…", "iterations": 100000 }
-  ]
-}
-```
-
-可为用户加上 `"disabled": true` 停用账号。
+| 列 | 说明 |
+| --- | --- |
+| `username` | 登录名，主键，不区分大小写 |
+| `name` | 显示名称 |
+| `role` | `admin` / `user` |
+| `salt` / `hash` | 16 字节随机盐、PBKDF2-SHA256 结果（hex）。**不要手工改**，改密码请用脚本 |
+| `iterations` | 迭代次数，默认 100000 |
+| `disabled` | `1` = 停用，`0` = 正常（也可在 DB Browser 里直接改） |
 
 ## 🗂️ 题库存储：SQLite
 
-所有题库都在一个 SQLite 文件 **`data/bank.db`** 里，配图和导出文件仍是普通文件：
+所有题库和用户都在一个 SQLite 文件 **`data/bank.db`** 里，配图和导出文件仍是普通文件：
 
 ```
 data/
-├── bank.db                        ← 全部题库（banks 表 + questions 表）
+├── bank.db                        ← 全部题库与用户（banks / questions / users 表）
 ├── banks/
 │   └── <id>/img/p012_1.jpeg …     ← 各题库配图
-├── exports/<id>.docx / <id>.pdf   ← 可选：导出下载用的 Word / PDF
-└── users.json
+└── exports/<id>.docx / <id>.pdf   ← 可选：导出下载用的 Word / PDF
 ```
 
 ### 表结构
@@ -170,17 +168,16 @@ bank/
 │   │   └── utils.js
 │   └── vendor/sqljs/   # sql.js 1.13.0（sql-wasm.js + sql-wasm.wasm，MIT）
 ├── data/
-│   ├── bank.db         # 题库 SQLite 数据库
-│   ├── users.json      # 用户与密码哈希
+│   ├── bank.db         # SQLite 数据库：题库 + 用户与密码哈希
 │   ├── banks/<id>/img/ # 题库配图
 │   └── exports/        # 可选：题库导出的 docx / pdf
 └── tools/
-    ├── adduser.js      # 用户管理脚本
+    ├── adduser.py      # 用户管理脚本
     └── bankdb.py       # 题库 SQLite 导入 / 导出脚本
 ```
 
 ## 🔒 安全说明
 
 - 密码不以明文保存，使用 PBKDF2-SHA256 + 每用户随机盐 + 10 万次迭代，在浏览器中用 Web Crypto 校验。
-- 这是**纯静态站点**：`users.json` 和 `bank.db` 可以被直接下载，登录只是访问门槛，不能替代服务端鉴权。请设置足够强的密码，不要放入敏感内容。
+- 这是**纯静态站点**：`bank.db`（含用户名与密码哈希）可以被直接下载，登录只是访问门槛，不能替代服务端鉴权。请设置足够强的密码，不要放入敏感内容。
 - 练习进度、错题、收藏和考试记录保存在当前浏览器的 `localStorage` 中，按用户区分；换设备或清除浏览器数据后不会保留。

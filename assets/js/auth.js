@@ -1,5 +1,7 @@
-// 登录认证：用户信息存放在 data/users.json，密码以 PBKDF2-SHA256 + 随机盐 哈希保存
+// 登录认证：用户信息存放在 data/bank.db 的 users 表，密码以 PBKDF2-SHA256 + 随机盐 哈希保存
 // 浏览器端通过 Web Crypto API 计算哈希并比对，明文密码不会存储或传输。
+
+import { openDb, query } from './bank.js?v=20261020b';
 
 const SESSION_KEY = 'qb:session';
 const REMEMBER_DAYS = 7;
@@ -8,7 +10,7 @@ const enc = new TextEncoder();
 const toHex = (buf) => [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('');
 const fromHex = (hex) => new Uint8Array(hex.match(/.{2}/g).map((x) => parseInt(x, 16)));
 
-/** PBKDF2-SHA256，输出 32 字节十六进制字符串（与 tools/adduser.js 一致） */
+/** PBKDF2-SHA256，输出 32 字节十六进制字符串（与 tools/adduser.py 一致） */
 export async function pbkdf2(password, saltHex, iterations) {
   const key = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveBits']);
   const bits = await crypto.subtle.deriveBits(
@@ -30,9 +32,10 @@ function safeEqual(a, b) {
 let usersCache = null;
 async function loadUsers() {
   if (usersCache) return usersCache;
-  const res = await fetch('data/users.json', { cache: 'no-store' });
-  if (!res.ok) throw new Error('无法读取用户文件 data/users.json');
-  usersCache = await res.json();
+  const db = await openDb();
+  usersCache = {
+    users: query(db, 'SELECT * FROM users').map((u) => ({ ...u, disabled: !!u.disabled })),
+  };
   return usersCache;
 }
 

@@ -4,7 +4,7 @@ const cache = new Map();
 let indexCache = null;
 let dbPromise = null;
 
-// 题库存放在 SQLite 数据库 data/bank.db 中，用 sql.js（WebAssembly）在浏览器里读取
+// 题库与用户都存放在 SQLite 数据库 data/bank.db 中，用 sql.js（WebAssembly）在浏览器里读取
 const SQLJS_BASE = 'assets/vendor/sqljs/';
 const DB_URL = 'data/bank.db';
 
@@ -18,7 +18,7 @@ function loadScript(src) {
   });
 }
 
-function openDb() {
+export function openDb() {
   if (!dbPromise) {
     dbPromise = (async () => {
       if (!window.initSqlJs) await loadScript(`${SQLJS_BASE}sql-wasm.js`);
@@ -35,7 +35,7 @@ function openDb() {
   return dbPromise;
 }
 
-function query(db, sql, params = []) {
+export function query(db, sql, params = []) {
   const stmt = db.prepare(sql);
   try {
     stmt.bind(params);

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-题库 SQLite 管理脚本（只用 Python 3 标准库，无需安装依赖）
+题库 SQLite 管理脚本（用户管理见 tools/adduser.py）（只用 Python 3 标准库，无需安装依赖）
 
 题库统一存放在 data/bank.db（SQLite）。前端用 sql.js（WebAssembly）在浏览器里直接读取。
 
@@ -58,6 +58,15 @@ CREATE TABLE IF NOT EXISTS questions (
   PRIMARY KEY (bank_id, qid)
 );
 CREATE INDEX IF NOT EXISTS idx_questions_seq ON questions(bank_id, seq);
+CREATE TABLE IF NOT EXISTS users (
+  username   TEXT PRIMARY KEY COLLATE NOCASE, -- 登录名（不区分大小写）
+  name       TEXT NOT NULL DEFAULT '',     -- 显示名称
+  role       TEXT NOT NULL DEFAULT 'user', -- admin / user
+  salt       TEXT NOT NULL,                -- 16 字节随机盐（hex）
+  hash       TEXT NOT NULL,                -- PBKDF2-SHA256 结果（hex，32 字节）
+  iterations INTEGER NOT NULL DEFAULT 100000,
+  disabled   INTEGER NOT NULL DEFAULT 0    -- 1 = 停用
+);
 """
 
 
