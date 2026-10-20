@@ -2,13 +2,67 @@
 const LETTERS = 'ABCDEFGHIJ';
 const cache = new Map();
 let indexCache = null;
+let dbPromise = null;
+
+// 题库存放在 SQLite 数据库 data/bank.db 中，用 sql.js（WebAssembly）在浏览器里读取
+const SQLJS_BASE = 'assets/vendor/sqljs/';
+const DB_URL = 'data/bank.db';
+
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = src;
+    s.onload = resolve;
+    s.onerror = () => reject(new Error(`无法加载 ${src}`));
+    document.head.appendChild(s);
+  });
+}
+
+function openDb() {
+  if (!dbPromise) {
+    dbPromise = (async () => {
+      if (!window.initSqlJs) await loadScript(`${SQLJS_BASE}sql-wasm.js`);
+      const [SQL, buf] = await Promise.all([
+        window.initSqlJs({ locateFile: (f) => SQLJS_BASE + f }),
+        fetch(DB_URL, { cache: 'no-cache' }).then((r) => {
+          if (!r.ok) throw new Error(`无法读取题库数据库 ${DB_URL}`);
+          return r.arrayBuffer();
+        }),
+      ]);
+      return new SQL.Database(new Uint8Array(buf));
+    })().catch((e) => { dbPromise = null; throw e; });
+  }
+  return dbPromise;
+}
+
+function query(db, sql, params = []) {
+  const stmt = db.prepare(sql);
+  try {
+    stmt.bind(params);
+    const rows = [];
+    while (stmt.step()) rows.push(stmt.getAsObject());
+    return rows;
+  } finally {
+    stmt.free();
+  }
+}
+
+const parse = (s, d) => { if (s == null || s === '') return d; try { return JSON.parse(s); } catch { return d; } };
 
 export async function listBanks() {
   if (indexCache) return indexCache;
-  const res = await fetch('data/banks/index.json', { cache: 'no-cache' });
-  if (!res.ok) throw new Error('无法读取题库目录 data/banks/index.json');
-  const data = await res.json();
-  indexCache = data.banks || [];
+  const db = await openDb();
+  indexCache = query(db, 'SELECT * FROM banks ORDER BY sort, id').map((b) => ({
+    id: b.id,
+    title: b.title,
+    description: b.description,
+    icon: b.icon,
+    color: b.color,
+    imageBase: b.image_base,
+    exam: parse(b.exam, {}),
+    scores: parse(b.scores, {}),
+    ...(b.exports ? { exports: parse(b.exports, null) } : {}),
+  }));
   return indexCache;
 }
 
@@ -17,19 +71,18 @@ export async function getBank(id) {
   const list = await listBanks();
   const meta = list.find((b) => b.id === id);
   if (!meta) throw new Error(`题库「${id}」不存在`);
-  const res = await fetch(`data/banks/${meta.file}`, { cache: 'no-cache' });
-  if (!res.ok) throw new Error(`无法读取题库文件 ${meta.file}`);
-  const raw = await res.json();
-  // 大题库可拆分为多个分卷文件：{ "parts": ["xxx/part1.json", ...] }，每个分卷含 questions 数组
-  if (Array.isArray(raw.parts) && raw.parts.length) {
-    const chunks = await Promise.all(raw.parts.map(async (p) => {
-      const r = await fetch(`data/banks/${p}`, { cache: 'no-cache' });
-      if (!r.ok) throw new Error(`无法读取题库分卷 ${p}`);
-      return (await r.json()).questions || [];
-    }));
-    raw.questions = [...(raw.questions || []), ...chunks.flat()];
-  }
-  const bank = normalize({ ...meta, ...raw, id: meta.id });
+  const db = await openDb();
+  const questions = query(db, 'SELECT * FROM questions WHERE bank_id = ? ORDER BY seq', [id]).map((q) => ({
+    id: q.qid,
+    type: q.type,
+    chapter: q.chapter,
+    question: q.question,
+    options: parse(q.options, []),
+    answer: parse(q.answer, ''),
+    analysis: q.analysis,
+    images: parse(q.images, []),
+  }));
+  const bank = normalize({ ...meta, questions });
   cache.set(id, bank);
   return bank;
 }

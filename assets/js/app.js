@@ -1,6 +1,6 @@
 import * as auth from './auth.js?v=20261013c';
 import * as store from './store.js?v=20261013c';
-import { listBanks, getBank, isCorrect, typeCount, letter } from './bank.js?v=20261013c';
+import { listBanks, getBank, isCorrect, typeCount, letter } from './bank.js?v=20261020a';
 import {
   $, $$, esc, rich, shuffle, fmtTime, fmtDuration, fmtDate, uid, toast, confirmDialog, icon, TYPE_LABEL,
 } from './utils.js?v=20261013c';
@@ -272,7 +272,7 @@ async function viewHome() {
       <div class="stat"><div class="stat-ico c4">${icon('trophy')}</div><div><span>考试最高分</span><b>${best ?? '—'}</b></div></div>
     </section>
     <div class="section-head"><h2>我的题库</h2><span class="muted">${banks.filter(Boolean).length} 个题库</span></div>
-    <section class="bank-grid">${cards || '<p class="muted">暂无题库，请在 data/banks/index.json 中添加。</p>'}</section>`;
+    <section class="bank-grid">${cards || '<p class="muted">暂无题库，请用 tools/bankdb.py 导入到 data/bank.db。</p>'}</section>`;
 
   $$('[data-export]').forEach((el) => el.addEventListener('click', (e) => {
     e.preventDefault();

@@ -1,6 +1,6 @@
 # 题库 · 前端简易题库系统
 
-一个纯静态的在线刷题系统：**题库用 JSON 存储，用户账号存放在 `data/users.json`，密码经 PBKDF2-SHA256 加盐哈希**。无需后端、无需构建，可直接部署到 GitHub Pages。
+一个纯静态的在线刷题系统：**题库用 SQLite 数据库（`data/bank.db`）存储，浏览器端通过 [sql.js](https://github.com/sql-js/sql.js)（WebAssembly）直接读取；用户账号存放在 `data/users.json`，密码经 PBKDF2-SHA256 加盐哈希**。无需后端、无需构建，可直接部署到 GitHub Pages。
 
 ## ✨ 功能
 
@@ -27,7 +27,7 @@
 
 ## 🚀 运行
 
-由于浏览器的安全限制（`fetch` 读取 JSON、Web Crypto 加密校验），**不能直接双击打开 `index.html`**，需要通过 HTTP 访问：
+由于浏览器的安全限制（`fetch` 读取数据库与 WASM、Web Crypto 加密校验），**不能直接双击打开 `index.html`**，需要通过 HTTP 访问：
 
 ```bash
 # 任选其一
@@ -69,109 +69,91 @@ node tools/adduser.js --list                      # 查看用户
 
 可为用户加上 `"disabled": true` 停用账号。
 
-## 🗂️ 手动添加题库：文件放置方法
+## 🗂️ 题库存储：SQLite
 
-### 本仓库的实际布局
+所有题库都在一个 SQLite 文件 **`data/bank.db`** 里，配图和导出文件仍是普通文件：
+
 ```
 data/
+├── bank.db                        ← 全部题库（banks 表 + questions 表）
 ├── banks/
-│   ├── index.json                 ← 题库目录（首页列表），每个题库登记一条
-│   ├── hcia-ai.json               ← 题库主文件：标题、考试设置、分卷列表
-│   ├── hcia-ai/
-│   │   ├── part1.json … part7.json   ← 分卷，每卷一个 questions 数组
-│   ├── h3c-gb0-372.json
-│   └── h3c-gb0-372/
-│       ├── part1.json … part9.json
-│       └── img/p012_1.jpeg …         ← 该题库的配图
-├── exports/
-│   ├── hcia-ai.docx               ← 可选：导出下载用的 Word / PDF
-│   └── hcia-ai.pdf
+│   └── <id>/img/p012_1.jpeg …     ← 各题库配图
+├── exports/<id>.docx / <id>.pdf   ← 可选：导出下载用的 Word / PDF
 └── users.json
 ```
 
-### 命名约定
-- 题库 `id` 用小写字母、数字和 `-`（如 `hcip-h12-222`），**主文件、分卷目录、导出文件都用同一个 id 命名**。
-- 分卷放 `data/banks/<id>/partN.json`，每卷建议 50–100 题；配图放 `data/banks/<id>/img/`，文件名用英文 / 数字（如 `p012_1.jpeg`）。
-- 题目 `id` 在整个题库内唯一，本仓库用「卷号-序号」（`"1-1"`、`"1-2"`）或纯数字；**发布后不要改**，否则用户的错题、收藏、进度会对不上。
-- 所有 JSON 用 UTF-8 编码、双引号、末尾不能有多余逗号。
+### 表结构
 
-### 添加一个新题库的步骤
-1. 新建 `data/banks/<id>/part1.json`（可多卷）：
-   ```json
-   { "questions": [
-     { "id": "1-1", "type": "single", "chapter": "STP", "question": "题干", "options": ["A 项", "B 项", "C 项", "D 项"], "answer": "B", "analysis": "解析", "images": ["p012_1.jpeg"] }
-   ] }
-   ```
-2. 有配图就放进 `data/banks/<id>/img/`，题目里 `images` 只写文件名。
-3. 新建主文件 `data/banks/<id>.json`：
+**`banks`**（一行一个题库，首页按 `sort` 从小到大排列）
+
+| 列 | 说明 |
+| --- | --- |
+| `id` | 题库 id，小写字母、数字和 `-`（如 `hcip-h12-222`），配图目录、导出文件同名 |
+| `sort` | 排序号，现有题库为 10、20、30… |
+| `title` / `description` | 标题、简介（简介里的题量需手动更新） |
+| `icon` / `color` | 卡片短文字、主题色 |
+| `image_base` | 配图目录，相对 `data/banks/`，如 `h3c-gb0-372/img/` |
+| `exam` | JSON：`{"count":60,"duration":120,"passScore":80}` |
+| `scores` | JSON：`{"single":1,"multiple":2,"judge":1,"fill":1}` |
+| `exports` | JSON，可空：`{"docx":"data/exports/<id>.docx","pdf":"…","docxSize":95575,"pdfSize":553034}` |
+
+**`questions`**（一行一道题，主键 `bank_id + qid`）
+
+| 列 | 说明 |
+| --- | --- |
+| `bank_id` | 所属题库 id |
+| `seq` | 顺序练习时的题目顺序 |
+| `qid` | 题目 id，题库内唯一。**发布后请勿改动**，错题、收藏、进度都依赖它 |
+| `type` | `single` 单选 / `multiple` 多选 / `judge` 判断 / `fill` 填空 |
+| `chapter` | 章节，可空 |
+| `question` | 题干，可用反引号写 `行内代码`，`\n` 换行 |
+| `options` | JSON 数组，最多 10 项；判断题可为 `[]`（默认「正确 / 错误」） |
+| `answer` | JSON 值：单选 `"B"`、多选 `"ABD"`、判断 `true`/`false`、填空 `"文本"`（不区分大小写，可用竖线分隔多个可接受答案）；也支持下标数组 `[0,2]` |
+| `analysis` | 解析，可空 |
+| `images` | JSON 数组，配图文件名，如 `["p012_1.jpeg"]` |
+
+### 修改题库的两种方式
+
+**方式一：图形界面直接改**——用 [DB Browser for SQLite](https://sqlitebrowser.org/) 打开 `data/bank.db`，在「浏览数据」里改题干、答案、解析，或新增行，然后「写入更改」。JSON 列（`options`、`answer`、`images` 等）要保持合法 JSON，例如字符串要带双引号：`"B"`。
+
+**方式二：导出成 JSON 编辑后再导入**（适合批量修改、新增整个题库），只需 Python 3：
+
+```bash
+python tools/bankdb.py list                      # 查看题库与题量
+python tools/bankdb.py export hcia-ai            # 导出到 data/json/hcia-ai.json
+#   …用编辑器修改 data/json/hcia-ai.json …
+python tools/bankdb.py import data/json/hcia-ai.json   # 覆盖写回数据库
+python tools/bankdb.py export-all                # 全部导出到 data/json/
+python tools/bankdb.py import-all                # 从 data/json/ 全部导回
+python tools/bankdb.py remove <id>               # 删除题库
+```
+
+`data/json/` 只是临时编辑目录，已加入 `.gitignore`，不会提交。
+
+### 新增一个题库
+
+1. 照下面格式写一个 JSON 文件（一个文件 = 一个题库）：
    ```json
    {
+     "id": "h3c-gb0-372", "sort": 60,
      "title": "H3CSE-RS GB0-372 高级路由交换技术1",
      "description": "共 405 题：单选 107 · 多选 289 · 填空 9，含拓扑配图",
-     "imageBase": "<id>/img/",
+     "icon": "372", "color": "#e11d48",
+     "imageBase": "h3c-gb0-372/img/",
      "exam":   { "count": 60, "duration": 120, "passScore": 80 },
      "scores": { "single": 1, "multiple": 2, "fill": 1 },
-     "parts":  ["<id>/part1.json", "<id>/part2.json"]
+     "exports": { "docx": "data/exports/h3c-gb0-372.docx", "pdf": "data/exports/h3c-gb0-372.pdf", "docxSize": 1345147, "pdfSize": 2010735 },
+     "questions": [
+       { "id": "1-1", "type": "single", "chapter": "STP", "question": "题干", "options": ["A 项", "B 项", "C 项", "D 项"], "answer": "B", "analysis": "解析", "images": ["p012_1.jpeg"] },
+       { "id": "1-2", "type": "multiple", "question": "题干", "options": ["…", "…", "…", "…"], "answer": "ABD", "analysis": "解析" },
+       { "id": "1-3", "type": "judge", "question": "题干", "answer": true, "analysis": "解析" }
+     ]
    }
    ```
-4. 在 `data/banks/index.json` 的 `banks` 数组里追加一条（`icon` 是卡片上的短文字，`color` 是主题色）：
-   ```json
-   { "id": "<id>", "file": "<id>.json", "title": "…", "description": "…", "icon": "372", "color": "#e11d48" }
-   ```
-5. 可选：把 Word / PDF 放到 `data/exports/`，并在这条记录里加上 `exports`（大小单位为字节，仅用于显示）：
-   ```json
-   "exports": { "docx": "data/exports/<id>.docx", "pdf": "data/exports/<id>.pdf", "docxSize": 95575, "pdfSize": 553034 }
-   ```
-6. push 到 `main`，Pages 部署 1–2 分钟后刷新即可。
-
-### 修改 / 追加题目
-- 追加：在最后一卷末尾加题，或新建 `partN.json` 并加到主文件 `parts` 里；记得同步更新 `description` 里的题量。
-- 修改题干、选项、答案、解析：直接改，保持 `id` 不变。
-- 删除：删掉该题即可（会从用户的错题 / 收藏里消失）。
-
-## 📚 题库格式
-
-1. 在 `data/banks/` 下新建 JSON 文件
-2. 在 `data/banks/index.json` 中登记：
-
-```json
-{
-  "banks": [
-    { "id": "hcia-ai", "file": "hcia-ai.json", "title": "HCIA-AI 认证练习", "description": "…", "icon": "AI", "color": "#4f6bff" }
-  ]
-}
-```
-
-题库文件：
-
-```json
-{
-  "title": "HCIA-AI 认证练习",
-  "exam":   { "count": 20, "duration": 30, "passScore": 60 },
-  "scores": { "single": 1, "multiple": 2, "judge": 1 },
-  "questions": [
-    { "id": 1, "type": "single",   "chapter": "机器学习", "question": "题干", "options": ["A 项", "B 项", "C 项", "D 项"], "answer": "B",   "analysis": "解析" },
-    { "id": 2, "type": "multiple", "chapter": "深度学习", "question": "题干", "options": ["…", "…", "…", "…"],          "answer": "ABD", "analysis": "解析" },
-    { "id": 3, "type": "judge",    "chapter": "华为生态", "question": "题干",                                          "answer": true,  "analysis": "解析" }
-  ]
-}
-```
-
-| 字段 | 说明 |
-| --- | --- |
-| `id` | 题目唯一编号（数字或字符串）。**发布后请勿改动**，练习记录、错题和收藏都依赖它 |
-| `type` | `single` 单选 / `multiple` 多选 / `judge` 判断 / `fill` 填空 |
-| `options` | 选项数组（最多 10 个）；判断题可省略，默认「正确 / 错误」 |
-| `answer` | 单选 `"B"`；多选 `"ABD"`；判断 `true` / `false`；填空为文本（不区分大小写，可用竖线分隔多个可接受答案）。也支持下标数组 `[0, 2]` |
-| `images` | 题目配图文件名数组，可选；路径相对于 `data/banks/` + 题库文件中的 `imageBase`，例如 `"imageBase": "h3c-gb0-372/img/"` |
-| `analysis` | 解析，可选 |
-| `chapter` | 章节，可选 |
-| `exam` | 模拟考试默认题量、时长（分钟）、及格分 |
-| `scores` | 各题型分值，按权重折算为百分制；多选题须全对才得分 |
-
-题目较多时可拆成分卷：在题库文件中用 `"parts": ["hcia-ai/part1.json", "hcia-ai/part2.json"]` 代替 `questions`，每个分卷文件包含自己的 `questions` 数组。
-
-题干、选项、解析中可用反引号书写 `行内代码`，`\n` 换行。
+   `imageBase`、`exports`、`chapter`、`images`、`analysis` 都可省略。
+2. `python tools/bankdb.py import 文件.json`
+3. 有配图就放进 `data/banks/<id>/img/`；有 Word / PDF 就放进 `data/exports/`。
+4. 提交 `data/bank.db`（和图片）并 push 到 `main`，Pages 部署 1–2 分钟后刷新即可。站点在 Cloudflare 后面，如长时间不更新，可在 Cloudflare 清除 `data/bank.db` 的缓存。
 
 ## 📁 目录结构
 
@@ -180,21 +162,25 @@ bank/
 ├── index.html
 ├── assets/
 │   ├── css/style.css
-│   └── js/
-│       ├── app.js      # 路由与页面
-│       ├── auth.js     # 登录与 PBKDF2 校验
-│       ├── bank.js     # 题库加载与规范化
-│       ├── store.js    # 学习数据（localStorage）
-│       └── utils.js
+│   ├── js/
+│   │   ├── app.js      # 路由与页面
+│   │   ├── auth.js     # 登录与 PBKDF2 校验
+│   │   ├── bank.js     # 题库加载（sql.js 读取 SQLite）与规范化
+│   │   ├── store.js    # 学习数据（localStorage）
+│   │   └── utils.js
+│   └── vendor/sqljs/   # sql.js 1.13.0（sql-wasm.js + sql-wasm.wasm，MIT）
 ├── data/
+│   ├── bank.db         # 题库 SQLite 数据库
 │   ├── users.json      # 用户与密码哈希
-│   ├── banks/          # 题库 JSON（大题库拆分卷，配图放在各自的 img/ 目录）
+│   ├── banks/<id>/img/ # 题库配图
 │   └── exports/        # 可选：题库导出的 docx / pdf
-└── tools/adduser.js    # 用户管理脚本
+└── tools/
+    ├── adduser.js      # 用户管理脚本
+    └── bankdb.py       # 题库 SQLite 导入 / 导出脚本
 ```
 
 ## 🔒 安全说明
 
 - 密码不以明文保存，使用 PBKDF2-SHA256 + 每用户随机盐 + 10 万次迭代，在浏览器中用 Web Crypto 校验。
-- 这是**纯静态站点**：`users.json` 和题库文件可以被直接访问，登录只是访问门槛，不能替代服务端鉴权。请设置足够强的密码，不要放入敏感内容。
+- 这是**纯静态站点**：`users.json` 和 `bank.db` 可以被直接下载，登录只是访问门槛，不能替代服务端鉴权。请设置足够强的密码，不要放入敏感内容。
 - 练习进度、错题、收藏和考试记录保存在当前浏览器的 `localStorage` 中，按用户区分；换设备或清除浏览器数据后不会保留。
