@@ -697,6 +697,36 @@ kbd {
   .feature-list { display: none; }
   .login-panel { align-items: start; padding-top: 32px; }
 }
+/* ---------- 背题模式 ---------- */
+.recite-tabs { margin: -4px 0 14px; overflow-x: auto; scrollbar-width: none; }
+.recite-tabs::-webkit-scrollbar { display: none; }
+.recite-tabs .tabs { white-space: nowrap; }
+.recite-tabs .tab { display: inline-block; text-decoration: none; }
+.recite-card .opt { cursor: default; }
+.recite-card .opt.dim { opacity: .5; }
+.recite-card.is-mastered { box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--success) 45%, transparent), var(--shadow); }
+.recite-fill { display: flex; align-items: center; min-height: 48px; font-weight: 600; }
+.feedback.recite { border-color: color-mix(in srgb, var(--primary) 30%, transparent); }
+.feedback.recite .feedback-head { background: var(--primary-soft); color: var(--primary); }
+.feedback.recite .feedback-ico { background: var(--primary); }
+.feedback.recite .feedback-ans { margin-left: 4px; }
+.recite-ans { font-size: 16px; letter-spacing: .04em; }
+.reveal-btn {
+  margin-top: 18px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px; border-radius: 14px; border: 1.5px dashed var(--border-strong); background: var(--surface-2);
+  color: var(--text-2); font-size: 15px; font-weight: 600; transition: .15s;
+}
+.reveal-btn:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-soft); }
+.reveal-btn .ico { width: 18px; height: 18px; }
+.reveal-btn kbd { font-size: 11px; opacity: .7; }
+.chip-btn.on.ok { color: var(--success); border-color: color-mix(in srgb, var(--success) 40%, transparent); background: var(--success-soft); }
+.bank-actions { grid-template-columns: 1.3fr 1fr 1fr 1fr; }
+@media (max-width: 640px) {
+  .bank-actions { grid-template-columns: 1.3fr 1fr 1fr 1fr !important; }
+  .reveal-btn kbd { display: none; }
+  .recite-tabs .tab { padding: 6px 10px; font-size: 12.5px; }
+}
+
 @media (max-width: 640px) {
   html, body { touch-action: manipulation; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   input, select, textarea, .input-wrap input, .fill-input { font-size: 16px !important; } /* 防止 iOS 聚焦时自动放大 */

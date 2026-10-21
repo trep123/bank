@@ -1,7 +1,7 @@
 // 登录认证：用户信息存放在 data/bank.db 的 users 表，密码以 PBKDF2-SHA256 + 随机盐 哈希保存
 // 浏览器端通过 Web Crypto API 计算哈希并比对，明文密码不会存储或传输。
 
-import { openDb, query } from './bank.js?v=20261020b';
+import { openDb, query } from './bank.js?v=20261021a';
 
 const SESSION_KEY = 'qb:session';
 const REMEMBER_DAYS = 7;

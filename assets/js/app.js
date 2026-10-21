@@ -1,9 +1,9 @@
-import * as auth from './auth.js?v=20261020b';
-import * as store from './store.js?v=20261020b';
-import { listBanks, getBank, isCorrect, typeCount, letter } from './bank.js?v=20261020b';
+import * as auth from './auth.js?v=20261021a';
+import * as store from './store.js?v=20261021a';
+import { listBanks, getBank, isCorrect, typeCount, letter } from './bank.js?v=20261021a';
 import {
   $, $$, esc, rich, shuffle, fmtTime, fmtDuration, fmtDate, uid, toast, confirmDialog, icon, TYPE_LABEL,
-} from './utils.js?v=20261013c';
+} from './utils.js?v=20261021a';
 
 const app = $('#app');
 let cleanup = null; // 当前视图的清理函数（计时器、键盘监听等）
@@ -19,6 +19,7 @@ const routes = [
   [/^#\/login$/, viewLogin, { public: true }],
   [/^#\/?$/, viewHome],
   [/^#\/practice\/([\w-]+)\/(seq|random|wrong|fav)$/, viewPractice],
+  [/^#\/recite\/([\w-]+)(?:\/(all|wrong|fav|todo))?$/, viewRecite],
   [/^#\/exam\/([\w-]+)$/, viewExamSetup],
   [/^#\/exam\/([\w-]+)\/run$/, viewExamRun],
   [/^#\/result\/([\w-]+)$/, viewResult],
@@ -129,6 +130,7 @@ async function viewLogin() {
           <li>${icon('bolt')}<div><strong>即时反馈</strong><span>作答后立即显示对错与解析</span></div></li>
           <li>${icon('clock')}<div><strong>模拟考试</strong><span>限时组卷，自动判分，可中断续考</span></div></li>
           <li>${icon('target')}<div><strong>错题本</strong><span>答错自动收录，答对自动移出</span></div></li>
+          <li>${icon('book')}<div><strong>背题模式</strong><span>直接看答案与解析，可遮挡自测、标记掌握</span></div></li>
         </ul>
       </div>
     </section>
@@ -220,6 +222,7 @@ async function viewHome() {
     const right = Object.entries(st.answered).filter(([q, a]) => b.qmap.has(q) && a.correct).length;
     const wrong = st.wrong.filter((q) => b.qmap.has(q)).length;
     const fav = st.fav.filter((q) => b.qmap.has(q)).length;
+    const mastered = st.mastered.filter((q) => b.qmap.has(q)).length;
     const pct = total ? Math.round((done / total) * 100) : 0;
     const tc = typeCount(b);
     const color = b.color || '#4f6bff';
@@ -241,14 +244,15 @@ async function viewHome() {
         ${tc.fill ? `<span class="tag">填空 ${tc.fill}</span>` : ''}
       </div>
       <div class="progress-block">
-        <div class="progress-meta"><span>已练习 <b>${done}</b> / ${total}</span><span>正确率 <b>${done ? Math.round((right / done) * 100) : 0}%</b></span></div>
+        <div class="progress-meta"><span>已练习 <b>${done}</b> / ${total}</span><span>${mastered ? `已掌握 <b>${mastered}</b> · ` : ''}正确率 <b>${done ? Math.round((right / done) * 100) : 0}%</b></span></div>
         <div class="progress"><div class="progress-bar" style="width:${pct}%"></div></div>
       </div>
       ${draft && draft.bankId === b.id ? `<a class="resume-banner" href="#/exam/${esc(b.id)}/run">${icon('clock')} 有一场未完成的模拟考试，点击继续</a>` : ''}
       <div class="bank-actions">
         <a class="btn btn-primary" href="#/practice/${esc(b.id)}/seq">${icon('play')} ${st.pos > 0 ? '继续练习' : '顺序练习'}</a>
         <a class="btn btn-soft" href="#/practice/${esc(b.id)}/random">${icon('shuffle')} 随机</a>
-        <a class="btn btn-soft" href="#/exam/${esc(b.id)}">${icon('clock')} 模拟考试</a>
+        <a class="btn btn-soft" href="#/recite/${esc(b.id)}">${icon('book')} 背题</a>
+        <a class="btn btn-soft" href="#/exam/${esc(b.id)}">${icon('clock')} 考试</a>
       </div>
       <div class="bank-links">
         <a href="#/practice/${esc(b.id)}/wrong" class="${wrong ? '' : 'disabled'}">${icon('target')} 错题本 <b>${wrong}</b></a>
@@ -283,7 +287,7 @@ async function viewHome() {
   $$('[data-reset]').forEach((btn) => btn.addEventListener('click', async () => {
     const ok = await confirmDialog({
       title: '重置练习记录',
-      message: '将清空该题库的练习进度、错题本和收藏（考试记录保留）。此操作不可撤销。',
+      message: '将清空该题库的练习进度、背题进度、错题本和收藏（考试记录保留）。此操作不可撤销。',
       okText: '重置', danger: true,
     });
     if (!ok) return;
@@ -298,9 +302,10 @@ async function viewHome() {
 /* =========================================================
  * 题目渲染（练习 / 考试 / 回顾共用）
  * ======================================================= */
-function renderQuestion(q, { index, total, sel = '', revealed = false, fav = false, flagged = false, showFlag = false, showFav = true }) {
+function renderQuestion(q, { index, total, sel = '', revealed = false, fav = false, flagged = false, showFlag = false, showFav = true, recite = false, hidden = false, mastered = false }) {
   const multi = q.type === 'multiple';
   const fill = q.type === 'fill';
+  if (recite) return renderRecite(q, { index, total, fav, hidden, mastered });
   const opts = fill ? `
       <div class="fill-wrap ${revealed ? (isCorrect(q, sel) ? 'correct' : 'wrong') : ''}">
         <input class="fill-input" data-fill type="text" autocomplete="off" spellcheck="false" placeholder="在此输入答案，按 Enter 确认" value="${esc(sel)}" ${revealed ? 'disabled' : ''} />
@@ -358,6 +363,54 @@ function renderQuestion(q, { index, total, sel = '', revealed = false, fav = fal
       ${fill && !revealed ? '<div class="q-hint">填空题：不区分大小写，多余空格会被忽略</div>' : ''}
       <div class="options">${opts}</div>
       ${feedback}
+    </article>`;
+}
+
+/** 背题模式：直接展示正确答案与解析（可遮挡） */
+function renderRecite(q, { index, total, fav, hidden, mastered }) {
+  const fill = q.type === 'fill';
+  const multi = q.type === 'multiple';
+  const opts = fill ? `
+      <div class="fill-wrap ${hidden ? '' : 'correct'}">
+        <div class="fill-input recite-fill">${hidden ? '<span class="muted">答案已遮挡</span>' : esc(q.answer.split('|').join(' 或 '))}</div>
+      </div>` : q.options.map((text, i) => {
+    const k = letter(i);
+    const isAns = q.answer.includes(k);
+    const cls = hidden ? '' : isAns ? 'correct' : 'dim';
+    return `
+      <div class="opt ${cls} ${multi ? 'multi' : ''}">
+        <span class="opt-key">${k}</span>
+        <span class="opt-text">${rich(text)}</span>
+        <span class="opt-mark">${!hidden && isAns ? icon('check') : ''}</span>
+      </div>`;
+  }).join('');
+  const imgs = q.images?.length ? `<div class="q-images">${q.images.map((src) => `
+      <button class="q-img" data-zoom="${esc(src)}" title="点击放大"><img src="${esc(src)}" alt="题目配图" loading="lazy" /></button>`).join('')}</div>` : '';
+  const ansText = q.type === 'judge' ? esc(q.options[q.answer === 'A' ? 0 : 1]) : fill ? esc(q.answer.split('|').join(' 或 ')) : q.answer;
+  const foot = hidden
+    ? `<button class="reveal-btn" data-reveal>${icon('eye')}<span>显示答案</span><kbd>空格</kbd></button>`
+    : `<div class="feedback recite">
+        <div class="feedback-head">
+          <span class="feedback-ico">${icon('book')}</span>
+          <strong>答案</strong>
+          <span class="feedback-ans"><b class="recite-ans">${ansText}</b></span>
+        </div>
+        ${q.analysis ? `<div class="analysis"><div class="analysis-title">解析</div><div>${rich(q.analysis)}</div></div>` : ''}
+      </div>`;
+  return `
+    <article class="q-card recite-card ${mastered ? 'is-mastered' : ''}" data-qid="${esc(q.id)}">
+      <div class="q-meta">
+        <span class="badge badge-${q.type}">${TYPE_LABEL[q.type] || '题目'}</span>
+        ${q.chapter ? `<span class="q-chapter">${esc(q.chapter)}</span>` : ''}
+        <span class="q-spacer"></span>
+        <button class="chip-btn ${mastered ? 'on ok' : ''}" data-master title="标记为已掌握 (S)">${icon('check')}<span>${mastered ? '已掌握' : '掌握'}</span></button>
+        <button class="chip-btn ${fav ? 'on fav' : ''}" data-fav title="收藏 (F)">${icon('star')}<span>${fav ? '已收藏' : '收藏'}</span></button>
+      </div>
+      <div class="q-no">第 <b>${index + 1}</b> 题 <span>/ 共 ${total} 题</span></div>
+      <div class="q-text">${rich(q.question)}</div>
+      ${imgs}
+      <div class="options">${opts}</div>
+      ${foot}
     </article>`;
 }
 
@@ -670,6 +723,201 @@ async function viewPractice(bankId, mode) {
     if (e.key.toLowerCase() === 'f') return fav();
     const k = keyToOption(e, q);
     if (k) choose(k);
+  });
+
+  render();
+}
+
+/* =========================================================
+ * 背题模式
+ * ======================================================= */
+const RECITE_SCOPE = { all: '全部', todo: '未掌握', wrong: '错题', fav: '收藏' };
+
+async function viewRecite(bankId, scope = 'all') {
+  const bank = await getBank(bankId);
+  let d = store.load();
+  let st = store.bankState(d, bankId);
+  const mastered = new Set(st.mastered.filter((id) => bank.qmap.has(id)));
+
+  const pick = (sc) => {
+    if (sc === 'wrong') return st.wrong.map((id) => bank.qmap.get(id)).filter(Boolean);
+    if (sc === 'fav') return st.fav.map((id) => bank.qmap.get(id)).filter(Boolean);
+    if (sc === 'todo') return bank.questions.filter((q) => !mastered.has(q.id));
+    return bank.questions;
+  };
+  const list = pick(scope);
+  const counts = { all: bank.questions.length, todo: bank.questions.length - mastered.size, wrong: pick('wrong').length, fav: pick('fav').length };
+
+  const tabs = Object.entries(RECITE_SCOPE).map(([k, v]) =>
+    `<a class="tab ${k === scope ? 'active' : ''}" href="#/recite/${esc(bankId)}/${k}">${v} ${counts[k]}</a>`).join('');
+
+  if (!list.length) {
+    app.innerHTML = shell(`
+      <div class="quiz-top">
+        <a class="icon-btn" href="#/" title="返回">${icon('back')}</a>
+        <div class="quiz-title"><h2>${esc(bank.title)}</h2><span class="pill">背题模式</span></div>
+      </div>
+      <div class="recite-tabs"><div class="tabs">${tabs}</div></div>
+      <div class="empty">
+        <div class="empty-ico">${icon(scope === 'todo' ? 'trophy' : 'book')}</div>
+        <h3>${scope === 'todo' ? '全部掌握了！' : '这里还是空的'}</h3>
+        <p>${scope === 'todo' ? '这个题库的题目都已标记为掌握，可以去模拟考试检验一下。' : '换个范围看看吧。'}</p>
+        <a class="btn btn-primary" href="#/recite/${esc(bankId)}/all">背全部题目</a>
+      </div>`, { wide: true });
+    bindShell();
+    return;
+  }
+
+  const posKey = `${scope}`;
+  let idx = Math.min(st.recitePos[posKey] || 0, list.length - 1);
+  const peeked = new Set(); // 遮挡模式下已翻开的题
+
+  app.innerHTML = shell(`
+    <div class="quiz-top">
+      <a class="icon-btn" href="#/" title="返回">${icon('back')}</a>
+      <div class="quiz-title"><h2>${esc(bank.title)}</h2><span class="pill">背题模式</span></div>
+      <div class="quiz-top-right">
+        <label class="switch" title="先遮住答案，自己回忆后再翻开"><input type="checkbox" data-hide ${d.settings.reciteHide ? 'checked' : ''}/><span class="switch-track"></span><span class="switch-label">遮住答案</span></label>
+      </div>
+    </div>
+    <div class="recite-tabs"><div class="tabs">${tabs}</div></div>
+    <div class="quiz-progress"><div class="progress thin"><div class="progress-bar" data-pbar></div></div><span data-ptext></span></div>
+    <div class="quiz-layout">
+      <section class="quiz-main">
+        <div data-qwrap></div>
+        <div class="quiz-nav">
+          <button class="btn btn-ghost" data-prev>${icon('left')} 上一题</button>
+          <button class="btn btn-primary btn-wide" data-primary></button>
+          <button class="btn btn-ghost" data-next>下一题 ${icon('right')}</button>
+        </div>
+        <p class="kbd-tip">${icon('keyboard')} 快捷键：<kbd>←</kbd> <kbd>→</kbd> 切换，<kbd>空格</kbd> 显示答案 / 下一题，<kbd>S</kbd> 掌握，<kbd>F</kbd> 收藏，<kbd>H</kbd> 遮住答案</p>
+      </section>
+      <aside class="sheet" data-sheet>
+        <div class="sheet-head"><h4>题目导航</h4><button class="icon-btn sm sheet-close" data-sheet-close>${icon('x')}</button></div>
+        <div class="sheet-stats" data-sstats></div>
+        <div class="sheet-grid" data-sgrid></div>
+        <div class="sheet-legend">
+          <span><i class="lg correct"></i>已掌握</span><span><i class="lg"></i>未掌握</span>
+        </div>
+      </aside>
+    </div>
+    <button class="fab" data-sheet-open>${icon('grid')}<span>导航</span></button>
+    <div class="sheet-mask" data-sheet-close></div>
+  `, { wide: true });
+  bindShell();
+
+  const hideBox = $('[data-hide]');
+  const isHidden = () => hideBox.checked && !peeked.has(list[idx].id);
+  hideBox.addEventListener('change', () => {
+    d = store.load(); d.settings.reciteHide = hideBox.checked; store.save(d);
+    peeked.clear(); render();
+  });
+
+  function render() {
+    const q = list[idx];
+    d = store.load();
+    st = store.bankState(d, bankId);
+    const hidden = isHidden();
+    $('[data-qwrap]').innerHTML = renderQuestion(q, {
+      index: idx, total: list.length, recite: true, hidden, fav: st.fav.includes(q.id), mastered: mastered.has(q.id),
+    });
+    const primary = $('[data-primary]');
+    primary.innerHTML = hidden ? `${icon('eye')} 显示答案` : idx < list.length - 1 ? `下一题 ${icon('right')}` : '背完了';
+    $('[data-prev]').disabled = idx === 0;
+    $('[data-next]').disabled = idx === list.length - 1;
+    $('[data-pbar]').style.width = `${((idx + 1) / list.length) * 100}%`;
+    $('[data-ptext]').textContent = `${idx + 1} / ${list.length}`;
+    $('[data-sgrid]').innerHTML = sheetHTML(list.map((x) => ({ state: mastered.has(x.id) ? 'correct' : '' })), idx);
+    const m = list.filter((x) => mastered.has(x.id)).length;
+    $('[data-sstats]').innerHTML = `
+      <div><b>${list.length}</b><span>本组题目</span></div>
+      <div><b class="ok">${m}</b><span>已掌握</span></div>
+      <div><b>${list.length - m}</b><span>未掌握</span></div>`;
+    $('.sheet-cell.current')?.scrollIntoView({ block: 'nearest' });
+    st.recitePos[posKey] = idx;
+    store.save(d);
+  }
+
+  function move(delta) {
+    const n = idx + delta;
+    if (n < 0 || n >= list.length) return;
+    idx = n;
+    render();
+    closeSheet();
+  }
+  function reveal() { peeked.add(list[idx].id); render(); }
+  async function finish() {
+    d = store.load(); store.bankState(d, bankId).recitePos[posKey] = 0; store.save(d);
+    const m = list.filter((x) => mastered.has(x.id)).length;
+    const ok = await confirmDialog({
+      title: '本组背完了 🎉',
+      message: `共 <b>${list.length}</b> 题，已掌握 <b>${m}</b> 题。趁热做一套模拟考试检验一下？`,
+      okText: '去模拟考试', cancelText: '返回首页',
+    });
+    go(ok ? `#/exam/${bankId}` : '#/');
+  }
+  function primaryAct() {
+    if (isHidden()) return reveal();
+    return idx < list.length - 1 ? move(1) : finish();
+  }
+  function toggleMaster() {
+    const id = list[idx].id;
+    d = store.load();
+    const s2 = store.bankState(d, bankId);
+    if (mastered.has(id)) { mastered.delete(id); s2.mastered = s2.mastered.filter((x) => x !== id); }
+    else { mastered.add(id); if (!s2.mastered.includes(id)) s2.mastered.push(id); }
+    store.save(d);
+    const on = mastered.has(id);
+    toast(on ? '已标记为掌握' : '已取消掌握', on ? 'success' : 'info', 1000);
+    render();
+  }
+  function fav() {
+    d = store.load();
+    const on = store.toggleFav(d, bankId, list[idx].id);
+    store.save(d);
+    toast(on ? '已加入收藏' : '已取消收藏', on ? 'success' : 'info', 1000);
+    render();
+  }
+
+  const openSheet = () => document.body.classList.add('sheet-open');
+  const closeSheet = () => document.body.classList.remove('sheet-open');
+
+  // 手机左右滑动切题
+  let tx = 0, ty = 0;
+  const onTs = (e) => { tx = e.touches[0].clientX; ty = e.touches[0].clientY; };
+  const onTe = (e) => {
+    const dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5 && !e.target.closest('.q-img')) move(dx < 0 ? 1 : -1);
+  };
+  const qwrap = $('[data-qwrap]');
+  qwrap.addEventListener('touchstart', onTs, { passive: true });
+  qwrap.addEventListener('touchend', onTe, { passive: true });
+
+  app.addEventListener('click', onClick);
+  onCleanup(() => { app.removeEventListener('click', onClick); closeSheet(); });
+  function onClick(e) {
+    const t = e.target;
+    if (t.closest('[data-reveal]')) return reveal();
+    if (t.closest('[data-primary]')) return primaryAct();
+    if (t.closest('[data-prev]')) return move(-1);
+    if (t.closest('[data-next]')) return move(1);
+    const g = t.closest('[data-goto]');
+    if (g) { idx = Number(g.dataset.goto); render(); closeSheet(); return; }
+    if (t.closest('[data-master]')) return toggleMaster();
+    if (t.closest('[data-fav]')) return fav();
+    if (t.closest('[data-sheet-open]')) return openSheet();
+    if (t.closest('[data-sheet-close]')) return closeSheet();
+    if (isHidden() && t.closest('.recite-card .options')) return reveal();
+  }
+
+  bindKeys((e) => {
+    const k = e.key.toLowerCase();
+    if (e.key === 'ArrowLeft') return move(-1);
+    if (e.key === 'ArrowRight') return move(1);
+    if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); return primaryAct(); }
+    if (k === 's') return toggleMaster();
+    if (k === 'f') return fav();
+    if (k === 'h') { hideBox.checked = !hideBox.checked; hideBox.dispatchEvent(new Event('change')); }
   });
 
   render();

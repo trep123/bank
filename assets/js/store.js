@@ -1,11 +1,11 @@
 // 学习数据：按用户保存在浏览器 localStorage（练习进度、错题本、收藏、考试记录）
-import { current } from './auth.js?v=20261020b';
+import { current } from './auth.js?v=20261021a';
 
 const key = () => `qb:data:${current()?.username || 'guest'}`;
 const draftKey = () => `qb:exam-draft:${current()?.username || 'guest'}`;
 const MAX_EXAMS = 100;
 
-const empty = () => ({ banks: {}, exams: [], settings: { autoNext: true } });
+const empty = () => ({ banks: {}, exams: [], settings: { autoNext: true, reciteHide: false } });
 
 export function load() {
   try {
@@ -13,7 +13,7 @@ export function load() {
     if (!d) return empty();
     d.banks ||= {};
     d.exams ||= [];
-    d.settings = { autoNext: true, ...(d.settings || {}) };
+    d.settings = { autoNext: true, reciteHide: false, ...(d.settings || {}) };
     return d;
   } catch {
     return empty();
@@ -30,12 +30,14 @@ export function save(d) {
 
 /** 取得（并初始化）某题库的学习状态 */
 export function bankState(d, bankId) {
-  d.banks[bankId] ||= { answered: {}, wrong: [], fav: [], pos: 0 };
+  d.banks[bankId] ||= { answered: {}, wrong: [], fav: [], pos: 0, mastered: [], recitePos: {} };
   const b = d.banks[bankId];
   b.answered ||= {};
   b.wrong ||= [];
   b.fav ||= [];
   b.pos ||= 0;
+  b.mastered ||= [];
+  b.recitePos ||= {};
   return b;
 }
 
