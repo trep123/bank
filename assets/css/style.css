@@ -515,6 +515,7 @@ kbd {
 .resume-card > div:first-child { color: var(--warning); }
 .resume-card > div:nth-child(2) { flex: 1; display: flex; flex-direction: column; }
 .resume-card span { font-size: 13px; color: var(--muted); }
+@media (max-width: 640px) { .resume-card { flex-wrap: wrap; } .resume-card > div:nth-child(2) { flex-basis: calc(100% - 40px); } .resume-card .btn { flex: 1; } }
 
 /* ---------- 结果页 ---------- */
 .result-hero {
