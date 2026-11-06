@@ -1,9 +1,9 @@
-import * as auth from './auth.js?v=20261021a';
-import * as store from './store.js?v=20261021a';
-import { listBanks, getBank, isCorrect, typeCount, letter } from './bank.js?v=20261021a';
+import * as auth from './auth.js?v=20261106a';
+import * as store from './store.js?v=20261106a';
+import { listBanks, getBank, isCorrect, typeCount, letter } from './bank.js?v=20261106a';
 import {
   $, $$, esc, rich, shuffle, fmtTime, fmtDuration, fmtDate, uid, toast, confirmDialog, icon, TYPE_LABEL,
-} from './utils.js?v=20261021a';
+} from './utils.js?v=20261106a';
 
 const app = $('#app');
 let cleanup = null; // 当前视图的清理函数（计时器、键盘监听等）
@@ -247,7 +247,7 @@ async function viewHome() {
         <div class="progress-meta"><span>已练习 <b>${done}</b> / ${total}</span><span>${mastered ? `已掌握 <b>${mastered}</b> · ` : ''}正确率 <b>${done ? Math.round((right / done) * 100) : 0}%</b></span></div>
         <div class="progress"><div class="progress-bar" style="width:${pct}%"></div></div>
       </div>
-      ${draft && draft.bankId === b.id ? `<a class="resume-banner" href="#/exam/${esc(b.id)}/run">${icon('clock')} 有一场未完成的模拟考试，点击继续</a>` : ''}
+      ${draft && draft.bankId === b.id ? `<a class="resume-banner" href="#/exam/${esc(b.id)}/run">${icon('clock')} ${draft.endAt <= Date.now() ? '模拟考试时间已到，点击交卷查看成绩' : '有一场未完成的模拟考试，点击继续'}</a>` : ''}
       <div class="bank-actions">
         <a class="btn btn-primary" href="#/practice/${esc(b.id)}/seq">${icon('play')} ${st.pos > 0 ? '继续练习' : '顺序练习'}</a>
         <a class="btn btn-soft" href="#/practice/${esc(b.id)}/random">${icon('shuffle')} 随机</a>
@@ -943,8 +943,9 @@ async function viewExamSetup(bankId) {
       ${draft ? `
       <div class="resume-card">
         <div>${icon('clock')}</div>
-        <div><strong>你有一场未完成的考试</strong><span>${esc(draft.bankTitle)} · 剩余 ${fmtTime(Math.max(0, draft.endAt - Date.now()) / 1000)}</span></div>
-        <a class="btn btn-primary" href="#/exam/${esc(draft.bankId)}/run">继续考试</a>
+        <div><strong>${draft.endAt <= Date.now() ? '有一场考试时间已到' : '你有一场未完成的考试'}</strong><span>${esc(draft.bankTitle)} · ${draft.endAt <= Date.now() ? '点击交卷查看成绩' : `剩余 ${fmtTime(Math.max(0, draft.endAt - Date.now()) / 1000)}`}</span></div>
+        <button class="btn btn-ghost" type="button" data-discard>放弃</button>
+        <a class="btn btn-primary" href="#/exam/${esc(draft.bankId)}/run">${draft.endAt <= Date.now() ? '交卷' : '继续考试'}</a>
       </div>` : ''}
       <form class="setup-card">
         <h3>考试设置</h3>
@@ -969,6 +970,13 @@ async function viewExamSetup(bankId) {
     </div>`);
   bindShell();
 
+  $('[data-discard]')?.addEventListener('click', async () => {
+    const ok = await confirmDialog({ title: '放弃考试', message: '将删除这场未完成的考试，不计入考试记录。确定吗？', okText: '放弃', danger: true });
+    if (!ok) return;
+    store.clearDraft();
+    toast('已放弃该考试', 'success');
+    router();
+  });
   $('.setup-card').addEventListener('submit', async (e) => {
     e.preventDefault();
     if (draft) {
@@ -1045,7 +1053,7 @@ async function viewExamRun(bankId) {
     <div class="sheet-mask" data-sheet-close></div>
   </main>`;
 
-  const persist = () => { draft.idx = idx; store.saveDraft(draft); };
+  const persist = () => { if (submitted) return; draft.idx = idx; store.saveDraft(draft); };
 
   function render() {
     const q = list[idx];
@@ -1196,6 +1204,8 @@ async function viewExamRun(bankId) {
     });
     if (ok) go('#/');
   }
+
+  if (submitted) return; // 进入时已超时：已自动交卷并跳转到成绩页，不再渲染/保存草稿
 
   app.addEventListener('click', onClick);
   onCleanup(() => { app.removeEventListener('click', onClick); document.body.classList.remove('sheet-open'); });
