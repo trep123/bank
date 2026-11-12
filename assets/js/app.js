@@ -1,9 +1,9 @@
-import * as auth from './auth.js?v=20261112b';
-import * as store from './store.js?v=20261112b';
-import { listBanks, getBank, isCorrect, typeCount, letter } from './bank.js?v=20261112b';
+import * as auth from './auth.js?v=20261112c';
+import * as store from './store.js?v=20261112c';
+import { listBanks, getBank, isCorrect, typeCount, letter } from './bank.js?v=20261112c';
 import {
   $, $$, esc, rich, shuffle, fmtTime, fmtDuration, fmtDate, uid, toast, confirmDialog, icon, TYPE_LABEL,
-} from './utils.js?v=20261112b';
+} from './utils.js?v=20261112c';
 
 const app = $('#app');
 let cleanup = null; // 当前视图的清理函数（计时器、键盘监听等）
@@ -435,10 +435,19 @@ function renderRecite(q, { index, total, fav, hidden, mastered }) {
     </article>`;
 }
 
-function sheetHTML(items, currentIdx) {
-  // items: [{state:'correct'|'wrong'|'answered'|'', flagged}]
-  return items.map((it, i) => `
-    <button class="sheet-cell ${it.state} ${i === currentIdx ? 'current' : ''} ${it.flagged ? 'flagged' : ''}" data-goto="${i}">${i + 1}</button>`).join('');
+function sheetHTML(items, currentIdx, types = null) {
+  // items: [{state:'correct'|'wrong'|'answered'|'', flagged}]；types: 与 items 对应的题型，用于按题型分组
+  const cell = (it, i) => `
+    <button class="sheet-cell ${it.state} ${i === currentIdx ? 'current' : ''} ${it.flagged ? 'flagged' : ''}" data-goto="${i}">${i + 1}</button>`;
+  const kinds = types ? [...new Set(types)] : [];
+  if (kinds.length < 2) return items.map(cell).join('');
+  const order = { single: 0, multiple: 1, judge: 2, fill: 3 };
+  kinds.sort((x, y) => (order[x] ?? 9) - (order[y] ?? 9));
+  return kinds.map((t) => {
+    const idxs = types.map((tp, i) => (tp === t ? i : -1)).filter((i) => i >= 0);
+    const done = idxs.filter((i) => items[i].state).length;
+    return `<div class="sheet-group" data-group="${t}"><span>${TYPE_LABEL[t] || t}</span><em>${done}/${idxs.length}</em></div>${idxs.map((i) => cell(items[i], i)).join('')}`;
+  }).join('');
 }
 
 /** 统一的键盘快捷键绑定 */
@@ -629,7 +638,7 @@ async function viewPractice(bankId, mode) {
     $('[data-pbar]').style.width = `${((idx + 1) / list.length) * 100}%`;
     $('[data-ptext]').textContent = `${idx + 1} / ${list.length}`;
     $('[data-sgrid]').innerHTML = sheetHTML(
-      session.map((x, i) => ({ state: x.revealed ? (isCorrect(list[i], x.sel) ? 'correct' : 'wrong') : '' })), idx
+      session.map((x, i) => ({ state: x.revealed ? (isCorrect(list[i], x.sel) ? 'correct' : 'wrong') : '' })), idx, list.map((x) => x.type)
     );
     $('[data-sstats]').innerHTML = `
       <div><b>${doneCount}</b><span>本次已答</span></div>
@@ -857,7 +866,7 @@ async function viewRecite(bankId, scope = 'all') {
     $('[data-next]').disabled = idx === list.length - 1;
     $('[data-pbar]').style.width = `${((idx + 1) / list.length) * 100}%`;
     $('[data-ptext]').textContent = `${idx + 1} / ${list.length}`;
-    $('[data-sgrid]').innerHTML = sheetHTML(list.map((x) => ({ state: mastered.has(x.id) ? 'correct' : '' })), idx);
+    $('[data-sgrid]').innerHTML = sheetHTML(list.map((x) => ({ state: mastered.has(x.id) ? 'correct' : '' })), idx, list.map((x) => x.type));
     const m = list.filter((x) => mastered.has(x.id)).length;
     $('[data-sstats]').innerHTML = `
       <div><b>${list.length}</b><span>本组题目</span></div>
@@ -1226,7 +1235,7 @@ async function viewExamRun(bankId) {
     const answered = list.filter((x) => draft.answers[x.id]).length;
     $('[data-pbar]').style.width = `${(answered / list.length) * 100}%`;
     $('[data-sgrid]').innerHTML = sheetHTML(
-      list.map((x) => ({ state: draft.answers[x.id] ? 'answered' : '', flagged: draft.flags.includes(x.id) })), idx
+      list.map((x) => ({ state: draft.answers[x.id] ? 'answered' : '', flagged: draft.flags.includes(x.id) })), idx, list.map((x) => x.type)
     );
     $('[data-sstats]').innerHTML = `
       <div><b>${answered}</b><span>已答</span></div>
