@@ -1,5 +1,5 @@
 // 学习数据：按用户保存在浏览器 localStorage（练习进度、错题本、收藏、考试记录）
-import { current } from './auth.js?v=20261106a';
+import { current } from './auth.js?v=20261112a';
 
 const key = () => `qb:data:${current()?.username || 'guest'}`;
 const draftKey = () => `qb:exam-draft:${current()?.username || 'guest'}`;
