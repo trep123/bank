@@ -1,11 +1,11 @@
 // 学习数据：按用户保存在浏览器 localStorage（练习进度、错题本、收藏、考试记录）
-import { current } from './auth.js?v=20261112a';
+import { current } from './auth.js?v=20261112b';
 
 const key = () => `qb:data:${current()?.username || 'guest'}`;
 const draftKey = () => `qb:exam-draft:${current()?.username || 'guest'}`;
 const MAX_EXAMS = 100;
 
-const empty = () => ({ banks: {}, exams: [], settings: { autoNext: true, reciteHide: false } });
+const empty = () => ({ banks: {}, exams: [], settings: { autoNext: true, reciteHide: false, shuffleOpts: false } });
 
 export function load() {
   try {
@@ -13,7 +13,7 @@ export function load() {
     if (!d) return empty();
     d.banks ||= {};
     d.exams ||= [];
-    d.settings = { autoNext: true, reciteHide: false, ...(d.settings || {}) };
+    d.settings = { autoNext: true, reciteHide: false, shuffleOpts: false, ...(d.settings || {}) };
     return d;
   } catch {
     return empty();
