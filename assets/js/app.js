@@ -1,9 +1,9 @@
-import * as auth from './auth.js?v=20261106a';
-import * as store from './store.js?v=20261106a';
-import { listBanks, getBank, isCorrect, typeCount, letter } from './bank.js?v=20261106a';
+import * as auth from './auth.js?v=20261112a';
+import * as store from './store.js?v=20261112a';
+import { listBanks, getBank, isCorrect, typeCount, letter } from './bank.js?v=20261112a';
 import {
   $, $$, esc, rich, shuffle, fmtTime, fmtDuration, fmtDate, uid, toast, confirmDialog, icon, TYPE_LABEL,
-} from './utils.js?v=20261106a';
+} from './utils.js?v=20261112a';
 
 const app = $('#app');
 let cleanup = null; // 当前视图的清理函数（计时器、键盘监听等）
@@ -209,7 +209,7 @@ async function viewHome() {
     totalWrong += st.wrong.filter((q) => b.qmap.has(q)).length;
   });
   const acc = totalDone ? Math.round((totalRight / totalDone) * 100) : 0;
-  const best = d.exams.length ? Math.max(...d.exams.map((e) => e.score)) : null;
+  const best = d.exams.length ? Math.max(...d.exams.map(pct)) : null;
 
   const hour = new Date().getHours();
   const greet = hour < 6 ? '夜深了' : hour < 12 ? '早上好' : hour < 14 ? '中午好' : hour < 18 ? '下午好' : '晚上好';
@@ -926,13 +926,48 @@ async function viewRecite(bankId, scope = 'all') {
 /* =========================================================
  * 模拟考试：设置页
  * ======================================================= */
+// 成绩百分比（旧记录 score 即百分制）
+const pct = (e) => e.percent ?? e.score;
+const EXAM_TYPES = ['single', 'multiple', 'judge', 'fill'];
+const cfgKey = (bankId) => `qb:exam-cfg:${auth.current()?.username || 'guest'}:${bankId}`;
+// 按题库题型比例把 n 道题分配到各题型（最大余数法）
+function allocate(n, tc) {
+  const types = EXAM_TYPES.filter((t) => tc[t]);
+  const all = types.reduce((s, t) => s + tc[t], 0);
+  n = Math.min(n, all);
+  const raw = types.map((t) => ({ t, v: (n * tc[t]) / all }));
+  const out = {};
+  raw.forEach((r) => (out[r.t] = Math.min(tc[r.t], Math.floor(r.v))));
+  let left = n - Object.values(out).reduce((s, v) => s + v, 0);
+  raw.sort((x, y) => (y.v % 1) - (x.v % 1));
+  while (left > 0) {
+    let moved = false;
+    for (const r of raw) { if (left > 0 && out[r.t] < tc[r.t]) { out[r.t]++; left--; moved = true; } }
+    if (!moved) break;
+  }
+  return out;
+}
+const num = (v, d = 0) => (Number.isFinite(Number(v)) && v !== '' ? Number(v) : d);
+const r1 = (v) => Math.round(v * 10) / 10;
+
 async function viewExamSetup(bankId) {
   const bank = await getBank(bankId);
   const draft = store.loadDraft();
   const total = bank.questions.length;
-  const defCount = Math.min(bank.exam.count, total);
-  const counts = [...new Set([10, 20, 30, 50, 100].filter((n) => n < total).concat([defCount, total]))].sort((a, b) => a - b);
   const tc = typeCount(bank);
+  const types = EXAM_TYPES.filter((t) => tc[t]);
+
+  // 默认配置：按比例分配默认题量；分值取题库权重；百分制
+  let cfg = null;
+  try { cfg = JSON.parse(localStorage.getItem(cfgKey(bankId))); } catch { cfg = null; }
+  const defAlloc = allocate(Math.min(bank.exam.count, total), tc);
+  const init = {
+    counts: Object.fromEntries(types.map((t) => [t, Math.min(tc[t], num(cfg?.counts?.[t], defAlloc[t] || 0))])),
+    scores: Object.fromEntries(types.map((t) => [t, num(cfg?.scores?.[t], bank.scores[t] ?? 1)])),
+    duration: num(cfg?.duration, bank.exam.duration),
+    normalize: cfg ? cfg.normalize !== false : true,
+    pass: num(cfg?.pass, bank.exam.passScore),
+  };
 
   app.innerHTML = shell(`
     <div class="quiz-top">
@@ -947,28 +982,101 @@ async function viewExamSetup(bankId) {
         <button class="btn btn-ghost" type="button" data-discard>放弃</button>
         <a class="btn btn-primary" href="#/exam/${esc(draft.bankId)}/run">${draft.endAt <= Date.now() ? '交卷' : '继续考试'}</a>
       </div>` : ''}
-      <form class="setup-card">
-        <h3>考试设置</h3>
+      <form class="setup-card" novalidate>
+        <div class="setup-head">
+          <h3>考试设置</h3>
+          <div class="quick-alloc">
+            <span>快速分配</span>
+            <input type="number" name="quick" min="1" max="${total}" value="${Math.min(bank.exam.count, total)}" inputmode="numeric">
+            <span>题</span>
+            <button class="btn btn-soft btn-sm" type="button" data-alloc>按比例</button>
+          </div>
+        </div>
+        <div class="type-table">
+          <div class="tt-row tt-head"><span>题型</span><span>抽题数</span><span>每题分值</span><span>小计</span></div>
+          ${types.map((t) => `
+          <div class="tt-row" data-type="${t}">
+            <span class="tt-name">${TYPE_LABEL[t]}<small>题库 ${tc[t]} 题</small></span>
+            <span class="tt-in"><input type="number" name="c_${t}" min="0" max="${tc[t]}" step="1" value="${init.counts[t]}" inputmode="numeric"><button type="button" class="tt-all" data-all="${t}" title="全部">全</button></span>
+            <span class="tt-in"><input type="number" name="s_${t}" min="0" step="0.5" value="${init.scores[t]}" inputmode="decimal"><em>分</em></span>
+            <span class="tt-sub" data-sub="${t}"></span>
+          </div>`).join('')}
+          <div class="tt-row tt-foot"><span>合计</span><span data-tcount></span><span></span><span data-tscore></span></div>
+        </div>
         <div class="setup-grid">
-          <label class="field"><span class="field-label">题目数量</span>
-            <select name="count">${counts.map((n) => `<option value="${n}" ${n === defCount ? 'selected' : ''}>${n === total ? `全部 ${n} 题` : `${n} 题`}</option>`).join('')}</select></label>
-          <label class="field"><span class="field-label">考试时长</span>
-            <select name="duration">${[10, 15, 20, 30, 45, 60, 90, 120].concat(bank.exam.duration).filter((v, i, a) => a.indexOf(v) === i).sort((a, b) => a - b)
-              .map((m) => `<option value="${m}" ${m === bank.exam.duration ? 'selected' : ''}>${m} 分钟</option>`).join('')}</select></label>
-          <label class="field"><span class="field-label">及格分数</span>
-            <select name="pass">${[60, 70, 80, 90].concat(bank.exam.passScore).filter((v, i, a) => a.indexOf(v) === i).sort((a, b) => a - b)
-              .map((s) => `<option value="${s}" ${s === bank.exam.passScore ? 'selected' : ''}>${s} 分</option>`).join('')}</select></label>
+          <label class="field"><span class="field-label">考试时长（分钟）</span>
+            <input type="number" name="duration" min="1" max="600" step="1" value="${init.duration}" inputmode="numeric"></label>
+          <label class="field"><span class="field-label">计分方式</span>
+            <select name="normalize">
+              <option value="1" ${init.normalize ? 'selected' : ''}>折算为百分制</option>
+              <option value="0" ${init.normalize ? '' : 'selected'}>按实际总分</option>
+            </select></label>
+          <label class="field"><span class="field-label" data-pass-label>及格分数</span>
+            <input type="number" name="pass" min="0" step="0.5" value="${init.pass}" inputmode="decimal"></label>
         </div>
         <ul class="rules">
-          <li>${icon('shuffle')} 从题库 ${total} 题中随机抽题（${['single', 'multiple', 'judge', 'fill'].filter((t) => tc[t]).map((t) => `${TYPE_LABEL[t].slice(0, 2)} ${tc[t]}`).join(' · ')}）</li>
-          <li>${icon('target')} 计分权重：${['single', 'multiple', 'judge', 'fill'].filter((t) => tc[t]).map((t) => `${TYPE_LABEL[t].slice(0, 2)} ${bank.scores[t]} 分`).join('、')}，折算为百分制；多选题须全部选对才得分</li>
+          <li>${icon('shuffle')} 按上表题量从各题型中随机抽题，试卷按 ${types.map((t) => TYPE_LABEL[t].slice(0, 2)).join(' → ')} 排列</li>
+          <li>${icon('target')} <span data-score-rule></span>；多选题须全部选对才得分</li>
           <li>${icon('clock')} 时间到自动交卷；中途刷新或关闭页面可继续作答</li>
           <li>${icon('flag')} 可标记不确定的题目，交卷前在答题卡中快速定位</li>
         </ul>
-        <button class="btn btn-primary btn-lg btn-block" type="submit">${icon('play')} 开始考试</button>
+        <button class="btn btn-primary btn-lg btn-block" type="submit" data-start>${icon('play')} 开始考试</button>
       </form>
     </div>`);
   bindShell();
+
+  const form = $('.setup-card');
+  const F = form.elements;
+  const read = () => {
+    const counts = {}, scores = {};
+    types.forEach((t) => {
+      counts[t] = Math.max(0, Math.min(tc[t], Math.floor(num(F[`c_${t}`].value))));
+      scores[t] = Math.max(0, num(F[`s_${t}`].value));
+    });
+    return {
+      counts, scores,
+      duration: Math.max(1, Math.min(600, Math.floor(num(F.duration.value, bank.exam.duration)))),
+      normalize: F.normalize.value === '1',
+      pass: Math.max(0, num(F.pass.value)),
+    };
+  };
+  let lastNorm = init.normalize;
+  function update() {
+    const c = read();
+    let n = 0, full = 0;
+    types.forEach((t) => {
+      const sub = r1(c.counts[t] * c.scores[t]);
+      n += c.counts[t]; full += sub;
+      $(`[data-sub="${t}"]`).textContent = c.counts[t] ? `${sub} 分` : '—';
+      $(`.tt-row[data-type="${t}"]`).classList.toggle('off', !c.counts[t]);
+    });
+    full = r1(full);
+    // 切换计分方式时把及格线在百分制与实际分之间换算
+    if (c.normalize !== lastNorm && full > 0) {
+      F.pass.value = c.normalize ? Math.round((c.pass / full) * 100) : r1((c.pass / 100) * full);
+      lastNorm = c.normalize;
+    }
+    $('[data-tcount]').textContent = `${n} 题`;
+    $('[data-tscore]').textContent = `${full} 分`;
+    $('[data-pass-label]').textContent = c.normalize ? '及格分数（百分制）' : `及格分数（满分 ${full}）`;
+    $('[data-score-rule]').textContent = c.normalize
+      ? `卷面 ${full} 分，按得分比例折算为百分制`
+      : `按实际得分计分，满分 ${full} 分`;
+    $('[data-start]').disabled = !n;
+    return { c, n, full };
+  }
+  form.addEventListener('input', update);
+  form.addEventListener('change', update);
+  form.addEventListener('click', (e) => {
+    const all = e.target.closest('[data-all]');
+    if (all) { const t = all.dataset.all; F[`c_${t}`].value = tc[t]; update(); return; }
+    if (e.target.closest('[data-alloc]')) {
+      const al = allocate(Math.max(1, Math.floor(num(F.quick.value, 1))), tc);
+      types.forEach((t) => (F[`c_${t}`].value = al[t] || 0));
+      update();
+    }
+  });
+  update();
 
   $('[data-discard]')?.addEventListener('click', async () => {
     const ok = await confirmDialog({ title: '放弃考试', message: '将删除这场未完成的考试，不计入考试记录。确定吗？', okText: '放弃', danger: true });
@@ -977,18 +1085,20 @@ async function viewExamSetup(bankId) {
     toast('已放弃该考试', 'success');
     router();
   });
-  $('.setup-card').addEventListener('submit', async (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    const { c, n, full } = update();
+    if (!n) return toast('请至少设置 1 道题', 'warning');
+    if (!(full > 0)) return toast('总分须大于 0，请设置题目分值', 'warning');
+    const maxPass = c.normalize ? 100 : full;
+    if (c.pass > maxPass) return toast(`及格分数不能超过 ${maxPass} 分`, 'warning');
     if (draft) {
       const ok = await confirmDialog({ title: '开始新考试', message: '开始新考试将放弃当前未完成的考试，确定继续吗？', okText: '开始新考试', danger: true });
       if (!ok) return;
     }
-    const f = e.currentTarget.elements;
-    const count = Number(f.count.value);
-    const minutes = Number(f.duration.value);
-    // 按题型排序：单选 → 多选 → 判断，题型内随机
-    const order = { single: 0, multiple: 1, judge: 2, fill: 3 };
-    const picked = shuffle(bank.questions).slice(0, count).sort((a, b) => (order[a.type] ?? 9) - (order[b.type] ?? 9));
+    localStorage.setItem(cfgKey(bankId), JSON.stringify(c));
+    const picked = [];
+    types.forEach((t) => picked.push(...shuffle(bank.questions.filter((q) => q.type === t)).slice(0, c.counts[t])));
     store.saveDraft({
       id: uid(),
       bankId,
@@ -998,9 +1108,12 @@ async function viewExamSetup(bankId) {
       flags: [],
       idx: 0,
       startAt: Date.now(),
-      endAt: Date.now() + minutes * 60000,
-      durationMin: minutes,
-      passScore: Number(f.pass.value),
+      endAt: Date.now() + c.duration * 60000,
+      durationMin: c.duration,
+      scores: c.scores,
+      normalize: c.normalize,
+      fullScore: full,
+      passScore: c.pass,
     });
     go(`#/exam/${bankId}/run`);
   });
@@ -1162,7 +1275,7 @@ async function viewExamRun(bankId) {
     const items = list.map((q) => {
       const sel = draft.answers[q.id] || '';
       const ok = isCorrect(q, sel);
-      const w = bank.scores[q.type] ?? 1;
+      const w = draft.scores?.[q.type] ?? bank.scores[q.type] ?? 1;
       full += w;
       if (ok) { earned += w; correct++; }
       byType[q.type] ||= { total: 0, correct: 0 };
@@ -1175,7 +1288,9 @@ async function viewExamRun(bankId) {
       }
       return { qid: q.id, sel, ok };
     });
-    const score = full ? Math.round((earned / full) * 100) : 0;
+    const percent = full ? Math.round((earned / full) * 100) : 0;
+    const normalize = draft.normalize !== false;
+    const score = normalize ? percent : Math.round(earned * 10) / 10;
     const record = {
       id: draft.id,
       bankId,
@@ -1187,6 +1302,10 @@ async function viewExamRun(bankId) {
       correct,
       answered: items.filter((x) => x.sel).length,
       score,
+      percent,
+      normalize,
+      earned: Math.round(earned * 10) / 10,
+      fullScore: Math.round(full * 10) / 10,
       passScore: draft.passScore,
       pass: score >= draft.passScore,
       byType,
@@ -1265,13 +1384,13 @@ async function viewResult(recordId) {
       <div class="score-ring">
         <svg viewBox="0 0 120 120">
           <circle cx="60" cy="60" r="${R}" class="ring-bg"/>
-          <circle cx="60" cy="60" r="${R}" class="ring-fg" style="stroke:${color};stroke-dasharray:${C};stroke-dashoffset:${C}" data-ring="${C * (1 - r.score / 100)}"/>
+          <circle cx="60" cy="60" r="${R}" class="ring-fg" style="stroke:${color};stroke-dasharray:${C};stroke-dashoffset:${C}" data-ring="${C * (1 - pct(r) / 100)}"/>
         </svg>
-        <div class="score-text"><b>${r.score}</b><span>分</span></div>
+        <div class="score-text"><b>${r.score}</b><span>${r.normalize === false ? `/ ${r.fullScore} 分` : '分'}</span></div>
       </div>
       <div class="result-info">
         <span class="result-badge">${r.pass ? `${icon('trophy')} 通过考试` : `${icon('alert')} 未通过`}</span>
-        <h3>${r.pass ? '表现很棒，继续保持！' : `距离及格（${r.passScore} 分）还差 ${r.passScore - r.score} 分`}</h3>
+        <h3>${r.pass ? '表现很棒，继续保持！' : `距离及格（${r.passScore} 分）还差 ${Math.round((r.passScore - r.score) * 10) / 10} 分`}</h3>
         <div class="result-stats">
           <div><b class="ok">${r.correct}</b><span>答对</span></div>
           <div><b class="bad">${wrongCount}</b><span>答错</span></div>
@@ -1342,14 +1461,14 @@ async function viewResult(recordId) {
 async function viewHistory() {
   const d = store.load();
   const ex = d.exams;
-  const avg = ex.length ? Math.round(ex.reduce((s, e) => s + e.score, 0) / ex.length) : 0;
+  const avg = ex.length ? Math.round(ex.reduce((s, e) => s + pct(e), 0) / ex.length) : 0;
   const passRate = ex.length ? Math.round((ex.filter((e) => e.pass).length / ex.length) * 100) : 0;
   const recent = ex.slice(0, 12).reverse();
 
   const chart = recent.length > 1 ? (() => {
     const W = 600, H = 160, P = 24;
     const step = (W - P * 2) / (recent.length - 1);
-    const pts = recent.map((e, i) => [P + i * step, H - P - (e.score / 100) * (H - P * 2)]);
+    const pts = recent.map((e, i) => [P + i * step, H - P - (pct(e) / 100) * (H - P * 2)]);
     const line = pts.map((p, i) => `${i ? 'L' : 'M'}${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' ');
     const area = `${line} L${pts[pts.length - 1][0]},${H - P} L${pts[0][0]},${H - P} Z`;
     const passY = H - P - (60 / 100) * (H - P * 2);
@@ -1361,7 +1480,7 @@ async function viewHistory() {
           <line x1="${P}" x2="${W - P}" y1="${passY}" y2="${passY}" class="chart-pass"/>
           <path d="${area}" fill="url(#g1)"/>
           <path d="${line}" class="chart-line"/>
-          ${pts.map((p, i) => `<circle cx="${p[0]}" cy="${p[1]}" r="4" class="chart-dot ${recent[i].pass ? '' : 'fail'}"><title>${recent[i].score} 分</title></circle>`).join('')}
+          ${pts.map((p, i) => `<circle cx="${p[0]}" cy="${p[1]}" r="4" class="chart-dot ${recent[i].pass ? '' : 'fail'}"><title>${recent[i].score} 分${recent[i].normalize === false ? `（${pct(recent[i])}%）` : ''}</title></circle>`).join('')}
         </svg>
       </div>`;
   })() : '';
@@ -1371,7 +1490,7 @@ async function viewHistory() {
     <section class="stats">
       <div class="stat"><div class="stat-ico c1">${icon('edit')}</div><div><span>考试次数</span><b>${ex.length}</b></div></div>
       <div class="stat"><div class="stat-ico c2">${icon('target')}</div><div><span>平均分</span><b>${ex.length ? avg : '—'}</b></div></div>
-      <div class="stat"><div class="stat-ico c4">${icon('trophy')}</div><div><span>最高分</span><b>${ex.length ? Math.max(...ex.map((e) => e.score)) : '—'}</b></div></div>
+      <div class="stat"><div class="stat-ico c4">${icon('trophy')}</div><div><span>最高分</span><b>${ex.length ? Math.max(...ex.map(pct)) : '—'}</b></div></div>
       <div class="stat"><div class="stat-ico c3">${icon('check')}</div><div><span>通过率</span><b>${ex.length ? passRate : '—'}<small>${ex.length ? '%' : ''}</small></b></div></div>
     </section>
     ${chart}
@@ -1379,7 +1498,7 @@ async function viewHistory() {
     <div class="history-list">
       ${ex.map((e) => `
         <a class="history-item" href="#/result/${esc(e.id)}">
-          <div class="h-score ${e.pass ? 'pass' : 'fail'}">${e.score}</div>
+          <div class="h-score ${e.pass ? 'pass' : 'fail'}">${e.score}${e.normalize === false ? `<small>/${e.fullScore}</small>` : ''}</div>
           <div class="h-main"><strong>${esc(e.bankTitle)}</strong><span>${fmtDate(e.at)} · ${e.total} 题 · 用时 ${fmtDuration(e.used / 1000)}</span></div>
           <span class="h-tag ${e.pass ? 'pass' : 'fail'}">${e.pass ? '通过' : '未通过'}</span>
           ${icon('right', 'h-arrow')}
