@@ -1,9 +1,9 @@
-import * as auth from './auth.js?v=20261112a';
-import * as store from './store.js?v=20261112a';
-import { listBanks, getBank, isCorrect, typeCount, letter } from './bank.js?v=20261112a';
+import * as auth from './auth.js?v=20261112b';
+import * as store from './store.js?v=20261112b';
+import { listBanks, getBank, isCorrect, typeCount, letter } from './bank.js?v=20261112b';
 import {
   $, $$, esc, rich, shuffle, fmtTime, fmtDuration, fmtDate, uid, toast, confirmDialog, icon, TYPE_LABEL,
-} from './utils.js?v=20261112a';
+} from './utils.js?v=20261112b';
 
 const app = $('#app');
 let cleanup = null; // 当前视图的清理函数（计时器、键盘监听等）
@@ -232,7 +232,7 @@ async function viewHome() {
         <div class="bank-icon ${(b.icon || '').length > 2 ? 'sm' : ''}">${esc(b.icon || b.title.slice(0, 1))}</div>
         <div class="bank-title">
           <h3>${esc(b.title)}</h3>
-          <p>${esc(b.description || '')}</p>
+          ${shortDesc(b.description) ? `<p title="${esc(b.description)}">${esc(shortDesc(b.description))}</p>` : ''}
         </div>
         <button class="icon-btn sm" data-reset="${esc(b.id)}" title="重置该题库的练习记录">${icon('refresh')}</button>
       </div>
@@ -302,14 +302,34 @@ async function viewHome() {
 /* =========================================================
  * 题目渲染（练习 / 考试 / 回顾共用）
  * ======================================================= */
-function renderQuestion(q, { index, total, sel = '', revealed = false, fav = false, flagged = false, showFlag = false, showFav = true, recite = false, hidden = false, mastered = false }) {
+/* ---------- 选项乱序 ----------
+ * perm[j] = 第 j 个显示位置对应的原选项下标。作答/判分始终使用原题字母，
+ * 仅显示字母与顺序改变，因此错题本、统计、解析不受影响。 */
+const NO_SHUFFLE_RE = /以上|上述|都(?:对|不对|正确|错误|不正确)|全部(?:正确|错误)|all of the above|none of the above|both/i;
+function canShuffle(q) {
+  return (q.type === 'single' || q.type === 'multiple') && q.options?.length > 2 && !q.options.some((o) => NO_SHUFFLE_RE.test(o));
+}
+function makePerm(q) {
+  if (!canShuffle(q)) return null;
+  const idxs = q.options.map((_, i) => i);
+  for (let n = 0; n < 5; n++) {
+    const p = shuffle(idxs);
+    if (p.some((v, i) => v !== i)) return p;
+  }
+  return null;
+}
+const dispLetter = (perm, k) => (perm ? letter(perm.indexOf(k.charCodeAt(0) - 65)) : k);
+const toDisp = (perm, s) => (perm ? s.split('').map((c) => dispLetter(perm, c)).sort().join('') : s);
+
+function renderQuestion(q, { index, total, sel = '', revealed = false, fav = false, flagged = false, showFlag = false, showFav = true, recite = false, hidden = false, mastered = false, perm = null }) {
   const multi = q.type === 'multiple';
   const fill = q.type === 'fill';
   if (recite) return renderRecite(q, { index, total, fav, hidden, mastered });
   const opts = fill ? `
       <div class="fill-wrap ${revealed ? (isCorrect(q, sel) ? 'correct' : 'wrong') : ''}">
         <input class="fill-input" data-fill type="text" autocomplete="off" spellcheck="false" placeholder="在此输入答案，按 Enter 确认" value="${esc(sel)}" ${revealed ? 'disabled' : ''} />
-      </div>` : q.options.map((text, i) => {
+      </div>` : (perm || q.options.map((_, i) => i)).map((i, j) => {
+    const text = q.options[i];
     const k = letter(i);
     const chosen = sel.includes(k);
     const isAns = q.answer.includes(k);
@@ -323,14 +343,14 @@ function renderQuestion(q, { index, total, sel = '', revealed = false, fav = fal
     }
     return `
       <button class="opt ${cls} ${multi ? 'multi' : ''}" data-key="${k}" ${revealed ? 'disabled' : ''}>
-        <span class="opt-key">${k}</span>
+        <span class="opt-key">${letter(j)}</span>
         <span class="opt-text">${rich(text)}</span>
         <span class="opt-mark">${mark}</span>
       </button>`;
   }).join('');
   const imgs = q.images?.length ? `<div class="q-images">${q.images.map((src) => `
       <button class="q-img" data-zoom="${esc(src)}" title="点击放大"><img src="${esc(src)}" alt="题目配图" loading="lazy" /></button>`).join('')}</div>` : '';
-  const showAns = (v) => (q.type === 'judge' ? esc(q.options[v === 'A' ? 0 : 1]) : fill ? esc(v) : v);
+  const showAns = (v) => (q.type === 'judge' ? esc(q.options[v === 'A' ? 0 : 1]) : fill ? esc(v) : toDisp(perm, v));
 
   let feedback = '';
   if (revealed) {
@@ -343,6 +363,7 @@ function renderQuestion(q, { index, total, sel = '', revealed = false, fav = fal
           <strong>${ok ? '回答正确' : unanswered ? '未作答' : '回答错误'}</strong>
           <span class="feedback-ans">正确答案 <b>${showAns(fill ? q.answer.split('|').join(' 或 ') : q.answer)}</b>${sel && !ok ? `，你的答案 <b>${showAns(sel)}</b>` : ''}</span>
         </div>
+        ${perm ? `<div class="perm-note">${icon('shuffle')} 选项已乱序，原题答案为 <b>${esc(q.answer)}</b>${q.analysis ? '，解析中的选项字母按原题顺序' : ''}</div>` : ''}
         ${q.analysis ? `<div class="analysis"><div class="analysis-title">解析</div><div>${rich(q.analysis)}</div></div>` : ''}
       </div>`;
   }
@@ -431,17 +452,14 @@ function bindKeys(handler) {
   onCleanup(() => document.removeEventListener('keydown', fn));
 }
 
-function keyToOption(e, q) {
+function keyToOption(e, q, perm = null) {
+  if (!q.options || q.type === 'fill') return null;
   const k = e.key.toUpperCase();
-  if (/^[1-9]$/.test(k)) {
-    const i = Number(k) - 1;
-    return i < q.options.length ? letter(i) : null;
-  }
-  if (/^[A-J]$/.test(k)) {
-    const i = k.charCodeAt(0) - 65;
-    return i < q.options.length ? k : null;
-  }
-  return null;
+  let j = -1;
+  if (/^[1-9]$/.test(k)) j = Number(k) - 1;
+  else if (/^[A-J]$/.test(k)) j = k.charCodeAt(0) - 65;
+  if (j < 0 || j >= q.options.length) return null;
+  return letter(perm ? perm[j] : j);
 }
 
 /* 导出题库（docx / pdf，含答案与解析） */
@@ -529,7 +547,7 @@ async function viewPractice(bankId, mode) {
     return;
   }
 
-  const session = list.map(() => ({ sel: '', revealed: false }));
+  const session = list.map((q) => ({ sel: '', revealed: false, perm: d.settings.shuffleOpts ? makePerm(q) : null }));
   let idx = mode === 'seq' ? Math.min(st.pos, list.length - 1) : 0;
   let sessionRight = 0, sessionDone = 0;
 
@@ -538,7 +556,8 @@ async function viewPractice(bankId, mode) {
       <a class="icon-btn" href="#/" title="返回">${icon('back')}</a>
       <div class="quiz-title"><h2>${esc(bank.title)}</h2><span class="pill">${MODE_NAME[mode]}</span></div>
       <div class="quiz-top-right">
-        <label class="switch" title="答对后自动跳到下一题"><input type="checkbox" data-autonext ${d.settings.autoNext ? 'checked' : ''}/><span class="switch-track"></span><span class="switch-label">答对自动下一题</span></label>
+        <label class="switch" title="打乱单选/多选题的选项顺序"><input type="checkbox" data-shuffleopts ${d.settings.shuffleOpts ? 'checked' : ''}/><span class="switch-track"></span><span class="switch-label">选项乱序</span></label>
+        <label class="switch" title="答对后自动跳到下一题"><input type="checkbox" data-autonext ${d.settings.autoNext ? 'checked' : ''}/><span class="switch-track"></span><span class="switch-label">自动下一题</span></label>
       </div>
     </div>
     <div class="quiz-progress"><div class="progress thin"><div class="progress-bar" data-pbar></div></div><span data-ptext></span></div>
@@ -573,6 +592,17 @@ async function viewPractice(bankId, mode) {
     store.save(d);
   });
 
+  const shufBox = $('[data-shuffleopts]');
+  shufBox.addEventListener('change', () => {
+    d = store.load();
+    d.settings.shuffleOpts = shufBox.checked;
+    store.save(d);
+    // 未作答的题目立即按新设置重排；已作答的保持不变
+    list.forEach((q, i) => { if (!session[i].revealed && !session[i].sel) session[i].perm = shufBox.checked ? makePerm(q) : null; });
+    toast(shufBox.checked ? '已开启选项乱序' : '已关闭选项乱序', 'info');
+    render();
+  });
+
   let autoTimer = null;
   onCleanup(() => clearTimeout(autoTimer));
 
@@ -582,7 +612,7 @@ async function viewPractice(bankId, mode) {
     d = store.load();
     st = store.bankState(d, bankId);
     $('[data-qwrap]').innerHTML = renderQuestion(q, {
-      index: idx, total: list.length, sel: s.sel, revealed: s.revealed, fav: st.fav.includes(q.id),
+      index: idx, total: list.length, sel: s.sel, revealed: s.revealed, fav: st.fav.includes(q.id), perm: s.perm,
     });
     const primary = $('[data-primary]');
     if (s.revealed) {
@@ -721,7 +751,7 @@ async function viewPractice(bankId, mode) {
       return submit();
     }
     if (e.key.toLowerCase() === 'f') return fav();
-    const k = keyToOption(e, q);
+    const k = keyToOption(e, q, session[idx].perm);
     if (k) choose(k);
   });
 
@@ -926,6 +956,8 @@ async function viewRecite(bankId, scope = 'all') {
 /* =========================================================
  * 模拟考试：设置页
  * ======================================================= */
+// 题库简介去掉与题型标签重复的「共 N 题：单选…」前缀
+const shortDesc = (s = '') => s.replace(/^\s*共\s*\d+\s*题\s*[：:][^，,。；;]*[，,。；;]?\s*/, '').trim();
 // 成绩百分比（旧记录 score 即百分制）
 const pct = (e) => e.percent ?? e.score;
 const EXAM_TYPES = ['single', 'multiple', 'judge', 'fill'];
@@ -967,6 +999,7 @@ async function viewExamSetup(bankId) {
     duration: num(cfg?.duration, bank.exam.duration),
     normalize: cfg ? cfg.normalize !== false : true,
     pass: num(cfg?.pass, bank.exam.passScore),
+    shuffleOpts: cfg?.shuffleOpts ?? !!store.load().settings.shuffleOpts,
   };
 
   app.innerHTML = shell(`
@@ -1014,6 +1047,10 @@ async function viewExamSetup(bankId) {
           <label class="field"><span class="field-label" data-pass-label>及格分数</span>
             <input type="number" name="pass" min="0" step="0.5" value="${init.pass}" inputmode="decimal"></label>
         </div>
+        <label class="setup-toggle">
+          <span><b>选项乱序</b><small>打乱单选/多选题的选项顺序（含「以上都对」等选项的题保持原序）</small></span>
+          <span class="switch"><input type="checkbox" name="shuffleOpts" ${init.shuffleOpts ? 'checked' : ''}/><span class="switch-track"></span></span>
+        </label>
         <ul class="rules">
           <li>${icon('shuffle')} 按上表题量从各题型中随机抽题，试卷按 ${types.map((t) => TYPE_LABEL[t].slice(0, 2)).join(' → ')} 排列</li>
           <li>${icon('target')} <span data-score-rule></span>；多选题须全部选对才得分</li>
@@ -1038,6 +1075,7 @@ async function viewExamSetup(bankId) {
       duration: Math.max(1, Math.min(600, Math.floor(num(F.duration.value, bank.exam.duration)))),
       normalize: F.normalize.value === '1',
       pass: Math.max(0, num(F.pass.value)),
+      shuffleOpts: F.shuffleOpts.checked,
     };
   };
   let lastNorm = init.normalize;
@@ -1104,6 +1142,7 @@ async function viewExamSetup(bankId) {
       bankId,
       bankTitle: bank.title,
       qids: picked.map((q) => q.id),
+      perms: c.shuffleOpts ? Object.fromEntries(picked.map((q) => [q.id, makePerm(q)]).filter(([, p]) => p)) : {},
       answers: {},
       flags: [],
       idx: 0,
@@ -1172,7 +1211,7 @@ async function viewExamRun(bankId) {
     const q = list[idx];
     $('[data-qwrap]').innerHTML = renderQuestion(q, {
       index: idx, total: list.length, sel: draft.answers[q.id] || '',
-      showFlag: true, flagged: draft.flags.includes(q.id), showFav: false,
+      showFlag: true, flagged: draft.flags.includes(q.id), showFav: false, perm: draft.perms?.[q.id] || null,
     });
     $('[data-prev]').disabled = idx === 0;
     $('[data-next]').disabled = idx === list.length - 1;
@@ -1286,7 +1325,7 @@ async function viewExamRun(bankId) {
         const st = store.bankState(d, bankId);
         if (!st.wrong.includes(q.id)) st.wrong.push(q.id);
       }
-      return { qid: q.id, sel, ok };
+      return { qid: q.id, sel, ok, ...(draft.perms?.[q.id] ? { perm: draft.perms[q.id] } : {}) };
     });
     const percent = full ? Math.round((earned / full) * 100) : 0;
     const normalize = draft.normalize !== false;
@@ -1348,7 +1387,7 @@ async function viewExamRun(bankId) {
     if (e.key === 'ArrowLeft') return move(-1);
     if (e.key === 'ArrowRight') return move(1);
     if (e.key.toLowerCase() === 'm') return toggleFlag();
-    const k = keyToOption(e, list[idx]);
+    const k = keyToOption(e, list[idx], draft.perms?.[list[idx].id] || null);
     if (k) choose(k);
   });
 
@@ -1429,7 +1468,7 @@ async function viewResult(recordId) {
     ).map(({ it, i }) => {
       const q = bank.qmap.get(it.qid);
       if (!q) return '';
-      return renderQuestion(q, { index: i, total: r.items.length, sel: it.sel, revealed: true, fav: st.fav.includes(q.id) });
+      return renderQuestion(q, { index: i, total: r.items.length, sel: it.sel, revealed: true, fav: st.fav.includes(q.id), perm: it.perm || null });
     }).join('');
     $('[data-review]').innerHTML = html || '<div class="empty small"><p>这里没有题目</p></div>';
   }
