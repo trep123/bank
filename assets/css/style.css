@@ -860,3 +860,18 @@ kbd {
   .quiz-top-right .switch-label { display: inline; font-size: 11px; }
   .quiz-top-right .switch { gap: 4px; }
 }
+
+/* 答题卡按题型分组 */
+.sheet-group {
+  grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: -3px; z-index: 1; margin: 6px -3px 0; padding: 6px 4px 5px;
+  background: var(--surface); font-size: 12.5px; font-weight: 700; color: var(--text-2);
+  border-bottom: 1px dashed var(--border);
+}
+.sheet-group:first-child { margin-top: 0; }
+.sheet-group::before { content: ""; width: 4px; height: 13px; border-radius: 2px; background: var(--primary); margin-right: 7px; }
+.sheet-group[data-group="multiple"]::before { background: #f59e0b; }
+.sheet-group[data-group="judge"]::before { background: #10b981; }
+.sheet-group[data-group="fill"]::before { background: #8b5cf6; }
+.sheet-group span { flex: 1; }
+.sheet-group em { font-style: normal; font-weight: 600; font-size: 11.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
