@@ -1,5 +1,5 @@
 // 学习数据：按用户保存在浏览器 localStorage（练习进度、错题本、收藏、考试记录）
-import { current } from './auth.js?v=20261112c';
+import { current } from './auth.js?v=20261114a';
 
 const key = () => `qb:data:${current()?.username || 'guest'}`;
 const draftKey = () => `qb:exam-draft:${current()?.username || 'guest'}`;
@@ -38,6 +38,7 @@ export function bankState(d, bankId) {
   b.pos ||= 0;
   b.mastered ||= [];
   b.recitePos ||= {};
+  b.typePos ||= {};
   return b;
 }
 
