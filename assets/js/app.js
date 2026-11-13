@@ -1,9 +1,9 @@
-import * as auth from './auth.js?v=20261112c';
-import * as store from './store.js?v=20261112c';
-import { listBanks, getBank, isCorrect, typeCount, letter } from './bank.js?v=20261112c';
+import * as auth from './auth.js?v=20261114a';
+import * as store from './store.js?v=20261114a';
+import { listBanks, getBank, isCorrect, typeCount, letter } from './bank.js?v=20261114a';
 import {
   $, $$, esc, rich, shuffle, fmtTime, fmtDuration, fmtDate, uid, toast, confirmDialog, icon, TYPE_LABEL,
-} from './utils.js?v=20261112c';
+} from './utils.js?v=20261114a';
 
 const app = $('#app');
 let cleanup = null; // 当前视图的清理函数（计时器、键盘监听等）
@@ -18,8 +18,8 @@ const onCleanup = (fn) => {
 const routes = [
   [/^#\/login$/, viewLogin, { public: true }],
   [/^#\/?$/, viewHome],
-  [/^#\/practice\/([\w-]+)\/(seq|random|wrong|fav)$/, viewPractice],
-  [/^#\/recite\/([\w-]+)(?:\/(all|wrong|fav|todo))?$/, viewRecite],
+  [/^#\/practice\/([\w-]+)\/(seq|random|wrong|fav)(?:\/(single|multiple|judge|fill))?$/, viewPractice],
+  [/^#\/recite\/([\w-]+)(?:\/(all|wrong|fav|todo))?(?:\/(single|multiple|judge|fill))?$/, viewRecite],
   [/^#\/exam\/([\w-]+)$/, viewExamSetup],
   [/^#\/exam\/([\w-]+)\/run$/, viewExamRun],
   [/^#\/result\/([\w-]+)$/, viewResult],
@@ -36,7 +36,7 @@ async function router() {
     if (!opt?.public && !user) return go('#/login');
     if (opt?.public && user) return go('#/');
     try {
-      await fn(...m.slice(1).map(decodeURIComponent));
+      await fn(...m.slice(1).map((x) => (x == null ? undefined : decodeURIComponent(x))));
     } catch (e) {
       console.error(e);
       app.innerHTML = shell(`
@@ -238,10 +238,9 @@ async function viewHome() {
       </div>
       <div class="bank-tags">
         <span class="tag">共 ${total} 题</span>
-        ${tc.single ? `<span class="tag">单选 ${tc.single}</span>` : ''}
-        ${tc.multiple ? `<span class="tag">多选 ${tc.multiple}</span>` : ''}
-        ${tc.judge ? `<span class="tag">判断 ${tc.judge}</span>` : ''}
-        ${tc.fill ? `<span class="tag">填空 ${tc.fill}</span>` : ''}
+        ${['single', 'multiple', 'judge', 'fill'].filter((t) => tc[t]).map((t) => Object.keys(tc).filter((k) => tc[k]).length > 1
+          ? `<a class="tag tag-link" href="#/practice/${esc(b.id)}/seq/${t}" title="${TYPE_SHORT[t]}专项练习">${TYPE_SHORT[t]} ${tc[t]}${icon('right')}</a>`
+          : `<span class="tag">${TYPE_SHORT[t]} ${tc[t]}</span>`).join('')}
       </div>
       <div class="progress-block">
         <div class="progress-meta"><span>已练习 <b>${done}</b> / ${total}</span><span>${mastered ? `已掌握 <b>${mastered}</b> · ` : ''}正确率 <b>${done ? Math.round((right / done) * 100) : 0}%</b></span></div>
@@ -435,6 +434,17 @@ function renderRecite(q, { index, total, fav, hidden, mastered }) {
     </article>`;
 }
 
+const TYPE_SHORT = { single: '单选', multiple: '多选', judge: '判断', fill: '填空' };
+/** 题型筛选标签：全部 / 单选 / 多选 / 判断（题库只有一种题型时不显示） */
+function typeTabsHTML(bank, base, qtype, href, inline = false) {
+  const kinds = ['single', 'multiple', 'judge', 'fill'].filter((t) => bank.questions.some((q) => q.type === t));
+  if (kinds.length < 2) return '';
+  const cnt = (t) => base.filter((q) => q.type === t).length;
+  const tab = (t, label, n) => `<a class="tab ${(t || undefined) === qtype ? 'active' : ''} ${n ? '' : 'empty'}" href="${href(t)}">${label} <small>${n}</small></a>`;
+  const html = `<div class="tabs">${tab('', '全部题型', base.length)}${kinds.map((t) => tab(t, TYPE_SHORT[t], cnt(t))).join('')}</div>`;
+  return inline ? `<div class="tabs-gap"></div>${html}` : `<div class="recite-tabs type-tabs">${html}</div>`;
+}
+
 function sheetHTML(items, currentIdx, types = null) {
   // items: [{state:'correct'|'wrong'|'answered'|'', flagged}]；types: 与 items 对应的题型，用于按题型分组
   const cell = (it, i) => `
@@ -533,17 +543,34 @@ document.addEventListener('click', (e) => {
  * ======================================================= */
 const MODE_NAME = { seq: '顺序练习', random: '随机练习', wrong: '错题本', fav: '我的收藏' };
 
-async function viewPractice(bankId, mode) {
+async function viewPractice(bankId, mode, qtype) {
   const bank = await getBank(bankId);
   let d = store.load();
   let st = store.bankState(d, bankId);
 
-  let list;
-  if (mode === 'seq') list = bank.questions;
-  else if (mode === 'random') list = shuffle(bank.questions);
-  else if (mode === 'wrong') list = st.wrong.map((id) => bank.qmap.get(id)).filter(Boolean);
-  else list = st.fav.map((id) => bank.qmap.get(id)).filter(Boolean);
+  let base;
+  if (mode === 'seq' || mode === 'random') base = bank.questions;
+  else if (mode === 'wrong') base = st.wrong.map((id) => bank.qmap.get(id)).filter(Boolean);
+  else base = st.fav.map((id) => bank.qmap.get(id)).filter(Boolean);
+  let list = qtype ? base.filter((q) => q.type === qtype) : base;
+  if (mode === 'random') list = shuffle(list);
+  const typeTabs = typeTabsHTML(bank, base, qtype, (t) => `#/practice/${esc(bankId)}/${mode}${t ? `/${t}` : ''}`);
 
+  if (!list.length && qtype && base.length) {
+    app.innerHTML = shell(`
+      <div class="quiz-top">
+        <a class="icon-btn" href="#/" title="返回">${icon('back')}</a>
+        <div class="quiz-title"><h2>${esc(bank.title)}</h2><span class="pill">${MODE_NAME[mode]} · ${TYPE_SHORT[qtype]}</span></div>
+      </div>
+      ${typeTabs}
+      <div class="empty">
+        <div class="empty-ico">${icon('book')}</div>
+        <h3>这里没有${TYPE_LABEL[qtype]}</h3><p>换个题型看看吧。</p>
+        <a class="btn btn-primary" href="#/practice/${esc(bankId)}/${mode}">查看全部题型</a>
+      </div>`, { wide: true });
+    bindShell();
+    return;
+  }
   if (!list.length) {
     app.innerHTML = shell(`
       <div class="empty">
@@ -557,18 +584,22 @@ async function viewPractice(bankId, mode) {
   }
 
   const session = list.map((q) => ({ sel: '', revealed: false, perm: d.settings.shuffleOpts ? makePerm(q) : null }));
-  let idx = mode === 'seq' ? Math.min(st.pos, list.length - 1) : 0;
+  st.typePos ||= {};
+  const getPos = () => (qtype ? st.typePos[qtype] || 0 : st.pos);
+  const setPos = (s, v) => { if (qtype) { s.typePos ||= {}; s.typePos[qtype] = v; } else s.pos = v; };
+  let idx = mode === 'seq' ? Math.min(getPos(), list.length - 1) : 0;
   let sessionRight = 0, sessionDone = 0;
 
   app.innerHTML = shell(`
     <div class="quiz-top">
       <a class="icon-btn" href="#/" title="返回">${icon('back')}</a>
-      <div class="quiz-title"><h2>${esc(bank.title)}</h2><span class="pill">${MODE_NAME[mode]}</span></div>
+      <div class="quiz-title"><h2>${esc(bank.title)}</h2><span class="pill">${MODE_NAME[mode]}${qtype ? ` · ${TYPE_SHORT[qtype]}` : ''}</span></div>
       <div class="quiz-top-right">
         <label class="switch" title="打乱单选/多选题的选项顺序"><input type="checkbox" data-shuffleopts ${d.settings.shuffleOpts ? 'checked' : ''}/><span class="switch-track"></span><span class="switch-label">选项乱序</span></label>
         <label class="switch" title="答对后自动跳到下一题"><input type="checkbox" data-autonext ${d.settings.autoNext ? 'checked' : ''}/><span class="switch-track"></span><span class="switch-label">自动下一题</span></label>
       </div>
     </div>
+    ${typeTabs}
     <div class="quiz-progress"><div class="progress thin"><div class="progress-bar" data-pbar></div></div><span data-ptext></span></div>
     <div class="quiz-layout">
       <section class="quiz-main">
@@ -647,7 +678,7 @@ async function viewPractice(bankId, mode) {
     $('.sheet-cell.current')?.scrollIntoView({ block: 'nearest' });
 
     if (mode === 'seq') {
-      st.pos = idx;
+      setPos(st, idx);
       store.save(d);
     }
     focusFill();
@@ -715,7 +746,7 @@ async function viewPractice(bankId, mode) {
 
   async function finish() {
     const msg = `本次共作答 <b>${sessionDone}</b> 题，答对 <b>${sessionRight}</b> 题${sessionDone ? `，正确率 <b>${Math.round((sessionRight / sessionDone) * 100)}%</b>` : ''}。`;
-    if (mode === 'seq') { d = store.load(); store.bankState(d, bankId).pos = 0; store.save(d); }
+    if (mode === 'seq') { d = store.load(); setPos(store.bankState(d, bankId), 0); store.save(d); }
     await confirmDialog({ title: '练习完成 🎉', message: msg, okText: '返回首页', cancelText: '' });
     go('#/');
   }
@@ -772,7 +803,7 @@ async function viewPractice(bankId, mode) {
  * ======================================================= */
 const RECITE_SCOPE = { all: '全部', todo: '未掌握', wrong: '错题', fav: '收藏' };
 
-async function viewRecite(bankId, scope = 'all') {
+async function viewRecite(bankId, scope = 'all', qtype) {
   const bank = await getBank(bankId);
   let d = store.load();
   let st = store.bankState(d, bankId);
@@ -784,19 +815,23 @@ async function viewRecite(bankId, scope = 'all') {
     if (sc === 'todo') return bank.questions.filter((q) => !mastered.has(q.id));
     return bank.questions;
   };
-  const list = pick(scope);
-  const counts = { all: bank.questions.length, todo: bank.questions.length - mastered.size, wrong: pick('wrong').length, fav: pick('fav').length };
+  const byType = (arr) => (qtype ? arr.filter((q) => q.type === qtype) : arr);
+  const list = byType(pick(scope));
+  const counts = Object.fromEntries(Object.keys(RECITE_SCOPE).map((k) => [k, byType(pick(k)).length]));
+  const tsuf = qtype ? `/${qtype}` : '';
 
   const tabs = Object.entries(RECITE_SCOPE).map(([k, v]) =>
-    `<a class="tab ${k === scope ? 'active' : ''}" href="#/recite/${esc(bankId)}/${k}">${v} ${counts[k]}</a>`).join('');
+    `<a class="tab ${k === scope ? 'active' : ''}" href="#/recite/${esc(bankId)}/${k}${tsuf}">${v} ${counts[k]}</a>`).join('')
+;
+  const ttabs = typeTabsHTML(bank, pick(scope), qtype, (t) => `#/recite/${esc(bankId)}/${scope}${t ? `/${t}` : ''}`, true);
 
   if (!list.length) {
     app.innerHTML = shell(`
       <div class="quiz-top">
         <a class="icon-btn" href="#/" title="返回">${icon('back')}</a>
-        <div class="quiz-title"><h2>${esc(bank.title)}</h2><span class="pill">背题模式</span></div>
+        <div class="quiz-title"><h2>${esc(bank.title)}</h2><span class="pill">背题模式${qtype ? ` · ${TYPE_SHORT[qtype]}` : ''}</span></div>
       </div>
-      <div class="recite-tabs"><div class="tabs">${tabs}</div></div>
+      <div class="recite-tabs"><div class="tabs">${tabs}</div>${ttabs}</div>
       <div class="empty">
         <div class="empty-ico">${icon(scope === 'todo' ? 'trophy' : 'book')}</div>
         <h3>${scope === 'todo' ? '全部掌握了！' : '这里还是空的'}</h3>
@@ -807,19 +842,19 @@ async function viewRecite(bankId, scope = 'all') {
     return;
   }
 
-  const posKey = `${scope}`;
+  const posKey = qtype ? `${scope}:${qtype}` : `${scope}`;
   let idx = Math.min(st.recitePos[posKey] || 0, list.length - 1);
   const peeked = new Set(); // 遮挡模式下已翻开的题
 
   app.innerHTML = shell(`
     <div class="quiz-top">
       <a class="icon-btn" href="#/" title="返回">${icon('back')}</a>
-      <div class="quiz-title"><h2>${esc(bank.title)}</h2><span class="pill">背题模式</span></div>
+      <div class="quiz-title"><h2>${esc(bank.title)}</h2><span class="pill">背题模式${qtype ? ` · ${TYPE_SHORT[qtype]}` : ''}</span></div>
       <div class="quiz-top-right">
         <label class="switch" title="先遮住答案，自己回忆后再翻开"><input type="checkbox" data-hide ${d.settings.reciteHide ? 'checked' : ''}/><span class="switch-track"></span><span class="switch-label">遮住答案</span></label>
       </div>
     </div>
-    <div class="recite-tabs"><div class="tabs">${tabs}</div></div>
+    <div class="recite-tabs"><div class="tabs">${tabs}</div>${ttabs}</div>
     <div class="quiz-progress"><div class="progress thin"><div class="progress-bar" data-pbar></div></div><span data-ptext></span></div>
     <div class="quiz-layout">
       <section class="quiz-main">
