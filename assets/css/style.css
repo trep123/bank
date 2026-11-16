@@ -888,3 +888,84 @@ kbd {
 @media (max-width: 640px) {
   .tabs-gap { display: block; height: 6px; width: auto; }
 }
+
+/* ---------- 2026-11-16 题库折叠卡片 ---------- */
+.bank-grid { align-items: start; }
+.bank-card, .bank-card[class] { padding: 0; gap: 0; }
+.bank-card:hover { transform: none; }
+.bank-head, .bank-head[class] {
+  width: 100%; display: flex; align-items: center; gap: 14px; padding: 16px 18px;
+  background: none; border: 0; text-align: left; color: inherit; cursor: pointer; font: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+.bank-head:hover .bank-chev { background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); }
+.bank-head .bank-icon { width: 44px; height: 44px; border-radius: 13px; font-size: 20px; }
+.bank-head .bank-icon.sm { font-size: 14px; }
+.bank-head .bank-title h3 { font-size: 16px; line-height: 1.4; -webkit-line-clamp: 2; }
+.bank-dot { width: 8px; height: 8px; border-radius: 50%; background: #f97316; flex: none; box-shadow: 0 0 0 3px rgba(249, 115, 22, .18); }
+.bank-chev {
+  flex: none; width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center;
+  color: var(--muted); background: var(--surface-2); transition: transform .3s cubic-bezier(.2, .8, .2, 1), background .15s, color .15s;
+}
+.bank-chev .ico { width: 18px; height: 18px; }
+.bank-card.open .bank-chev { transform: rotate(180deg); color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); }
+.bank-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .32s cubic-bezier(.2, .8, .2, 1); }
+.bank-card.open .bank-body { grid-template-rows: 1fr; }
+.bank-body-inner {
+  min-height: 0; overflow: hidden; display: flex; flex-direction: column; gap: 14px;
+  padding: 0 18px; opacity: 0; transition: opacity .2s, padding .32s cubic-bezier(.2, .8, .2, 1);
+}
+.bank-card.open .bank-body-inner { opacity: 1; padding: 2px 18px 14px; }
+.bank-desc { display: flex; align-items: center; gap: 10px; }
+.bank-desc p { flex: 1; min-width: 0; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+.bank-card .progress-block { margin-top: 0; }
+@media (max-width: 640px) {
+  .bank-head, .bank-head[class] { padding: 13px 14px; gap: 12px; }
+  .bank-head .bank-icon { width: 38px; height: 38px; border-radius: 11px; font-size: 17px; }
+  .bank-head .bank-icon.sm { font-size: 12.5px; }
+  .bank-head .bank-title h3 { font-size: 15px; white-space: normal; }
+  .bank-chev { width: 30px; height: 30px; }
+  .bank-body-inner { gap: 11px; padding: 0 14px; }
+  .bank-card.open .bank-body-inner { padding: 0 14px 10px; }
+  .bank-grid { gap: 10px; }
+}
+
+/* ---------- 2026-11-16 答题排版与滑动切题 ---------- */
+.quiz-main { overflow-x: clip; overflow-clip-margin: 24px; }
+[data-qwrap] { touch-action: pan-y; }
+.q-meta { gap: 10px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px dashed var(--border); }
+.q-no, .q-no[class] { display: inline-flex; align-items: baseline; gap: 3px; margin: 0; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.q-no b { font-size: 18px; font-weight: 800; color: var(--text); }
+.q-text { font-size: 17.5px; line-height: 1.8; letter-spacing: .1px; margin-bottom: 22px; }
+.q-hint { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 8px; background: rgba(139, 92, 246, .08); margin: -8px 0 14px; }
+.options { gap: 10px; }
+.opt { align-items: flex-start; line-height: 1.6; }
+.opt-key { margin-top: -2px; }
+.opt-mark { align-self: center; }
+.q-images { margin: -6px 0 20px; }
+.feedback { margin-top: 18px; }
+.analysis { line-height: 1.85; }
+.swipe-tip { display: none; }
+.chip-btn.on.ok { color: var(--success); border-color: color-mix(in srgb, var(--success) 40%, transparent); background: var(--success-soft); }
+@media (max-width: 640px) {
+  .q-card { padding: 16px 16px 20px; }
+  .q-meta { margin-bottom: 12px; padding-bottom: 11px; gap: 8px; }
+  .chip-btn { height: 28px; padding: 0 8px; }
+  .chip-btn span { display: none; }
+  .q-text { font-size: 16.5px; line-height: 1.75; margin-bottom: 16px; }
+  .options { gap: 9px; }
+  .opt { padding: 12px 12px; gap: 11px; font-size: 15px; border-radius: 12px; }
+  .opt-key { width: 27px; height: 27px; font-size: 13px; margin-top: -1px; }
+  .analysis { font-size: 14px; padding: 12px 14px; }
+  .feedback-head { padding: 11px 14px; }
+  /* 底部固定操作栏 */
+  .quiz-nav {
+    position: sticky; bottom: 0; z-index: 30; margin: 14px -14px 0; padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--border);
+  }
+  .quiz-nav .btn { height: 46px; }
+  .fab { bottom: calc(80px + env(safe-area-inset-bottom)); height: 42px; padding: 0 14px; opacity: .92; }
+  .swipe-tip { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 12px 0 0; font-size: 12px; color: var(--muted); }
+  .swipe-tip .ico { width: 13px; height: 13px; }
+}
