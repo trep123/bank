@@ -1,9 +1,9 @@
-import * as auth from './auth.js?v=20261114a';
-import * as store from './store.js?v=20261114a';
-import { listBanks, getBank, isCorrect, typeCount, letter } from './bank.js?v=20261114a';
+import * as auth from './auth.js?v=20261116a';
+import * as store from './store.js?v=20261116a';
+import { listBanks, getBank, isCorrect, typeCount, letter } from './bank.js?v=20261116a';
 import {
   $, $$, esc, rich, shuffle, fmtTime, fmtDuration, fmtDate, uid, toast, confirmDialog, icon, TYPE_LABEL,
-} from './utils.js?v=20261114a';
+} from './utils.js?v=20261116a';
 
 const app = $('#app');
 let cleanup = null; // 当前视图的清理函数（计时器、键盘监听等）
@@ -214,6 +214,8 @@ async function viewHome() {
   const hour = new Date().getHours();
   const greet = hour < 6 ? '夜深了' : hour < 12 ? '早上好' : hour < 14 ? '中午好' : hour < 18 ? '下午好' : '晚上好';
 
+  const OPEN_KEY = `qb:open-banks:${u.username || u.name}`;
+  const openSet = new Set(JSON.parse(localStorage.getItem(OPEN_KEY) || '[]'));
   const cards = banks.map((b, i) => {
     if (!b) return `<div class="bank-card"><p class="muted">题库「${esc(metas[i].title || metas[i].id)}」加载失败</p></div>`;
     const st = store.bankState(d, b.id);
@@ -227,13 +229,16 @@ async function viewHome() {
     const tc = typeCount(b);
     const color = b.color || '#4f6bff';
     return `
-    <article class="bank-card" style="--accent:${esc(color)}">
-      <div class="bank-head">
-        <div class="bank-icon ${(b.icon || '').length > 2 ? 'sm' : ''}">${esc(b.icon || b.title.slice(0, 1))}</div>
-        <div class="bank-title">
-          <h3>${esc(b.title)}</h3>
-          ${shortDesc(b.description) ? `<p title="${esc(b.description)}">${esc(shortDesc(b.description))}</p>` : ''}
-        </div>
+    <article class="bank-card ${openSet.has(b.id) || (draft && draft.bankId === b.id) ? 'open' : ''}" style="--accent:${esc(color)}" data-bank="${esc(b.id)}">
+      <button class="bank-head" data-toggle-bank aria-expanded="${openSet.has(b.id) ? 'true' : 'false'}">
+        <span class="bank-icon ${(b.icon || '').length > 2 ? 'sm' : ''}">${esc(b.icon || b.title.slice(0, 1))}</span>
+        <span class="bank-title"><h3>${esc(b.title)}</h3></span>
+        ${draft && draft.bankId === b.id ? '<span class="bank-dot" title="有未完成的考试"></span>' : ''}
+        <span class="bank-chev">${icon('down')}</span>
+      </button>
+      <div class="bank-body"><div class="bank-body-inner">
+      <div class="bank-desc">
+        <p title="${esc(b.description || '')}">${esc(shortDesc(b.description) || `共 ${total} 题`)}</p>
         <button class="icon-btn sm" data-reset="${esc(b.id)}" title="重置该题库的练习记录">${icon('refresh')}</button>
       </div>
       <div class="bank-tags">
@@ -258,6 +263,7 @@ async function viewHome() {
         <a href="#/practice/${esc(b.id)}/fav" class="${fav ? '' : 'disabled'}">${icon('star')} 收藏 <b>${fav}</b></a>
         ${b.exports ? `<a href="javascript:;" data-export="${esc(b.id)}">${icon('download')} 导出</a>` : ''}
       </div>
+      </div></div>
     </article>`;
   }).join('');
 
@@ -281,6 +287,14 @@ async function viewHome() {
     e.preventDefault();
     const b = banks.find((x) => x && x.id === el.dataset.export);
     if (b) exportDialog(b);
+  }));
+  $$('[data-toggle-bank]').forEach((btn) => btn.addEventListener('click', () => {
+    const card = btn.closest('.bank-card');
+    const open = card.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+    const id = card.dataset.bank;
+    if (open) openSet.add(id); else openSet.delete(id);
+    localStorage.setItem(OPEN_KEY, JSON.stringify([...openSet]));
   }));
   $$('.bank-links a.disabled').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); toast('这里还是空的', 'info'); }));
   $$('[data-reset]').forEach((btn) => btn.addEventListener('click', async () => {
@@ -371,12 +385,12 @@ function renderQuestion(q, { index, total, sel = '', revealed = false, fav = fal
     <article class="q-card" data-qid="${esc(q.id)}">
       <div class="q-meta">
         <span class="badge badge-${q.type}">${TYPE_LABEL[q.type] || '题目'}</span>
+        <span class="q-no"><b>${index + 1}</b><span>/ ${total}</span></span>
         ${q.chapter ? `<span class="q-chapter">${esc(q.chapter)}</span>` : ''}
         <span class="q-spacer"></span>
         ${showFlag ? `<button class="chip-btn ${flagged ? 'on flag' : ''}" data-flag title="标记，稍后检查 (M)">${icon('flag')}<span>${flagged ? '已标记' : '标记'}</span></button>` : ''}
         ${showFav ? `<button class="chip-btn ${fav ? 'on fav' : ''}" data-fav title="收藏 (F)">${icon('star')}<span>${fav ? '已收藏' : '收藏'}</span></button>` : ''}
       </div>
-      <div class="q-no">第 <b>${index + 1}</b> 题 <span>/ 共 ${total} 题</span></div>
       <div class="q-text">${rich(q.question)}</div>
       ${imgs}
       ${multi && !revealed ? '<div class="q-hint">多选题：选择所有正确选项后点击「提交答案」</div>' : ''}
@@ -421,17 +435,80 @@ function renderRecite(q, { index, total, fav, hidden, mastered }) {
     <article class="q-card recite-card ${mastered ? 'is-mastered' : ''}" data-qid="${esc(q.id)}">
       <div class="q-meta">
         <span class="badge badge-${q.type}">${TYPE_LABEL[q.type] || '题目'}</span>
+        <span class="q-no"><b>${index + 1}</b><span>/ ${total}</span></span>
         ${q.chapter ? `<span class="q-chapter">${esc(q.chapter)}</span>` : ''}
         <span class="q-spacer"></span>
         <button class="chip-btn ${mastered ? 'on ok' : ''}" data-master title="标记为已掌握 (S)">${icon('check')}<span>${mastered ? '已掌握' : '掌握'}</span></button>
         <button class="chip-btn ${fav ? 'on fav' : ''}" data-fav title="收藏 (F)">${icon('star')}<span>${fav ? '已收藏' : '收藏'}</span></button>
       </div>
-      <div class="q-no">第 <b>${index + 1}</b> 题 <span>/ 共 ${total} 题</span></div>
       <div class="q-text">${rich(q.question)}</div>
       ${imgs}
       <div class="options">${opts}</div>
       ${foot}
     </article>`;
+}
+
+
+/* ---------- 左右滑动切题（跟手拖动 + 过渡动画） ---------- */
+const reduceMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+/** 新题目从切换方向滑入：dir=1 下一题（从右侧进入），-1 上一题 */
+function slideIn(wrap, dir) {
+  const card = wrap?.firstElementChild;
+  if (!card || !dir || reduceMotion() || !card.animate) return;
+  card.style.animation = 'none';
+  card.animate(
+    [{ transform: `translateX(${dir > 0 ? 56 : -56}px)`, opacity: 0 }, { transform: 'none', opacity: 1 }],
+    { duration: 260, easing: 'cubic-bezier(.2,.8,.2,1)' },
+  );
+}
+/** 在题目区域绑定滑动：can(dir) 判断能否切换，move(dir) 执行切换（应调用 render + slideIn） */
+function bindSwipe(wrap, { can, move }) {
+  let x0 = 0, y0 = 0, t0 = 0, dx = 0, lock = null, card = null, busy = false;
+  const W = () => wrap.clientWidth || window.innerWidth;
+  const skip = (t) => t.closest?.('input, textarea, .q-img, .lightbox');
+  const start = (e) => {
+    if (busy || e.touches.length !== 1 || skip(e.target)) { lock = 'n'; return; }
+    x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; t0 = Date.now(); dx = 0; lock = null;
+    card = wrap.firstElementChild;
+  };
+  const moveH = (e) => {
+    if (lock === 'n' || !card) return;
+    const mx = e.touches[0].clientX - x0, my = e.touches[0].clientY - y0;
+    if (lock === null) {
+      if (Math.abs(mx) < 8 && Math.abs(my) < 8) return;
+      lock = Math.abs(mx) > Math.abs(my) * 1.2 ? 'x' : 'y';
+      if (lock === 'x') { card.style.transition = 'none'; card.style.animation = 'none'; card.style.willChange = 'transform'; }
+    }
+    if (lock !== 'x') return;
+    if (e.cancelable) e.preventDefault();
+    dx = mx;
+    const edge = !can(dx < 0 ? 1 : -1);
+    const off = edge ? dx * 0.22 : dx; // 到头了：阻尼回弹
+    card.style.transform = `translateX(${off}px) rotate(${off / W() * 3}deg)`;
+    card.style.opacity = String(edge ? 1 : Math.max(0.35, 1 - Math.abs(off) / W() * 0.7));
+  };
+  const end = () => {
+    if (lock !== 'x' || !card) { lock = null; return; }
+    lock = null;
+    const dir = dx < 0 ? 1 : -1;
+    const fast = Math.abs(dx) > 40 && Date.now() - t0 < 260;
+    const c = card; card = null;
+    if ((Math.abs(dx) > Math.min(90, W() * 0.24) || fast) && can(dir)) {
+      busy = true;
+      c.style.transition = 'transform .2s cubic-bezier(.4,0,.6,1), opacity .2s';
+      c.style.transform = `translateX(${-dir * W()}px) rotate(${-dir * 4}deg)`;
+      c.style.opacity = '0';
+      setTimeout(() => { busy = false; move(dir); }, 190);
+    } else {
+      c.style.transition = 'transform .3s cubic-bezier(.2,.9,.3,1.2), opacity .3s';
+      c.style.transform = ''; c.style.opacity = '';
+      setTimeout(() => { c.style.transition = ''; c.style.willChange = ''; }, 320);
+    }
+  };
+  wrap.addEventListener('touchstart', start, { passive: true });
+  wrap.addEventListener('touchmove', moveH, { passive: false });
+  wrap.addEventListener('touchend', end, { passive: true });
+  wrap.addEventListener('touchcancel', end, { passive: true });
 }
 
 const TYPE_SHORT = { single: '单选', multiple: '多选', judge: '判断', fill: '填空' };
@@ -609,6 +686,7 @@ async function viewPractice(bankId, mode, qtype) {
           <button class="btn btn-primary btn-wide" data-primary></button>
           <button class="btn btn-ghost" data-next>下一题 ${icon('right')}</button>
         </div>
+        <p class="swipe-tip">${icon('left')} 左右滑动切换题目 ${icon('right')}</p>
         <p class="kbd-tip">${icon('keyboard')} 快捷键：<kbd>A</kbd>–<kbd>D</kbd> 或 <kbd>1</kbd>–<kbd>4</kbd> 选择，<kbd>Enter</kbd> 提交 / 下一题，<kbd>←</kbd> <kbd>→</kbd> 切换，<kbd>F</kbd> 收藏</p>
       </section>
       <aside class="sheet" data-sheet>
@@ -741,8 +819,10 @@ async function viewPractice(bankId, mode, qtype) {
     clearTimeout(autoTimer);
     idx = n;
     render();
+    slideIn($('[data-qwrap]'), delta);
     closeSheet();
   }
+  bindSwipe($('[data-qwrap]'), { can: (dir) => idx + dir >= 0 && idx + dir < list.length, move });
 
   async function finish() {
     const msg = `本次共作答 <b>${sessionDone}</b> 题，答对 <b>${sessionRight}</b> 题${sessionDone ? `，正确率 <b>${Math.round((sessionRight / sessionDone) * 100)}%</b>` : ''}。`;
@@ -864,6 +944,7 @@ async function viewRecite(bankId, scope = 'all', qtype) {
           <button class="btn btn-primary btn-wide" data-primary></button>
           <button class="btn btn-ghost" data-next>下一题 ${icon('right')}</button>
         </div>
+        <p class="swipe-tip">${icon('left')} 左右滑动切换题目 ${icon('right')}</p>
         <p class="kbd-tip">${icon('keyboard')} 快捷键：<kbd>←</kbd> <kbd>→</kbd> 切换，<kbd>空格</kbd> 显示答案 / 下一题，<kbd>S</kbd> 掌握，<kbd>F</kbd> 收藏，<kbd>H</kbd> 遮住答案</p>
       </section>
       <aside class="sheet" data-sheet>
@@ -917,8 +998,10 @@ async function viewRecite(bankId, scope = 'all', qtype) {
     if (n < 0 || n >= list.length) return;
     idx = n;
     render();
+    slideIn($('[data-qwrap]'), delta);
     closeSheet();
   }
+  bindSwipe($('[data-qwrap]'), { can: (dir) => idx + dir >= 0 && idx + dir < list.length, move });
   function reveal() { peeked.add(list[idx].id); render(); }
   async function finish() {
     d = store.load(); store.bankState(d, bankId).recitePos[posKey] = 0; store.save(d);
@@ -956,16 +1039,6 @@ async function viewRecite(bankId, scope = 'all', qtype) {
   const openSheet = () => document.body.classList.add('sheet-open');
   const closeSheet = () => document.body.classList.remove('sheet-open');
 
-  // 手机左右滑动切题
-  let tx = 0, ty = 0;
-  const onTs = (e) => { tx = e.touches[0].clientX; ty = e.touches[0].clientY; };
-  const onTe = (e) => {
-    const dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
-    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5 && !e.target.closest('.q-img')) move(dx < 0 ? 1 : -1);
-  };
-  const qwrap = $('[data-qwrap]');
-  qwrap.addEventListener('touchstart', onTs, { passive: true });
-  qwrap.addEventListener('touchend', onTe, { passive: true });
 
   app.addEventListener('click', onClick);
   onCleanup(() => { app.removeEventListener('click', onClick); closeSheet(); });
@@ -1233,6 +1306,7 @@ async function viewExamRun(bankId) {
           <button class="btn btn-primary btn-wide" data-next-main>下一题 ${icon('right')}</button>
           <button class="btn btn-ghost" data-next>下一题 ${icon('right')}</button>
         </div>
+        <p class="swipe-tip">${icon('left')} 左右滑动切换题目 ${icon('right')}</p>
         <p class="kbd-tip">${icon('keyboard')} 快捷键：<kbd>A</kbd>–<kbd>D</kbd> 选择，<kbd>←</kbd> <kbd>→</kbd> 切换，<kbd>M</kbd> 标记</p>
       </section>
       <aside class="sheet" data-sheet>
@@ -1313,8 +1387,10 @@ async function viewExamRun(bankId) {
     if (n < 0 || n >= list.length) return;
     idx = n;
     render();
+    slideIn($('[data-qwrap]'), delta);
     document.body.classList.remove('sheet-open');
   }
+  bindSwipe($('[data-qwrap]'), { can: (dir) => idx + dir >= 0 && idx + dir < list.length, move });
 
   function toggleFlag() {
     const id = list[idx].id;
